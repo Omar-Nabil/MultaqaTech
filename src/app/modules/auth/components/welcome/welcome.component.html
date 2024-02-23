@@ -3010,25 +3010,27 @@
             <p class="modal-description">Don't have an account yet? <button data-bs-toggle="modal"
                 data-bs-target="#registerModal">Sign up for free</button></p>
           </div>
-          <h4 class="alert alert-danger" *ngIf="error">{{error}}</h4>
+          <h4 class="alert alert-danger" *ngIf="logInError">incorrect user name or password</h4>
           <div class="modal-body">
             <form [formGroup]="logInForm" (ngSubmit)="handleLogIn(logInForm)">
               <div class="modal-form">
                 <label class="form-label">Username or email</label>
                 <input formControlName="userNameOrEmail" type="text" class="form-control" placeholder="Your username or email"  [ngClass]="{'is-invalid': logInForm.get('userNameOrEmail')?.touched && logInForm.get('userNameOrEmail')?.errors}">
-                <p *ngIf="logInForm.get('userNameOrEmail')?.touched && logInForm.get('userNameOrEmail')?.getError('required')"
+                <p class="p-0 m-0" *ngIf="logInForm.get('userNameOrEmail')?.touched && logInForm.get('userNameOrEmail')?.getError('required')"
                   class="text-danger">Username or email is required</p>
-                <p *ngIf="logInForm.get('userNameOrEmail')?.touched && logInForm.get('userNameOrEmail')?.getError('minlength')"
+                <p class="p-0 m-0" *ngIf="logInForm.get('userNameOrEmail')?.touched && logInForm.get('userNameOrEmail')?.getError('minlength')"
                   class="text-danger">Enter more than 2 characters</p>
               </div>
               <div class="modal-form">
                 <label class="form-label">Password</label>
                 <input formControlName="password" type="password" class="form-control" placeholder="Password"  [ngClass]="{'is-invalid': logInForm.get('password')?.touched && logInForm.get('password')?.errors}">
-                <p *ngIf="logInForm.get('password')?.touched && logInForm.get('password')?.getError('required')" class="text-danger">
+                <p class="p-0 m-0" *ngIf="logInForm.get('password')?.touched && logInForm.get('password')?.getError('required')" class="text-danger">
                   Password is required</p>
-                <p class="p-0 m-0" *ngIf="logInForm.get('password')?.touched && logInForm.get('password')?.getError('pattern')"
+                <p class="p-0 m-0"
+                  *ngIf="logInForm.get('password')?.touched && (logInForm.get('password')?.getError('pattern') || logInForm.get('password')?.touched && logInForm.get('password')?.getError('minlength'))"
                   class="text-danger">
-                  Password must contain at least one lowercase letter , one uppercase letter and on special character</p>
+                  Password must contain at least one lowercase letter , one uppercase letter , on special character and enter at least
+                  <strong>6</strong> characters</p>
               </div>
               <div class="modal-form d-flex justify-content-between flex-wrap gap-2">
                 <div class="form-check">
@@ -3040,7 +3042,7 @@
                 </div>
               </div>
               <div class="modal-form">
-                <button class="btn btn-primary btn-hover-secondary w-100" type="submit">Log In</button>
+                <button class="btn btn-primary btn-hover-secondary w-100" type="submit"  [disabled]="logInForm.invalid">Log In</button>
               </div>
             </form>
 
@@ -3063,7 +3065,7 @@
   </div>
   <!-- Log In Modal End -->
 
-  <!-- Log In Modal Start -->
+  <!-- Sign Up Modal Start -->
   <div class="modal fade" id="registerModal">
     <div class="modal-dialog modal-dialog-centered modal-register">
 
@@ -3079,7 +3081,7 @@
                 data-bs-target="#loginModal">Log in</button></p>
           </div>
           <div class="modal-body">
-
+            <h4 class="alert alert-danger" *ngIf="registerError">{{registerError}}</h4>
             <form [formGroup]="signUpForm" (ngSubmit)="handleSignUp(signUpForm)">
               <div class="row gy-5">
                 <div class="col-md-6">
@@ -3120,17 +3122,22 @@
                   <div class="modal-form">
                     <label class="form-label">Password</label>
                     <input formControlName="password" type="password" class="form-control" placeholder="Password"  [ngClass]="{'is-invalid': signUpForm.get('password')?.touched && signUpForm.get('password')?.errors}">
-                    <p *ngIf="signUpForm.get('password')?.touched && signUpForm.get('password')?.getError('required')" class="text-danger">Password is required</p>
-                    <p class="p-0 m-0" *ngIf="signUpForm.get('password')?.touched && signUpForm.get('password')?.getError('pattern')" class="text-danger">
-                      Password must contain at least one lowercase letter , one uppercase letter and on special character</p>
+                    <p class="p-0 m-0" *ngIf="signUpForm.get('password')?.touched && signUpForm.get('password')?.getError('required')" class="text-danger">Password is required</p>
+                    <p *ngIf="" class="text-danger">
+                      Enter more than 5 characters</p>
+                    <p class="p-0 m-0" *ngIf="signUpForm.get('password')?.touched && (signUpForm.get('password')?.getError('pattern') || signUpForm.get('password')?.touched && signUpForm.get('password')?.getError('minlength'))"
+                      class="text-danger">
+                      Password must contain at least one lowercase letter , one uppercase letter , on special character and enter at least <strong>6</strong> characters</p>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="modal-form">
                     <label class="form-label">Re-Enter Password</label>
                     <input formControlName="rePassword" type="password" class="form-control" placeholder="Re-Enter Password"  [ngClass]="{'is-invalid': signUpForm.get('rePassword')?.touched && signUpForm.get('rePassword')?.errors}">
-                    <p *ngIf="signUpForm.get('rePassword')?.touched && signUpForm.get('rePassword')?.getError('required')" class="text-danger">rePassword is required</p>
-                    <p *ngIf="signUpForm.get('rePassword')?.touched && signUpForm.get('rePassword')?.getError('passwordmatch')" class="text-danger">repassword must match password</p>
+                    <p *ngIf="signUpForm.get('rePassword')?.touched && signUpForm.get('rePassword')?.getError('required')"
+                      class="text-danger">rePassword is required</p>
+                    <p *ngIf="signUpForm.get('rePassword')?.touched && signUpForm.get('rePassword')?.getError('passwordmatch')"
+                      class="text-danger">repassword must match password</p>
                   </div>
                 </div>
                 <div class="col-md-12">
@@ -3138,10 +3145,10 @@
                     <label class="form-label">Phone Number</label>
                     <input formControlName="phoneNumber" type="tel" class="form-control" placeholder="Phone Number"
                       [ngClass]="{'is-invalid': signUpForm.get('phoneNumber')?.touched && signUpForm.get('phoneNumber')?.errors}">
-                    <p *ngIf="signUpForm.get('phoneNumber')?.touched && signUpForm.get('phoneNumber')?.getError('required')"
+                    <p class="p-0 m-0" *ngIf="signUpForm.get('phoneNumber')?.touched && signUpForm.get('phoneNumber')?.getError('required')"
                       class="text-danger">phone Number is required</p>
 
-                    <p *ngIf="signUpForm.get('phoneNumber')?.touched && signUpForm.get('phoneNumber')?.getError('pattern')"
+                    <p class="p-0 m-0" *ngIf="signUpForm.get('phoneNumber')?.touched && signUpForm.get('phoneNumber')?.getError('pattern')"
                       class="text-danger">Enter Valid phone Number</p>
 
                   </div>
@@ -3163,5 +3170,5 @@
 
     </div>
   </div>
-  <!-- Log In Modal End -->
+  <!-- Sign Up Modal End -->
 
