@@ -251,56 +251,7 @@
 
       <div class="offcanvas-body">
         <nav class="canvas-menu">
-          <ul class="offcanvas-menu">
-            <li><a class="active" href="#"><span>Demo</span></a>
 
-              <ul class="mega-menu">
-                <li>
-                  <!-- Mega Menu Content Start -->
-                  <div class="mega-menu-content">
-                    <div class="row">
-                      <div class="col-xl-3">
-                        <div class="menu-content-list">
-                          <a href="index.html" class="menu-content-list__link">Main Demo <span
-                              class="badge hot">Hot</span></a>
-                          <a href="index-course-hub.html" class="menu-content-list__link">Course Hub</a>
-                          <a href="index-online-academy.html" class="menu-content-list__link">Online Academy <span
-                              class="badge hot">Hot</span></a>
-                          <a href="index-university.html" class="menu-content-list__link">University</a>
-                          <a href="index-education-center.html" class="menu-content-list__link">Education Center <span
-                              class="badge hot">Hot</span></a>
-                        </div>
-                      </div>
-                      <div class="col-xl-3">
-                        <div class="menu-content-list">
-                          <a href="index-language-academic.html" class="menu-content-list__link">Language Academic</a>
-                          <a href="index-single-instructor.html" class="menu-content-list__link">Single Instructor</a>
-                          <a href="index-dev.html" class="menu-content-list__link">Dev <span
-                              class="badge new">New</span></a>
-                          <a href="index-online-art.html" class="menu-content-list__link">Online Art <span
-                              class="badge new">New</span></a>
-                        </div>
-                      </div>
-                      <div class="col-xl-6">
-                        <div class="menu-content-banner"
-                          style="background-image: url(assets/images/home-megamenu-bg.jpg);">
-                          <h4 class="menu-content-banner__title">Achieve Your Goals With EduMall</h4>
-                          <a href="#" class="menu-content-banner__btn btn btn-primary btn-hover-secondary">Purchase
-                            now</a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- Mega Menu Content Start -->
-                </li>
-              </ul>
-
-
-
-
-            </li>
-            <li><a href="#"><span>Become an Instructor</span></a></li>
-          </ul>
         </nav>
       </div>
 
@@ -2586,7 +2537,7 @@
                         </div>
                         <div class="testimonial-info">
                           <div class="testimonial-info__image">
-                            <img src="assets/images/avatar/avatar-01.jpg" alt="Avatar" width="60" height="60">
+                            <img src="assets/images/avatar/avatar-01.png" alt="Avatar" width="60" height="60">
                           </div>
                           <div class="testimonial-info__caption">
                             <h5 class="testimonial-info__name">Oliver Beddows</h5>
@@ -2621,7 +2572,7 @@
                         </div>
                         <div class="testimonial-info">
                           <div class="testimonial-info__image">
-                            <img src="assets/images/avatar/avatar-02.jpg" alt="Avatar" width="60" height="60">
+                            <img src="assets/images/avatar/avatar-02.png" alt="Avatar" width="60" height="60">
                           </div>
                           <div class="testimonial-info__caption">
                             <h5 class="testimonial-info__name">Madley Pondor</h5>
@@ -2656,7 +2607,7 @@
                         </div>
                         <div class="testimonial-info">
                           <div class="testimonial-info__image">
-                            <img src="assets/images/avatar/avatar-03.jpg" alt="Avatar" width="60" height="60">
+                            <img src="assets/images/avatar/avatar-03.png" alt="Avatar" width="60" height="60">
                           </div>
                           <div class="testimonial-info__caption">
                             <h5 class="testimonial-info__name">Mina Hollace</h5>
@@ -2691,7 +2642,7 @@
                         </div>
                         <div class="testimonial-info">
                           <div class="testimonial-info__image">
-                            <img src="assets/images/avatar/avatar-04.jpg" alt="Avatar" width="60" height="60">
+                            <img src="assets/images/avatar/avatar-04.png" alt="Avatar" width="60" height="60">
                           </div>
                           <div class="testimonial-info__caption">
                             <h5 class="testimonial-info__name">Luvic Dubble</h5>
@@ -3010,7 +2961,7 @@
             <p class="modal-description">Don't have an account yet? <button data-bs-toggle="modal"
                 data-bs-target="#registerModal">Sign up for free</button></p>
           </div>
-          <h4 class="alert alert-danger" *ngIf="logInError">incorrect user name or password</h4>
+          <h6 class="alert alert-danger" *ngIf="logInError">incorrect user name or password</h6>
           <div class="modal-body">
             <form [formGroup]="logInForm" (ngSubmit)="handleLogIn(logInForm)">
               <div class="modal-form">
@@ -3081,7 +3032,7 @@
                 data-bs-target="#loginModal">Log in</button></p>
           </div>
           <div class="modal-body">
-            <h4 class="alert alert-danger" *ngIf="registerError">{{registerError}}</h4>
+            <h6 class="alert alert-danger" *ngIf="registerError">{{registerError}}</h6>
             <form [formGroup]="signUpForm" (ngSubmit)="handleSignUp(signUpForm)">
               <div class="row gy-5">
                 <div class="col-md-6">
