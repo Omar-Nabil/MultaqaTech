@@ -26,9 +26,18 @@
 //links start
 .activelink{
   background-color: #0071dc;
-  color: white;
+  color: white ;
+  i {
+      color: white;
+    }
+
 }
+
 .activelink:hover{
   color: black;
+  i {
+      color: #0071dc
+    }
 }
+
 //links end
