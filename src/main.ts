@@ -94,39 +94,39 @@ if ($(".menu-primary__container>li").find('.sub-menu').length) {
 
 
 
-    // /*--
-		// Menu Active
-    // -----------------------------------*/
-    // $(function () {
-    // var url = window.location.pathname;
-    // var activePage = url.substring(url.lastIndexOf('/') + 1);
-    //  var list = $('.dashboard-nav__menu-list li a').each(function () {
-
-    //         var linkPage = this.href.substring(this.href.lastIndexOf('/') + 1);
-
-    //         if (activePage == linkPage) {
-    //             $(this).closest("li").addClass("active");
-    //         }
-    //     });
-    // })
-  /*--
+    /*--
 		Menu Active
     -----------------------------------*/
     $(function () {
     var url = window.location.pathname;
     var activePage = url.substring(url.lastIndexOf('/') + 1);
-      $('.dashboard-nav__menu-list li a').each(function () {
-        var linkPage;
-          if (this instanceof HTMLAnchorElement) {
-       linkPage = this.href.substring(this.href.lastIndexOf('/') + 1);
-    }
+     var list = $('.dashboard-nav__menu-list li a').each(function () {
 
+            var linkPage = (<any>this).href.substring((<any>this).href.lastIndexOf('/') + 1);
 
             if (activePage == linkPage) {
                 $(this).closest("li").addClass("active");
             }
         });
     })
+  /*--
+		Menu Active
+    -----------------------------------*/
+    // $(function () {
+    // var url = window.location.pathname;
+    // var activePage = url.substring(url.lastIndexOf('/') + 1);
+    //   $('.dashboard-nav__menu-list li a').each(function () {
+    //     var linkPage;
+    //       if (this instanceof HTMLAnchorElement) {
+    //    linkPage = this.href.substring(this.href.lastIndexOf('/') + 1);
+    // }
+
+
+    //         if (activePage == linkPage) {
+    //             $(this).closest("li").addClass("active");
+    //         }
+    //     });
+    // })
 
 
     /*--
@@ -149,7 +149,8 @@ if ($(".menu-primary__container>li").find('.sub-menu').length) {
             e.preventDefault();
             if ($this.siblings('ul:visible').length) {
                 $this.parent('li').removeClass('active-expand');
-                $this.siblings('ul').slideUp();
+              $this.siblings('ul').slideUp();
+
             } else {
                 $this.parent('li').addClass('active-expand');
                 $this.closest('li').siblings('li').find('ul:visible').slideUp();
