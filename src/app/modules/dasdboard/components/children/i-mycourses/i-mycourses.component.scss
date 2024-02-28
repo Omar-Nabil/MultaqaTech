@@ -1,0 +1,110 @@
+.subject-input{
+  display: flex;
+  flex-direction:column;
+  // align-items: center;
+  position: absolute;
+  top: 60px;
+  right: 50px;
+  color:#0071dc;
+  font-size: 20px;
+  font-weight: 500;
+  overflow: hidden;
+  .text{
+      visibility: hidden;
+      opacity: 0;
+      translate: 100% 0;
+      transition: translate 0.4s,visibility 0.8s, opacity 0.3s linear;
+      -webkit-transition: translate 0.4s,visibility 0.8s, opacity 0.3s linear;
+      -moz-transition: translate 0.4s,visibility 0.8s, opacity 0.3s linear;
+      -ms-transition: translate 0.4s,visibility 0.8s, opacity 0.3s linear;
+      -o-transition: translate 0.4s,visibility 0.8s, opacity 0.3s linear;
+}
+.fa-circle-plus{
+  cursor: pointer;
+  transition: rotate 0.5s;
+  -webkit-transition: rotate 0.5s;
+  -moz-transition: rotate 0.5s;
+  -ms-transition: rotate 0.5s;
+  -o-transition: rotate 0.5s;
+}
+
+  &:hover{
+    .fa-circle-plus{
+
+     rotate: z 135deg;
+}
+    .text {
+        translate: 0% 0;
+        visibility: visible;
+          opacity: 1;
+}
+  }
+}
+
+
+// input subject start
+.input {
+  display: none;
+  font-family: 'Segoe UI', sans-serif;
+  margin: 1em 0 1em 0;
+  max-width: 230px;
+  position: relative;
+  z-index: 1;
+}
+
+.input input {
+  font-size: 100%;
+  padding: 0.8em;
+  outline: none;
+  border: 2px solid #0071dc;
+  background-color: white;
+  border-radius: 20px;
+  width: 100%;
+}
+
+.input label {
+  font-size: 100%;
+  position: absolute;
+  left: 0;
+  padding: 0.8em;
+  margin-left: 0.5em;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  color: #0071dc;
+}
+
+.input :is(input:focus, input:valid)~label {
+  transform: translateY(-50%) scale(.9);
+  margin: 0em;
+  margin-left: 1.3em;
+  padding: 0.4em;
+  background-color: white;
+}
+
+.inputGroup :is(input:focus, input:valid) {
+  border-color: rgb(37, 37, 211);
+}
+
+.input button {
+  background-color: #0071dc;
+  padding: 1rem 10px;
+
+  font-weight: 700;
+
+  text-transform: uppercase;
+  color: white;
+  border: none;
+
+  border-radius: 0 1rem 1rem 0;
+  transition: all 0.2s ease-in-out;
+  position: absolute;
+  top: 1.5px;
+  right: 0;
+}
+.input button:hover {
+  background-color: #005db4;
+}
+
+
+// input subject ends
+

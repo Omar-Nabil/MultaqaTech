@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormControl} from '@angular/forms';
 
 @Component({
   selector: 'app-i-mycourses',
@@ -7,4 +8,11 @@ import { Component } from '@angular/core';
 })
 export class IMycoursesComponent {
 
+  subject = new FormControl('');
+
+
+
+  displayInput() {
+    $('.input').slideToggle()
+  }
 }

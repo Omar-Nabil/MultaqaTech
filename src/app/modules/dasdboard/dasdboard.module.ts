@@ -21,6 +21,9 @@ import { SettingsComponent } from './components/children/settings/settings.compo
 import { SettingProfileComponent } from './components/children/setting-profile/setting-profile.component';
 import { SettingsResetpasswordComponent } from './components/children/settings-resetpassword/settings-resetpassword.component';
 
+import { ReactiveFormsModule } from '@angular/forms';
+
+
 
 @NgModule({
   declarations: [
@@ -46,7 +49,8 @@ import { SettingsResetpasswordComponent } from './components/children/settings-r
   ],
   imports: [
     CommonModule,
-    DasdboardRoutingModule
+    DasdboardRoutingModule,
+    ReactiveFormsModule
   ]
 })
 export class DasdboardModule { }

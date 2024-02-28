@@ -31,7 +31,7 @@
               "src/assets"
             ],
             "styles": [
-
+              "./node_modules/@fortawesome/fontawesome-free/css/all.min.css",
               "src/assets/css/vendor/fontawesome-all.min.css",
               "src/assets/css/vendor/edumall-icon.css",
               "src/assets/css/vendor/bootstrap.min.css",
@@ -46,6 +46,7 @@
               "src/styles.scss"
             ],
             "scripts": [
+              "./node_modules/@fortawesome/fontawesome-free/js/all.min.js",
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/select2/dist/js/select2.min.js"
             ]

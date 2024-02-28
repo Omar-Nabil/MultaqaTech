@@ -1,8 +1,17 @@
 <!-- Dashboard Content Start -->
-<div class="dashboard-content">
+<div class="dashboard-content position-relative">
 
   <div class="container">
     <h4 class="dashboard-title">My Courses</h4>
+
+    <div class="subject-input">
+      <div class="d-flex align-items-center ms-auto"><span class="text">Add subject</span><a (click)="displayInput()"><i class="fa-solid fa-circle-plus ms-3 fs-1"></i></a></div>
+      <div class="input ">
+        <input type="text" required="" autocomplete="off" [formControl]="subject">
+        <label for="name">Subject</label>
+        <button class="button" type="submit">Add</button>
+      </div>
+    </div>
 
     <!-- Dashboard My Courses Start -->
     <div class="dashboard-courses">
