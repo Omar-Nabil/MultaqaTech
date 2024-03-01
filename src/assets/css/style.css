@@ -4018,6 +4018,14 @@ span.flatpickr-weekday {
   color: #FFFFFF;
   transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
+.back-to-top svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #FFFFFF;
+  transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
 .back-to-top .arrow-top {
   transform: translate(-50%, -50%);
 }

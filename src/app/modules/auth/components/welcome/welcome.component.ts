@@ -114,4 +114,17 @@ export class WelcomeComponent implements OnInit {
 
     })
   }
+
+  fogotPassword(_email:any) {
+    const value = {
+      email:_email
+    }
+    this._AuthService.fogotPassword(value).subscribe({
+      next:(res) => {
+        console.log(res);
+
+      },
+      error: (err) => console.log(err)
+    })
+  }
 }

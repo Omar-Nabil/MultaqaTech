@@ -7,11 +7,15 @@ import { AppComponent } from './app.component';
 import { AuthModule } from './modules/auth/auth.module';
 import { SharedModule } from './modules/shared/shared.module';
 import { DasdboardModule } from './modules/dasdboard/dasdboard.module';
+import { LayoutComponent } from './layout/layout/layout.component';
+import { LayoutwithnavbarComponent } from './layout/layoutwithnavbar/layoutwithnavbar.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LayoutComponent,
+    LayoutwithnavbarComponent
   ],
   imports: [
     BrowserModule,

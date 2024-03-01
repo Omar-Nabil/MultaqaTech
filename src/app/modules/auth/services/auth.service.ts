@@ -16,11 +16,13 @@ export class AuthService {
   logIn(value:any):Observable<any> {
     return this._HttpClient.post(environment.baseURL+'/api/Account/login', value);
   }
+  fogotPassword(value:any):Observable<any> {
+    return this._HttpClient.post(environment.baseURL+'/api/Account/forgetPassword', value);
+  }
 
   saveUser():void {
     let token = JSON.stringify(localStorage.getItem('userToken'));
     let decode:any = jwtDecode(token);
     this.userData.next(decode);
-
   }
 }

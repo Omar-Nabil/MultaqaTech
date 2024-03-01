@@ -2969,7 +2969,7 @@
                 <input formControlName="userNameOrEmail" type="text" class="form-control" placeholder="Your username or email"  [ngClass]="{'is-invalid': logInForm.get('userNameOrEmail')?.touched && logInForm.get('userNameOrEmail')?.errors}">
                 <p class="p-0 m-0" *ngIf="logInForm.get('userNameOrEmail')?.touched && logInForm.get('userNameOrEmail')?.getError('required')"
                   class="text-danger">Username or email is required</p>
-                <p class="p-0 m-0" *ngIf="logInForm.get('userNameOrEmail')?.touched && logInForm.get('userNameOrEmail')?.getError('minlength')"
+                <p class="p-0 m-0" *ngIf="logInForm.get('c')?.touched && logInForm.get('userNameOrEmail')?.getError('minlength')"
                   class="text-danger">Enter more than 2 characters</p>
               </div>
               <div class="modal-form">
@@ -2989,7 +2989,7 @@
                   <label for="rememberme">Remember me</label>
                 </div>
                 <div class="text-end">
-                  <a class="modal-form__link" href="#">Forgot your password?</a>
+                  <a class="modal-form__link" (click)="fogotPassword(logInForm.get('userNameOrEmail')?.value)">Forgot your password?</a>
                 </div>
               </div>
               <div class="modal-form">
