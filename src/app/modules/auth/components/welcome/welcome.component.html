@@ -2992,6 +2992,7 @@
                   <a class="modal-form__link" (click)="fogotPassword(logInForm.get('userNameOrEmail')?.value)">Forgot your password?</a>
                 </div>
               </div>
+              <div class="alert alert-danger my-1" *ngIf="emailNotExists">your Email don't Exists</div>
               <div class="modal-form">
                 <button class="btn btn-primary btn-hover-secondary w-100" type="submit"  [disabled]="logInForm.invalid">Log In</button>
               </div>
@@ -3001,8 +3002,8 @@
               <p>or Log-in with</p>
 
               <ul class="modal-social-btn">
-                <li><a href="#" class="btn facebook"><i class="fab fa-facebook-square"></i> Gacebook</a></li>
-                <li><a href="#" class="btn google"><i class="fab fa-google"></i> Google</a></li>
+                <li><a href="#" class="btn facebook"><i class="fab fa-facebook-square" style="color: blue;"></i> Facebook</a></li>
+                <li><a href="#" class="btn google"><i class="fab fa-google" style="color: red;"></i> Google</a></li>
               </ul>
             </div>
           </div>

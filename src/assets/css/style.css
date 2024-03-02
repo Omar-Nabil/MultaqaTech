@@ -18525,15 +18525,13 @@ span.flatpickr-weekday {
   margin-right: 5px;
   font-size: 18px;
 }
-.modal-social-btn li .btn:hover {
-  border-color: #252525;
+.modal-social-btn li .facebook:hover {
+  border-color: #2e58b2;
 }
-.modal-social-btn li .facebook i {
-  color: #2e58b2;
+.modal-social-btn li .google:hover {
+  border-color: #ea4335;
 }
-.modal-social-btn li .google i {
-  color: #ea4335;
-}
+
 
 /*--
 /*  04.44 - Dashboard

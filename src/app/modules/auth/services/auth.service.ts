@@ -19,6 +19,9 @@ export class AuthService {
   fogotPassword(value:any):Observable<any> {
     return this._HttpClient.post(environment.baseURL+'/api/Account/forgetPassword', value);
   }
+  reserPassword(value:any):Observable<any> {
+    return this._HttpClient.post(environment.baseURL+'/api/Account/ResetPassword', value);
+  }
 
   saveUser():void {
     let token = JSON.stringify(localStorage.getItem('userToken'));

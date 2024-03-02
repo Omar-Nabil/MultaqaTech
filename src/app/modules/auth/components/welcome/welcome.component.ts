@@ -14,6 +14,7 @@ export class WelcomeComponent implements OnInit {
   logInForm!:FormGroup;
   logInError:boolean = false;
   registerError:string = '';
+  emailNotExists:boolean = false;
 
   constructor(private _fb:FormBuilder, private _AuthService:AuthService, private _Router:Router) {
 
@@ -122,9 +123,18 @@ export class WelcomeComponent implements OnInit {
     this._AuthService.fogotPassword(value).subscribe({
       next:(res) => {
         console.log(res);
+        this._Router.navigate(['/api/Account/ResetPassword']);
 
+        const modalBackdrops = document.querySelectorAll('.modal-backdrop') as NodeListOf<HTMLElement>;
+        modalBackdrops.forEach(backdrop => {
+          backdrop.classList.add('d-none');
+        });
       },
-      error: (err) => console.log(err)
+      error: (err) => {
+        this.emailNotExists = true;
+        console.log(err);
+
+      }
     })
   }
 }

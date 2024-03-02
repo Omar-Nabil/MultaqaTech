@@ -2,8 +2,9 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { NotFound404Component } from './components/not-found404/not-found404.component';
 import { RouterLink } from '@angular/router';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { NotFound404Component } from './components/not-found404/not-found404.component';
 
 
 
@@ -12,7 +13,8 @@ import { RouterLink } from '@angular/router';
   declarations: [
 
 
-    NotFound404Component
+    NotFound404Component,
+        NavbarComponent
   ],
   imports: [
     CommonModule,
@@ -22,7 +24,8 @@ import { RouterLink } from '@angular/router';
   ],
   exports:[
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NavbarComponent
   ]
 })
 export class SharedModule { }
