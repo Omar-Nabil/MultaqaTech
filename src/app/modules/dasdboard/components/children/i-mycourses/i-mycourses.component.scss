@@ -7,7 +7,7 @@
   right: 50px;
   color:#0071dc;
   font-size: 20px;
-  font-weight: 500;
+  font-weight: 700;
   overflow: hidden;
   .text{
       visibility: hidden;
@@ -44,10 +44,9 @@
 
 // input subject start
 .input {
-  display: none;
   font-family: 'Segoe UI', sans-serif;
   margin: 1em 0 1em 0;
-  max-width: 230px;
+  // max-width: 230px;
   position: relative;
   z-index: 1;
 }
@@ -66,6 +65,7 @@
   font-size: 100%;
   position: absolute;
   left: 0;
+  top: 0;
   padding: 0.8em;
   margin-left: 0.5em;
   pointer-events: none;

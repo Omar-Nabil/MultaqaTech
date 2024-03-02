@@ -5,12 +5,8 @@
     <h4 class="dashboard-title">My Courses</h4>
 
     <div class="subject-input">
-      <div class="d-flex align-items-center ms-auto"><span class="text">Add subject</span><a (click)="displayInput()"><i class="fa-solid fa-circle-plus ms-3 fs-1"></i></a></div>
-      <div class="input ">
-        <input type="text" required="" autocomplete="off" [formControl]="subject">
-        <label for="name">Subject</label>
-        <button class="button" type="submit">Add</button>
-      </div>
+      <div class="d-flex align-items-center ms-auto"><span class="text">Add subject</span><a data-bs-toggle="modal" data-bs-target="#exampleModal" ><i class="fa-solid fa-circle-plus ms-3 fs-1"></i></a></div>
+
     </div>
 
     <!-- Dashboard My Courses Start -->
@@ -275,6 +271,31 @@
     <!-- Dashboard My Courses End -->
 
 
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Add Subject</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="input">
+          <input [ngClass]="{'is-valid':subjectsucess,'is-invalid':subjectfail}" class="form-control" type="text" required="" autocomplete="off" [formControl]="subjectInput">
+          <label for="name">Subject</label>
+        </div>
+        <p class="mt-0 mb-2 ms-1" [ngClass]="{'text-success':subjectsucess,'text-danger':subjectfail}">{{subjectmsg}}</p>
+
+      </div>
+      <div class="modal-footer">
+
+        <button type="button" class="btn btn-primary rounded-5" (click)="add()">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
   </div>
 
 
