@@ -17,7 +17,7 @@ const routes: Routes = [
     {path:'dashboard', loadChildren:()=>import('../app/modules/dasdboard/dasdboard.module').then((res)=>res.DasdboardModule), canActivate:[authGuard] },
   ]},
   {path:'', component:LayoutwithnavbarComponent, children:[
-    {path:'home', component:HomeComponent},
+    {path:'home', component:HomeComponent, canActivate:[authGuard]},
   ]},
   {path:"**", component:NotFound404Component}
 
