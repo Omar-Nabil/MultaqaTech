@@ -224,7 +224,7 @@
               </div>
 
               <div class="dashboard-header__btn">
-                <a class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#addCourse" href="#"><i class="edumi edumi-content-writing"></i> <span class="text">Add
+                <a class="btn btn-outline-primary" (click)="getSubjects()" data-bs-toggle="modal" data-bs-target="#addCourse" href="#"><i class="edumi edumi-content-writing"></i> <span class="text">Add
                     A New Course </span></a>
               </div>
 
@@ -253,35 +253,34 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <div class="input">
-          <input id="title" class="form-control" type="text"
-            required="" autocomplete="off" >
-          <label for="title">Title</label>
-        </div>
-        <!-- <label for="subject"></label> -->
 
-        <div class="input">
-          <input id="lang" class="form-control" type="text"
-            required="" autocomplete="off" >
-          <label for="lang">Lagnuage</label>
-        </div>
+        <form [formGroup]="addCourseForm">
+          <div class="input">
+            <input formControlName="title" id="title" class="form-control" type="text" required="" autocomplete="off">
+            <label for="title">Title</label>
+          </div>
+          <!-- <label for="subject"></label> -->
 
-        <div class="input">
-          <select id="subject" class="form-select rounded-4" aria-label="Default select example">
-            <option selected>Subject</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
-          </select>
+          <div class="input">
+            <input id="lang" formControlName="language" class="form-control" type="text" required="" autocomplete="off">
+            <label for="lang">Lagnuage</label>
+          </div>
 
-        </div>
+          <div class="input">
+            <select id="subject" formControlName="subject" class="form-select rounded-4" aria-label="Default select example">
+              <option value="0">Subject</option>
+              <option *ngFor="let subject of subjects ;let i=index" [value]="i">{{subject.name}}</option>
+            </select>
 
-      <div class="contain ms-1 my-3">
-        <label><input name="e" type="radio" /> Beginner</label>
-        <label><input name="e" type="radio" /> Intermediate</label>
-        <label><input name="e" type="radio" /> Advanced</label>
-        <label><input name="e" type="radio" />Master</label>
-      </div>
+          </div>
+
+          <div class="contain ms-1 my-3">
+            <label><input name="e" type="radio" /> Beginner</label>
+            <label><input name="e" type="radio" /> Intermediate</label>
+            <label><input name="e" type="radio" /> Advanced</label>
+            <label><input name="e" type="radio" />Master</label>
+          </div>
+        </form>
 
 
 

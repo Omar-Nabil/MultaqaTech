@@ -1,3 +1,4 @@
 export interface Subject {
-  name:string
+  name: string
+  id?:number
 }

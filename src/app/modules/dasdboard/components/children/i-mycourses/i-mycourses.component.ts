@@ -16,11 +16,46 @@ export class IMycoursesComponent {
   subjectmsg: string = '';
   subjectsucess: boolean = false;
   subjectfail: boolean = false;
+  subjects:Subject[]=[]
 
   constructor(private _SubjectService: SubjectService) {
 
 
   }
+
+  getSubjects() {
+     this._SubjectService.getsubjects().subscribe({
+      next: (response) => {
+         this.subjects = response;
+      }
+    })
+  }
+
+  deleteSubject(id: number) {
+    this._SubjectService.deletesubject(id).subscribe({
+      next:(response)=>{console.log(response);
+      },
+      error:(err)=>{console.log(err);
+        this.getSubjects()
+      }
+    })
+
+  }
+
+    toggleFade(modal1:any,modal2:any){
+      $(`#${modal1}`).addClass('fade');
+      $(`#${modal2}`).removeClass('fade')
+      if ($('.modal-backdrop.fade.show').length >= 1) {
+        for (let i = 0; i < $('.modal-backdrop.fade.show').length; i++) {
+           $('.modal-backdrop.fade.show')[0].remove()
+
+        }
+
+
+      }
+
+
+    }
 
 
 
@@ -41,7 +76,7 @@ export class IMycoursesComponent {
           this.subjectsucess = false
           }, 5000)
 
-
+          this.getSubjects()
 
 
         },

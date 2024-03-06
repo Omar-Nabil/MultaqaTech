@@ -22,7 +22,7 @@ import { LayoutwithnavbarComponent } from './layout/layoutwithnavbar/layoutwithn
     AppRoutingModule,
     SharedModule,
     AuthModule,
-    DasdboardModule
+    DasdboardModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
