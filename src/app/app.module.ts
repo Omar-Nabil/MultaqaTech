@@ -1,14 +1,12 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AuthModule } from './modules/auth/auth.module';
-import { SharedModule } from './modules/shared/shared.module';
-import { DasdboardModule } from './modules/dasdboard/dasdboard.module';
 import { LayoutComponent } from './layout/layout/layout.component';
 import { LayoutwithnavbarComponent } from './layout/layoutwithnavbar/layoutwithnavbar.component';
+import { AuthModule } from './modules/auth/auth.module';
+import { BlogsModule } from './modules/blogs/blogs.module';
+import { SharedModule } from './modules/shared/shared.module';
 
 
 @NgModule({
@@ -22,7 +20,7 @@ import { LayoutwithnavbarComponent } from './layout/layoutwithnavbar/layoutwithn
     AppRoutingModule,
     SharedModule,
     AuthModule,
-    DasdboardModule,
+    BlogsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

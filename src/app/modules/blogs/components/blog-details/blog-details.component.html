@@ -1,0 +1,475 @@
+<main class="main-wrapper">
+
+
+
+  <!-- Page Banner Section Start -->
+  <div class="page-banner">
+    <div class="page-banner__wrapper">
+      <div class="container">
+
+        <!-- Page Breadcrumb Start -->
+        <div class="page-breadcrumb">
+          <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a>Home</a></li>
+            <li class="breadcrumb-item"><a>Blog</a></li>
+            <li class="breadcrumb-item active">{{blogDetailes?.title}}
+            </li>
+          </ul>
+        </div>
+        <!-- Page Breadcrumb End -->
+
+      </div>
+    </div>
+  </div>
+  <!-- Page Banner Section End -->
+
+  <!-- Offcanvas Start -->
+  <div class="offcanvas offcanvas-end offcanvas-mobile" id="offcanvasMobileMenu"
+    style="background-image: url(assets/images/mobile-bg.jpg);">
+    <div class="offcanvas-header bg-white">
+      <div class="offcanvas-logo">
+        <a class="offcanvas-logo__logo" href="#"><img src="assets/images/dark-logo.png" alt="Logo"></a>
+      </div>
+      <button type="button" class="offcanvas-close" data-bs-dismiss="offcanvas"><i class="fas fa-times"></i></button>
+    </div>
+
+    <div class="offcanvas-body">
+      <nav class="canvas-menu">
+        <ul class="offcanvas-menu">
+          <li><a class="active" routerLink="/home"><span>Home</span></a>
+
+          </li>
+          <li>
+            <a href="#"><span>Courses</span></a>
+
+          </li>
+          <li>
+            <a href="#"><span>Blog</span></a>
+
+          </li>
+          <li>
+            <a href="#"><span>Features</span></a>
+
+          </li>
+
+
+        </ul>
+      </nav>
+    </div>
+
+  </div>
+  <!-- Offcanvas End -->
+
+  <!-- Blog Start -->
+  <div class="blog-section section-padding-01">
+    <div class="container custom-container">
+
+      <!-- Blog Dtails Start -->
+      <div class="blog-details text-center">
+
+        <div class="blog-details__categories-02">
+          <a>{{blogDetailes?.category}}</a>
+        </div>
+
+        <div class="blog-details__content pt-0">
+          <h3 class="blog-details__title-02">{{blogDetailes?.title}}</h3>
+          <div class="blog-details__meta justify-content-center">
+            <a class="meta-action" href="#">
+              <span class="meta-action__value">{{blogDetailes?.authorName}}</span>
+            </a>
+            <span class="meta-action"><i class="fas fa-calendar"></i> <span class="meta-action__value">{{blogDetailes?.publishingDate}}</span></span>
+            <span class="meta-action"><i class="fas fa-eye"></i> <span class="meta-action__value">{{blogDetailes?.numberOfViews}}
+                views</span></span>
+            <a class="meta-action" href="#"><i class="fas fa-comment"></i> <span class="meta-action__value">{{blogDetailes?.comments.length}}
+                comments</span></a>
+          </div>
+        </div>
+
+        <div class="blog-details__image">
+          <img [src]="reduceUrl(blogDetailes?.pictureUrl)" alt="Blog"  style="width: 700px;height: 500px;">
+        </div>
+
+      </div>
+      <!-- Blog Dtails End -->
+
+      <!-- Blog Dtails Start -->
+      <div class="blog-details-no-sidebar">
+
+        <!-- Blog Dtails Start -->
+        <div class="blog-details">
+
+          <div class="blog-details__content">
+            <p>As our elementary students head back to school in person, in this very new way, there will be many
+              emotions stirred up in them. Alarm. Frustration. Worry. Excitement. </p>
+            <p>And this will be mirrored by what we, as adults, may also be experiencing. For our teachers, on top of
+              what they will be emotionally experiencing themselves, they are being called to be the caring leaders that
+              guide our students to a place where they can learn together.</p>
+            <blockquote class="blockquote">
+              <p>{{blogDetailes?.content}}</p>
+            </blockquote>
+            <p>So, how can we support them to support our children’s learning? As parents and school administrators, we
+              can relax about the ‘learning’ and trust it will come. Schools are going to need to change the focus right
+              now to concentrating on the emotional basics before academic basics. Teachers teach people, not subjects.
+              And when they can focus on supporting well-being first, the learning may then have an opportunity to land.
+            </p>
+            <p><strong>Let’s take a closer look at the 3 R’s of emotional basics:</strong></p>
+            <p><strong>Relationship</strong></p>
+            <p>What our students need from us is..us. They need to know we are there for them, and that they matter.
+              It’s not so much about what we say—it’s about how we make them feel in our presence: invited, accepted,
+              and seen. </p>
+            <p>During this emotionally turbulent time, we will need to make conscious invitations into relationship so
+              that our students can feel connected to us. This might mean special greeting rituals at the beginning of
+              each day and more playful activities in which we join in. These attachment practices can help our students
+              to feel connected to us, which may also lower their anxiety. </p>
+            <p><strong>Rhythm</strong></p>
+            <p>Children crave rhythm.</p>
+            <p>Consistent routines, rituals, and structures help children feel safe. They can lean on these and rely on
+              them. Yet most children are experiencing the exact opposite right now. And as they look to returning to
+              school, they may have little to no sense of what the ‘new normal’ will be. We can create a sense of safety
+              by quickly establishing new routines that our students can count on and orient around. This will help to
+              produce a rhythm to their days and can offer a sense of predictability in these unpredictable times.</p>
+            <p><strong>Release</strong></p>
+            <p>Our students’ emotions will be stirred up. And we know that when emotions get stirred up, they need
+              somewhere to go. Finding healthy ways to pre-emptively channel this emotional energy for our students can
+              help to alleviate dangerous or disruptive eruptions. Integrating daily outlets for release can be
+              especially helpful for supporting students to get out frustration before it leads to outbursts of
+              aggression.</p>
+            <p>These outlets can also help students to reflect on and express their feelings in ways that don’t make
+              them feel self-conscious. The beauty of this practice is that we don’t even have to know what is
+              specifically going on for a child. We are simply facilitating a way for the emotion to be expressed and
+              released indirectly in a natural way—whether through music, physical movement, stories or storytelling,
+              writing, poetry, drama, art, or even simply being outdoors. All of these outlets are powerful because they
+              help us come closer to our feelings and to experiencing a sense of release and emotional rest.</p>
+            <p>Going back to school during this time will not be easy. We will need to be creative and think outside the
+              box. We may need to stretch muscles we never knew we had. But it may be helpful to remember that this is
+              not a time to focus on outcome and performance, or getting ahead or even catching up. Shifting our
+              attention to matters of the heart will help our students feel safe. This is what will set the stage for
+              learning to happen – when children are ready.</p>
+            <p>In the meantime, let’s be patient with our students and ourselves. We are all in this together.</p>
+          </div>
+
+          <div class="blog-details__footer">
+
+            <div class="blog-details__tags">
+              <span class="blog-details__tags-label"><i class="fas  fa-tags"></i></span>
+              <div class="blog-details__tags-list">
+                <a href="#" *ngFor="let item of blogDetailes?.tags"> {{item}},</a>
+              </div>
+            </div>
+
+            <div class="blog-details__share">
+              <span class="blog-details__share-label">Share this post</span>
+
+              <div class="blog-details__share-media">
+                <div class="blog-details__share-icon">
+                  <i class="fas fa-share-alt"></i>
+                </div>
+                <ul class="blog-details__share-social">
+                  <li><a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" title="Twitter"><i
+                        class="fab fa-twitter"></i></a></li>
+                  <li><a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" title="Facebook"><i
+                        class="fab fa-facebook-f"></i></a></li>
+                  <li><a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" title="Linkedin"><i
+                        class="fab fa-linkedin"></i></a></li>
+                  <li><a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" title="Tumblr"><i
+                        class="fab fa-tumblr-square"></i></a></li>
+                  <li><a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" title="Email"><i
+                        class="fas fa-envelope"></i></a></li>
+                </ul>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="blog-details__nav">
+            <div class="blog-details__nav-item prev">
+              <a class="blog-details__nav-link" href="#">
+                <div class="blog-details__hover-bg" style="background-image: url(assets/images/blog/blog-11.jpg);">
+                </div>
+                <span class="text">The Challenge Of Global Learning In Public Education</span>
+              </a>
+            </div>
+            <div class="blog-details__nav-item next">
+              <a class="blog-details__nav-link" href="#">
+                <div class="blog-details__hover-bg" style="background-image: url(assets/images/blog/blog-13.jpg);">
+                </div>
+                <span class="text">It’s Time To Think Differently About Writing In The Classroom</span>
+              </a>
+            </div>
+          </div>
+
+        </div>
+        <!-- Blog Dtails End -->
+
+        <!-- Related Post Start -->
+        <div class="related-post mt-8">
+          <h3 class="related-post__title">Related Posts</h3>
+
+          <div class="related-posts swiper-button-style">
+            <div class="swiper">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+
+                  <!-- Related Post Item Start -->
+                  <div class="related-post-item">
+                    <div class="related-post-item__image">
+                      <a href="blog-details-right-sidebar.html"><img src="assets/images/blog/blog-07.jpg" alt="Blog"
+                          width="237" height="129"></a>
+                    </div>
+                    <div class="related-post-item__content">
+                      <h3 class="related-post-item__title"><a href="blog-details-right-sidebar.html">A Better
+                          Alternative To Grading Student Writing</a></h3>
+                      <div class="related-post-item__meta">
+                        <span class="meta-action"><i class="fas fa-calendar"></i> August 10, 2022</span>
+                        <span class="meta-action"><i class="fas fa-eye"></i> 4,036 views</span>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Related Post Item End -->
+
+                </div>
+                <div class="swiper-slide">
+
+                  <!-- Related Post Item Start -->
+                  <div class="related-post-item">
+                    <div class="related-post-item__image">
+                      <a href="blog-details-right-sidebar.html"><img src="assets/images/blog/blog-04.jpg" alt="Blog"
+                          width="237" height="129"></a>
+                    </div>
+                    <div class="related-post-item__content">
+                      <h3 class="related-post-item__title"><a href="blog-details-right-sidebar.html">The Long-Term
+                          Effects Of Remote Learning May Not Be All Bad</a></h3>
+                      <div class="related-post-item__meta">
+                        <span class="meta-action"><i class="fas fa-calendar"></i> August 10, 2022</span>
+                        <span class="meta-action"><i class="fas fa-eye"></i> 191 views</span>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Related Post Item End -->
+
+                </div>
+                <div class="swiper-slide">
+
+                  <!-- Related Post Item Start -->
+                  <div class="related-post-item">
+                    <div class="related-post-item__image">
+                      <a href="blog-details-right-sidebar.html"><img src="assets/images/blog/blog-01.jpg" alt="Blog"
+                          width="237" height="129"></a>
+                    </div>
+                    <div class="related-post-item__content">
+                      <h3 class="related-post-item__title"><a href="blog-details-right-sidebar.html">How Working from
+                          Home Is Transforming Learning</a></h3>
+                      <div class="related-post-item__meta">
+                        <span class="meta-action"><i class="fas fa-calendar"></i> August 10, 2022</span>
+                        <span class="meta-action"><i class="fas fa-eye"></i> 4,036 views</span>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Related Post Item End -->
+
+                </div>
+                <div class="swiper-slide">
+
+                  <!-- Related Post Item Start -->
+                  <div class="related-post-item">
+                    <div class="related-post-item__image">
+                      <a href="blog-details-right-sidebar.html"><img src="assets/images/blog/blog-14.jpg" alt="Blog"
+                          width="237" height="129"></a>
+                    </div>
+                    <div class="related-post-item__content">
+                      <h3 class="related-post-item__title"><a href="blog-details-right-sidebar.html">A Better
+                          Alternative To Grading Student Writing</a></h3>
+                      <div class="related-post-item__meta">
+                        <span class="meta-action"><i class="fas fa-calendar"></i> August 10, 2022</span>
+                        <span class="meta-action"><i class="fas fa-eye"></i> 4,036 views</span>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Related Post Item End -->
+
+                </div>
+              </div>
+            </div>
+
+            <div class="swiper-button-next"><i class="fas fa-angle-right"></i></div>
+            <div class="swiper-button-prev"><i class="fas fa-angle-left"></i></div>
+          </div>
+
+        </div>
+        <!-- Related Post End -->
+        <!-- display Comment Start -->
+        <div class="comments-container my-10">
+          <h2>Comments</h2>
+          <div class="comment" *ngFor="let comment of blogDetailes?.comments">
+            <p class="comment-text">{{ comment }}</p>
+
+          </div>
+        </div>
+
+        <!-- Add Comment Start -->
+        <div class="comments-area">
+
+          <!-- Comment Wrapper Start -->
+          <div class="comment-wrap mt-8">
+            <h3 class="comment-title">Leave your thought here</h3>
+            <p>Your email address will not be published. Required fields are marked *</p>
+
+            <!-- Comment Form Start -->
+          <div class="comment-form">
+            <form>
+              <div class="row gy-4">
+                <div class="col-md-12">
+                  <div class="comment-form__input">
+                    <textarea class="form-control" placeholder="Your Comment" [formControl]="commentControl"></textarea>
+                    <!-- Validation Messages -->
+                    <div *ngIf="commentControl.touched && commentControl.hasError('required')" class="text-danger">
+                      Comment is required.
+                    </div>
+                    <div *ngIf="commentControl.touched && commentControl.hasError('minlength')" class="text-danger">
+                      Comment must be at least 20 characters long.
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <a class="btn btn-dark"  (click)="submitComment()">add</a>
+                </div>
+              </div>
+            </form>
+          </div>
+
+            <!-- Comment Form End -->
+
+          </div>
+          <!-- Comment Wrapper End -->
+
+        </div>
+        <!--Add Comment End -->
+
+      </div>
+      <!-- Blog Dtails End -->
+
+    </div>
+  </div>
+  <!-- Blog End -->
+
+  <!-- Footer Start -->
+  <div class="footer-section bg-color-10">
+
+    <!-- Footer Widget Area Start -->
+    <div class="footer-widget-area section-padding-01">
+      <div class="container">
+        <div class="row gy-6">
+
+          <div class="col-md-4">
+            <!-- Footer Widget Start -->
+            <div class="footer-widget">
+              <a href="#" class="footer-widget__logo"><img src="assets/images/dark-logo.png" alt="Logo" width="150"
+                  height="32"></a>
+
+              <div class="footer-widget__info">
+                <span class="title">Call us</span>
+                <span class="number">800 388 80 90</span>
+              </div>
+              <div class="footer-widget__info">
+                <p>58 Howard Street #2 San Francisco</p>
+                <p>contact@edumall.com</p>
+              </div>
+
+              <div class="footer-widget__social-02">
+                <a class="twitter" href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a class="facebook" href="https://www.facebook.com/" target="_blank"><i
+                    class="fab fa-facebook-f"></i></a>
+                <a class="skype" href="#" target="_blank"><i class="fab fa-skype"></i></a>
+                <a class="youtube" href="https://www.youtube.com/" target="_blank"><i class="fab fa-youtube"></i></a>
+                <a class="linkedin" href="https://www.linkedin.com/" target="_blank"><i
+                    class="fab fa-linkedin-in"></i></a>
+              </div>
+            </div>
+            <!-- Footer Widget End -->
+          </div>
+
+          <div class="col-md-8">
+            <div class="row gy-6">
+
+              <div class="col-sm-4">
+                <!-- Footer Widget Start -->
+                <div class="footer-widget">
+                  <h4 class="footer-widget__title">About</h4>
+
+                  <ul class="footer-widget__link">
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="course-grid-left-sidebar.html">Courses</a></li>
+                    <li><a href="instructors.html">Instructor</a></li>
+                    <li><a href="event-grid-sidebar.html">Events</a></li>
+                    <li><a href="become-an-instructor.html">Become A Teacher</a></li>
+                  </ul>
+                </div>
+                <!-- Footer Widget End -->
+              </div>
+              <div class="col-sm-4">
+                <!-- Footer Widget Start -->
+                <div class="footer-widget">
+                  <h4 class="footer-widget__title">Links</h4>
+
+                  <ul class="footer-widget__link">
+                    <li><a href="blog-grid-left-sidebar.html">News & Blogs</a></li>
+                    <li><a href="#">Library</a></li>
+                    <li><a href="#">Gallery</a></li>
+                    <li><a href="#">Partners</a></li>
+                    <li><a href="#">Career</a></li>
+                  </ul>
+                </div>
+                <!-- Footer Widget End -->
+              </div>
+              <div class="col-sm-4">
+                <!-- Footer Widget Start -->
+                <div class="footer-widget">
+                  <h4 class="footer-widget__title">Support</h4>
+
+                  <ul class="footer-widget__link">
+                    <li><a href="#">Documentation</a></li>
+                    <li><a href="faqs.html">FAQs</a></li>
+                    <li><a href="#">Forum</a></li>
+                    <li><a href="#">Sitemap</a></li>
+                  </ul>
+                </div>
+                <!-- Footer Widget End -->
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <!-- Footer Widget Area End -->
+
+    <!-- Footer Copyright Area End -->
+    <div class="footer-copyright">
+      <div class="container">
+        <div class="copyright-wrapper text-center">
+          <ul class="footer-widget__link flex-row gap-8 justify-content-center">
+            <li><a href="#">Terms of Use</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+          </ul>
+          <p class="footer-widget__copyright mt-0">&copy; 2023 <span> EduMall </span> Made with <i
+              class="fa fa-heart"></i> by <a
+              href="https://1.envato.market/c/417168/275988/4415?subId1=hastheme&subId2=demo&subId3=https%3A%2F%2Fthemeforest.net%2Fuser%2Fbootxperts%2Fportfolio&u=https%3A%2F%2Fthemeforest.net%2Fuser%2Fbootxperts%2Fportfolio">BootXperts</a>
+          </p>
+        </div>
+      </div>
+    </div>
+    <!-- Footer Copyright Area End -->
+
+  </div>
+  <!-- Footer End -->
+
+  <!--Back To Start-->
+  <button id="backBtn" class="back-to-top backBtn">
+    <i class="arrow-top fas fa-arrow-up"></i>
+    <i class="arrow-bottom fas fa-arrow-up"></i>
+  </button>
+  <!--Back To End-->
+
+
+</main>

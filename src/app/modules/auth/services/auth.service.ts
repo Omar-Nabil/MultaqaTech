@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environment.development';
 export class AuthService {
 
   constructor(private _HttpClient:HttpClient) { }
+
   userData:BehaviorSubject<any> = new BehaviorSubject<any>(null);
   register(value:any):Observable<any> {
     return this._HttpClient.post(environment.baseURL+'/api/Account/register', value);
@@ -27,5 +28,6 @@ export class AuthService {
     let token = JSON.stringify(localStorage.getItem('userToken'));
     let decode:any = jwtDecode(token);
     this.userData.next(decode);
+
   }
 }

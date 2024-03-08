@@ -5,6 +5,8 @@ import { LayoutwithnavbarComponent } from './layout/layoutwithnavbar/layoutwithn
 import { ForgotPasswordComponent } from './modules/auth/components/forgot-password/forgot-password.component';
 import { WelcomeComponent } from './modules/auth/components/welcome/welcome.component';
 import { authGuard } from './modules/auth/guards/auth.guard';
+import { BlogDetailsComponent } from './modules/blogs/components/blog-details/blog-details.component';
+import { BlogsComponent } from './modules/blogs/components/blogs/blogs.component';
 import { HomeComponent } from './modules/courses/components/home/home.component';
 import { NotFound404Component } from './modules/shared/components/not-found404/not-found404.component';
 
@@ -18,6 +20,8 @@ const routes: Routes = [
   ]},
   {path:'', component:LayoutwithnavbarComponent, children:[
     {path:'home', component:HomeComponent, canActivate:[authGuard]},
+    {path:'blogs', component:BlogsComponent, canActivate:[authGuard]},
+    {path:'blogs/:id', component:BlogDetailsComponent, canActivate:[authGuard]}
   ]},
   {path:"**", component:NotFound404Component}
 
