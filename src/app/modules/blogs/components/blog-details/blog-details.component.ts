@@ -37,15 +37,25 @@ export class BlogDetailsComponent {
       blogPostId:this.route.snapshot.paramMap.get('id')
     }
     console.log(data);
+            console.log(this.blogDetailes.comments);
 
     this._BlogsService.addComment(data).subscribe({
       next:(res) => {
         console.log(res);
+        // const comment = {
+        //   blogPostId:res.blogPostId,
+        //   commentContent:res.commentContent
+        // }
         const comment = {
-          blogPostId:res.blogPostId,
+          id:res.id,
           commentContent:res.commentContent
         }
+
+        console.log(this.blogDetailes.comments);
+
         this.blogDetailes.comments.push(comment);
+        console.log(this.blogDetailes.comments);
+
         this.commentControl.setValue('');
       },
       error:(err) => console.log(err)

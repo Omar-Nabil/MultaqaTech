@@ -6,6 +6,7 @@ import { LayoutComponent } from './layout/layout/layout.component';
 import { LayoutwithnavbarComponent } from './layout/layoutwithnavbar/layoutwithnavbar.component';
 import { AuthModule } from './modules/auth/auth.module';
 import { BlogsModule } from './modules/blogs/blogs.module';
+import { CoursesModule } from './modules/courses/courses.module';
 import { SharedModule } from './modules/shared/shared.module';
 
 
@@ -20,7 +21,8 @@ import { SharedModule } from './modules/shared/shared.module';
     AppRoutingModule,
     SharedModule,
     AuthModule,
-    BlogsModule
+    BlogsModule,
+    CoursesModule
   ],
   providers: [],
   bootstrap: [AppComponent]
