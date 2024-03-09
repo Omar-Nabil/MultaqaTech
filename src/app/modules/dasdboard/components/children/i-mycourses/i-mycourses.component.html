@@ -4,10 +4,7 @@
   <div class="container">
     <h4 class="dashboard-title">My Courses</h4>
 
-    <div class="subject-input">
-      <div class="d-flex align-items-center ms-auto"><span class="text">Add subject</span><a data-bs-toggle="modal" data-bs-target="#AddModal" ><i class="fa-solid fa-circle-plus ms-3 fs-1"></i></a></div>
 
-    </div>
 
     <!-- Dashboard My Courses Start -->
     <div class="dashboard-courses">
@@ -273,64 +270,8 @@
 
 
 
-<!-- popup Add subject -->
-
-<div class="modal fade" id="AddModal" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Add subject</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="d-flex align-items-center">
-          <div class="input subjectinput">
-            <input [ngClass]="{'is-valid':subjectsucess,'is-invalid':subjectfail}" class="form-control" type="text"
-              required="" autocomplete="off" [formControl]="subjectInput">
-            <label for="name">Subject</label>
-          </div>
-          <div class="wrapper ms-2">
-            <a data-tooltip-content="show subjects" (click)="toggleFade('currentSubjects','AddModal')" class="data-tooltip"  data-bs-target="#currentSubjects"
-              data-bs-toggle="modal" data-bs-dismiss="modal">
-              <i class="fa-solid fa-info p-0"></i>
-            </a>
-          </div>
-        </div>
-        <p class="mt-0 mb-2 ms-1" [ngClass]="{'text-success':subjectsucess,'text-danger':subjectfail}">{{subjectmsg}}
-        </p>
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary rounded-5" (click)="add()">Save changes</button>
-
-      </div>
-    </div>
-  </div>
-</div>
-<!-- popup Add subject -->
-
-  <!-- pop up current subjects -->
-  <div class="modal fade" id="currentSubjects" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Current Subjects</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-         <div  *ngFor="let sub of subjects" class="fw-semibold my-5 d-flex align-items-center justify-content-around"><span class="d-block w-75">{{sub.name}}</span><a class="x-mark" (click)="deleteSubject(sub.id!)"><i class="fa-solid fa-circle-xmark"></i></a></div>
-        </div>
-        <div class="modal-footer">
-          <button class="btn btn-primary rounded-5" (click)="toggleFade('AddModal','currentSubjects')"  data-bs-target="#AddModal"
-            data-bs-toggle="modal" data-bs-dismiss="modal">Add subjects</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- pop up current subjects -->
 
   </div>
-
 
 
 
@@ -344,3 +285,5 @@
 
 </div>
 <!-- Dashboard Content End -->
+
+

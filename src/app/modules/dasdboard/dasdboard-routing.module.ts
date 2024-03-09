@@ -19,6 +19,8 @@ import { SettingsResetpasswordComponent } from './components/children/settings-r
 import { SettingsComponent } from './components/children/settings/settings.component';
 import { WishListComponent } from './components/children/wish-list/wish-list.component';
 import { MainComponent } from './components/main/main.component';
+import { SubjectsComponent } from './components/children/admin/subjects/subjects.component';
+import { CategoriesComponent } from './components/children/admin/categories/categories.component';
 
 const routes: Routes = [
   {
@@ -38,6 +40,8 @@ const routes: Routes = [
     {path:'q&a',component:IQandAComponent},
     {path:'assignments',component:IAssignmentsComponent},
     {path:'mystudents',component:IMystudentsComponent},
+    {path:'subjects',component:SubjectsComponent},
+    {path:'categories',component:CategoriesComponent},
       {
         path: 'settings', component: SettingsComponent, children: [
           { path: '', redirectTo: 'profile', pathMatch: 'full' },

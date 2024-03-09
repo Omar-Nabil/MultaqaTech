@@ -204,3 +204,26 @@
   }
 }
 // radio end
+
+// icons style
+.icons{
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  font-size: 20px;
+  transform:translateY(-50%) ;
+  -webkit-transform:translateY(-50%) ;
+  -moz-transform:translateY(-50%) ;
+  -ms-transform:translateY(-50%) ;
+  -o-transform:translateY(-50%) ;
+  color: #0071dc;
+}
+
+.activelink .icons{
+  color: white;
+}
+
+a:hover .icons{
+  color: #0071dc;
+}
+// icons style

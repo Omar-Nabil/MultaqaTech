@@ -22,6 +22,8 @@ import { SettingProfileComponent } from './components/children/setting-profile/s
 import { SettingsResetpasswordComponent } from './components/children/settings-resetpassword/settings-resetpassword.component';
 
 import { ReactiveFormsModule } from '@angular/forms';
+import { SubjectsComponent } from './components/children/admin/subjects/subjects.component';
+import { CategoriesComponent } from './components/children/admin/categories/categories.component';
 
 
 
@@ -45,6 +47,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     SettingsComponent,
     SettingProfileComponent,
     SettingsResetpasswordComponent,
+    SubjectsComponent,
+    CategoriesComponent,
 
   ],
   imports: [
