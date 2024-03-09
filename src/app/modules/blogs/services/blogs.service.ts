@@ -54,9 +54,16 @@ export class BlogsService {
   }
 
   deleteCommentById(id:string) {
-const headers = new HttpHeaders({
+    const headers = new HttpHeaders({
       'Authorization': `Bearer ${localStorage.getItem('userToken')}`
     });
     return this._HttpClient.delete(environment.baseURL+'/api/BlogPostComments/'+id, {headers})
+  }
+
+  updateCommentById(data:any) {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('userToken')}`
+    });
+    return this._HttpClient.put(environment.baseURL+'/api/BlogPostComments/'+data.blogPostId, data, {headers})
   }
 }

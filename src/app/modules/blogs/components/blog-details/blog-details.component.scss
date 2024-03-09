@@ -56,3 +56,22 @@ button {
   font-size: 16px;
   cursor: pointer;
 }
+
+
+.comment-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+.comment-actions span {
+  cursor: pointer;
+}
+.comment-actions i {
+  cursor: pointer;
+  font-size: 1.2em;
+  color: #777;
+}
+
+.comment-actions i:hover {
+  color: #333;
+}

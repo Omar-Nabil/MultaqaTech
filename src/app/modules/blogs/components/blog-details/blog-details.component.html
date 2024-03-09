@@ -300,9 +300,21 @@
         <!-- display Comment Start -->
         <div class="comments-container my-10">
           <h2>Comments</h2>
-          <div class="comment" *ngFor="let comment of blogDetailes?.comments">
-            <p class="comment-text">{{ comment.CommentContent }}</p>
-            <p class="btn btn-danger my-3" (click)="deleteComment(comment.Id)">Delete</p>
+          <div class="comment" *ngFor="let comment of blogDetailes?.comments; let index=index">
+            <p class="comment-text">{{ comment?.commentContent }}</p>
+            <input type="text" class="form-control py-1" *ngIf="isEditing[index]" [formControl]="editComment">
+            <!-- Validation Messages -->
+            <div *ngIf="editComment.touched && editComment.hasError('required') && isEditing[index]" class="text-danger">
+              Comment is required.
+            </div>
+            <div *ngIf="editComment.touched && editComment.hasError('minlength') && isEditing[index]" class="text-danger">
+              Comment must be at least 20 characters long.
+            </div>
+            <div class="comment-actions">
+              <span (click)="applyEdit(index)"><i class="fas fa-edit"></i></span>
+              <span (click)="deleteComment(comment?.id, index)"><i class="fas fa-trash  text-danger"></i></span>
+            </div>
+            <button class="btn btn-dark py-0 px-1" *ngIf="isEditing[index]" (click)="saveChanges(comment?.id, index)">Save Changes</button>
           </div>
         </div>
 

@@ -12,12 +12,20 @@ import { BlogsService } from '../../services/blogs.service';
 export class BlogDetailsComponent {
   blogDetailes:any;
    blogId:string = '';
-   commentControl = new FormControl('', [
-    Validators.required,
-    Validators.minLength(20)
- ]);
+   isEditing:boolean[] = [];
+
+   commentControl!:FormControl ;
+   editComment!:FormControl ;
   constructor(private _BlogsService:BlogsService,private route: ActivatedRoute) {
 
+    this.commentControl = new FormControl('', [
+      Validators.required,
+      Validators.minLength(20)
+    ]);
+    this.editComment = new FormControl('', [
+      Validators.required,
+      Validators.minLength(20)
+    ]);
   }
   ngOnInit(): void {
     main.start();
@@ -33,7 +41,11 @@ export class BlogDetailsComponent {
     this._BlogsService.addComment(data).subscribe({
       next:(res) => {
         console.log(res);
-        this.blogDetailes.comments.push(res.commentContent);
+        const comment = {
+          blogPostId:res.blogPostId,
+          commentContent:res.commentContent
+        }
+        this.blogDetailes.comments.push(comment);
         this.commentControl.setValue('');
       },
       error:(err) => console.log(err)
@@ -71,11 +83,39 @@ export class BlogDetailsComponent {
           return url;
       }
   }
-  deleteComment(Id:string) {
+  deleteComment(Id:string, index:number) {
     this._BlogsService.deleteCommentById(Id).subscribe({
       next:(res) => {
-        console.log(res);
 
+      },
+      error:(err) => {
+
+        console.log(this.blogDetailes.comments);
+        this.blogDetailes.comments.splice(index, 1);
+        console.log(this.blogDetailes.comments);
+      }
+    })
+  }
+
+
+  applyEdit(index:number) {
+    this.isEditing[index] = true;
+    console.log(this.isEditing[index]);
+    this.editComment.setValue(this.blogDetailes.comments[index].commentContent );
+  }
+
+  saveChanges(Id:string, index:number) {
+    const comment = {
+      blogPostId: Id,
+      commentContent: this.editComment.value
+    }
+    console.log(comment);
+
+    this._BlogsService.updateCommentById(comment).subscribe({
+      next:(res) => {
+        console.log(res);
+        this.blogDetailes.comments[index].commentContent = comment.commentContent;
+        this.isEditing[index] = false;
       },
       error:(err) => console.log(err)
     })
