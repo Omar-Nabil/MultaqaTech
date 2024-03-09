@@ -301,8 +301,8 @@
         <div class="comments-container my-10">
           <h2>Comments</h2>
           <div class="comment" *ngFor="let comment of blogDetailes?.comments">
-            <p class="comment-text">{{ comment }}</p>
-
+            <p class="comment-text">{{ comment.CommentContent }}</p>
+            <p class="btn btn-danger my-3" (click)="deleteComment(comment.Id)">Delete</p>
           </div>
         </div>
 

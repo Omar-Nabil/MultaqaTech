@@ -52,4 +52,11 @@ export class BlogsService {
     });
     return this._HttpClient.post(environment.baseURL+'/api/BlogPostComments', data, {headers})
   }
+
+  deleteCommentById(id:string) {
+const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('userToken')}`
+    });
+    return this._HttpClient.delete(environment.baseURL+'/api/BlogPostComments/'+id, {headers})
+  }
 }

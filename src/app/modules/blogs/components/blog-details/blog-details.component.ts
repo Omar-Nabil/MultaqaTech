@@ -55,23 +55,31 @@ export class BlogDetailsComponent {
 
   }
     reduceUrl(url: string): string {
- // Check if the URL is null or undefined
- if (!url) {
-    // Return an empty string or a default image URL
-    return ''; // or 'path/to/default/image.jpg'
- }
+      // Check if the URL is null or undefined
+      if (!url) {
+          // Return an empty string or a default image URL
+          return ''; // or 'path/to/default/image.jpg'
+      }
 
- // Check if the URL contains 'https://localhost:7264/'
- const index = url.indexOf('https://localhost:7264/');
- if (index !== -1) {
-    // Remove the redundant part of the URL
-    return url.substring(index + 'https://localhost:7264/'.length);
- } else {
-    // URL doesn't need to be reduced
-    return url;
- }
-}
+      // Check if the URL contains 'https://localhost:7264/'
+      const index = url.indexOf('https://localhost:7264/');
+      if (index !== -1) {
+          // Remove the redundant part of the URL
+          return url.substring(index + 'https://localhost:7264/'.length);
+      } else {
+          // URL doesn't need to be reduced
+          return url;
+      }
+  }
+  deleteComment(Id:string) {
+    this._BlogsService.deleteCommentById(Id).subscribe({
+      next:(res) => {
+        console.log(res);
 
+      },
+      error:(err) => console.log(err)
+    })
+  }
 
 
 }
