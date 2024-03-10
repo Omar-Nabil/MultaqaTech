@@ -9,6 +9,7 @@ import { BlogDetailsComponent } from './modules/blogs/components/blog-details/bl
 import { BlogsComponent } from './modules/blogs/components/blogs/blogs.component';
 import { HomeComponent } from './modules/courses/components/home/home.component';
 import { NotFound404Component } from './modules/shared/components/not-found404/not-found404.component';
+import { CoursesComponent } from './modules/courses/components/courses/courses.component';
 
 const routes: Routes = [
   {path:'', component:LayoutComponent, children:[
@@ -21,7 +22,8 @@ const routes: Routes = [
   {path:'', component:LayoutwithnavbarComponent, children:[
     {path:'home', component:HomeComponent, canActivate:[authGuard]},
     {path:'blogs', component:BlogsComponent, canActivate:[authGuard]},
-    {path:'blogs/:id', component:BlogDetailsComponent, canActivate:[authGuard]}
+    {path:'blogs/:id', component:BlogDetailsComponent, canActivate:[authGuard]},
+    {path:'courses', component:CoursesComponent, canActivate:[authGuard]},
   ]},
   {path:"**", component:NotFound404Component}
 
