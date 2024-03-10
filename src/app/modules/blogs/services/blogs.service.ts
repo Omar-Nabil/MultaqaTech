@@ -22,7 +22,7 @@ export class BlogsService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${localStorage.getItem('userToken')}`
     });
-    return this._HttpClient.get(environment.baseURL+'/api/BlogPosts?search='+text+"&pageindex="+pageNumber, {headers});
+    return this._HttpClient.get(environment.baseURL+'/api/BlogPosts?Search='+text+"&PageIndex="+pageNumber, {headers});
   }
 
   getCategories():Observable<any> {

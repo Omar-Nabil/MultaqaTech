@@ -77,6 +77,8 @@ export class WelcomeComponent implements OnInit {
             backdrop.classList.add('d-none');
           });
 
+          $('body').css({'overflow':'auto'});
+
           this._Router.navigate(['/home']);
           localStorage.setItem('userToken', res.token);
           this._AuthService.saveUser();
@@ -103,6 +105,7 @@ export class WelcomeComponent implements OnInit {
         modalBackdrops.forEach(backdrop => {
           backdrop.classList.add('d-none');
         });
+         $('body').css({'overflow':'auto'});
 
         this._Router.navigate(['/home']);
         localStorage.setItem('userToken', res.token);
