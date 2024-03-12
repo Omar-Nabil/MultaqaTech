@@ -23,7 +23,7 @@ export class MainComponent {
     title:new FormControl(''),
     language:new FormControl(''),
     subject:new FormControl(0),
-    courselevel:new FormControl(''),
+    courselevel:new FormControl('ee'),
   })
 
     getSubjects() {

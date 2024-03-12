@@ -10,11 +10,11 @@ import { BlogsComponent } from './modules/blogs/components/blogs/blogs.component
 import { HomeComponent } from './modules/courses/components/home/home.component';
 import { NotFound404Component } from './modules/shared/components/not-found404/not-found404.component';
 import { CoursesComponent } from './modules/courses/components/courses/courses.component';
-
+import { loginGuard }from './modules/auth/guards/login.guard'
 const routes: Routes = [
   {path:'', component:LayoutComponent, children:[
     {path:'', redirectTo:'welcome', pathMatch:'full'},
-    {path:'welcome', component:WelcomeComponent},
+    {path:'welcome', component:WelcomeComponent,canActivate:[loginGuard]},
 
     {path:'api/Account/ResetPassword', component:ForgotPasswordComponent},
     {path:'dashboard', loadChildren:()=>import('../app/modules/dasdboard/dasdboard.module').then((res)=>res.DasdboardModule), canActivate:[authGuard] },

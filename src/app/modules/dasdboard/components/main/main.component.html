@@ -292,10 +292,10 @@
           </div>
 
           <div class="contain ms-1 my-3">
-            <label><input name="e" type="radio" /> Beginner</label>
-            <label><input name="e" type="radio" /> Intermediate</label>
-            <label><input name="e" type="radio" /> Advanced</label>
-            <label><input name="e" type="radio" />Master</label>
+            <label><input formControlName="courselevel" value="0" type="radio" />All levels</label>
+            <label><input formControlName="courselevel" value="1" type="radio" /> Beginner</label>
+            <label><input formControlName="courselevel" value="2" type="radio" /> Intermediate</label>
+            <label><input formControlName="courselevel" value="3" type="radio" /> Advanced</label>
           </div>
         </form>
 
@@ -304,7 +304,7 @@
       </div>
       <div class="modal-footer">
 
-        <button type="button" class="btn btn-primary rounded-5" >Save changes</button>
+        <button type="submit" class="btn btn-primary rounded-5" >Add Course</button>
       </div>
     </div>
   </div>
