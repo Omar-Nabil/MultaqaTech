@@ -96,13 +96,16 @@ export class BlogDetailsComponent {
   deleteComment(Id:string, index:number) {
     this._BlogsService.deleteCommentById(Id).subscribe({
       next:(res) => {
+           console.log(this.blogDetailes.comments);
+        this.blogDetailes.comments.splice(index, 1);
+        console.log(this.blogDetailes.comments);
+        console.log(res);
 
       },
       error:(err) => {
+        console.log(err);
 
-        console.log(this.blogDetailes.comments);
-        this.blogDetailes.comments.splice(index, 1);
-        console.log(this.blogDetailes.comments);
+
       }
     })
   }
