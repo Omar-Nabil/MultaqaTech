@@ -2,14 +2,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
-import { AuthService } from '../../auth/services/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BlogsService {
 
-  constructor(private _HttpClient:HttpClient, private _AuthService:AuthService) { }
+  constructor(private _HttpClient:HttpClient) { }
 
   getCurrentPage(pageNumber: number):Observable<any> {
     const headers = new HttpHeaders({
@@ -65,5 +64,26 @@ export class BlogsService {
       'Authorization': `Bearer ${localStorage.getItem('userToken')}`
     });
     return this._HttpClient.put(environment.baseURL+'/api/BlogPostComments/'+data.blogPostId, data, {headers})
+  }
+
+  getBlogsWithCategory(id:string):Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('userToken')}`
+    });
+    return this._HttpClient.get(environment.baseURL+'/api/BlogPosts?categoryId='+id, {headers});
+  }
+
+  shareBlog(id:string):Observable<any> {
+     const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('userToken')}`
+    });
+    return this._HttpClient.get(environment.baseURL+'/api/BlogPosts/'+id+'/sharelink', {headers});
+  }
+
+  deleteBlog(id:string):Observable<any> {
+     const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('userToken')}`
+    });
+    return this._HttpClient.delete(environment.baseURL+'/api/BlogPosts/'+id, {headers});
   }
 }
