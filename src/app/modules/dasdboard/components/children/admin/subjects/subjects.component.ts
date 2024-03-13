@@ -35,7 +35,9 @@ export class SubjectsComponent {
 
   deleteSubject(id: number) {
     this._SubjectService.deletesubject(id).subscribe({
-      next:(response)=>{console.log(response);
+      next: (response) => {
+        console.log(response);
+        this.getSubjects()
       },
       error:(err)=>{console.log(err);
         this.getSubjects()

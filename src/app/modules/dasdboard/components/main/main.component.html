@@ -267,22 +267,31 @@
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="exampleModalLabel">Add Course</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="reset()"></button>
       </div>
       <div class="modal-body">
 
-        <form [formGroup]="addCourseForm" (ngSubmit)="log()">
+        <form [formGroup]="addCourseForm" (ngSubmit)="Addcourse()">
           <div class="row row-cols-6 row-cols-sm-auto">
             <div class="col w-50">
               <div class="input">
                 <input formControlName="title" id="title" class="form-control" type="text" required="" autocomplete="off">
                 <label for="title">Title</label>
+            <span *ngIf="addCourseForm.get('title')?.touched">
+              <p *ngIf="addCourseForm.get('title')?.getError('required')" class="text-danger ms-2 mb-0">required</p>
+              <p *ngIf="addCourseForm.get('title')?.getError('minlength')" class="text-danger ms-2">Min Lenght is 3</p>
+              <p *ngIf="addCourseForm.get('title')?.getError('maxlength')" class="text-danger ms-2">Max Lenght is 100</p>
+            </span>
               </div>
             </div>
             <div class="col w-50">
               <div class="input">
                 <input id="lang" formControlName="language" class="form-control" type="text" required="" autocomplete="off">
                 <label for="lang">Lagnuage</label>
+                  <span *ngIf="addCourseForm.get('language')?.touched">
+                    <p *ngIf="addCourseForm.get('language')?.getError('minlength')" class="text-danger ms-2">Min Lenght is 3</p>
+                    <p *ngIf="addCourseForm.get('language')?.getError('maxlength')" class="text-danger ms-2">Max Lenght is 50</p>
+                  </span>
               </div>
             </div>
           </div>
@@ -292,14 +301,26 @@
           </div>
 
           <div class="input mb-5">
+           <div class=" position-relative mb-2">
             <input id="learningobjectives" formControlName="learningobjectives" class="form-control" type="text" required=""
               autocomplete="off">
             <label for="learningobjectives">Learning Objectives</label>
+            <button id="adder" (click)="learningObjectives()"><i class="fa-solid fa-plus"></i></button>
+           </div>
+            <div class="d-flex flex-wrap"><span *ngFor="let name of l_0bjects;let i=index"
+                class="added py-1 px-2 ms-2 mb-2 d-flex align-items-center">{{name}} <a
+                  (click)="deletefromarray(i,[],l_0bjects)"><i
+                    class="fa-solid fa-xmark text-white ms-1 closemark"></i></a></span></div>
           </div>
 
           <div class="input mb-5">
             <input id="price" formControlName="price" class="form-control" type="number" required="" autocomplete="off">
             <label for="price">Price</label>
+            <span *ngIf="addCourseForm.get('price')?.touched">
+              <p *ngIf="addCourseForm.get('price')?.getError('required')" class="text-danger ms-2 mb-0">required</p>
+              <p *ngIf="addCourseForm.get('price')?.getError('min')" class="text-danger ms-2">Min Price is 0</p>
+              <p *ngIf="addCourseForm.get('price')?.getError('max')" class="text-danger ms-2">Max Price is 2147483647</p>
+            </span>
           </div>
 
           <div class="input">
@@ -307,6 +328,9 @@
               <option value="0">Subject</option>
               <option *ngFor="let subject of subjects ;let i=index" [value]="subject.id"  >{{subject.name}}</option>
             </select>
+            <span *ngIf="addCourseForm.get('subject')?.touched">
+              <p *ngIf="addCourseForm.get('subject')?.value=='0' " class="text-danger ms-2 mb-0">required</p>
+            </span>
           </div>
 
 
@@ -318,7 +342,7 @@
                 <option *ngFor="let  subject of subjects ;let i=index" [value]="subject.id" >{{subject.name}}</option>
               </select>
             </div>
-            <div class="d-flex flex-wrap"><span *ngFor="let name of tagsNames" class="p-2">{{name}}</span></div>
+            <div class="d-flex flex-wrap"><span *ngFor="let name of tagsNames ;let i =index" class="added py-1 px-2 me-1 mb-2 d-flex align-items-center">{{name}} <a (click)="deletefromarray(i,tags,tagsNames)" ><i class="fa-solid fa-xmark text-white ms-1 closemark"></i></a></span></div>
           </div>
             <div class="col w-50"><div class="input">
               <select  (change)="prerequisite()" id="prerequisites" formControlName="prerequisites" class="form-select rounded-4" aria-label="Default select example">
@@ -326,7 +350,7 @@
                 <option *ngFor="let subject of subjects ;let i=index" [value]="subject.id">{{subject.name}}</option>
               </select>
             </div>
-            <div class="d-flex flex-wrap"><span *ngFor="let name of prerequisitesNames" class="p-2">{{name}}</span></div>
+            <div class="d-flex flex-wrap"><span *ngFor="let name of prerequisitesNames;let i=index" class="added py-1 px-2 me-1 mb-2 d-flex align-items-center">{{name}} <a (click)="deletefromarray(i,prerequisites,prerequisitesNames)"><i class="fa-solid fa-xmark text-white ms-1 closemark"></i></a></span></div>
           </div>
           </div>
 
@@ -337,7 +361,7 @@
             <label><input formControlName="courselevel" value="3" type="radio" /> Advanced</label>
           </div>
                 <div class="modal-footer">
-                  <button type="submit" class="btn btn-primary rounded-5" data-bs-dismiss="modal">Add Course</button>
+                  <button type="submit" class="btn btn-primary rounded-5" >Add Course</button>
                 </div>
         </form>
 
