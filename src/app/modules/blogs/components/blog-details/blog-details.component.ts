@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { jwtDecode } from 'jwt-decode';
 import * as main from '../../../../../main';
@@ -19,6 +19,12 @@ export class BlogDetailsComponent implements OnInit {
    commentControl!:FormControl ;
    editComment!:FormControl ;
    isAuther:boolean = false;
+
+  categories:any[] = [];
+  subjects:any[]=[];
+  editBlogForm!: FormGroup;
+  showDropdown = false;
+
   constructor(private _BlogsService:BlogsService,
               private route: ActivatedRoute,
               private router:Router) {
@@ -32,11 +38,94 @@ export class BlogDetailsComponent implements OnInit {
     ]);
 
   }
+  existingBlogPost: any;
   ngOnInit(): void {
     main.start();
     this.getBlogDetailes();
+    this.getSubjects();
+    this.getCategories();
+
+    // Initialize the form with the existing blog post data
+    this.editBlogForm =  new FormGroup({
+      'title': new FormControl(null, Validators.required),
+      'content': new FormControl(null, Validators.required),
+      'pictureUrl': new FormControl(null, Validators.required),
+      'categoryId': new FormControl(null, Validators.required),
+      'subjectId': new FormControl([], Validators.required),
+    });
+  }
+   toggleDropdown() {
+    this.showDropdown = !this.showDropdown;
+ }
+
+ isSelected(subjectId: number): boolean {
+    const selectedSubjectIds = this.editBlogForm.get('subjectId')?.value;
+    return selectedSubjectIds.includes(subjectId);
+ }
+
+ onSubjectChange(event: any, subjectId: number) {
+    const subjectIds = this.editBlogForm.get('subjectId')?.value;
+    if (event.target.checked) {
+      if (!subjectIds.includes(subjectId)) {
+        subjectIds.push(subjectId);
+      }
+    } else {
+      const index = subjectIds.indexOf(subjectId);
+      if (index > -1) {
+        subjectIds.splice(index, 1);
+      }
+    }
+    this.editBlogForm.get('subjectId')?.setValue(subjectIds);
+ }
+
+  EditYourPost() {
+    this.editBlogForm.setValue({
+      title: this.blogDetailes.title,
+      content: this.blogDetailes.content,
+      pictureUrl: this.blogDetailes.pictureUrl,
+      categoryId: this.blogDetailes.categoryId,
+      subjectId: []
+    });
+  }
+  submitEditYourPost() {
+    const blogData = {
+      title: this.editBlogForm.get('title')?.value,
+      content: this.editBlogForm.get('content')?.value,
+      pictureUrl: this.editBlogForm.get('pictureUrl')?.value,
+      categoryId: this.editBlogForm.get('categoryId')?.value,
+      tags: this.editBlogForm.get('subjectId')?.value
+    }
+    this._BlogsService.editBlog(blogData, this.blogDetailes.id).subscribe({
+      next:(res) => {
+        this.blogDetailes = res;
+        console.log(res);
+
+      },
+      error:(err) => console.log(err)
+
+    })
+
+  }
+  getSubjects() {
+    this._BlogsService.getSubjects().subscribe({
+      next:(res) => {
+        this.subjects = res;
+        console.log(res);
 
 
+      },
+      error:(err) => console.log(err)
+    })
+  }
+  getCategories() {
+    this._BlogsService.getCategories().subscribe({
+      next:(res) => {
+        this.categories = res;
+        console.log(this.categories);
+
+      },
+      error:(err) => console.log(err)
+    })
   }
   deleteYourPost() {
     this._BlogsService.deleteBlog(this.blogDetailes.id).subscribe({

@@ -31,11 +31,11 @@ export class BlogsService {
     return this._HttpClient.get(environment.baseURL+'/api/Subjects');
   }
 
-  filterByCategoryId(catId:number):Observable<any> {
+  filterByCategoryId(catId:number, pageNumber: number):Observable<any> {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${localStorage.getItem('userToken')}`
     });
-    return this._HttpClient.get(environment.baseURL+'/api/BlogPosts?categoryId='+catId, {headers});
+    return this._HttpClient.get(environment.baseURL+'/api/BlogPosts?categoryId='+catId+"&PageIndex="+pageNumber, {headers});
   }
 
   getBlogDetailes(id:string):Observable<any> {
@@ -85,5 +85,19 @@ export class BlogsService {
       'Authorization': `Bearer ${localStorage.getItem('userToken')}`
     });
     return this._HttpClient.delete(environment.baseURL+'/api/BlogPosts/'+id, {headers});
+  }
+
+  postBlog(data:any):Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('userToken')}`
+    });
+    return this._HttpClient.post(environment.baseURL+'/api/BlogPosts', data, {headers})
+  }
+
+  editBlog(data:any, id:string):Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('userToken')}`
+    });
+    return this._HttpClient.put(environment.baseURL+'/api/BlogPosts/'+id, data, {headers})
   }
 }

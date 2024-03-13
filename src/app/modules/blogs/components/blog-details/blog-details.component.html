@@ -167,7 +167,10 @@
               </div>
           </div>
           <p class="text-success text-center" *ngIf="linkCopiedSuccessfully">Link copied to clipboard successfully.</p>
-          <h5 class="btn btn-danger mt-3" *ngIf="isAuther" (click)="deleteYourPost()">Delete your post</h5>
+          <div *ngIf="isAuther" class="d-flex justify-content-between">
+            <h5 class="btn btn-danger mt-3"  (click)="deleteYourPost()">Delete your blog</h5>
+            <h5 class="btn btn-warning mt-3"  data-bs-toggle="modal" data-bs-target="#editBlog" (click)="EditYourPost()">Edit your blog</h5>
+          </div>
 
 
         </div>
@@ -188,7 +191,7 @@
                     <div class="related-post-item__content">
                       <h3 class="related-post-item__title"><a (click)="getBlog()" [routerLink]="['/blogs/', blog?.id]">{{blog.title}}</a></h3>
                       <div class="related-post-item__meta">
-                        <span class="meta-action" *ngFor="let item of blog.tags"><i class="fas fa-calendar me-3"></i>{{item?.name}}</span>
+                        <span class="meta-action" *ngFor="let item of blog.tags">{{item?.name}} </span>
                         <span class="meta-action ms-auto"> {{blog.authorName}}</span>
                       </div>
                     </div>
@@ -397,3 +400,60 @@
 
 
 </main>
+
+<div class="modal fade" id="editBlog" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content w-100">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Blog</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+
+          <form [formGroup]="editBlogForm" (ngSubmit)="submitEditYourPost()">
+            <div>
+              <label for="title">Title:</label>
+              <input id="title" type="text" formControlName="title">
+            </div>
+            <div>
+              <label for="content">Content:</label>
+              <textarea id="content"style="height: 300px;" formControlName="content"></textarea>
+            </div>
+            <div>
+              <label for="pictureUrl">Picture URL:</label>
+              <input id="pictureUrl" type="text" formControlName="pictureUrl">
+            </div>
+            <div>
+              <label for="categoryId">Category:</label>
+              <select id="categoryId" formControlName="categoryId">
+                <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+              </select>
+            </div>
+            <div class="m-3">
+              <label for="multiSelect" class="me-2">Subjects:</label>
+              <div class="input-container" (click)="toggleDropdown()">
+                <input type="text" placeholder="Select Subjects" readonly>
+                <i class="fa fa-chevron-down" style="cursor: pointer;"></i>
+              </div>
+              <div *ngIf="showDropdown">
+                <div *ngFor="let subject of subjects" class="form-check">
+                  <input class="form-check-input" type="checkbox" [value]="subject.id" [checked]="isSelected(subject.id)"
+                    (change)="onSubjectChange($event, subject.id)" id="subject-{{subject.id}}">
+                  <label class="form-check-label" for="subject-{{subject.id}}">
+                    {{subject.name}}
+                  </label>
+                </div>
+              </div>
+            </div>
+            <button type="submit" data-bs-dismiss="modal" [disabled]="!editBlogForm.valid">Submit</button>
+          </form>
+
+
+
+
+      </div>
+
+    </div>
+  </div>
+</div>
