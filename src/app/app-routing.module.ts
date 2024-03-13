@@ -5,12 +5,12 @@ import { LayoutwithnavbarComponent } from './layout/layoutwithnavbar/layoutwithn
 import { ForgotPasswordComponent } from './modules/auth/components/forgot-password/forgot-password.component';
 import { WelcomeComponent } from './modules/auth/components/welcome/welcome.component';
 import { authGuard } from './modules/auth/guards/auth.guard';
+import { loginGuard } from './modules/auth/guards/login.guard';
 import { BlogDetailsComponent } from './modules/blogs/components/blog-details/blog-details.component';
 import { BlogsComponent } from './modules/blogs/components/blogs/blogs.component';
+import { CoursesComponent } from './modules/courses/components/courses/courses.component';
 import { HomeComponent } from './modules/courses/components/home/home.component';
 import { NotFound404Component } from './modules/shared/components/not-found404/not-found404.component';
-import { CoursesComponent } from './modules/courses/components/courses/courses.component';
-import { loginGuard }from './modules/auth/guards/login.guard'
 const routes: Routes = [
   {path:'', component:LayoutComponent, children:[
     {path:'', redirectTo:'welcome', pathMatch:'full'},
