@@ -545,43 +545,34 @@
               <div class="collapse" id="collapseForm">
                 <!-- Comment Form Start -->
                 <div class="comment-form">
-                  <form action="#">
+                  <form [formGroup]="AddcommentForm" (ngSubmit)="addcomment()">
                     <div class="comment-form__rating">
-                      <label class="label">Your rating: *</label>
-                      <ul id="rating" class="rating">
-                        <li class="star" title='Poor' data-value='1'><i class="fas fa-star"></i></li>
-                        <li class="star" title='Poor' data-value='2'><i class="fas fa-star"></i></li>
-                        <li class="star" title='Poor' data-value='3'><i class="fas fa-star"></i></li>
-                        <li class="star" title='Poor' data-value='4'><i class="fas fa-star"></i></li>
-                        <li class="star" title='Poor' data-value='5'><i class="fas fa-star"></i></li>
-                      </ul>
+                      <label class="label">Your rating <span class="fw-lighter">(click twice to approve) </span>: *</label>
+                      <div class="ratingstar">
+                        <input  formControlName="rating" value="5" name="rating" id="star5" type="radio">
+                        <label for="star5"></label>
+                        <input  formControlName="rating" value="4" name="rating" id="star4" type="radio">
+                        <label for="star4"></label>
+                        <input  formControlName="rating" value="3" name="rating" id="star3" type="radio">
+                        <label for="star3"></label>
+                        <input  formControlName="rating" value="2" name="rating" id="star2" type="radio">
+                        <label for="star2"></label>
+                        <input  formControlName="rating" value="1" name="rating" id="star1" type="radio">
+                        <label for="star1"></label>
+                      </div>
+
                     </div>
                     <div class="row gy-4">
-                      <div class="col-md-6">
-                        <div class="comment-form__input">
-                          <input type="text" class="form-control" placeholder="Your Name *">
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="comment-form__input">
-                          <input type="email" class="form-control" placeholder="Your Email *">
-                        </div>
-                      </div>
+
                       <div class="col-md-12">
                         <div class="comment-form__input">
-                          <textarea class="form-control" placeholder="Your Comment"></textarea>
+                          <textarea formControlName="Comment" class="form-control" placeholder="Your Comment"></textarea>
                         </div>
                       </div>
-                      <div class="col-md-12">
-                        <div class="comment-form__input form-check">
-                          <input type="checkbox" id="save">
-                          <label for="save">Save my name, email, and website in this browser for the next time I
-                            comment.</label>
-                        </div>
-                      </div>
+
                       <div class="col-md-12">
                         <div class="comment-form__input">
-                          <button class="btn btn-primary btn-hover-secondary">Submit</button>
+                          <button type="submit" class="btn btn-primary btn-hover-secondary">Submit</button>
                         </div>
                       </div>
                     </div>

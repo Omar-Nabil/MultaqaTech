@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { CourseService } from 'src/app/modules/dasdboard/services/course.service';
+import { CourseService } from 'src/app/modules/courses/services/course.service';
 import { start } from 'src/main'
 import { Course_get } from '../../interfaces/course';
+import { FormControl, FormGroup } from '@angular/forms';
+import { Reviews_add } from '../../interfaces/reviews';
+import { ReviewsService } from '../../services/reviews.service';
 
 @Component({
   selector: 'app-course-details',
@@ -15,8 +18,12 @@ export class CourseDetailsComponent implements OnInit {
   course: Course_get | undefined=undefined
   levels: string[] = ['All levels', 'Beginner', 'Intermediate', 'Advanced'];
   months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-  date =new Date()
-  constructor(private route:ActivatedRoute,private _CourseService:CourseService) {
+  date = new Date()
+  AddcommentForm:FormGroup = new FormGroup({
+    rating:new FormControl(0),
+    Comment:new FormControl(''),
+  })
+  constructor(private route:ActivatedRoute,private _CourseService:CourseService,private reviews:ReviewsService) {
     let courseId :number= parseInt(this.route.snapshot.paramMap.get('id')!)
     if (courseId) {
       _CourseService.getcourse(courseId).subscribe({
@@ -41,4 +48,23 @@ export class CourseDetailsComponent implements OnInit {
 
 
 
+  addcomment() {
+    const Comment: Reviews_add = {
+      courseId: this.course?.id!,
+      content: this.AddcommentForm.get('Comment')?.value,
+      numberOfStars:this.AddcommentForm.get('rating')?.value
+    }
+    this.reviews.addcomment(Comment).subscribe({
+      next: (res) => {
+        console.log(res);
+        this.reset();
+      },
+      error:(res)=>{console.log(res);
+      }
+    })
+  }
+  reset() {
+  this.AddcommentForm.get('Comment')?.setValue('')
+  this.AddcommentForm.get('rating')?.setValue('')
+}
 }

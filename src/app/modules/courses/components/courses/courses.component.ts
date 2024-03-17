@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import * as main from '../../../../../main';
-import { CourseService } from 'src/app/modules/dasdboard/services/course.service';
+import { CourseService } from 'src/app/modules/courses/services/course.service';
 import { Course_get } from '../../interfaces/course';
 import { Subject } from 'src/app/modules/dasdboard/interfaces/subject';
 import { SubjectService } from 'src/app/modules/dasdboard/services/subject.service';

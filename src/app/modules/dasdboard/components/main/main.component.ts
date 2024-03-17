@@ -3,7 +3,7 @@ import { FormControl, FormGroup,  Validators} from '@angular/forms';
 import { SubjectService } from '../../services/subject.service';
 import { Subject } from '../../interfaces/subject';
 import { Course_add } from 'src/app/modules/courses/interfaces/course';
-import { CourseService } from '../../services/course.service';
+import { CourseService } from '../../../courses/services/course.service';
 import { Router } from '@angular/router';
 
 @Component({
