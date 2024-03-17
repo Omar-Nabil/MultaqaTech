@@ -4,6 +4,7 @@ import { SubjectService } from '../../services/subject.service';
 import { Subject } from '../../interfaces/subject';
 import { Course_add } from 'src/app/modules/courses/interfaces/course';
 import { CourseService } from '../../services/course.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main',
@@ -33,7 +34,8 @@ export class MainComponent {
     learningObjectives: []
   }
 
-  constructor(private _SubjectService: SubjectService, private _CourseService: CourseService) {
+  constructor(private _SubjectService: SubjectService, private _CourseService: CourseService,private router:Router
+) {
 
    }
 
@@ -151,5 +153,10 @@ console.log(this.l_0bjects);
     this.addCourseForm.get('tags')?.setValue(0)
     this.addCourseForm.get('prerequisites')?.setValue(0)
     this.addCourseForm.get('courselevel')?.setValue('0')
+  }
+
+  logout() {
+    localStorage.removeItem('userToken')
+    this.router.navigate(['/welcome'])
   }
 }
