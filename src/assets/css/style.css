@@ -7086,6 +7086,10 @@ span.flatpickr-weekday {
   background: rgba(255, 194, 33, 0.15);
   color: #ffb900;
 }
+.course-info__badge-text.badge-Advanced {
+  background: rgba(225, 33, 255, 0.15);
+  color: #dd00ff;
+}
 .course-info__title {
   font-size: 15px;
   line-height: 1.6;

@@ -63,7 +63,7 @@
 
   <!-- Courses Start -->
   <div class="courses-section section-padding-01">
-    <div class="container">
+    <div class="container position-relative">
       <div class="row gy-10 flex-row-reverse">
         <div class="col-lg-9">
 
@@ -71,7 +71,7 @@
           <div class="archive-filter-bars">
 
             <div class="archive-filter-bar">
-              <p>We found <span>101</span> courses available for you</p>
+              <p>We found <span>{{length}}</span> courses available for you</p>
             </div>
 
             <div class="archive-filter-bar">
@@ -83,7 +83,7 @@
                         class="fas fa-th"></i></button></li>
                   <li><button data-bs-toggle="tab" data-bs-target="#list"><i class="fas fa-bars"></i></button></li>
                 </ul>
-                <button class="btn btn-light btn-hover-primary collapsed" data-bs-toggle="collapse"
+                <button  id="btncollapse" class="btn btn-light btn-hover-primary collapsed" data-bs-toggle="collapse"
                   data-bs-target="#collapseFilter">
                   <i class="fas fa-filter"></i>
                   Filters
@@ -658,23 +658,22 @@
             <div class="tab-pane fade show active" id="grid">
 
               <div class="row gy-6">
-                <div class="col-lg-4 col-sm-6">
+                <div class="col-lg-4 col-sm-6 " *ngFor="let course of courses">
 
                   <!-- Course Start -->
-                  <div class="course-item" data-aos="fade-up" data-aos-duration="1000">
+                  <div ngClass="course-item" data-aos="fade-up" data-aos-duration="1000">
                     <div class="course-header">
                       <div class="course-header__thumbnail ">
-                        <a href="course-single-layout-01.html"><img src="assets/images/courses/courses-1.jpg"
+                        <a routerLink="/course/{{course.id}}"><img src="assets/images/courses/courses-1.jpg"
                             alt="courses" width="330" height="221"></a>
                       </div>
                     </div>
                     <div class="course-info">
-                      <span class="course-info__badge-text badge-all">All Levels</span>
-                      <h3 class="course-info__title"><a href="course-single-layout-01.html">Successful Negotiation:
-                          Master Your Negotiating Skills</a></h3>
-                      <a href="#" class="course-info__instructor">parra</a>
+                      <span class="course-info__badge-text " [ngClass]="{'badge-all':levels[course.level]=='All levels','badge-beginner':levels[course.level]=='Beginner','badge-intermediate':levels[course.level]=='Intermediate','badge-Advanced':levels[course.level]=='Advanced'}">{{levels[course.level]}}</span>
+                      <h3 class="course-info__title"><a routerLink="/course/{{course.id}}">{{course.title}}</a></h3>
+                      <a  class="course-info__instructor">{{course.instructor}}</a>
                       <div class="course-info__price">
-                        <span class="sale-price">$39.<small class="separator">00</small></span>
+                        <span class="sale-price">${{course.price}}.<small class="separator">00</small></span>
                       </div>
                       <div class="course-info__rating">
 
@@ -682,520 +681,33 @@
                           <div class="rating-label" style="width: 80%;"></div>
                         </div>
 
-                        <span>(2)</span>
+                        <span>({{course.reviews.length}})</span>
                       </div>
                     </div>
                   </div>
                   <!-- Course End -->
 
                 </div>
-                <div class="col-lg-4 col-sm-6">
 
-                  <!-- Course Start -->
-                  <div class="course-item" data-aos="fade-up" data-aos-duration="1000">
-                    <div class="course-header">
-                      <div class="course-header__thumbnail ">
-                        <a href="course-single-layout-01.html"><img src="assets/images/courses/courses-2.jpg"
-                            alt="courses" width="330" height="221"></a>
-                      </div>
-                    </div>
-                    <div class="course-info">
-                      <span class="course-info__badge-text badge-all">All Levels</span>
-                      <h3 class="course-info__title"><a href="course-single-layout-01.html">Time Management Mastery: Do
-                          More, Stress Less</a></h3>
-                      <a href="#" class="course-info__instructor">parra</a>
-                      <div class="course-info__price">
-                        <span class="sale-price">$29.<small class="separator">99</small></span>
-                      </div>
-                      <div class="course-info__rating">
-
-                        <div class="rating-star">
-                          <div class="rating-label" style="width: 80%;"></div>
-                        </div>
-
-                        <span>(2)</span>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- Course End -->
-
-                </div>
-                <div class="col-lg-4 col-sm-6">
-
-                  <!-- Course Start -->
-                  <div class="course-item" data-aos="fade-up" data-aos-duration="1000">
-                    <div class="course-header">
-                      <div class="course-header__thumbnail ">
-                        <a href="course-single-layout-01.html"><img src="assets/images/courses/courses-3.jpg"
-                            alt="courses" width="330" height="221"></a>
-                      </div>
-                    </div>
-                    <div class="course-info">
-                      <span class="course-info__badge-text badge-beginner">Beginner</span>
-                      <h3 class="course-info__title"><a href="course-single-layout-01.html">Angular – The Complete Guide
-                          (2020 Edition)</a></h3>
-                      <a href="#" class="course-info__instructor">parra</a>
-                      <div class="course-info__price">
-                        <span class="sale-price">$49.<small class="separator">99</small></span>
-                      </div>
-                      <div class="course-info__rating">
-
-                        <div class="rating-star">
-                          <div class="rating-label" style="width: 80%;"></div>
-                        </div>
-
-                        <span>(2)</span>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- Course End -->
-
-                </div>
-                <div class="col-lg-4 col-sm-6">
-
-                  <!-- Course Start -->
-                  <div class="course-item" data-aos="fade-up" data-aos-duration="1000">
-                    <div class="course-header">
-                      <div class="course-header__thumbnail ">
-                        <a href="course-single-layout-01.html"><img src="assets/images/courses/courses-4.jpg"
-                            alt="courses" width="330" height="221"></a>
-                      </div>
-                      <div class="course-header__badge">
-                        <span class="free">Free</span>
-                      </div>
-                    </div>
-                    <div class="course-info">
-                      <span class="course-info__badge-text badge-beginner">All Levels</span>
-                      <h3 class="course-info__title"><a href="course-single-layout-01.html">Consulting Approach to
-                          Problem Solving</a></h3>
-                      <a href="#" class="course-info__instructor">parra</a>
-                      <div class="course-info__price">
-                        <span class="free">Free</span>
-                      </div>
-                      <div class="course-info__rating">
-
-                        <div class="rating-star">
-                          <div class="rating-label" style="width: 80%;"></div>
-                        </div>
-
-                        <span>(2)</span>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- Course End -->
-
-                </div>
-                <div class="col-lg-4 col-sm-6">
-
-                  <!-- Course Start -->
-                  <div class="course-item" data-aos="fade-up" data-aos-duration="1000">
-                    <div class="course-header">
-                      <div class="course-header__thumbnail ">
-                        <a href="course-single-layout-01.html"><img src="assets/images/courses/courses-5.jpg"
-                            alt="courses" width="330" height="221"></a>
-                      </div>
-                      <div class="course-header__badge">
-                        <span class="free">Free</span>
-                      </div>
-                    </div>
-                    <div class="course-info">
-                      <span class="course-info__badge-text badge-all">All Levels</span>
-                      <h3 class="course-info__title"><a href="course-single-layout-01.html">The Business Intelligence
-                          Analyst Course 2020</a></h3>
-                      <a href="#" class="course-info__instructor">parra</a>
-                      <div class="course-info__price">
-                        <span class="free">Free</span>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- Course End -->
-
-                </div>
-                <div class="col-lg-4 col-sm-6">
-
-                  <!-- Course Start -->
-                  <div class="course-item" data-aos="fade-up" data-aos-duration="1000">
-                    <div class="course-header">
-                      <div class="course-header__thumbnail ">
-                        <a href="course-single-layout-01.html"><img src="assets/images/courses/courses-6.jpg"
-                            alt="courses" width="330" height="221"></a>
-                      </div>
-                      <div class="course-header__badge">
-                        <span class="free">Free</span>
-                      </div>
-                    </div>
-                    <div class="course-info">
-                      <span class="course-info__badge-text badge-all">All Levels</span>
-                      <h3 class="course-info__title"><a href="course-single-layout-01.html">Become a Product Manager |
-                          Learn the Skills & Get the Job</a></h3>
-                      <a href="#" class="course-info__instructor">parra</a>
-                      <div class="course-info__price">
-                        <span class="free">Free</span>
-                      </div>
-                      <div class="course-info__rating">
-
-                        <div class="rating-star">
-                          <div class="rating-label" style="width: 80%;"></div>
-                        </div>
-
-                        <span>(2)</span>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- Course End -->
-
-                </div>
-                <div class="col-lg-4 col-sm-6">
-
-                  <!-- Course Start -->
-                  <div class="course-item" data-aos="fade-up" data-aos-duration="1000">
-                    <div class="course-header">
-                      <div class="course-header__thumbnail ">
-                        <a href="course-single-layout-01.html"><img src="assets/images/courses/courses-7.jpg"
-                            alt="courses" width="330" height="221"></a>
-                      </div>
-                    </div>
-                    <div class="course-info">
-                      <span class="course-info__badge-text badge-beginner">Beginner</span>
-                      <h3 class="course-info__title"><a href="course-single-layout-01.html">Mechanical Engineering and
-                          Electrical Engineering Explained</a></h3>
-                      <a href="#" class="course-info__instructor">Oliver Porter</a>
-                      <div class="course-info__price">
-                        <span class="sale-price">$84.<small class="separator">00</small></span>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- Course End -->
-
-                </div>
-                <div class="col-lg-4 col-sm-6">
-
-                  <!-- Course Start -->
-                  <div class="course-item" data-aos="fade-up" data-aos-duration="1000">
-                    <div class="course-header">
-                      <div class="course-header__thumbnail ">
-                        <a href="course-single-layout-01.html"><img src="assets/images/courses/courses-8.jpg"
-                            alt="courses" width="330" height="221"></a>
-                      </div>
-                    </div>
-                    <div class="course-info">
-                      <span class="course-info__badge-text badge-beginner">Beginner</span>
-                      <h3 class="course-info__title"><a href="course-single-layout-01.html">Learn Algebra The Easy
-                          Way!</a></h3>
-                      <a href="#" class="course-info__instructor">Oliver Porter</a>
-                      <div class="course-info__price">
-                        <span class="sale-price">$45.<small class="separator">00</small></span>
-                      </div>
-                      <div class="course-info__rating">
-
-                        <div class="rating-star">
-                          <div class="rating-label" style="width: 80%;"></div>
-                        </div>
-
-                        <span>(2)</span>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- Course End -->
-
-                </div>
-                <div class="col-lg-4 col-sm-6">
-
-                  <!-- Course Start -->
-                  <div class="course-item" data-aos="fade-up" data-aos-duration="1000">
-                    <div class="course-header">
-                      <div class="course-header__thumbnail ">
-                        <a href="course-single-layout-01.html"><img src="assets/images/courses/courses-10.jpg"
-                            alt="courses" width="330" height="221"></a>
-                      </div>
-                    </div>
-                    <div class="course-info">
-                      <span class="course-info__badge-text badge-beginner">Beginner</span>
-                      <h3 class="course-info__title"><a href="course-single-layout-01.html">Adobe Lightroom For
-                          Beginners : Complete Photo/Image Editing</a></h3>
-                      <a href="#" class="course-info__instructor">Alex Itzel</a>
-                      <div class="course-info__price">
-                        <span class="free">Free</span>
-                      </div>
-                      <div class="course-info__rating">
-
-                        <div class="rating-star">
-                          <div class="rating-label" style="width: 100%;"></div>
-                        </div>
-
-                        <span>(2)</span>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- Course End -->
-
-                </div>
-                <div class="col-lg-4 col-sm-6">
-
-                  <!-- Course Start -->
-                  <div class="course-item" data-aos="fade-up" data-aos-duration="1000">
-                    <div class="course-header">
-                      <div class="course-header__thumbnail ">
-                        <a href="course-single-layout-01.html"><img src="assets/images/courses/courses-22.jpg"
-                            alt="courses" width="330" height="221"></a>
-                      </div>
-                      <div class="course-header__badge">
-                        <span class="hot">Featured</span>
-                      </div>
-                    </div>
-                    <div class="course-info">
-                      <span class="course-info__badge-text badge-intermediate">Intermediate</span>
-                      <h3 class="course-info__title"><a href="course-single-layout-01.html">The Complete Graphic Design
-                          Theory for Beginners Course</a></h3>
-                      <a href="#" class="course-info__instructor">Donald Logan</a>
-                      <div class="course-info__price">
-                        <span class="sale-price">$45.<small class="separator">00</small></span>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- Course End -->
-
-                </div>
-                <div class="col-lg-4 col-sm-6">
-
-                  <!-- Course Start -->
-                  <div class="course-item" data-aos="fade-up" data-aos-duration="1000">
-                    <div class="course-header">
-                      <div class="course-header__thumbnail ">
-                        <a href="course-single-layout-01.html"><img src="assets/images/courses/courses-9.jpg"
-                            alt="courses" width="330" height="221"></a>
-                      </div>
-                    </div>
-                    <div class="course-info">
-                      <span class="course-info__badge-text badge-intermediate">Intermediate</span>
-                      <h3 class="course-info__title"><a href="course-single-layout-01.html">User Experience Design
-                          Fundamentals</a></h3>
-                      <a href="#" class="course-info__instructor">Owen Christ</a>
-                      <div class="course-info__price">
-                        <span class="sale-price">$42.<small class="separator">00</small></span>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- Course End -->
-
-                </div>
-                <div class="col-lg-4 col-sm-6">
-
-                  <!-- Course Start -->
-                  <div class="course-item" data-aos="fade-up" data-aos-duration="1000">
-                    <div class="course-header">
-                      <div class="course-header__thumbnail ">
-                        <a href="course-single-layout-01.html"><img src="assets/images/courses/courses-23.jpg"
-                            alt="courses" width="330" height="221"></a>
-                      </div>
-                      <div class="course-header__badge">
-                        <span class="hot">Featured</span>
-                      </div>
-                    </div>
-                    <div class="course-info">
-                      <span class="course-info__badge-text badge-beginner">Beginner</span>
-                      <h3 class="course-info__title"><a href="course-single-layout-01.html">Graphic Design Bootcamp:
-                          Photoshop, Illustrator, InDesign</a></h3>
-                      <a href="#" class="course-info__instructor">Owen Christ</a>
-                      <div class="course-info__price">
-                        <span class="sale-price">$29.<small class="separator">99</small></span>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- Course End -->
-
-                </div>
-                <div class="col-lg-4 col-sm-6">
-
-                  <!-- Course Start -->
-                  <div class="course-item" data-aos="fade-up" data-aos-duration="1000">
-                    <div class="course-header">
-                      <div class="course-header__thumbnail ">
-                        <a href="course-single-layout-01.html"><img src="assets/images/courses/courses-29.jpg"
-                            alt="courses" width="330" height="221"></a>
-                      </div>
-                    </div>
-                    <div class="course-info">
-                      <span class="course-info__badge-text badge-beginner">Beginner</span>
-                      <h3 class="course-info__title"><a href="course-single-layout-01.html">Illustrator 2020
-                          MasterClass</a></h3>
-                      <a href="#" class="course-info__instructor">Owen Christ</a>
-                      <div class="course-info__price">
-                        <span class="sale-price">$22.<small class="separator">00</small></span>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- Course End -->
-
-                </div>
-                <div class="col-lg-4 col-sm-6">
-
-                  <!-- Course Start -->
-                  <div class="course-item" data-aos="fade-up" data-aos-duration="1000">
-                    <div class="course-header">
-                      <div class="course-header__thumbnail ">
-                        <a href="course-single-layout-01.html"><img src="assets/images/courses/courses-13.jpg"
-                            alt="courses" width="330" height="221"></a>
-                      </div>
-                      <div class="course-header__badge">
-                        <span class="hot">Featured</span>
-                        <span class="free">Free</span>
-                      </div>
-                    </div>
-                    <div class="course-info">
-                      <span class="course-info__badge-text badge-beginner">Beginner</span>
-                      <h3 class="course-info__title"><a href="course-single-layout-01.html">Adobe Illustrator CC –
-                          Essentials Training Course</a></h3>
-                      <a href="#" class="course-info__instructor">parra</a>
-                      <div class="course-info__price">
-                        <span class="free">Free</span>
-                      </div>
-                      <div class="course-info__rating">
-
-                        <div class="rating-star">
-                          <div class="rating-label" style="width: 80%;"></div>
-                        </div>
-
-                        <span>(2)</span>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- Course End -->
-
-                </div>
-                <div class="col-lg-4 col-sm-6">
-
-                  <!-- Course Start -->
-                  <div class="course-item" data-aos="fade-up" data-aos-duration="1000">
-                    <div class="course-header">
-                      <div class="course-header__thumbnail ">
-                        <a href="course-single-layout-01.html"><img src="assets/images/courses/courses-30.jpg"
-                            alt="courses" width="330" height="221"></a>
-                      </div>
-                      <div class="course-header__badge">
-                        <span class="onsale">-50%</span>
-                      </div>
-                    </div>
-                    <div class="course-info">
-                      <span class="course-info__badge-text badge-intermediate">Intermediate</span>
-                      <h3 class="course-info__title"><a href="course-single-layout-01.html">UX & Web Design Master
-                          Course</a></h3>
-                      <a href="#" class="course-info__instructor">Emilee Logan</a>
-                      <div class="course-info__price">
-                        <span class="sale-price">$45.<small class="separator">00</small></span>
-                        <span class="regular-price">$79.<small class="separator">00</small></span>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- Course End -->
-
-                </div>
-                <div class="col-lg-4 col-sm-6">
-
-                  <!-- Course Start -->
-                  <div class="course-item" data-aos="fade-up" data-aos-duration="1000">
-                    <div class="course-header">
-                      <div class="course-header__thumbnail ">
-                        <a href="course-single-layout-01.html"><img src="assets/images/courses/courses-31.jpg"
-                            alt="courses" width="330" height="221"></a>
-                      </div>
-                      <div class="course-header__badge">
-                        <span class="hot">Featured</span>
-                      </div>
-                    </div>
-                    <div class="course-info">
-                      <span class="course-info__badge-text badge-beginner">Beginner</span>
-                      <h3 class="course-info__title"><a href="course-single-layout-01.html">Fundamentals of Graphic
-                          Design</a></h3>
-                      <a href="#" class="course-info__instructor">Owen Christ</a>
-                      <div class="course-info__price">
-                        <span class="sale-price">$39.<small class="separator">00</small></span>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- Course End -->
-
-                </div>
-                <div class="col-lg-4 col-sm-6">
-
-                  <!-- Course Start -->
-                  <div class="course-item" data-aos="fade-up" data-aos-duration="1000">
-                    <div class="course-header">
-                      <div class="course-header__thumbnail ">
-                        <a href="course-single-layout-01.html"><img src="assets/images/courses/courses-21.jpg"
-                            alt="courses" width="330" height="221"></a>
-                      </div>
-                      <div class="course-header__badge">
-                        <span class="hot">Featured</span>
-                      </div>
-                    </div>
-                    <div class="course-info">
-                      <span class="course-info__badge-text badge-all">All Levels</span>
-                      <h3 class="course-info__title"><a href="course-single-layout-01.html">The Business Intelligence
-                          Analyst Course 2020</a></h3>
-                      <a href="#" class="course-info__instructor">Owen Christ</a>
-                      <div class="course-info__price">
-                        <span class="sale-price">$39.<small class="separator">99</small></span>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- Course End -->
-
-                </div>
-                <div class="col-lg-4 col-sm-6">
-
-                  <!-- Course Start -->
-                  <div class="course-item" data-aos="fade-up" data-aos-duration="1000">
-                    <div class="course-header">
-                      <div class="course-header__thumbnail ">
-                        <a href="course-single-layout-01.html"><img src="assets/images/courses/courses-27.jpg"
-                            alt="courses" width="330" height="221"></a>
-                      </div>
-                      <div class="course-header__badge">
-                        <span class="hot">Featured</span>
-                      </div>
-                    </div>
-                    <div class="course-info">
-                      <span class="course-info__badge-text badge-all">All Levels</span>
-                      <h3 class="course-info__title"><a href="course-single-layout-01.html">Communication Skills
-                          Machine: Master Persuasion</a></h3>
-                      <a href="#" class="course-info__instructor">Owen Christ</a>
-                      <div class="course-info__price">
-                        <span class="sale-price">$35.<small class="separator">00</small></span>
-                      </div>
-                      <div class="course-info__rating">
-
-                        <div class="rating-star">
-                          <div class="rating-label" style="width: 100%;"></div>
-                        </div>
-
-                        <span>(2)</span>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- Course End -->
-
-                </div>
               </div>
 
             </div>
             <div class="tab-pane fade" id="list">
 
               <!-- Course List Start -->
-              <div class="course-list-item">
+              <div class="course-list-item" *ngFor="let course of courses">
                 <div class="course-list-header">
                   <div class="course-list-header__thumbnail">
-                    <a href="course-single-layout-01.html"><img src="assets/images/courses/courses-1.jpg" alt="courses"
+                    <a routerLink="/course/{{course.id}}"><img src="assets/images/courses/courses-1.jpg" alt="courses"
                         width="270" height="181"></a>
                   </div>
                 </div>
                 <div class="course-list-info">
-                  <h3 class="course-list-info__title"><a href="course-single-layout-01.html">Successful Negotiation:
-                      Master Your Negotiating Skills</a></h3>
+                  <h3 class="course-list-info__title"><a routerLink="/course/{{course.id}}">{{course.title}}</a></h3>
                   <div class="course-list-info__meta">
                     <span><i class="fas fa-play-circle"></i> 5 Lessons</span>
                     <span><i class="fas fa-clock"></i> 2.3 hours</span>
-                    <span><i class="fas fa-sliders-h"></i> All Levels</span>
+                    <span><i class="fas fa-sliders-h"></i> {{levels[course.level]}}</span>
                   </div>
                   <div class="course-list-info__description">
                     <p>Negotiation is a skill well worth mastering – by putting …</p>
@@ -1207,7 +719,7 @@
                   </div>
                   <div class="course-list-info__footer">
                     <div class="course-list-info__price">
-                      <span class="sale-price">$42.<small class="separator">00</small></span>
+                      <span class="sale-price">${{course.price}}.<small class="separator">00</small></span>
                     </div>
                     <div class="course-list-info__rating">
 
@@ -1216,321 +728,31 @@
                       </div>
 
                       <div class="rating-average">
-                        <span class="rating-average__average">5.0</span>
+                        <span class="rating-average__average">{{course.rating}}.0</span>
                         <span class="rating-average__total">/5</span>
                       </div>
 
-                      <p class="course-list-info__rating-count">(2 ratings)</p>
+                      <p class="course-list-info__rating-count">({{course.reviews.length}} ratings)</p>
                     </div>
                   </div>
                 </div>
               </div>
               <!-- Course List End -->
 
-              <!-- Course List Start -->
-              <div class="course-list-item">
-                <div class="course-list-header">
-                  <div class="course-list-header__thumbnail ">
-                    <a href="course-single-layout-01.html"><img src="assets/images/courses/courses-2.jpg" alt="courses"
-                        width="270" height="181"></a>
-                  </div>
-                </div>
-                <div class="course-list-info">
-                  <h3 class="course-list-info__title"><a href="course-single-layout-01.html">Time Management Mastery: Do
-                      More, Stress Less</a></h3>
-                  <div class="course-list-info__meta">
-                    <span><i class="fas fa-play-circle"></i> 7 Lessons</span>
-                    <span><i class="fas fa-clock"></i> 3.5 hours</span>
-                    <span><i class="fas fa-sliders-h"></i> All Levels</span>
-                  </div>
-                  <div class="course-list-info__description">
-                    <p>If you’re someone who has a LOT on their plate …</p>
-                  </div>
-                  <div class="course-list-info__action">
-                    <button class="btn btn-primary btn-hover-secondary">Add to cart</button>
-                    <button class="btn-icon btn-light btn-hover-primary" data-bs-tooltip="tooltip"
-                      data-bs-placement="top" title="Add to wishlist"><i class="far fa-heart"></i></button>
-                  </div>
-                  <div class="course-list-info__footer">
-                    <div class="course-list-info__price">
-                      <span class="sale-price">$29.<small class="separator">00</small></span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- Course List End -->
 
-              <!-- Course List Start -->
-              <div class="course-list-item">
-                <div class="course-list-header">
-                  <div class="course-list-header__thumbnail ">
-                    <a href="course-single-layout-01.html"><img src="assets/images/courses/courses-3.jpg" alt="courses"
-                        width="270" height="181"></a>
-                  </div>
-                </div>
-                <div class="course-list-info">
-                  <h3 class="course-list-info__title"><a href="course-single-layout-01.html">Angular – The Complete
-                      Guide (2020 Edition)</a></h3>
-                  <div class="course-list-info__meta">
-                    <span><i class="fas fa-play-circle"></i> 5 Lessons</span>
-                    <span><i class="fas fa-clock"></i> 2.3 hours</span>
-                    <span><i class="fas fa-sliders-h"></i> All Levels</span>
-                  </div>
-                  <div class="course-list-info__description">
-                    <p>From Setup to Deployment, this course covers it all! You’ll learn all about Components,
-                      Directives, Services, Forms, Http Access, Authentication, …</p>
-                  </div>
-                  <div class="course-list-info__action">
-                    <button class="btn btn-primary btn-hover-secondary">Add to cart</button>
-                    <button class="btn-icon btn-light btn-hover-primary" data-bs-tooltip="tooltip"
-                      data-bs-placement="top" title="Add to wishlist"><i class="far fa-heart"></i></button>
-                  </div>
-                  <div class="course-list-info__footer">
-                    <div class="course-list-info__price">
-                      <span class="sale-price">$49.<small class="separator">00</small></span>
-                    </div>
-                    <div class="course-list-info__rating">
-
-                      <div class="rating-star">
-                        <div class="rating-label" style="width: 100%;"></div>
-                      </div>
-
-                      <div class="rating-average">
-                        <span class="rating-average__average">5.0</span>
-                        <span class="rating-average__total">/5</span>
-                      </div>
-
-                      <p class="course-list-info__rating-count">(2 ratings)</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- Course List End -->
-
-              <!-- Course List Start -->
-              <div class="course-list-item">
-                <div class="course-list-header">
-                  <div class="course-list-header__thumbnail ">
-                    <a href="course-single-layout-01.html"><img src="assets/images/courses/courses-4.jpg" alt="courses"
-                        width="270" height="181"></a>
-                  </div>
-                  <div class="course-header__badge">
-                    <span class="free">Free</span>
-                  </div>
-                </div>
-                <div class="course-list-info">
-                  <h3 class="course-list-info__title"><a href="course-single-layout-01.html">Consulting Approach to
-                      Problem Solving</a></h3>
-                  <div class="course-list-info__meta">
-                    <span><i class="fas fa-play-circle"></i> 5 Lessons</span>
-                    <span><i class="fas fa-clock"></i> 2.3 hours</span>
-                    <span><i class="fas fa-sliders-h"></i> All Levels</span>
-                  </div>
-                  <div class="course-list-info__description">
-                    <p>Consulting Approach to Problem Solving</p>
-                  </div>
-                  <div class="course-list-info__action">
-                    <button class="btn btn-primary btn-hover-secondary">Add to cart</button>
-                    <button class="btn-icon btn-light btn-hover-primary" data-bs-tooltip="tooltip"
-                      data-bs-placement="top" title="Add to wishlist"><i class="far fa-heart"></i></button>
-                  </div>
-                  <div class="course-list-info__footer">
-                    <div class="course-list-info__price">
-                      <span class="free">Free</span>
-                    </div>
-                    <div class="course-list-info__rating">
-
-                      <div class="rating-star">
-                        <div class="rating-label" style="width: 100%;"></div>
-                      </div>
-
-                      <div class="rating-average">
-                        <span class="rating-average__average">5.0</span>
-                        <span class="rating-average__total">/5</span>
-                      </div>
-
-                      <p class="course-list-info__rating-count">(1 ratings)</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- Course List End -->
-
-              <!-- Course List Start -->
-              <div class="course-list-item">
-                <div class="course-list-header">
-                  <div class="course-list-header__thumbnail ">
-                    <a href="course-single-layout-01.html"><img src="assets/images/courses/courses-5.jpg" alt="courses"
-                        width="270" height="181"></a>
-                  </div>
-                  <div class="course-header__badge">
-                    <span class="free">Free</span>
-                  </div>
-                </div>
-                <div class="course-list-info">
-                  <h3 class="course-list-info__title"><a href="course-single-layout-01.html">The Business Intelligence
-                      Analyst Course 2020</a></h3>
-                  <div class="course-list-info__meta">
-                    <span><i class="fas fa-play-circle"></i> 7 Lessons</span>
-                    <span><i class="fas fa-clock"></i> 22.5 hours</span>
-                    <span><i class="fas fa-sliders-h"></i> Beginner</span>
-                  </div>
-                  <div class="course-list-info__description">
-                    <p>Our program is different than the rest of the materials …</p>
-                  </div>
-                  <div class="course-list-info__action">
-                    <button class="btn btn-primary btn-hover-secondary">Add to cart</button>
-                    <button class="btn-icon btn-light btn-hover-primary" data-bs-tooltip="tooltip"
-                      data-bs-placement="top" title="Add to wishlist"><i class="far fa-heart"></i></button>
-                  </div>
-                  <div class="course-list-info__footer">
-                    <div class="course-list-info__price">
-                      <span class="free">Free</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- Course List End -->
-
-              <!-- Course List Start -->
-              <div class="course-list-item">
-                <div class="course-list-header">
-                  <div class="course-list-header__thumbnail ">
-                    <a href="course-single-layout-01.html"><img src="assets/images/courses/courses-6.jpg" alt="courses"
-                        width="270" height="181"></a>
-                  </div>
-                  <div class="course-header__badge">
-                    <span class="free">Free</span>
-                  </div>
-                </div>
-                <div class="course-list-info">
-                  <h3 class="course-list-info__title"><a href="course-single-layout-01.html">Become a Product Manager |
-                      Learn the Skills & Get the Job</a></h3>
-                  <div class="course-list-info__meta">
-                    <span><i class="fas fa-play-circle"></i> 6 Lessons</span>
-                    <span><i class="fas fa-clock"></i> 22.5 hours</span>
-                    <span><i class="fas fa-sliders-h"></i> All Levels</span>
-                  </div>
-                  <div class="course-list-info__description">
-                    <p>Negotiation is a skill well worth mastering – by putting …</p>
-                  </div>
-                  <div class="course-list-info__action">
-                    <button class="btn btn-primary btn-hover-secondary">Add to cart</button>
-                    <button class="btn-icon btn-light btn-hover-primary" data-bs-tooltip="tooltip"
-                      data-bs-placement="top" title="Add to wishlist"><i class="far fa-heart"></i></button>
-                  </div>
-                  <div class="course-list-info__footer">
-                    <div class="course-list-info__price">
-                      <span class="free">Free</span>
-                    </div>
-                    <div class="course-list-info__rating">
-
-                      <div class="rating-star">
-                        <div class="rating-label" style="width: 100%;"></div>
-                      </div>
-
-                      <div class="rating-average">
-                        <span class="rating-average__average">5.0</span>
-                        <span class="rating-average__total">/5</span>
-                      </div>
-
-                      <p class="course-list-info__rating-count">(1 ratings)</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- Course List End -->
-
-              <!-- Course List Start -->
-              <div class="course-list-item">
-                <div class="course-list-header">
-                  <div class="course-list-header__thumbnail ">
-                    <a href="course-single-layout-01.html"><img src="assets/images/courses/courses-7.jpg" alt="courses"
-                        width="270" height="181"></a>
-                  </div>
-                </div>
-                <div class="course-list-info">
-                  <h3 class="course-list-info__title"><a href="course-single-layout-01.html">Mechanical Engineering and
-                      Electrical Engineering Explained</a></h3>
-                  <div class="course-list-info__meta">
-                    <span><i class="fas fa-play-circle"></i> 5 Lessons</span>
-                    <span><i class="fas fa-clock"></i> 9.9 hours</span>
-                    <span><i class="fas fa-sliders-h"></i> Beginner</span>
-                  </div>
-                  <div class="course-list-info__description">
-                    <p>Electronics has become important to many fields; communications, automotive, security, …</p>
-                  </div>
-                  <div class="course-list-info__action">
-                    <button class="btn btn-primary btn-hover-secondary">Add to cart</button>
-                    <button class="btn-icon btn-light btn-hover-primary" data-bs-tooltip="tooltip"
-                      data-bs-placement="top" title="Add to wishlist"><i class="far fa-heart"></i></button>
-                  </div>
-                  <div class="course-list-info__footer">
-                    <div class="course-list-info__price">
-                      <span class="sale-price">$84.<small class="separator">00</small></span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- Course List End -->
-
-              <!-- Course List Start -->
-              <div class="course-list-item">
-                <div class="course-list-header">
-                  <div class="course-list-header__thumbnail ">
-                    <a href="course-single-layout-01.html"><img src="assets/images/courses/courses-8.jpg" alt="courses"
-                        width="270" height="181"></a>
-                  </div>
-                </div>
-                <div class="course-list-info">
-                  <h3 class="course-list-info__title"><a href="course-single-layout-01.html">Learn Algebra The Easy
-                      Way!</a></h3>
-                  <div class="course-list-info__meta">
-                    <span><i class="fas fa-play-circle"></i> 5 Lessons</span>
-                    <span><i class="fas fa-clock"></i> 8.5 hours</span>
-                    <span><i class="fas fa-sliders-h"></i> Beginner</span>
-                  </div>
-                  <div class="course-list-info__description">
-                    <p>This course will begin with an overview of data types …</p>
-                  </div>
-                  <div class="course-list-info__action">
-                    <button class="btn btn-primary btn-hover-secondary">Add to cart</button>
-                    <button class="btn-icon btn-light btn-hover-primary" data-bs-tooltip="tooltip"
-                      data-bs-placement="top" title="Add to wishlist"><i class="far fa-heart"></i></button>
-                  </div>
-                  <div class="course-list-info__footer">
-                    <div class="course-list-info__price">
-                      <span class="sale-price">$42.<small class="separator">00</small></span>
-                    </div>
-                    <div class="course-list-info__rating">
-
-                      <div class="rating-star">
-                        <div class="rating-label" style="width: 100%;"></div>
-                      </div>
-
-                      <div class="rating-average">
-                        <span class="rating-average__average">5.0</span>
-                        <span class="rating-average__total">/5</span>
-                      </div>
-
-                      <p class="course-list-info__rating-count">(2 ratings)</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- Course List End -->
 
             </div>
           </div>
 
           <!-- Page Pagination Start -->
-          <div class="page-pagination">
+          <div class="page-pagination position-absolute ">
             <ul class="pagination justify-content-center">
-              <li><a class="active" href="#">1</a></li>
-              <li><a href="#">2</a></li>
-              <li><a href="#">...</a></li>
-              <li><a href="#">7</a></li>
-              <li><a href="#"><i class="fas fa-angle-double-right"></i></a></li>
+              <li *ngIf="pageIndex!=1" (click)="decrementIndex()"><a><i class="fas fa-angle-double-left"></i></a></li>
+              <li *ngIf="pageIndex!=1"><a>...</a></li>
+              <li><a class="active" id="circle1" >1</a></li>
+              <li><a id="circle2" (click)="incrementIndex()" >2</a></li>
+              <li><a >...</a></li>
+              <li><a (click)="incrementIndex()"><i class="fas fa-angle-double-right"></i></a></li>
             </ul>
           </div>
           <!-- Page Pagination End -->
@@ -1542,7 +764,7 @@
 
             <!-- Sidebar Widget Wrapper Start -->
             <div class="sidebar-widget-wrap bg-color-10">
-              <h4 class="sidebar-widget-wrap__title">Filter by category</h4>
+              <h4 class="sidebar-widget-wrap__title">Filter by Subject</h4>
 
               <!-- Widget Filter Start -->
               <div class="widget-filter">
@@ -1550,102 +772,15 @@
                 <!-- Widget Filter Wrapper Start -->
                 <div class="widget-filter__wrapper">
                   <ul class="widget-filter__list">
-                    <li>
+                    <li *ngFor="let subject of subjects;let i =index">
                       <!-- Widget Filter Item Start -->
                       <div class="widget-filter__item">
-                        <input type="checkbox" id="categories13" name="sort-by">
-                        <label for="categories13">Art & Design <span>(8)</span></label>
+                        <input (click)="getbysubject(subject.id!)" type="radio" id="subject{{i}}" name="sort-by">
+                        <label for="subject{{i}}">{{subject.name[0].toUpperCase()}}{{subject.name.slice(1)}}</label>
                       </div>
                       <!-- Widget Filter Item End -->
                     </li>
-                    <li>
-                      <!-- Widget Filter Item Start -->
-                      <div class="widget-filter__item">
-                        <input type="checkbox" id="categories14" name="sort-by">
-                        <label for="categories14">Business <span>(12)</span></label>
-                      </div>
-                      <!-- Widget Filter Item End -->
-                    </li>
-                    <li>
-                      <!-- Widget Filter Item Start -->
-                      <div class="widget-filter__item">
-                        <input type="checkbox" id="categories15" name="sort-by">
-                        <label for="categories15">Data Science <span>(7)</span></label>
-                      </div>
-                      <!-- Widget Filter Item End -->
-                    </li>
-                    <li>
-                      <!-- Widget Filter Item Start -->
-                      <div class="widget-filter__item">
-                        <input type="checkbox" id="categories16" name="sort-by">
-                        <label for="categories16">Development <span>(10)</span></label>
-                      </div>
-                      <!-- Widget Filter Item End -->
-                    </li>
-                    <li>
-                      <!-- Widget Filter Item Start -->
-                      <div class="widget-filter__item">
-                        <input type="checkbox" id="categories17" name="sort-by">
-                        <label for="categories17">Finance <span>(8)</span></label>
-                      </div>
-                      <!-- Widget Filter Item End -->
-                    </li>
-                    <li>
-                      <!-- Widget Filter Item Start -->
-                      <div class="widget-filter__item">
-                        <input type="checkbox" id="categories18" name="sort-by">
-                        <label for="categories18">Health & Fitness <span>(8)</span></label>
-                      </div>
-                      <!-- Widget Filter Item End -->
-                    </li>
-                    <li>
-                      <!-- Widget Filter Item Start -->
-                      <div class="widget-filter__item">
-                        <input type="checkbox" id="categories19" name="sort-by">
-                        <label for="categories19">Lifestyle <span>(9)</span></label>
-                      </div>
-                      <!-- Widget Filter Item End -->
-                    </li>
-                    <li>
-                      <!-- Widget Filter Item Start -->
-                      <div class="widget-filter__item">
-                        <input type="checkbox" id="categories20" name="sort-by">
-                        <label for="categories20">Marketing <span>(8)</span></label>
-                      </div>
-                      <!-- Widget Filter Item End -->
-                    </li>
-                    <li>
-                      <!-- Widget Filter Item Start -->
-                      <div class="widget-filter__item">
-                        <input type="checkbox" id="categories21" name="sort-by">
-                        <label for="categories21">Music <span>(8)</span></label>
-                      </div>
-                      <!-- Widget Filter Item End -->
-                    </li>
-                    <li>
-                      <!-- Widget Filter Item Start -->
-                      <div class="widget-filter__item">
-                        <input type="checkbox" id="categories22" name="sort-by">
-                        <label for="categories22">Personal Development <span>(9)</span></label>
-                      </div>
-                      <!-- Widget Filter Item End -->
-                    </li>
-                    <li>
-                      <!-- Widget Filter Item Start -->
-                      <div class="widget-filter__item">
-                        <input type="checkbox" id="categories23" name="sort-by">
-                        <label for="categories23">Photography <span>(7)</span></label>
-                      </div>
-                      <!-- Widget Filter Item End -->
-                    </li>
-                    <li>
-                      <!-- Widget Filter Item Start -->
-                      <div class="widget-filter__item">
-                        <input type="checkbox" id="categories24" name="sort-by">
-                        <label for="categories24">Teaching & Academics <span>(7)</span></label>
-                      </div>
-                      <!-- Widget Filter Item End -->
-                    </li>
+
                   </ul>
                 </div>
                 <!-- Widget Filter Wrapper End -->
@@ -1706,11 +841,12 @@
                     <li>
                       <!-- Widget Filter Item Start -->
                       <div class="widget-filter__item">
-                        <input type="radio" id="radio4" checked name="sort-by">
-                        <label for="radio4">All <span>(101)</span></label>
+                        <input type="radio" id="radi4" checked name="sort-by">
+                        <label for="radi4">All <span>(101)</span></label>
                       </div>
                       <!-- Widget Filter Item End -->
                     </li>
+
                     <li>
                       <!-- Widget Filter Item Start -->
                       <div class="widget-filter__item">
@@ -1722,8 +858,8 @@
                     <li>
                       <!-- Widget Filter Item Start -->
                       <div class="widget-filter__item">
-                        <input type="radio" id="radio6" name="sort-by">
-                        <label for="radio6">Paid <span>(95)</span></label>
+                        <input type="radio" id="radio7" name="sort-by">
+                        <label for="radio7">Paid <span>(95)</span></label>
                       </div>
                       <!-- Widget Filter Item End -->
                     </li>
@@ -1740,35 +876,11 @@
                 <!-- Widget Filter Wrapper Start -->
                 <div class="widget-filter__wrapper">
                   <ul class="widget-filter__list">
-                    <li>
+                    <li *ngFor="let level of levels;let i = index">
                       <!-- Widget Filter Item Start -->
                       <div class="widget-filter__item">
-                        <input type="checkbox" id="level5" name="sort-by">
-                        <label for="level5">All Levels <span>(50)</span></label>
-                      </div>
-                      <!-- Widget Filter Item End -->
-                    </li>
-                    <li>
-                      <!-- Widget Filter Item Start -->
-                      <div class="widget-filter__item">
-                        <input type="checkbox" id="level6" name="sort-by">
-                        <label for="level6">Beginner <span>(32)</span></label>
-                      </div>
-                      <!-- Widget Filter Item End -->
-                    </li>
-                    <li>
-                      <!-- Widget Filter Item Start -->
-                      <div class="widget-filter__item">
-                        <input type="checkbox" id="level7" name="sort-by">
-                        <label for="level7">Intermediate <span>(17)</span></label>
-                      </div>
-                      <!-- Widget Filter Item End -->
-                    </li>
-                    <li>
-                      <!-- Widget Filter Item Start -->
-                      <div class="widget-filter__item">
-                        <input type="checkbox" id="level8" name="sort-by">
-                        <label for="level8">Expert <span>(2)</span></label>
+                        <input (click)="getbylevel(i)" type="radio" id="levels{{i}}" name="sort-by">
+                        <label for="levels{{i}}">{{level}}</label>
                       </div>
                       <!-- Widget Filter Item End -->
                     </li>

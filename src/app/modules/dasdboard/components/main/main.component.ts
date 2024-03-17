@@ -27,13 +27,15 @@ export class MainComponent {
     language: 'string',
     thumbnailUrl: 'string',
     price: 0,
-    courseLevel: 0,
+    level: 0,
     tagsIds: [],
     prerequisitesIds: [],
     learningObjectives: []
   }
 
-  constructor(private _SubjectService: SubjectService ,private _CourseService:CourseService ) { }
+  constructor(private _SubjectService: SubjectService, private _CourseService: CourseService) {
+
+   }
 
 
   toggleMenu() {
@@ -63,21 +65,25 @@ export class MainComponent {
 
   Addcourse() {
     if (!this.addCourseForm.get('title')?.errors && !this.addCourseForm.get('language')?.errors && !this.addCourseForm.get('price')?.errors && this.addCourseForm.get('subject')?.value != '0') {
+      this.course.subjectId = parseInt(this.addCourseForm.get('subject')?.value)
       this.course.title = this.addCourseForm.get('title')?.value
       this.course.language = this.addCourseForm.get('language')?.value
       this.course.thumbnailUrl = this.addCourseForm.get('img')?.value
       this.course.price = this.addCourseForm.get('price')?.value
-      this.course.subjectId = parseInt(this.addCourseForm.get('subject')?.value)
+      this.course.level = parseInt(this.addCourseForm.get('courselevel')?.value)
       this.course.tagsIds = this.tags
       this.course.prerequisitesIds = this.prerequisites
-      this.course.courseLevel = parseInt(this.addCourseForm.get('courselevel')?.value)
-      this.l_0bjects.push(this.addCourseForm.get('learningobjectives')?.value)
       this.course.learningObjectives = this.l_0bjects
+      console.log(this.course);
+
 
       this._CourseService.addcourse(this.course).subscribe({
         next: (res) => {
           console.log(res);
           this.reset()
+        },
+        error: (err) => {
+          console.log(err);
         }
       })
     }
