@@ -57,7 +57,8 @@ export class CoursesComponent implements OnInit {
 
   getbysubject(subject: number) {
     this._CourseService.getcoursesbysubject(subject).subscribe((res) => {
-      this.courses=res
+      this.courses = res
+      this.length=this.courses?.length!
     })
 
   }
@@ -68,7 +69,7 @@ export class CoursesComponent implements OnInit {
     this._CourseService.getcoursesbylevel(level).subscribe((res) => {
       this.courses = res
       console.log(this.courses);
-
+      this.length=this.courses?.length!
 
     })
 

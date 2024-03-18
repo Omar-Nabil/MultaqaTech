@@ -66,5 +66,18 @@ export class CourseDetailsComponent implements OnInit {
   reset() {
   this.AddcommentForm.get('Comment')?.setValue('')
   this.AddcommentForm.get('rating')?.setValue('')
-}
+  }
+
+  isgreater(n1: number, n2: number) {
+    return n1>n2
+  }
+  isgreaterequal(n1: number, n2: number) {
+    return n1>=n2
+  }
+  issmaller(n1: number, n2: number) {
+    return n1<n2
+  }
+  issmallerequal(n1: number, n2: number) {
+    return n1<=n2
+  }
 }
