@@ -35,7 +35,7 @@ export class CoursesComponent implements OnInit {
 
   ngOnInit(): void {
     main.start();
-
+    $('body,html').scrollTop(-10)
   }
 
   incrementIndex() {
@@ -43,7 +43,8 @@ export class CoursesComponent implements OnInit {
     $('#circle1').html(`${this.pageIndex}`)
     $('#circle2').html(`${this.pageIndex + 1}`)
     this._CourseService.getcoursesbyIndex(9,this.pageIndex).subscribe((res) => {
-       this.courses = res
+      this.courses = res
+      $('body,html').scrollTop(50)
     })
   }
   decrementIndex() {
@@ -51,7 +52,8 @@ export class CoursesComponent implements OnInit {
     $('#circle1').html(`${this.pageIndex}`)
     $('#circle2').html(`${this.pageIndex + 1}`)
     this._CourseService.getcoursesbyIndex(9,this.pageIndex).subscribe((res) => {
-       this.courses = res
+      this.courses = res
+      $('body,html').scrollTop(50)
     })
   }
 
@@ -69,7 +71,8 @@ export class CoursesComponent implements OnInit {
     this._CourseService.getcoursesbylevel(level).subscribe((res) => {
       this.courses = res
       console.log(this.courses);
-      this.length=this.courses?.length!
+      this.length = this.courses?.length!
+      $('body,html').scrollTop(250)
 
     })
 

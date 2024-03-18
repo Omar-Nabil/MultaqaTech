@@ -463,7 +463,7 @@
 
             <div class="tutor-course-segment__review-commnet">
               <ul class="comment-list-02">
-                <li *ngFor="let review of course?.reviews">
+                <li *ngFor="let review of course?.reviews;let i = index">
                   <div class="comment-item-02">
                     <div class="comment-item-02__header">
                       <div class="comment-item-02__author">
@@ -474,7 +474,7 @@
                         <p class="comment-item-02__date">{{review.date.split('T')[0]}}</p>
                       </div>
                       <div class="icons d-flex justify-content-around">
-                        <a><i class="fa-solid fa-pen-to-square"></i></a>
+                        <a (click)="getcomment(i,review.id)"><i class="fa-solid fa-pen-to-square"></i></a>
                         <a (click)="Delete(review.id,{courseId:courseId,content:review.content,numberOfStars:review.numberOfStars})"><i class="fa-solid fa-xmark"></i></a>
                       </div>
                     </div>
@@ -570,11 +570,15 @@
 
                       <div class="col-md-12">
                         <div class="comment-form__input">
-                          <button type="submit" class="btn btn-primary btn-hover-secondary">Submit</button>
+                          <button *ngIf="!updatecommentbool" type="submit" class="btn btn-primary btn-hover-secondary">Submit</button>
                         </div>
+
                       </div>
                     </div>
                   </form>
+                    <div (click)="updatecomment()" class="comment-form__input">
+                      <button *ngIf="updatecommentbool" class="btn btn-primary btn-hover-secondary">Update</button>
+                    </div>
                 </div>
                 <!-- Comment Form End -->
               </div>

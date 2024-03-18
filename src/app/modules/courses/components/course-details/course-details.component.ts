@@ -6,6 +6,7 @@ import { Course_get } from '../../interfaces/course';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Reviews_add } from '../../interfaces/reviews';
 import { ReviewsService } from '../../services/reviews.service';
+import { log } from 'console';
 
 @Component({
   selector: 'app-course-details',
@@ -14,7 +15,8 @@ import { ReviewsService } from '../../services/reviews.service';
 })
 
 export class CourseDetailsComponent implements OnInit {
-
+  updatecommentbool: boolean = false
+  commentId:number=0
   course: Course_get | undefined=undefined
   levels: string[] = ['All levels', 'Beginner', 'Intermediate', 'Advanced'];
   months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -26,9 +28,11 @@ export class CourseDetailsComponent implements OnInit {
   })
   constructor(private route:ActivatedRoute,private _CourseService:CourseService,private reviews:ReviewsService) {
     this.getCourse()
+
   }
   ngOnInit(): void {
     start();
+     $('body,html').scrollTop(-10)
   }
 
   getCourse() {
@@ -58,9 +62,10 @@ export class CourseDetailsComponent implements OnInit {
     }
     this.reviews.addcomment(Comment).subscribe({
       next: (res) => {
-        console.log(res);
         this.reset();
         this.getCourse()
+        $('#collapseForm').slideUp(600)
+      $('body,html').scrollTop($('.tutor-course-segment__review-commnet').offset()?.top! - 150)
       },
       error:(res)=>{console.log(res);
       }
@@ -99,6 +104,33 @@ export class CourseDetailsComponent implements OnInit {
       this.getCourse()
 
 })
-}
+  }
+
+  getcomment(i: number, id: number) {
+    this.commentId = id;
+    this.updatecommentbool=true
+    $('#collapseForm').slideDown(600)
+    $('body,html').scrollTop($('#collapseForm').offset()?.top! - 250)
+
+    this.AddcommentForm.get('rating')?.setValue(this.course?.reviews[i].numberOfStars)
+    this.AddcommentForm.get('Comment')?.setValue(this.course?.reviews[i].content)
+  }
+
+  updatecomment() {
+    const Comment: Reviews_add = {
+      courseId: this.course?.id!,
+      content: this.AddcommentForm.get('Comment')?.value,
+      numberOfStars:this.AddcommentForm.get('rating')?.value
+    }
+    console.log(this.commentId,Comment);
+
+    this.reviews.updatecomment(this.commentId, Comment).subscribe((res) => {
+      this.reset();
+      this.getCourse()
+      this.updatecommentbool = false
+      $('#collapseForm').slideUp(600)
+      $('body,html').scrollTop($('.tutor-course-segment__review-commnet').offset()?.top! - 150)
+    })
+  }
 
 }
