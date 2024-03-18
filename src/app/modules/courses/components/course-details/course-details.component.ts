@@ -19,14 +19,22 @@ export class CourseDetailsComponent implements OnInit {
   levels: string[] = ['All levels', 'Beginner', 'Intermediate', 'Advanced'];
   months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   date = new Date()
+  courseId:number=0
   AddcommentForm:FormGroup = new FormGroup({
     rating:new FormControl(0),
     Comment:new FormControl(''),
   })
   constructor(private route:ActivatedRoute,private _CourseService:CourseService,private reviews:ReviewsService) {
-    let courseId :number= parseInt(this.route.snapshot.paramMap.get('id')!)
-    if (courseId) {
-      _CourseService.getcourse(courseId).subscribe({
+    this.getCourse()
+  }
+  ngOnInit(): void {
+    start();
+  }
+
+  getCourse() {
+   this.courseId= parseInt(this.route.snapshot.paramMap.get('id')!)
+    if (this.courseId) {
+      this._CourseService.getcourse(this.courseId).subscribe({
         next: (res) => {
 
           this.course = res
@@ -41,12 +49,7 @@ export class CourseDetailsComponent implements OnInit {
         }
       })
     }
-  }
-  ngOnInit(): void {
-    start();
-  }
-
-
+}
 
   addcomment() {
     const Comment: Reviews_add = {
@@ -58,6 +61,7 @@ export class CourseDetailsComponent implements OnInit {
       next: (res) => {
         console.log(res);
         this.reset();
+        this.getCourse()
       },
       error:(res)=>{console.log(res);
       }
@@ -80,4 +84,9 @@ export class CourseDetailsComponent implements OnInit {
   issmallerequal(n1: number, n2: number) {
     return n1<=n2
   }
+
+  slidedown() {
+    $('#collapseForm').slideToggle(600)
+  }
+
 }

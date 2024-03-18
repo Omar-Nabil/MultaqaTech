@@ -534,10 +534,9 @@
             <h4 class="tutor-course-segment__title">Write a review</h4>
 
             <div class="tutor-course-segment__reviews">
-              <button class="tutor-course-segment__btn btn btn-primary btn-hover-secondary" data-bs-toggle="collapse"
-                data-bs-target="#collapseForm">Write a review</button> <a data-bs-dismiss="#collapseForm"><i  class="fa-solid fa-xmark"></i></a>
+              <button (click)="slidedown()" class="tutor-course-segment__btn btn btn-primary btn-hover-secondary" >Write a review</button> <a id="closebtn" class="ms-3 fs-4" ><i  class="fa-solid fa-xmark"></i></a>
 
-              <div class="collapse" id="collapseForm">
+              <div class="" id="collapseForm">
                 <!-- Comment Form Start -->
                 <div class="comment-form">
                   <form [formGroup]="AddcommentForm" (ngSubmit)="addcomment()">
