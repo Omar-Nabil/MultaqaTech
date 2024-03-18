@@ -38,7 +38,6 @@ export class CourseDetailsComponent implements OnInit {
         next: (res) => {
 
           this.course = res
-          console.log(res);
           this.date =new Date(this.course?.lastUpdatedDate!)
 
 
@@ -88,5 +87,18 @@ export class CourseDetailsComponent implements OnInit {
   slidedown() {
     $('#collapseForm').slideToggle(600)
   }
+
+  Delete(id: number, review: Reviews_add) {
+    console.log({
+      courseid: this.courseId,
+      id:id
+    });
+
+    this.reviews.deletecomment(id,review).subscribe((res) => {
+      console.log(res);
+      this.getCourse()
+
+})
+}
 
 }

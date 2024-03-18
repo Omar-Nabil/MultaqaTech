@@ -30,3 +30,13 @@
 #collapseForm,#closebtn{
   display: none;
 }
+
+.icons{
+  width: 100px;
+}
+.icons .fa-xmark:hover{
+  color: red;
+}
+.icons .fa-pen-to-square:hover{
+  color: #fb0;
+}

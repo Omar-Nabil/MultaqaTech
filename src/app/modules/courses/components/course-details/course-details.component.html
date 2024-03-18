@@ -473,6 +473,10 @@
                         <h6 class="comment-item-02__name"><a >{{review.studentName}}</a></h6>
                         <p class="comment-item-02__date">{{review.date.split('T')[0]}}</p>
                       </div>
+                      <div class="icons d-flex justify-content-around">
+                        <a><i class="fa-solid fa-pen-to-square"></i></a>
+                        <a (click)="Delete(review.id,{courseId:courseId,content:review.content,numberOfStars:review.numberOfStars})"><i class="fa-solid fa-xmark"></i></a>
+                      </div>
                     </div>
                     <div class="comment-item-02__body">
 
