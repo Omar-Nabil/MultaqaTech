@@ -8,6 +8,7 @@ import { AuthModule } from './modules/auth/auth.module';
 import { BlogsModule } from './modules/blogs/blogs.module';
 import { CoursesModule } from './modules/courses/courses.module';
 import { SharedModule } from './modules/shared/shared.module';
+import { ZoomModule } from './modules/zoom/zoom.module';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { SharedModule } from './modules/shared/shared.module';
     SharedModule,
     AuthModule,
     BlogsModule,
-    CoursesModule
+    CoursesModule,
+    ZoomModule
   ],
   providers: [],
   bootstrap: [AppComponent]
