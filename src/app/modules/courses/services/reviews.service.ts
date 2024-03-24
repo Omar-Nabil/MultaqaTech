@@ -17,4 +17,16 @@ export class ReviewsService {
     })
   return this._HttpClient.post(environment.baseURL+'/api/Courses/Reviews',review,{headers})
 }
+  deletecomment(id: number,review:Reviews_add):Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization':`Bearer ${localStorage.getItem('userToken')}`
+    })
+    return this._HttpClient.delete(environment.baseURL + `/api/Courses/Reviews/${id}`, { headers,body:review })
+}
+  updatecomment(id: number,review:Reviews_add):Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization':`Bearer ${localStorage.getItem('userToken')}`
+    })
+    return this._HttpClient.put(environment.baseURL + `/api/Courses/Reviews/${id}`,review ,{ headers})
+}
 }

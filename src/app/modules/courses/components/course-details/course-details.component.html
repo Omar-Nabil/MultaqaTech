@@ -459,72 +459,71 @@
 
           <!-- Tutor Course Segment Start -->
           <div class="tutor-course-segment">
-            <h4 class="tutor-course-segment__title">Reviews <span class="count">(3)</span></h4>
+            <h4 class="tutor-course-segment__title">Reviews <span class="count">({{course?.reviews?.length}})</span></h4>
 
             <div class="tutor-course-segment__review-commnet">
               <ul class="comment-list-02">
-                <li>
+                <li *ngFor="let review of course?.reviews;let i = index">
                   <div class="comment-item-02">
                     <div class="comment-item-02__header">
                       <div class="comment-item-02__author">
-                        <img src="assets/images/avatar/avatar-02.jpg" alt="Avatar" width="52" height="52">
+                        <img src="/assets/images/avatar/avatar-01.png" alt="Avatar" width="52" height="52">
                       </div>
                       <div class="comment-item-02__info">
-                        <h6 class="comment-item-02__name"><a href="#">Chérif Akadiry</a></h6>
-                        <p class="comment-item-02__date">2 weeks ago</p>
+                        <h6 class="comment-item-02__name"><a >{{review.studentName}}</a></h6>
+                        <p class="comment-item-02__date">{{review.date.split('T')[0]}}</p>
+                      </div>
+                      <div class="icons d-flex justify-content-around">
+                        <a (click)="getcomment(i,review.id)"><i class="fa-solid fa-pen-to-square"></i></a>
+                        <a (click)="Delete(review.id,{courseId:courseId,content:review.content,numberOfStars:review.numberOfStars})"><i class="fa-solid fa-xmark"></i></a>
                       </div>
                     </div>
                     <div class="comment-item-02__body">
 
-                      <div class="rating-star">
-                        <div class="rating-label" style="width: 80%;"></div>
+                      <div *ngIf="issmaller(review.numberOfStars,1)">
+                        <i class="fa-regular fa-star" style="color: #fb0;"></i>
+                        <i class="fa-regular fa-star" style="color: #fb0;"></i>
+                        <i class="fa-regular fa-star" style="color: #fb0;"></i>
+                        <i class="fa-regular fa-star" style="color: #fb0;"></i>
+                        <i class="fa-regular fa-star" style="color: #fb0;"></i>
+                      </div>
+                      <div *ngIf="issmaller(review.numberOfStars,2)&&isgreaterequal(review.numberOfStars,1)">
+                        <i class="fa-solid fa-star" style="color: #fb0;"></i>
+                        <i class="fa-regular fa-star" style="color: #fb0;"></i>
+                        <i class="fa-regular fa-star" style="color: #fb0;"></i>
+                        <i class="fa-regular fa-star" style="color: #fb0;"></i>
+                        <i class="fa-regular fa-star" style="color: #fb0;"></i>
+                      </div>
+                      <div *ngIf="issmaller(review.numberOfStars,3)&&isgreaterequal(review.numberOfStars,2)">
+                        <i class="fa-solid fa-star" style="color: #fb0;"></i>
+                        <i class="fa-solid fa-star" style="color: #fb0;"></i>
+                        <i class="fa-regular fa-star" style="color: #fb0;"></i>
+                        <i class="fa-regular fa-star" style="color: #fb0;"></i>
+                        <i class="fa-regular fa-star" style="color: #fb0;"></i>
+                      </div>
+                      <div *ngIf="issmaller(review.numberOfStars,4)&&isgreaterequal(review.numberOfStars,3)">
+                        <i class="fa-solid fa-star" style="color: #fb0;"></i>
+                        <i class="fa-solid fa-star" style="color: #fb0;"></i>
+                        <i class="fa-solid fa-star" style="color: #fb0;"></i>
+                        <i class="fa-regular fa-star" style="color: #fb0;"></i>
+                        <i class="fa-regular fa-star" style="color: #fb0;"></i>
+                      </div>
+                      <div *ngIf="issmaller(review.numberOfStars,5)&&isgreaterequal(review.numberOfStars,4)">
+                        <i class="fa-solid fa-star" style="color: #fb0;"></i>
+                        <i class="fa-solid fa-star" style="color: #fb0;"></i>
+                        <i class="fa-solid fa-star" style="color: #fb0;"></i>
+                        <i class="fa-solid fa-star" style="color: #fb0;"></i>
+                        <i class="fa-regular fa-star" style="color: #fb0;"></i>
+                      </div>
+                      <div *ngIf="review.numberOfStars==5">
+                        <i class="fa-solid fa-star" style="color: #fb0;"></i>
+                        <i class="fa-solid fa-star" style="color: #fb0;"></i>
+                        <i class="fa-solid fa-star" style="color: #fb0;"></i>
+                        <i class="fa-solid fa-star" style="color: #fb0;"></i>
+                        <i class="fa-solid fa-star" style="color: #fb0;"></i>
                       </div>
 
-                      <p>el mejor de la historia</p>
-
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="comment-item-02">
-                    <div class="comment-item-02__header">
-                      <div class="comment-item-02__author">
-                        <img src="assets/images/avatar/avatar-03.jpg" alt="Avatar" width="52" height="52">
-                      </div>
-                      <div class="comment-item-02__info">
-                        <h6 class="comment-item-02__name"><a href="#">Edumall Website</a></h6>
-                        <p class="comment-item-02__date">2 weeks ago</p>
-                      </div>
-                    </div>
-                    <div class="comment-item-02__body">
-
-                      <div class="rating-star">
-                        <div class="rating-label" style="width: 100%;"></div>
-                      </div>
-
-                      <p>el mejor de la historia</p>
-
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="comment-item-02">
-                    <div class="comment-item-02__header">
-                      <div class="comment-item-02__author">
-                        <img src="assets/images/avatar/avatar-04.jpg" alt="Avatar" width="52" height="52">
-                      </div>
-                      <div class="comment-item-02__info">
-                        <h6 class="comment-item-02__name"><a href="#">Adeniyi David</a></h6>
-                        <p class="comment-item-02__date">2 weeks ago</p>
-                      </div>
-                    </div>
-                    <div class="comment-item-02__body">
-
-                      <div class="rating-star">
-                        <div class="rating-label" style="width: 100%;"></div>
-                      </div>
-
-                      <p>el mejor de la historia</p>
+                      <p>{{review.content}}</p>
 
                     </div>
                   </div>
@@ -539,10 +538,9 @@
             <h4 class="tutor-course-segment__title">Write a review</h4>
 
             <div class="tutor-course-segment__reviews">
-              <button class="tutor-course-segment__btn btn btn-primary btn-hover-secondary" data-bs-toggle="collapse"
-                data-bs-target="#collapseForm">Write a review</button>
+              <button (click)="slidedown()" class="tutor-course-segment__btn btn btn-primary btn-hover-secondary" >Write a review</button> <a id="closebtn" class="ms-3 fs-4" ><i  class="fa-solid fa-xmark"></i></a>
 
-              <div class="collapse" id="collapseForm">
+              <div class="" id="collapseForm">
                 <!-- Comment Form Start -->
                 <div class="comment-form">
                   <form [formGroup]="AddcommentForm" (ngSubmit)="addcomment()">
@@ -572,11 +570,15 @@
 
                       <div class="col-md-12">
                         <div class="comment-form__input">
-                          <button type="submit" class="btn btn-primary btn-hover-secondary">Submit</button>
+                          <button *ngIf="!updatecommentbool" type="submit" class="btn btn-primary btn-hover-secondary">Submit</button>
                         </div>
+
                       </div>
                     </div>
                   </form>
+                    <div (click)="updatecomment()" class="comment-form__input">
+                      <button *ngIf="updatecommentbool" class="btn btn-primary btn-hover-secondary">Update</button>
+                    </div>
                 </div>
                 <!-- Comment Form End -->
               </div>
