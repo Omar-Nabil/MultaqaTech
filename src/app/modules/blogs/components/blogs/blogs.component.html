@@ -73,7 +73,7 @@
               <!-- Blog Item Start -->
               <div class="blog-item-02" data-aos="fade-up" data-aos-duration="1000">
                 <div class="blog-item-02__image">
-                  <a [routerLink]="['/blogs', blog.id]"><img [src]="reduceUrl(blog.pictureUrl)" alt="Blog"
+                  <a [routerLink]="['/blogs', blog.id]"><img [src]="blog.pictureUrl" alt="Blog"
                       width="370" height="201"></a>
                 </div>
                 <div class="blog-item-02__content">
@@ -146,7 +146,7 @@
                   <div class="sidebar-widget-02__psot-item">
                     <div class="sidebar-widget-02__psot-thumbnail ">
                       <a href="blog-details-right-sidebar.html">
-                        <img [src]="reduceUrl(blog.pictureUrl)" [routerLink]="['/blogs', blog.id]" alt="Blog" width="100" height="80">
+                        <img [src]="blog.pictureUrl" [routerLink]="['/blogs', blog.id]" alt="Blog" width="100" height="80">
                         <div class="sidebar-widget-02__categories">
                           <span>{{blog.category}}</span>
                         </div>

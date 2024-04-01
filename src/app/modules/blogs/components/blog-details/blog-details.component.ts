@@ -140,6 +140,8 @@ export class BlogDetailsComponent implements OnInit {
   isAutherCheck() {
     let token = JSON.stringify(localStorage.getItem('userToken'));
     let userData : any = jwtDecode(token);
+    console.log(userData);
+
     let userName = userData['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname'];
     console.log(userName);
     console.log(this.blogDetailes.authorName);
@@ -233,23 +235,7 @@ export class BlogDetailsComponent implements OnInit {
     }
 
   }
-    reduceUrl(url: string): string {
-      // Check if the URL is null or undefined
-      if (!url) {
-          // Return an empty string or a default image URL
-          return ''; // or 'path/to/default/image.jpg'
-      }
 
-      // Check if the URL contains 'https://localhost:7264/'
-      const index = url.indexOf('https://localhost:7264/');
-      if (index !== -1) {
-          // Remove the redundant part of the URL
-          return url.substring(index + 'https://localhost:7264/'.length);
-      } else {
-          // URL doesn't need to be reduced
-          return url;
-      }
-  }
   deleteComment(Id:string, index:number) {
     this._BlogsService.deleteCommentById(Id).subscribe({
       next:(res) => {

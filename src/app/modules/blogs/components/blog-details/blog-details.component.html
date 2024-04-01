@@ -86,7 +86,7 @@
         </div>
 
         <div class="blog-details__image">
-          <img [src]="reduceUrl(blogDetailes?.pictureUrl)" alt="Blog"  style="width: 700px;height: 500px;">
+          <img [src]="blogDetailes?.pictureUrl" alt="Blog"  style="width: 700px;height: 500px;">
         </div>
 
       </div>
@@ -185,7 +185,7 @@
                   <!-- Related Post Item Start -->
                   <div class="related-post-item">
                     <div class="related-post-item__image">
-                      <a (click)="getBlog()" [routerLink]="['/blogs/', blog?.id]"><img [src]="reduceUrl(blog?.pictureUrl)" alt="Blog"
+                      <a (click)="getBlog()" [routerLink]="['/blogs/', blog?.id]"><img [src]="blog?.pictureUrl" alt="Blog"
                           width="237" height="129"></a>
                     </div>
                     <div class="related-post-item__content">
