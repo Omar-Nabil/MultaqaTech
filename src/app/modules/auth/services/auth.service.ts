@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { jwtDecode } from 'jwt-decode';
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -28,6 +28,21 @@ export class AuthService {
     let token = JSON.stringify(localStorage.getItem('userToken'));
     let decode:any = jwtDecode(token);
     this.userData.next(decode);
+  }
 
+  Facebook(value:any):Observable<any> {
+    return this._HttpClient.post(environment.baseURL+'/api/Account/FacebookSignIn', value);
+  }
+
+  Google(value:any):Observable<any> {
+    return this._HttpClient.post(environment.baseURL+'/api/Account/GoogleSignIn', value);
+  }
+
+  logout():Observable<any>  {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('userToken')}`
+    });
+
+    return this._HttpClient.post(environment.baseURL+'/api/Account/logout',{}, {headers});
   }
 }

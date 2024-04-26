@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+declare var google:any;
+declare var FB:any;
+
+import { Component, NgZone, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { Router } from '@angular/router';
@@ -16,15 +19,130 @@ export class WelcomeComponent implements OnInit {
   registerError:string = '';
   emailNotExists:boolean = false;
 
-  constructor(private _fb:FormBuilder, private _AuthService:AuthService, private _Router:Router) {
+  constructor(private _fb:FormBuilder, private _AuthService:AuthService, private _Router:Router,private ngZone: NgZone) {
 
   }
   ngOnInit(): void {
     main.start();
     this.createLogInForm();
     this.createSignUpForm();
-
+    this.createLogInWithGoogle();
+    this.createSignUpWithGoogle();
   }
+
+  // @ts-ignore
+  createLogInWithGoogle() {
+    google.accounts.id.initialize({
+      client_id: '759376708152-ticq2nks3j6uc784r7knbg38cua9gt88.apps.googleusercontent.com',
+      callback: (resp:any) => this.handleGoogleLogIn(resp)
+    });
+    google.accounts.id.renderButton(document.getElementById("googleLogIn"), {
+      theme:'outline',
+      size:'medium',
+      text:'continue_with',
+      shape:"rectangle",
+      width:100
+    });
+  }
+
+   handleGoogleLogIn(resp:any) {
+    console.log(resp);
+
+    const value = {
+      idToken:resp.credential,
+      clientId:resp.clientId
+    };
+
+    this._AuthService.Google(value).subscribe({
+      next:(res) => {
+        this._Router.navigate(['/home']);
+        localStorage.setItem('userToken', res.token);
+        this._AuthService.saveUser();
+
+        const modalBackdrops = document.querySelectorAll('.modal-backdrop') as NodeListOf<HTMLElement>;
+          modalBackdrops.forEach(backdrop => {
+            backdrop.classList.add('d-none');
+          });
+
+          $('body').css({'overflow':'auto'});
+      },
+      error:(err) => {
+        console.log(err);
+      }
+    })
+  }
+
+  // @ts-ignore
+  createSignUpWithGoogle() {
+    google.accounts.id.initialize({
+      client_id: '759376708152-ticq2nks3j6uc784r7knbg38cua9gt88.apps.googleusercontent.com',
+      callback: (resp:any) => this.handleGoogleSignUp(resp)
+    });
+    google.accounts.id.renderButton(document.getElementById("googleSignUp"), {
+      theme:'outline',
+      size:'medium',
+      text:'continue_with',
+      shape:"rectangle",
+      width:100
+    });
+  }
+
+   handleGoogleSignUp(resp:any) {
+    console.log(resp);
+
+    const value = {
+      idToken:resp.credential,
+      clientId:resp.clientId
+    };
+
+    this._AuthService.Google(value).subscribe({
+      next:(res) => {
+        this._Router.navigate(['/home']);
+        localStorage.setItem('userToken', res.token);
+        this._AuthService.saveUser();
+
+        const modalBackdrops = document.querySelectorAll('.modal-backdrop') as NodeListOf<HTMLElement>;
+          modalBackdrops.forEach(backdrop => {
+            backdrop.classList.add('d-none');
+          });
+
+          $('body').css({'overflow':'auto'});
+      },
+      error:(err) => {
+        console.log(err);
+      }
+    })
+  }
+
+  async logInWithFacebook() {
+
+    FB.login(async (result: any) => {
+      const value = {
+        accessToken : result.authResponse.accessToken
+      };
+      console.log(result);
+
+      await this._AuthService.Facebook(value).subscribe(
+          (x:any) => {
+            this.ngZone.run(() => {
+              this._Router.navigate(['/home']);
+            });
+            localStorage.setItem('userToken', x.token);
+            this._AuthService.saveUser();
+            const modalBackdrops = document.querySelectorAll('.modal-backdrop') as NodeListOf<HTMLElement>;
+            modalBackdrops.forEach(backdrop => {
+              backdrop.classList.add('d-none');
+            });
+
+            $('body').css({'overflow':'auto'});
+          },
+          (error:any) => {
+            console.log(error);
+          }
+      );
+    }, { scope: 'email' });
+  }
+
 
   createSignUpForm() {
     this.signUpForm = this._fb.group({

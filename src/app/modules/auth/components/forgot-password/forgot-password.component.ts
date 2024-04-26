@@ -11,8 +11,6 @@ import { AuthService } from '../../services/auth.service';
 export class ForgotPasswordComponent {
   forgotPassword = new FormControl('',  [Validators.required, Validators.minLength(6), Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*\W).*/)]);
   constructor(private _AuthService:AuthService, private _Router:Router, private _ActivatedRoute: ActivatedRoute) {
-    console.log(this.userEmail);
-    console.log(this.userToken);
 
   }
   userEmail :string =this._ActivatedRoute.snapshot.queryParams['Email'] ;

@@ -2999,9 +2999,12 @@
             <div class="modal-social-option">
               <p>or Log-in with</p>
 
-              <ul class="modal-social-btn">
-                <li><a href="#" class="btn facebook"><i class="fab fa-facebook-square" style="color: blue;"></i> Facebook</a></li>
-                <li><a href="#" class="btn google"><i class="fab fa-google" style="color: red;"></i> Google</a></li>
+              <ul class="modal-social-btn d-flex align-items-center justify-content-center">
+                <div id="googleLogIn">
+                </div>
+                <button  style="height: 34px;" class="loginBtn loginBtn--facebook mt-2" (click)="logInWithFacebook()">
+                  continue with Facebook
+                </button>
               </ul>
             </div>
           </div>
@@ -3110,7 +3113,13 @@
                 </div>
               </div>
             </form>
-
+            <ul class="modal-social-btn d-flex align-items-center justify-content-center  mt-2">
+              <div id="googleSignUp">
+              </div>
+              <button style="height: 34px;" class="loginBtn loginBtn--facebook" (click)="logInWithFacebook()">
+                continue with Facebook
+              </button>
+            </ul>
           </div>
         </div>
         <!-- Modal Content End -->
