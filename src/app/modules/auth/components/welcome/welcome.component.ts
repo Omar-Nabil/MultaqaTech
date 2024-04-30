@@ -18,6 +18,9 @@ export class WelcomeComponent implements OnInit {
   logInError:boolean = false;
   registerError:string = '';
   emailNotExists:boolean = false;
+  register:boolean = false;
+  fogotPasswordEmail:boolean = false;
+
 
   constructor(private _fb:FormBuilder, private _AuthService:AuthService, private _Router:Router,private ngZone: NgZone) {
 
@@ -188,19 +191,7 @@ export class WelcomeComponent implements OnInit {
 
     this._AuthService.register(value).subscribe({
       next:(res) => {
-         console.log(res);
-
-         const modalBackdrops = document.querySelectorAll('.modal-backdrop') as NodeListOf<HTMLElement>;
-          modalBackdrops.forEach(backdrop => {
-            backdrop.classList.add('d-none');
-          });
-
-          $('body').css({'overflow':'auto'});
-
-          this._Router.navigate(['/home']);
-          localStorage.setItem('userToken', res.token);
-          this._AuthService.saveUser();
-
+         this.register = true;
       },
       error:(err) => {
         this.registerError = err.error.errors[0];
@@ -243,13 +234,11 @@ export class WelcomeComponent implements OnInit {
     }
     this._AuthService.fogotPassword(value).subscribe({
       next:(res) => {
-        console.log(res);
-        this._Router.navigate(['/api/Account/ResetPassword']);
-
-        const modalBackdrops = document.querySelectorAll('.modal-backdrop') as NodeListOf<HTMLElement>;
-        modalBackdrops.forEach(backdrop => {
-          backdrop.classList.add('d-none');
-        });
+        this.fogotPasswordEmail = true;
+        // const modalBackdrops = document.querySelectorAll('.modal-backdrop') as NodeListOf<HTMLElement>;
+        // modalBackdrops.forEach(backdrop => {
+        //   backdrop.classList.add('d-none');
+        // });
       },
       error: (err) => {
         this.emailNotExists = true;

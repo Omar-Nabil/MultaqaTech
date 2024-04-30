@@ -2990,6 +2990,7 @@
                   <a class="modal-form__link" (click)="fogotPassword(logInForm.get('userNameOrEmail')?.value)">Forgot your password?</a>
                 </div>
               </div>
+              <div class="alert alert-success my-1" *ngIf="fogotPasswordEmail">please, check your Email</div>
               <div class="alert alert-danger my-1" *ngIf="emailNotExists">your Email don't Exists</div>
               <div class="modal-form">
                 <button class="btn btn-primary btn-hover-secondary w-100" type="submit"  [disabled]="logInForm.invalid">Log In</button>
@@ -3110,6 +3111,7 @@
                   <div class="modal-form">
                     <button type="submit" class="btn btn-primary btn-hover-secondary w-100" [disabled]="signUpForm.invalid">Register</button>
                   </div>
+                  <p class="alert alert-success mt-1" *ngIf="register" >Please, check your email</p>
                 </div>
               </div>
             </form>

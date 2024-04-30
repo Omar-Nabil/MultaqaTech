@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { jwtDecode } from 'jwt-decode';
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -45,4 +45,16 @@ export class AuthService {
 
     return this._HttpClient.post(environment.baseURL+'/api/Account/logout',{}, {headers});
   }
+
+  confirmEmail(userId: string, code: string): Observable<any> {
+    // Construct the URL with query parameters
+    const url = `${environment.baseURL}/api/Account/ConfirmEmail`;
+    // Create HttpParams object and append the parameters
+    let params = new HttpParams();
+    params = params.append('userId', userId);
+    params = params.append('code', code);
+
+    // Send the GET request with the parameters
+    return this._HttpClient.get(url, { params });
+ }
 }

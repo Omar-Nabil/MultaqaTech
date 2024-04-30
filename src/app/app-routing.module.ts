@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LayoutComponent } from './layout/layout/layout.component';
 import { LayoutwithnavbarComponent } from './layout/layoutwithnavbar/layoutwithnavbar.component';
+import { ConfirmEmailComponent } from './modules/auth/components/ConfirmEmail/ConfirmEmail.component';
 import { ForgotPasswordComponent } from './modules/auth/components/forgot-password/forgot-password.component';
 import { WelcomeComponent } from './modules/auth/components/welcome/welcome.component';
 import { authGuard } from './modules/auth/guards/auth.guard';
@@ -20,6 +21,7 @@ const routes: Routes = [
     {path:'welcome', component:WelcomeComponent,canActivate:[loginGuard]},
 
     {path:'api/Account/ResetPassword', component:ForgotPasswordComponent},
+    {path:'api/Account/ConfirmEmail', component: ConfirmEmailComponent},
     {path:'dashboard', loadChildren:()=>import('../app/modules/dasdboard/dasdboard.module').then((res)=>res.DasdboardModule), canActivate:[authGuard] },
   ]},
   {path:'', component:LayoutwithnavbarComponent, children:[
