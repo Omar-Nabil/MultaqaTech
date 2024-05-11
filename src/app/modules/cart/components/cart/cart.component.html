@@ -1,0 +1,236 @@
+<main class="main-wrapper">
+  <!-- Page Banner Section Start -->
+  <div class="page-banner bg-color-05">
+    <div class="page-banner__wrapper" style="margin-top: 150.65px;;">
+      <div class="container">
+
+        <!-- Page Breadcrumb Start -->
+        <div class="page-breadcrumb">
+          <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a routerLink="/home" routerLinkActive="active">Home</a></li>
+            <li class="breadcrumb-item active">Cart</li>
+          </ul>
+        </div>
+        <!-- Page Breadcrumb End -->
+
+        <!-- Page Banner Caption Start -->
+        <div class="page-banner__caption text-center">
+          <h2 class="page-banner__main-title">Cart</h2>
+        </div>
+        <!-- Page Banner Caption End -->
+
+      </div>
+    </div>
+  </div>
+  <!-- Page Banner Section End -->
+  <!-- Offcanvas Start -->
+  <div class="offcanvas offcanvas-end offcanvas-mobile" id="offcanvasMobileMenu"
+    style="background-image: url(assets/images/mobile-bg.jpg);">
+    <div class="offcanvas-header bg-white">
+      <div class="offcanvas-logo">
+        <a class="offcanvas-logo__logo" href="#"><img src="assets/images/dark-logo.png" alt="Logo"></a>
+      </div>
+      <button type="button" class="offcanvas-close" data-bs-dismiss="offcanvas"><i class="fas fa-times"></i></button>
+    </div>
+
+    <div class="offcanvas-body">
+      <nav class="canvas-menu">
+        <ul class="offcanvas-menu">
+          <li><a class="active" routerLink="/home"><span>Home</span></a>
+
+          </li>
+          <li>
+            <a class="active" routerLink="/courses"><span>Courses</span></a>
+
+          </li>
+          <li>
+            <a class="active" routerLink="/blogs" data-bs-dismiss="offcanvas"><span>Blog</span></a>
+
+          </li>
+          <li>
+            <a><span>Features</span></a>
+
+          </li>
+
+
+        </ul>
+      </nav>
+    </div>
+
+  </div>
+  <!-- Offcanvas End -->
+  <!-- Cart Section Start -->
+  <div class="cart-section section-padding-01">
+    <div class="container custom-container">
+
+      <form action="#">
+
+        <!-- Cart Table Start -->
+        <div class="cart-table table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th class="product">Product</th>
+                <th class="price">Price</th>
+                <th class="subtotal">Subtotal</th>
+                <th class="action"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="product">
+                  <div class="cart-product">
+                    <div class="cart-product__thumbnail">
+                      <img src="assets/images/product/product-2.png" alt="Product" width="70" height="81">
+                    </div>
+                    <div class="cart-product__content">
+                      <h3 class="cart-product__name">Awesome for Websites</h3>
+                    </div>
+                  </div>
+                </td>
+                <td class="price">
+                  <div class="cart-product__price">
+                    <span class="sale-price">$59.<small class="separator">00</small></span>
+                  </div>
+                </td>
+
+                <td class="subtotal">
+                  <div class="cart-product__total-price">
+                    <span class="sale-price discount">$59.<small class="separator">00</small></span>
+                  </div>
+                </td>
+                <td class="action">
+                  <div class="cart-product__remove">
+                    <a class="remove" href="#">Remove</a>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- Cart Table End -->
+
+        <!-- Cart Actions Start -->
+        <div class="cart-action d-flex flex-wrap justify-content-between gap-2">
+          <div class="cart-action__left">
+            <a class="btn btn-light btn-hover-primary" routerLink="/courses">Continue shopping</a>
+            <a class="cart-action__item" href="#"><i class="fas fa-times"></i> Clear shopping cart</a>
+          </div>
+          <div class="cart-action__right">
+            <button class="btn btn-secondary btn-hover-primary">Update cart</button>
+          </div>
+        </div>
+        <!-- Cart Actions End -->
+
+        <!-- Cart Collaterals Start -->
+        <div class="cart-collaterals">
+          <div class="row gy-6">
+            <div class="col-lg-4">
+              <!-- Cart Collaterals Start -->
+              <div class="cart-collaterals__item">
+                <h5 class="cart-collaterals__title">Coupon Discount</h5>
+                <p>Enter your coupon code if you have one.</p>
+
+                <div class="cart-collaterals__input">
+                  <input type="text" class="form-control" placeholder="Coupon code">
+                </div>
+                <div class="cart-collaterals__input">
+                  <button class="btn btn-primary btn-hover-secondary">Apply coupon</button>
+                </div>
+              </div>
+              <!-- Cart Collaterals End -->
+            </div>
+            <div class="col-lg-4">
+              <!-- Cart Collaterals Start -->
+              <div class="cart-collaterals__item">
+                <h5 class="cart-collaterals__title">Calculate shipping</h5>
+                <p>Select a shipping method</p>
+
+                <div class="cart-collaterals__shipping-method">
+                  <ul class="cart-collaterals__shipping-check">
+                    <li class="form-check">
+                      <input type="radio" id="radio1" checked="" name="shipping">
+                      <label for="radio1">Free shipping</label>
+                    </li>
+                    <li class="form-check">
+                      <input type="radio" id="radio2" name="shipping">
+                      <label for="radio2">Flat rate: <strong class="price">$5.00</strong></label>
+                    </li>
+                  </ul>
+                </div>
+
+                <p>Shipping to <strong>2134 Lawndale Dr, #10, Greensboro, NY 27408</strong>.</p>
+
+                <div class="cart-collaterals__input">
+                  <select class="select2">
+                    <option value="01">option 01</option>
+                    <option value="02">option 02</option>
+                    <option value="03">option 03</option>
+                    <option value="04">option 04</option>
+                    <option value="05">option 05</option>
+                    <option value="06">option 06</option>
+                    <option value="07">option 07</option>
+                    <option value="08">option 08</option>
+                    <option value="09">option 09</option>
+                    <option value="10">option 10</option>
+                    <option value="11">option 11</option>
+                    <option value="12">option 12</option>
+                    <option value="13">option 13</option>
+                  </select>
+                </div>
+                <div class="cart-collaterals__input">
+                  <input type="text" class="form-control" placeholder="Town / City">
+                </div>
+                <div class="cart-collaterals__input">
+                  <input type="text" class="form-control" placeholder="Postcode / ZIP">
+                </div>
+                <div class="cart-collaterals__input">
+                  <button class="btn btn-primary btn-hover-secondary">Update</button>
+                </div>
+              </div>
+              <!-- Cart Collaterals End -->
+            </div>
+            <div class="col-lg-4">
+              <!-- Cart Collaterals Start -->
+              <div class="cart-collaterals__item">
+
+                <div class="cart-collaterals__box">
+                  <table class="cart-collaterals__table">
+                    <tbody>
+                      <tr class="cart-subtotal">
+                        <th>Subtotal</th>
+                        <td>
+                          <span class="subtotal-price">$131<span class="separator">.00</span></span>
+                        </td>
+                      </tr>
+                      <tr class="cart-shipping">
+                        <th>Shipping</th>
+                        <td>Free shipping <span class="shipping-fee">$5<span class="separator">.00</span></span></td>
+                      </tr>
+                      <tr class="order-total">
+                        <th>Total</th>
+                        <td>
+                          <span class="total-price">$136<span class="separator">.00</span></span>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                  <div class="cart-collaterals__btn">
+                    <a class="btn btn-primary btn-hover-secondary w-100" href="checkout.html">Checkout</a>
+                  </div>
+                </div>
+
+              </div>
+              <!-- Cart Collaterals End -->
+            </div>
+          </div>
+        </div>
+        <!-- Cart Collaterals End -->
+
+      </form>
+
+    </div>
+  </div>
+  <!-- Cart Section End -->
+</main>

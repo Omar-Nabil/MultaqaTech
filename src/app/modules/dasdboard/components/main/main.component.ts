@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup,  Validators} from '@angular/forms';
-import { SubjectService } from '../../services/subject.service';
-import { Subject } from '../../interfaces/subject';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/modules/auth/services/auth.service';
 import { Course_add } from 'src/app/modules/courses/interfaces/course';
 import { CourseService } from '../../../courses/services/course.service';
-import { Router } from '@angular/router';
+import { Subject } from '../../interfaces/subject';
+import { SubjectService } from '../../services/subject.service';
 
 @Component({
   selector: 'app-main',
@@ -34,7 +35,7 @@ export class MainComponent {
     learningObjectives: []
   }
 
-  constructor(private _SubjectService: SubjectService, private _CourseService: CourseService,private router:Router
+  constructor(private _SubjectService: SubjectService, private _CourseService: CourseService,private router:Router,private authService:AuthService
 ) {
 
    }
@@ -156,7 +157,23 @@ console.log(this.l_0bjects);
   }
 
   logout() {
-    localStorage.removeItem('userToken')
-    this.router.navigate(['/welcome'])
+    this.authService.logout().subscribe({
+      next:(res) => {
+        console.log(res);
+        localStorage.removeItem("userToken");
+        this.authService.userData.next(null);
+        this.router.navigate(['/welcome']);
+      },
+      error:(err) => {
+        console.log("Logout error:", err);
+        if (err.status === 401) {
+          console.log("Unauthorized: Please login again.");
+          // Handle unauthorized error, maybe redirect to login page
+        } else {
+          console.log("An error occurred:", err.error);
+        }
+      }
+
+    })
   }
 }

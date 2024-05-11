@@ -32,6 +32,7 @@ const routes: Routes = [
     {path:'course/:id', component:CourseDetailsComponent, canActivate:[authGuard]},
     {path:'zooms', component:ZoomMeetingsComponent, canActivate:[authGuard]},
     {path:'zooms/:id', component:ZoomMeetingDetailsComponent, canActivate:[authGuard]},
+    {path:'cart', loadChildren:() => import('../app/modules/cart/cart.module').then((res)=>res.CartModule), canActivate:[authGuard] }
   ]},
   {path:"**", component:NotFound404Component}
 
