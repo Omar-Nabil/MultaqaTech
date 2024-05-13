@@ -30,7 +30,10 @@ export class CoursesComponent implements OnInit {
      })
 
     _SubjectService.getsubjects().subscribe((res) => {
-      this.subjects=res
+      this.subjects = res
+      console.log(res);
+      console.log(this.subjects);
+
     })
   }
 
