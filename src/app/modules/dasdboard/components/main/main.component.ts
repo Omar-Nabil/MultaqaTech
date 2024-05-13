@@ -169,8 +169,24 @@ console.log(this.l_0bjects);
   }
 
   logout() {
-    localStorage.removeItem('userToken')
-    this.router.navigate(['/welcome'])
+    this._AuthService.logout().subscribe({
+      next:(res) => {
+        console.log(res);
+        localStorage.removeItem("userToken");
+        this._AuthService.userData.next(null);
+        this.router.navigate(['/welcome']);
+      },
+      error:(err) => {
+        console.log("Logout error:", err);
+        if (err.status === 401) {
+          console.log("Unauthorized: Please login again.");
+          // Handle unauthorized error, maybe redirect to login page
+        } else {
+          console.log("An error occurred:", err.error);
+        }
+      }
+
+    })
   }
 
   getCurrentUser() {
