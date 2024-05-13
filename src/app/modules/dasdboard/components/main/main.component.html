@@ -67,7 +67,7 @@
                 </a>
               </li>
             </ul>
-            <ul *ngIf="currentUser.isInstructor" class="dashboard-nav__menu-list">
+            <ul *ngIf="currentUser?.isInstructor" class="dashboard-nav__menu-list">
               <li>
                 <span class="dashboard-nav__title">Instructor</span>
               </li>
@@ -226,10 +226,10 @@
 
               <div class="dashboard-header__user">
                 <div class="dashboard-header__user-avatar">
-                  <img src="assets/images/avatar/avatar-02.png" alt="Avatar" width="90" height="90">
+                  <img [src]="currentUser.profilePictureUrl" alt="Avatar" width="90" height="90">
                 </div>
                 <div class="dashboard-header__user-info">
-                  <h4 class="dashboard-header__user-name"><span class="welcome-text">Howdy,</span> {{currentUser.userName}}</h4>
+                  <h4 class="dashboard-header__user-name"><span class="welcome-text">Howdy,</span> {{currentUser?.userName}}</h4>
                   <div class="dashboard-header__user-rating">
                     <div class="rating-star">
                       <div class="rating-label" style="width: 100%;"></div>
@@ -240,11 +240,11 @@
                 </div>
               </div>
 
-              <div *ngIf="currentUser.isInstructor" class="dashboard-header__btn">
+              <div *ngIf="currentUser?.isInstructor" class="dashboard-header__btn">
                 <a class="btn btn-outline-primary" (click)="getSubjects()" data-bs-toggle="modal" data-bs-target="#addCourse" ><i class="edumi edumi-content-writing"></i> <span class="text">Add
                     A New Course </span></a>
               </div>
-              <div *ngIf="!currentUser.isInstructor" class="dashboard-header__btn">
+              <div *ngIf="!currentUser?.isInstructor" class="dashboard-header__btn">
                 <a class="btn btn-outline-primary"  data-bs-toggle="modal" data-bs-target="#instructor" ><i class="edumi edumi-user"></i> <span class="text">Become An Instructor </span></a>
               </div>
 

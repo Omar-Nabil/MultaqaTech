@@ -14,7 +14,6 @@ import { AuthService } from 'src/app/modules/auth/services/auth.service';
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent {
-
   subjects: Subject[] = []
   tags: number[] = []
   tagsNames: string[] = []
@@ -24,7 +23,7 @@ export class MainComponent {
   currentUser!: User;
   instructorForm!: FormGroup;
   img!: File;
-
+ addCourseForm!: FormGroup;
   course: Course_add = {
     subjectId: 0,
     title: 'string',
@@ -42,6 +41,7 @@ export class MainComponent {
 ) {
     this.getCurrentUser()
     this.createInstructorForm()
+    this.createCourseForm()
    }
 
 
@@ -57,7 +57,9 @@ export class MainComponent {
     $(".dashboard-menu").toggleClass('open');
   }
 
-  addCourseForm: FormGroup = new FormGroup({
+
+  createCourseForm() {
+     this.addCourseForm = new FormGroup({
     title: new FormControl('',[Validators.required,Validators.minLength(3),Validators.maxLength(100)]),
     language: new FormControl('',[Validators.minLength(3),Validators.maxLength(50)]),
     img: new FormControl('',),
@@ -68,6 +70,7 @@ export class MainComponent {
     prerequisites: new FormControl(0),
     courselevel: new FormControl('0',[Validators.required]),
   })
+  }
 
   getSubjects() {
     this._SubjectService.getsubjects().subscribe({
@@ -192,7 +195,8 @@ console.log(this.l_0bjects);
   getCurrentUser() {
     this._AuthService.getCurrentUser().subscribe({
       next: (res) => {
-        this.currentUser=res
+        this.currentUser = res
+         this._AuthService.currentUser.next(res)
   }
 })
   }
@@ -210,10 +214,16 @@ this.img=event.target.files[0]
     this._AuthService.addInstructor(data).subscribe({
       next: (res) => {
         this.getCurrentUser();
-        console.log(res);
         this.createInstructorForm();
+        this._AuthService.currentUser.next(res)
+        this._AuthService.currentUser.subscribe(n => {
+          console.log(n);
+
+        })
+
 
   }
 })
   }
+
 }
