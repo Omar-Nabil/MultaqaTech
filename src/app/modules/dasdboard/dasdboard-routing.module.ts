@@ -21,6 +21,7 @@ import { WishListComponent } from './components/children/wish-list/wish-list.com
 import { MainComponent } from './components/main/main.component';
 import { SubjectsComponent } from './components/children/admin/subjects/subjects.component';
 import { CategoriesComponent } from './components/children/admin/categories/categories.component';
+import { MeetingscategoriesComponent } from './components/children/admin/meetingscategories/meetingscategories.component';
 
 const routes: Routes = [
   {
@@ -41,6 +42,7 @@ const routes: Routes = [
     {path:'assignments',component:IAssignmentsComponent},
     {path:'mystudents',component:IMystudentsComponent},
     {path:'subjects',component:SubjectsComponent},
+    {path:'Meetingscategories',component:MeetingscategoriesComponent},
     {path:'categories',component:CategoriesComponent},
       {
         path: 'settings', component: SettingsComponent, children: [

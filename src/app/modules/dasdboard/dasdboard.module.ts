@@ -24,6 +24,7 @@ import { SettingsResetpasswordComponent } from './components/children/settings-r
 import { ReactiveFormsModule } from '@angular/forms';
 import { SubjectsComponent } from './components/children/admin/subjects/subjects.component';
 import { CategoriesComponent } from './components/children/admin/categories/categories.component';
+import { MeetingscategoriesComponent } from './components/children/admin/meetingscategories/meetingscategories.component';
 
 
 
@@ -49,6 +50,7 @@ import { CategoriesComponent } from './components/children/admin/categories/cate
     SettingsResetpasswordComponent,
     SubjectsComponent,
     CategoriesComponent,
+    MeetingscategoriesComponent,
 
   ],
   imports: [
