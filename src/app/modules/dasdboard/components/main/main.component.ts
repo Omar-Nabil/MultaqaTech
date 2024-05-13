@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup,  Validators} from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup,  Validators} from '@angular/forms';
 import { SubjectService } from '../../services/subject.service';
 import { Subject } from '../../interfaces/subject';
 import { Course_add } from 'src/app/modules/courses/interfaces/course';
 import { CourseService } from '../../../courses/services/course.service';
 import { Router } from '@angular/router';
+import { User } from '../../interfaces/user';
+import { AuthService } from 'src/app/modules/auth/services/auth.service';
 
 @Component({
   selector: 'app-main',
@@ -19,8 +21,9 @@ export class MainComponent {
   prerequisites: number[] = []
   prerequisitesNames: string[] = []
   l_0bjects: string[] = []
-
-
+  currentUser!: User;
+  instructorForm!: FormGroup;
+  img!: File;
 
   course: Course_add = {
     subjectId: 0,
@@ -34,11 +37,21 @@ export class MainComponent {
     learningObjectives: []
   }
 
-  constructor(private _SubjectService: SubjectService, private _CourseService: CourseService,private router:Router
+  constructor(private _SubjectService: SubjectService, private _CourseService: CourseService,
+    private router: Router,private _AuthService:AuthService,private _fb:FormBuilder
 ) {
-
+    this.getCurrentUser()
+    this.createInstructorForm()
    }
 
+
+  createInstructorForm() {
+    this.instructorForm = this._fb.group({
+      bio:['',Validators.required],
+      jobtitle:['',Validators.required],
+      picture:['',Validators.required]
+    })
+  }
 
   toggleMenu() {
     $(".dashboard-menu").toggleClass('open');
@@ -158,5 +171,33 @@ console.log(this.l_0bjects);
   logout() {
     localStorage.removeItem('userToken')
     this.router.navigate(['/welcome'])
+  }
+
+  getCurrentUser() {
+    this._AuthService.getCurrentUser().subscribe({
+      next: (res) => {
+        this.currentUser=res
+  }
+})
+  }
+  onImgChange(event:any) {
+this.img=event.target.files[0]
+
+  }
+
+  addInstructor() {
+    const data = new FormData();
+    data.append('Bio',this.instructorForm.get('bio')?.value)
+    data.append('JobTitle',this.instructorForm.get('jobtitle')?.value)
+    data.append('ProfilePicture', this.img ,this.img.name)
+
+    this._AuthService.addInstructor(data).subscribe({
+      next: (res) => {
+        this.getCurrentUser();
+        console.log(res);
+        this.createInstructorForm();
+
+  }
+})
   }
 }

@@ -23,6 +23,18 @@ export class AuthService {
   reserPassword(value:any):Observable<any> {
     return this._HttpClient.post(environment.baseURL+'/api/Account/ResetPassword', value);
   }
+  getCurrentUser(): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization' : `Bearer ${localStorage.getItem('userToken')}`
+    })
+    return this._HttpClient.get(environment.baseURL+'/api/Account/GetCurrentUser', {headers});
+  }
+  addInstructor(value:any): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization' : `Bearer ${localStorage.getItem('userToken')}`
+    })
+    return this._HttpClient.post(environment.baseURL+'/api/Account/BecomeInstructor',value, {headers});
+  }
 
   saveUser():void {
     let token = JSON.stringify(localStorage.getItem('userToken'));
