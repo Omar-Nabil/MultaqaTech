@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup,  Validators} from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup,  Validators} from '@angular/forms';
 import { SubjectService } from '../../services/subject.service';
 import { Subject } from '../../interfaces/subject';
 import { Course_add } from 'src/app/modules/courses/interfaces/course';
 import { CourseService } from '../../../courses/services/course.service';
 import { Router } from '@angular/router';
+import { User } from '../../interfaces/user';
+import { AuthService } from 'src/app/modules/auth/services/auth.service';
 
 @Component({
   selector: 'app-main',
@@ -12,16 +14,16 @@ import { Router } from '@angular/router';
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent {
-
   subjects: Subject[] = []
   tags: number[] = []
   tagsNames: string[] = []
   prerequisites: number[] = []
   prerequisitesNames: string[] = []
   l_0bjects: string[] = []
-
-
-
+  currentUser!: User;
+  instructorForm!: FormGroup;
+  img!: File;
+ addCourseForm!: FormGroup;
   course: Course_add = {
     subjectId: 0,
     title: 'string',
@@ -34,17 +36,30 @@ export class MainComponent {
     learningObjectives: []
   }
 
-  constructor(private _SubjectService: SubjectService, private _CourseService: CourseService,private router:Router
+  constructor(private _SubjectService: SubjectService, private _CourseService: CourseService,
+    private router: Router,private _AuthService:AuthService,private _fb:FormBuilder
 ) {
-
+    this.getCurrentUser()
+    this.createInstructorForm()
+    this.createCourseForm()
    }
 
+
+  createInstructorForm() {
+    this.instructorForm = this._fb.group({
+      bio:['',Validators.required],
+      jobtitle:['',Validators.required],
+      picture:['',Validators.required]
+    })
+  }
 
   toggleMenu() {
     $(".dashboard-menu").toggleClass('open');
   }
 
-  addCourseForm: FormGroup = new FormGroup({
+
+  createCourseForm() {
+     this.addCourseForm = new FormGroup({
     title: new FormControl('',[Validators.required,Validators.minLength(3),Validators.maxLength(100)]),
     language: new FormControl('',[Validators.minLength(3),Validators.maxLength(50)]),
     img: new FormControl('',),
@@ -55,6 +70,7 @@ export class MainComponent {
     prerequisites: new FormControl(0),
     courselevel: new FormControl('0',[Validators.required]),
   })
+  }
 
   getSubjects() {
     this._SubjectService.getsubjects().subscribe({
@@ -156,7 +172,58 @@ console.log(this.l_0bjects);
   }
 
   logout() {
-    localStorage.removeItem('userToken')
-    this.router.navigate(['/welcome'])
+    this._AuthService.logout().subscribe({
+      next:(res) => {
+        console.log(res);
+        localStorage.removeItem("userToken");
+        this._AuthService.userData.next(null);
+        this.router.navigate(['/welcome']);
+      },
+      error:(err) => {
+        console.log("Logout error:", err);
+        if (err.status === 401) {
+          console.log("Unauthorized: Please login again.");
+          // Handle unauthorized error, maybe redirect to login page
+        } else {
+          console.log("An error occurred:", err.error);
+        }
+      }
+
+    })
   }
+
+  getCurrentUser() {
+    this._AuthService.getCurrentUser().subscribe({
+      next: (res) => {
+        this.currentUser = res
+         this._AuthService.currentUser.next(res)
+  }
+})
+  }
+  onImgChange(event:any) {
+this.img=event.target.files[0]
+
+  }
+
+  addInstructor() {
+    const data = new FormData();
+    data.append('Bio',this.instructorForm.get('bio')?.value)
+    data.append('JobTitle',this.instructorForm.get('jobtitle')?.value)
+    data.append('ProfilePicture', this.img ,this.img.name)
+
+    this._AuthService.addInstructor(data).subscribe({
+      next: (res) => {
+        this.getCurrentUser();
+        this.createInstructorForm();
+        this._AuthService.currentUser.next(res)
+        this._AuthService.currentUser.subscribe(n => {
+          console.log(n);
+
+        })
+
+
+  }
+})
+  }
+
 }

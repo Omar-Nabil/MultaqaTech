@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { jwtDecode } from 'jwt-decode';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
+import { User } from '../../dasdboard/interfaces/user';
 @Injectable({
   providedIn: 'root'
 })
@@ -10,7 +11,9 @@ export class AuthService {
 
   constructor(private _HttpClient:HttpClient) { }
 
-  userData:BehaviorSubject<any> = new BehaviorSubject<any>(null);
+  userData: BehaviorSubject<any> = new BehaviorSubject<any>(null);
+  currentUser: BehaviorSubject<User> = new BehaviorSubject<any>(null);
+
   register(value:any):Observable<any> {
     return this._HttpClient.post(environment.baseURL+'/api/Account/register', value);
   }
@@ -22,6 +25,18 @@ export class AuthService {
   }
   reserPassword(value:any):Observable<any> {
     return this._HttpClient.post(environment.baseURL+'/api/Account/ResetPassword', value);
+  }
+  getCurrentUser(): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization' : `Bearer ${localStorage.getItem('userToken')}`
+    })
+    return this._HttpClient.get(environment.baseURL+'/api/Account/GetCurrentUser', {headers});
+  }
+  addInstructor(value:any): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization' : `Bearer ${localStorage.getItem('userToken')}`
+    })
+    return this._HttpClient.post(environment.baseURL+'/api/Account/BecomeInstructor',value, {headers});
   }
 
   saveUser():void {

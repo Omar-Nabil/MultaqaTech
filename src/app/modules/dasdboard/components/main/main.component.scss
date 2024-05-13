@@ -51,7 +51,7 @@
   z-index: 1;
 }
 
-.input input {
+.input input,.input textarea  {
   font-size: 100%;
   padding: 0.8em;
   outline: none;
@@ -61,10 +61,13 @@
   width: 100%;
 }
 
+.input .pictureUrl {
+  position: absolute;
+  right: 0;
+}
 .input label {
   font-size: 100%;
   position: absolute;
-  left: 0;
   top: 0;
   padding: 0.8em;
   margin-left: 0.5em;
@@ -73,7 +76,7 @@
   color: #0071dc;
 }
 
-.input :is(input:focus, input:valid)~label {
+.input :is(input:focus,textarea:focus,textarea:valid, input:valid)~label {
   transform: translateY(-50%) scale(.9);
   margin: 0em;
   margin-left: 1.3em;

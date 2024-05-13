@@ -67,7 +67,7 @@
                 </a>
               </li>
             </ul>
-            <ul class="dashboard-nav__menu-list">
+            <ul *ngIf="currentUser?.isInstructor" class="dashboard-nav__menu-list">
               <li>
                 <span class="dashboard-nav__title">Instructor</span>
               </li>
@@ -232,10 +232,10 @@
 
               <div class="dashboard-header__user">
                 <div class="dashboard-header__user-avatar">
-                  <img src="assets/images/avatar/avatar-02.png" alt="Avatar" width="90" height="90">
+                  <img [src]="currentUser.profilePictureUrl" alt="Avatar" width="90" height="90">
                 </div>
                 <div class="dashboard-header__user-info">
-                  <h4 class="dashboard-header__user-name"><span class="welcome-text">Howdy,</span> Adeniyi David</h4>
+                  <h4 class="dashboard-header__user-name"><span class="welcome-text">Howdy,</span> {{currentUser?.userName}}</h4>
                   <div class="dashboard-header__user-rating">
                     <div class="rating-star">
                       <div class="rating-label" style="width: 100%;"></div>
@@ -246,9 +246,12 @@
                 </div>
               </div>
 
-              <div class="dashboard-header__btn">
-                <a class="btn btn-outline-primary" (click)="getSubjects()" data-bs-toggle="modal" data-bs-target="#addCourse" href="#"><i class="edumi edumi-content-writing"></i> <span class="text">Add
+              <div *ngIf="currentUser?.isInstructor" class="dashboard-header__btn">
+                <a class="btn btn-outline-primary" (click)="getSubjects()" data-bs-toggle="modal" data-bs-target="#addCourse" ><i class="edumi edumi-content-writing"></i> <span class="text">Add
                     A New Course </span></a>
+              </div>
+              <div *ngIf="!currentUser?.isInstructor" class="dashboard-header__btn">
+                <a class="btn btn-outline-primary"  data-bs-toggle="modal" data-bs-target="#instructor" ><i class="edumi edumi-user"></i> <span class="text">Become An Instructor </span></a>
               </div>
 
               <div class="dashboard-header__toggle">
@@ -266,6 +269,9 @@
       </div>
 
       <!-- Dashboard Header End -->
+
+
+<!-- add course form -->
 
 
 <div class="modal fade" id="addCourse" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -378,6 +384,64 @@
     </div>
   </div>
 </div>
+<!-- add course form -->
+
+<!-- Instructor form -->
+
+<div class="modal fade" id="instructor" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Become An Instructor</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
+      </div>
+      <div class="modal-body">
+
+        <form [formGroup]="instructorForm" (ngSubmit)="addInstructor()">
+            <div >
+              <div class="input">
+                <textarea id="bio"  class="form-control" formControlName="bio" required=""></textarea>
+                <label for="bio">Bio</label>
+            <span *ngIf="instructorForm.get('bio')?.touched">
+              <p *ngIf="instructorForm.get('bio')?.getError('required')" class="text-danger ms-2 mb-0">required</p>
+            </span>
+              </div>
+            </div>
+            <div >
+              <div class="input">
+                <input id="lang" formControlName="jobtitle" class="form-control" type="text" required="" autocomplete="off">
+                <label for="lang">Job Title</label>
+                  <span *ngIf="instructorForm.get('jobtitle')?.touched">
+              <p *ngIf="instructorForm.get('jobtitle')?.getError('required')" class="text-danger ms-2 mb-0">required</p>
+
+                  </span>
+              </div>
+            </div>
+            <div >
+              <div class="input">
+                <input id="pic" formControlName="picture" class="form-control" type="file" required="" (change)="onImgChange($event)">
+                <label class="pictureUrl" for="pic">Upload Picture</label>
+                  <span *ngIf="instructorForm.get('picture')?.touched">
+              <p *ngIf="instructorForm.get('picture')?.getError('required')" class="text-danger ms-2 mb-0">required</p>
+
+                  </span>
+              </div>
+            </div>
+
+                <div class="modal-footer">
+                  <button type="submit" [disabled]="instructorForm.invalid" class="btn btn-primary rounded-5 fw-semibold fs-5" >Save</button>
+                </div>
+        </form>
+
+
+
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- Instructor form -->
+
 
 
 

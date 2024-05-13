@@ -19,16 +19,21 @@ export class CoursesComponent implements OnInit {
 
   constructor(private _CourseService: CourseService , private _SubjectService:SubjectService) {
      _CourseService.getcoursesbysize(99999999).subscribe((res) => {
-       this.courses = res
-       this.length=this.courses?.length!
+       this.courses = res.data
+       this.length = this.courses?.length!
+       console.log(this.courses);
+
      })
 
      _CourseService.getcoursesbysize(9).subscribe((res) => {
-       this.courses = res
+       this.courses = res.data
      })
 
     _SubjectService.getsubjects().subscribe((res) => {
-      this.subjects=res
+      this.subjects = res
+      console.log(res);
+      console.log(this.subjects);
+
     })
   }
 
@@ -59,7 +64,7 @@ export class CoursesComponent implements OnInit {
 
   getbysubject(subject: number) {
     this._CourseService.getcoursesbysubject(subject).subscribe((res) => {
-      this.courses = res
+      this.courses = res.data
       this.length=this.courses?.length!
     })
 
@@ -69,7 +74,7 @@ export class CoursesComponent implements OnInit {
     console.log('clicked '+ level);
 
     this._CourseService.getcoursesbylevel(level).subscribe((res) => {
-      this.courses = res
+      this.courses = res.data
       console.log(this.courses);
       this.length = this.courses?.length!
       $('body,html').scrollTop(250)
