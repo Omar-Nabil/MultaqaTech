@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { CourseService } from 'src/app/modules/courses/services/course.service';
-import { start } from 'src/main'
+import { start } from 'src/main';
 import { Course_get } from '../../interfaces/course';
-import { FormControl, FormGroup } from '@angular/forms';
 import { Reviews_add } from '../../interfaces/reviews';
 import { ReviewsService } from '../../services/reviews.service';
-import { log } from 'console';
 
 @Component({
   selector: 'app-course-details',
@@ -26,15 +25,36 @@ export class CourseDetailsComponent implements OnInit {
     rating:new FormControl(0),
     Comment:new FormControl(''),
   })
+  CourseAddedSuccessfully:boolean = false;
+  cartItems:any;
   constructor(private route:ActivatedRoute,private _CourseService:CourseService,private reviews:ReviewsService) {
-    this.getCourse()
+    this.getCourse();
+    this.chaeckIfCourseInCart();
 
   }
   ngOnInit(): void {
     start();
-     $('body,html').scrollTop(-10)
+     $('body,html').scrollTop(-10);
+     this._CourseService.cartItems.subscribe(newcartItems => {
+      this.CourseAddedSuccessfully = newcartItems.some((course:any) => course?.courseId == this.course?.id);
+     })
   }
-
+  chaeckIfCourseInCart() {
+    this._CourseService.getBasketItems().subscribe({
+      next:(res) => {
+        console.log(res);
+        this.cartItems = res.basketItems;
+        console.log( this.cartItems );
+        for(let i=0; i<this.cartItems.length; i++) {
+          if(this.cartItems[i].courseId == this.course?.id) {
+            this.CourseAddedSuccessfully = true;
+          }
+        }
+        this._CourseService.cartItems.next(res.basketItems);
+      },
+      error:(err) => console.log(err)
+    })
+  }
   getCourse() {
    this.courseId= parseInt(this.route.snapshot.paramMap.get('id')!)
     if (this.courseId) {
@@ -130,6 +150,25 @@ export class CourseDetailsComponent implements OnInit {
       this.updatecommentbool = false
       $('#collapseForm').slideUp(600)
       $('body,html').scrollTop($('.tutor-course-segment__review-commnet').offset()?.top! - 150)
+    })
+  }
+
+  AddCourseToCart() {
+    console.log(this.course);
+    var addedcourse = {
+      courseId: this.course?.id,
+      courseTitle: this.course?.title,
+      price: this.course?.price
+    };
+    console.log(addedcourse);
+
+    this._CourseService.AddCourseToCart(addedcourse).subscribe({
+      next:(res) => {
+        console.log(res);
+        this.CourseAddedSuccessfully = true;
+        this._CourseService.cartItems.next(res.basketItems);
+      },
+      error:(err) => console.log(err)
     })
   }
 

@@ -1,8 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Course_add } from '../interfaces/course';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
+import { Course_add } from '../interfaces/course';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +10,8 @@ import { environment } from 'src/environments/environment.development';
 export class CourseService {
 
   constructor(private _HttpClient: HttpClient) { }
+
+  cartItems: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 
   addcourse(course: Course_add): Observable<any>{
     const headers = new HttpHeaders({
@@ -71,5 +73,33 @@ export class CourseService {
       'Authorization':`Bearer ${localStorage.getItem('userToken')}`
     })
     return this._HttpClient.get(environment.baseURL+`/api/Courses/${id}`,{headers})
+  }
+
+  AddCourseToCart(course: any): Observable<any>{
+    const headers = new HttpHeaders({
+      'Authorization':`Bearer ${localStorage.getItem('userToken')}`
+    });
+    return this._HttpClient.post(environment.baseURL+'/api/Baskets/UpdateBasketWithBasketItem',course,{headers});
+  }
+
+  RemoveItemFromBasket(courseId: Number): Observable<any>{
+    const headers = new HttpHeaders({
+      'Authorization':`Bearer ${localStorage.getItem('userToken')}`
+    });
+    return this._HttpClient.post(environment.baseURL+`/api/Baskets/RemoveItemFromBasket?courseId=${courseId}`, {},{headers});
+  }
+
+  ClearShoppingCart(): Observable<any>{
+    const headers = new HttpHeaders({
+      'Authorization':`Bearer ${localStorage.getItem('userToken')}`
+    });
+    return this._HttpClient.delete(environment.baseURL+`/api/Baskets`,{headers});
+  }
+
+  getBasketItems(): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization':`Bearer ${localStorage.getItem('userToken')}`
+    });
+    return this._HttpClient.get(environment.baseURL+'/api/Baskets',{headers});
   }
 }
