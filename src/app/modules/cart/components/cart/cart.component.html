@@ -77,31 +77,31 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td class="product">
+              <tr *ngFor="let item of cartItems">
+                <td class="product"  [routerLink]="['/course', item?.courseId]" style="cursor: pointer;">
                   <div class="cart-product">
                     <div class="cart-product__thumbnail">
                       <img src="assets/images/product/product-2.png" alt="Product" width="70" height="81">
                     </div>
                     <div class="cart-product__content">
-                      <h3 class="cart-product__name">Awesome for Websites</h3>
+                      <h3 class="cart-product__name">{{item?.courseTitle}}</h3>
                     </div>
                   </div>
                 </td>
                 <td class="price">
                   <div class="cart-product__price">
-                    <span class="sale-price">$59.<small class="separator">00</small></span>
+                    <span class="sale-price">${{item?.price}}.<small class="separator">00</small></span>
                   </div>
                 </td>
 
                 <td class="subtotal">
                   <div class="cart-product__total-price">
-                    <span class="sale-price discount">$59.<small class="separator">00</small></span>
+                    <span class="sale-price">${{item?.price}}.<small class="separator">00</small></span>
                   </div>
                 </td>
                 <td class="action">
                   <div class="cart-product__remove">
-                    <a class="remove" href="#">Remove</a>
+                    <a class="remove" (click)="deleteItemFromCart(item?.courseId)">Remove</a>
                   </div>
                 </td>
               </tr>
@@ -114,10 +114,7 @@
         <div class="cart-action d-flex flex-wrap justify-content-between gap-2">
           <div class="cart-action__left">
             <a class="btn btn-light btn-hover-primary" routerLink="/courses">Continue shopping</a>
-            <a class="cart-action__item" href="#"><i class="fas fa-times"></i> Clear shopping cart</a>
-          </div>
-          <div class="cart-action__right">
-            <button class="btn btn-secondary btn-hover-primary">Update cart</button>
+            <a class="cart-action__item" (click)="ClearShoppingCart()"><i class="fas fa-times"></i> Clear shopping cart</a>
           </div>
         </div>
         <!-- Cart Actions End -->
@@ -200,24 +197,24 @@
                       <tr class="cart-subtotal">
                         <th>Subtotal</th>
                         <td>
-                          <span class="subtotal-price">$131<span class="separator">.00</span></span>
+                          <span class="subtotal-price">${{TotalPrice}}<span class="separator">.00</span></span>
                         </td>
                       </tr>
                       <tr class="cart-shipping">
                         <th>Shipping</th>
-                        <td>Free shipping <span class="shipping-fee">$5<span class="separator">.00</span></span></td>
+                        <td>Free shipping <span class="shipping-fee">$0<span class="separator">.00</span></span></td>
                       </tr>
                       <tr class="order-total">
                         <th>Total</th>
                         <td>
-                          <span class="total-price">$136<span class="separator">.00</span></span>
+                          <span class="total-price">${{TotalPrice}}<span class="separator">.00</span></span>
                         </td>
                       </tr>
                     </tbody>
                   </table>
 
                   <div class="cart-collaterals__btn">
-                    <a class="btn btn-primary btn-hover-secondary w-100" href="checkout.html">Checkout</a>
+                    <button class="btn btn-primary btn-hover-secondary w-100" [disabled]="TotalPrice == 0">Checkout</button>
                   </div>
                 </div>
 

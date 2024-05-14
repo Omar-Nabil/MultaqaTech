@@ -644,9 +644,9 @@
                 </ul>
               </div>
               <div class="tutor-course-price-preview__btn">
-                <button class="btn btn-primary btn-hover-secondary w-100"> <i class="fas fa-shopping-basket"></i> Add to
+                <button (click)="AddCourseToCart()" *ngIf="!CourseAddedSuccessfully" class="btn btn-primary btn-hover-secondary w-100"> <i class="fas fa-shopping-basket"></i> Add to
                   cart </button>
-                <a href="#" class="btn btn-light btn-hover-primary w-100">Add to wishlist</a>
+                <button class="btn btn-primary btn-hover-secondary w-100" *ngIf="CourseAddedSuccessfully">Course Added Successfully</button>
               </div>
               <div class="tutor-course-price-preview__social">
                 <a href="#"><i class="fab fa-facebook-f"></i></a>

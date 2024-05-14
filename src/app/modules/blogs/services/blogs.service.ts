@@ -25,10 +25,16 @@ export class BlogsService {
   }
 
   getCategories():Observable<any> {
-    return this._HttpClient.get(environment.baseURL+'/api/BlogPostCategories');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('userToken')}`
+    });
+    return this._HttpClient.get(environment.baseURL+'/api/BlogPostCategories', {headers});
   }
   getSubjects():Observable<any> {
-    return this._HttpClient.get(environment.baseURL+'/api/Subjects');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('userToken')}`
+    });
+    return this._HttpClient.get(environment.baseURL+'/api/Subjects', {headers});
   }
 
   filterByCategoryId(catId:number, pageNumber: number):Observable<any> {

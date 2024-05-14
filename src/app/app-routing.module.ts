@@ -15,6 +15,7 @@ import { HomeComponent } from './modules/courses/components/home/home.component'
 import { NotFound404Component } from './modules/shared/components/not-found404/not-found404.component';
 import { ZoomMeetingDetailsComponent } from './modules/zoom/components/zoom-meeting-details/zoom-meeting-details.component';
 import { ZoomMeetingsComponent } from './modules/zoom/components/zoom-meetings/zoom-meetings.component';
+import { CurriculumComponent } from './modules/courses/components/curriculum/curriculum.component';
 const routes: Routes = [
   {path:'', component:LayoutComponent, children:[
     {path:'', redirectTo:'welcome', pathMatch:'full'},
@@ -30,6 +31,7 @@ const routes: Routes = [
     {path:'blogs/:id', component:BlogDetailsComponent, canActivate:[authGuard]},
     {path:'courses', component:CoursesComponent, canActivate:[authGuard]},
     {path:'course/:id', component:CourseDetailsComponent, canActivate:[authGuard]},
+    {path:'curriculum/:id', component:CurriculumComponent, canActivate:[authGuard]},
     {path:'zooms', component:ZoomMeetingsComponent, canActivate:[authGuard]},
     {path:'zooms/:id', component:ZoomMeetingDetailsComponent, canActivate:[authGuard]},
     {path:'cart', loadChildren:() => import('../app/modules/cart/cart.module').then((res)=>res.CartModule), canActivate:[authGuard] }
