@@ -9,13 +9,19 @@
                   <li class="breadcrumb-item"><a href="index.html">Home</a></li>
                   <li class="breadcrumb-item active">Zoom Meetings and Webinars</li>
               </ul>
+
           </div>
           <!-- Page Breadcrumb End -->
 
           <!-- Page Banner Caption Start -->
           <div class="page-banner__caption text-center">
               <h2 class="page-banner__main-title">Zoom Meetings and Webinars</h2>
+              <div class="dashboard-header__btn mt-5">
+                <a class="btn btn-outline-primary"  data-bs-toggle="modal" data-bs-target="#AddMeeting"
+                  href="#"><i class="edumi edumi-content-writing"></i> <span class="text">Create New Meeting </span></a>
+              </div>
           </div>
+
           <!-- Page Banner Caption End -->
 
       </div>
@@ -478,3 +484,57 @@
 </button>
 <!--Back To End-->
 
+<div class="modal fade" id="AddMeeting" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content w-100">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Add Meeting</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <form [formGroup]="addMeetingForm" (submit)="addMeeting()">
+          <div>
+            <label for="title">Title:</label>
+            <input id="title" type="text" formControlName="title">
+          </div>
+          <div>
+            <label for="content">Content:</label>
+            <textarea id="content" style="height: 300px;" formControlName="content"></textarea>
+          </div>
+          <div>
+            <label for="startDate">Start Date:</label>
+            <input type="datetime-local" id="startDate"  formControlName="startDate">
+          </div>
+          <div>
+            <label for="duration">Duration:</label>
+            <input type="number" min="0" step="1" id="duration"  formControlName="duration">
+          </div>
+          <div>
+            <label for="timeZone">Time Zone:</label>
+            <input id="timeZone" type="text" formControlName="timeZone">
+          </div>
+          <div>
+            <label for="pictureUrl">Picture URL:</label>
+            <input id="pictureUrl" type="file" accept="image/*" formControlName="pictureUrl">
+          </div>
+          <div>
+            <label for="categoryId">Category:</label>
+            <select id="categoryId" formControlName="categoryId">
+              <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+            </select>
+          </div>
+
+
+
+
+
+          <button type="submit" data-bs-dismiss="modal" [disabled]="!addMeetingForm.valid">Submit</button>
+        </form>
+
+
+      </div>
+
+    </div>
+  </div>
+</div>

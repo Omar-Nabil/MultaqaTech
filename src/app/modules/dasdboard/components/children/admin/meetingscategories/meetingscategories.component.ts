@@ -18,6 +18,7 @@ export class MeetingscategoriesComponent {
   meetingesCategories: Meetingscategory[] = []
   meetingCategoryupID:number=0
   constructor(private _MeetingscategoriesService : MeetingscategoriesService){
+    this.getcategories()
 
   }
   getcategories() {
