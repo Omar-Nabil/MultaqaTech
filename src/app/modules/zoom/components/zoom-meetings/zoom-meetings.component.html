@@ -516,7 +516,7 @@
           </div>
           <div>
             <label for="pictureUrl">Picture URL:</label>
-            <input id="pictureUrl" type="file" accept="image/*" formControlName="pictureUrl">
+            <input id="pictureUrl" type="file" accept="image/*" (change)="onFileChange($event)" formControlName="pictureUrl">
           </div>
           <div>
             <label for="categoryId">Category:</label>
