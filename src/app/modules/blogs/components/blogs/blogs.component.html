@@ -315,8 +315,11 @@
             <textarea id="content" style="height: 300px;" formControlName="content"></textarea>
           </div>
           <div>
-            <label for="pictureUrl">Picture URL:</label>
-            <input id="pictureUrl" type="text" formControlName="pictureUrl">
+            <div>
+              <img id="previewImage" *ngIf="previewUrl" [src]="previewUrl" alt="Selected Image" width="200px" height="200px">
+            </div>
+            <label for="pictureUrl">Image:</label>
+            <input  id="pictureUrl" type="file" formControlName="pictureUrl"  (change)="onFileChange($event)">
           </div>
           <div>
             <label for="categoryId">Category:</label>

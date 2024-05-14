@@ -16,7 +16,8 @@ export class BlogsComponent implements OnInit {
   categories:any[] = [];
   subjects:any[]=[];
   addBlogForm!: FormGroup;
-
+  previewUrl: string | ArrayBuffer | null = null;
+  selectedFile: File | null = null;
 
   showDropdown = false;
   constructor(private _BlogsService:BlogsService) {
@@ -35,16 +36,37 @@ export class BlogsComponent implements OnInit {
       'subjectId': new FormControl([], Validators.required),
     });
   }
-  addBlog() {
-    const blogData = {
-      title: this.addBlogForm.get('title')?.value,
-      content: this.addBlogForm.get('content')?.value,
-      pictureUrl: this.addBlogForm.get('pictureUrl')?.value,
-      categoryId: this.addBlogForm.get('categoryId')?.value,
-      tags: this.addBlogForm.get('subjectId')?.value
-    }
+  onFileChange(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    const file = input.files?.[0];
 
-    this._BlogsService.postBlog(blogData).subscribe({
+    if (file) {
+      this.selectedFile = file;
+
+      const reader = new FileReader();
+      reader.onload = () => this.previewUrl = reader.result;
+      reader.readAsDataURL(file);
+    }
+  }
+  addBlog() {
+    const formData = new FormData();
+    formData.append('title', this.addBlogForm.get('title')?.value);
+    formData.append('content', this.addBlogForm.get('content')?.value);
+    formData.append('categoryId', this.addBlogForm.get('categoryId')?.value);
+
+    // Handle subjects
+    const selectedSubjects = this.addBlogForm.get('subjectId')?.value;
+    selectedSubjects.forEach((subjectId: any) => {
+      formData.append('subjectId', subjectId);
+    });
+
+    // Append the file to formData
+    if (this.selectedFile) {
+      formData.append('pictureUrl', this.selectedFile, this.selectedFile.name);
+    }
+    console.log(formData);
+
+    this._BlogsService.postBlog(formData).subscribe({
       next:(res) => {
         console.log(res);
         this.blogs.unshift(res);
