@@ -212,8 +212,13 @@
   transform: translateY(-49%);
 }
 
-#adder i {}
+
 
 #adder:hover {
   background-color: #bcd6ed;
+}
+
+.Edit:hover{
+  background-color: #f7c04d;
+  border-color: #f7c04d;
 }

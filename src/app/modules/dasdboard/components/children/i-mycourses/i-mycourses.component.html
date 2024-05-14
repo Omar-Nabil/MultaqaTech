@@ -41,9 +41,9 @@
               <span class="sale-price">${{course.price}}.<small class="separator">00</small></span>
             </div>
             <div class="dashboard-courses__action">
-              <a class="action " (click)="editingCourse(course.id)" data-bs-toggle="modal" data-bs-target="#editCourse" ><i class="fas  fa-pencil-alt"></i> Edit</a>
+              <a class="action Edit" (click)="editingCourse(course.id)" data-bs-toggle="modal" data-bs-target="#editCourse" ><i class="fas  fa-pencil-alt"></i> Edit</a>
               <a class="action delete" (click)="deleteCourse(course.id)" ><i class="fas  fa-trash-alt"></i> Delete</a>
-              <a class="action" ><i class="fas  fa-clone"></i> Curriculum</a>
+              <a class="action" [routerLink]="['/curriculum',course.id]" ><i class="fas  fa-clone"></i> Curriculum</a>
             </div>
           </div>
         </div>
