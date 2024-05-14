@@ -202,7 +202,7 @@
                     <a ><img src="assets/images/product/product-1.png"
                         alt="Product" width="80" height="93"></a>
                   </div>
-                  <div class="header-mini-cart__caption">
+                  <div class="header-mini-cart__caption"  [routerLink]="['/course', item?.courseId]" >
                     <h3 class="header-mini-cart__name"><a >{{item?.courseTitle}}</a></h3>
                     <span class="header-mini-cart__quantity"><strong class="amount">${{item?.price}}</strong><span
                         class="separator">.00</span></span>
