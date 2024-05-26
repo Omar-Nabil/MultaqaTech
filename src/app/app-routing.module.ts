@@ -6,20 +6,19 @@ import { ConfirmEmailComponent } from './modules/auth/components/ConfirmEmail/Co
 import { ForgotPasswordComponent } from './modules/auth/components/forgot-password/forgot-password.component';
 import { WelcomeComponent } from './modules/auth/components/welcome/welcome.component';
 import { authGuard } from './modules/auth/guards/auth.guard';
-import { loginGuard } from './modules/auth/guards/login.guard';
 import { BlogDetailsComponent } from './modules/blogs/components/blog-details/blog-details.component';
 import { BlogsComponent } from './modules/blogs/components/blogs/blogs.component';
 import { CourseDetailsComponent } from './modules/courses/components/course-details/course-details.component';
 import { CoursesComponent } from './modules/courses/components/courses/courses.component';
+import { CurriculumComponent } from './modules/courses/components/curriculum/curriculum.component';
 import { HomeComponent } from './modules/courses/components/home/home.component';
 import { NotFound404Component } from './modules/shared/components/not-found404/not-found404.component';
 import { ZoomMeetingDetailsComponent } from './modules/zoom/components/zoom-meeting-details/zoom-meeting-details.component';
 import { ZoomMeetingsComponent } from './modules/zoom/components/zoom-meetings/zoom-meetings.component';
-import { CurriculumComponent } from './modules/courses/components/curriculum/curriculum.component';
 const routes: Routes = [
   {path:'', component:LayoutComponent, children:[
     {path:'', redirectTo:'welcome', pathMatch:'full'},
-    {path:'welcome', component:WelcomeComponent,canActivate:[loginGuard]},
+    {path:'welcome', component:WelcomeComponent},
 
     {path:'api/Account/ResetPassword', component:ForgotPasswordComponent},
     {path:'api/Account/ConfirmEmail', component: ConfirmEmailComponent},
