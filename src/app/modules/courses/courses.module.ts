@@ -7,6 +7,7 @@ import { CoursesComponent } from './components/courses/courses.component';
 import { CourseDetailsComponent } from './components/course-details/course-details.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CurriculumComponent } from './components/curriculum/curriculum.component';
+import{DragDropModule}from '@angular/cdk/drag-drop'
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { CurriculumComponent } from './components/curriculum/curriculum.componen
   imports: [
     CommonModule,
     CoursesRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    DragDropModule
   ]
 })
 export class CoursesModule { }

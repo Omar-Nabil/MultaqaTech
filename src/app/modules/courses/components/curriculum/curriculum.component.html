@@ -1,4 +1,4 @@
-<main class="main-wrapper">
+<main class="main-wrapper container-bg py-3 h-auto">
   <!-- Page Banner Section Start -->
   <div class="page-banner bg-color-05">
     <div class="page-banner__wrapper">
@@ -63,18 +63,108 @@
 
 
 <!-- curriculum start -->
-<div class="container">
-  <p class="fw-normal lead my-7">Start putting together your course by creating sections, lectures and quizzes. <br>
-  Use your course outline to structure your content and label your sections and lectures clearly.
-  </p>
+<div class="container ">
+
 
   <!-- section start -->
 
-  <div class="w-100 section" style="min-height: 20px;">
-  <button class="btn btn-primary fs-5 fw-semibold "><i class="fa-solid fa-plus"></i> section</button>
+  <div class="w-100 section my-10" style="min-height: 20px;background-color: white;">
+    <p class="fw-medium fs-5 lead mt-5 mb-12">Start putting together your course by creating sections, lectures and quizzes. <br>
+      Use your course outline to structure your content and label your sections and lectures clearly.
+    </p>
+
+    <!-- Display sections -->
+  <div  class="droplist-section" (cdkDropListDropped)="drop($event)" cdkDropList>
+      <div *ngFor="let section of sections ;let i =index;" class="example-box section section-content mb-15 px-15 pt-10"
+        style="background-color: rgb(200, 223, 244);" cdkDrag>
+        <div class="w-100 d-flex justify-content-between mb-5">
+          <h4 class="w-75">Section {{i+1}} : <span class="fw-medium"><i class="fa-regular fa-file"></i>
+              {{section.title}}</span></h4>
+          <span>
+            <a (click)="getSectionForUpdate(section.id)"><i class="fa-solid fa-pen-to-square edit"></i></a>
+            <span class="m-1"></span>
+            <a (click)="deleteSection(section.id)"><i class="fa-solid fa-trash delete"></i></a>
+          </span>
+        </div>
+        <!-- lecture container start -->
+        <div class="ps-15">
+          <div *ngIf="addItemBool && parentSectionId ==section.id" class="d-flex justify-content-around">
+          <div class="d-flex flex-column align-items-center"><img  (click)="addItem()" class="iconItem" src="assets/images/lectureIcon.png" alt="">
+          <span class="fs-4 fw-normal mt-3">Lecture</span>
+          </div>
+          <div class="d-flex flex-column"><img (click)="addItem()"  class="iconItem" src="assets/images/quizIcon.png" alt="">
+          <span class="fs-4 fw-normal mt-3">Quiz</span>
+          </div>
+          </div>
+          <div *ngIf="addlectureBool" class="section mb-3 px-15 pt-10" style="background-color: rgb(200, 223, 244);">
+            <!-- lecture form -->
+            <form [formGroup]="sectionForm" (ngSubmit)="addSection()">
+              <!-- title input  -->
+              <div class="w-100 d-flex align-items-center mb-7 flex-wrap">
+                <label for="title" class="fs-4 fw-semibold  w-25 required">Title</label>
+                <input class="input w-75" type="text" name="title" formControlName="title" />
+                <div class="w-25"></div>
+                <p *ngIf="sectionForm.get('title')?.touched&&sectionForm.get('title')?.getError('required')"
+                  class="text-danger mt-2 fs-6 fw-medium">title is required</p>
+              </div>
+
+              <!-- title input  -->
+              <!-- objectives input  -->
+              <div class="w-100 d-flex align-items-center">
+                <label for="objectives" class="fs-4 fw-semibold  w-25">Objectives</label>
+                <textarea name="objectives" class="input w-75" rows="4" formControlName="objectives"></textarea>
+              </div>
+              <!-- objectives input  -->
+
+              <!-- btn -->
+              <button type="submit" class="btn btn-outline-primary d-block ms-auto my-4 fw-semibold"
+                [disabled]="sectionForm.invalid">Save</button>
+              <!-- btn -->
+            </form>
+            <!-- lecture form -->
+          </div>
+          <button (click)="displayItem(section.id)" *ngIf="!(addItemBool && parentSectionId ==section.id)" class="btn btn-outline-primary fs-5 fw-semibold "><i
+              class="fa-solid fa-plus"></i> Item</button>
+
+        </div>
+        <!-- lecture container end -->
+
+      </div>
+  </div>
+    <!-- Display sections -->
+
+    <div *ngIf="addSectionBool||updateSectionBool" id="sectionForm" class="section mb-3 px-15 pt-10" style="background-color: rgb(200, 223, 244);">
+      <!-- section form -->
+      <form [formGroup]="sectionForm" >
+        <!-- title input  -->
+        <div class="w-100 d-flex align-items-center mb-7 flex-wrap">
+          <label for="title" class="fs-4 fw-semibold  w-25 required">Title</label>
+          <input class="input w-75" type="text" name="title" formControlName="title"/>
+          <div class="w-25"></div>
+          <p *ngIf="sectionForm.get('title')?.touched&&sectionForm.get('title')?.getError('required')"
+            class="text-danger mt-2 fs-6 fw-medium">title is required</p>
+        </div>
+
+        <!-- title input  -->
+        <!-- objectives input  -->
+        <div class="w-100 d-flex align-items-center">
+          <label for="objectives" class="fs-4 fw-semibold  w-25">Objectives</label>
+          <textarea name="objectives" class="input w-75" rows="4" formControlName="objectives"></textarea>
+        </div>
+        <!-- objectives input  -->
+
+        <!-- btn -->
+        <button *ngIf="addSectionBool" (click)="addSection()" type="submit" class="btn btn-outline-primary d-block ms-auto my-4 fw-semibold" [disabled]="sectionForm.invalid">Save</button>
+        <button *ngIf="updateSectionBool" (click)="updateSection()" type="submit" class="btn btn-outline-primary d-block ms-auto my-4 fw-semibold" [disabled]="sectionForm.invalid">update</button>
+        <!-- btn -->
+      </form>
+      <!-- section form -->
+    </div>
+  <button *ngIf="!addSectionBool&&!updateSectionBool" (click)="displaySectionForm()" class="btn btn-outline-primary fs-5 fw-semibold "><i class="fa-solid fa-plus"></i> section</button>
   </div>
   <!-- section end -->
 </div>
 <!-- curriculum end -->
+
 
 </main>

@@ -9,7 +9,7 @@ import { BlogsModule } from './modules/blogs/blogs.module';
 import { CoursesModule } from './modules/courses/courses.module';
 import { SharedModule } from './modules/shared/shared.module';
 import { ZoomModule } from './modules/zoom/zoom.module';
-
+import{DragDropModule}from '@angular/cdk/drag-drop'
 
 @NgModule({
   declarations: [
@@ -24,7 +24,8 @@ import { ZoomModule } from './modules/zoom/zoom.module';
     AuthModule,
     BlogsModule,
     CoursesModule,
-    ZoomModule
+    ZoomModule,
+    DragDropModule
   ],
   providers: [],
   bootstrap: [AppComponent]
