@@ -2,3 +2,108 @@
   box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.233) ;
   padding: 30px;
 }
+
+.section .btn{
+  line-height: 0;
+  padding: 10px;
+  border-radius: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -ms-border-radius: 0;
+  -o-border-radius: 0;
+}
+
+// container bg
+.container-bg {
+  width: 100%;
+  height: 100%;
+  --s: 200px;
+  /* control the size */
+  --c1: rgb(190, 203, 214);
+  --c2: rgb(200, 223, 244);
+  --c3: #fcfdfe;
+
+  background: repeating-conic-gradient(from 30deg,
+      #0000 0 120deg,
+      var(--c3) 0 180deg) calc(0.5 * var(--s)) calc(0.5 * var(--s) * 0.577),
+    repeating-conic-gradient(from 30deg,
+      var(--c1) 0 60deg,
+      var(--c2) 0 120deg,
+      var(--c3) 0 180deg);
+  background-size: var(--s) calc(var(--s) * 0.577);
+}
+// container bg
+
+// input
+.input {
+  border: 2px solid transparent;
+  width: 40em;
+  height: 3em;
+  padding-left: 0.8em;
+  outline: none;
+  overflow: hidden;
+  background-color: #F3F3F3;
+  // border-radius: 10px;
+  transition: all 0.5s;
+}
+
+textarea.input{
+  height: fit-content;
+}
+.input:hover,
+.input:focus {
+  border: 2px solid #4A9DEC;
+  box-shadow: 0px 0px 0px 7px rgb(74, 157, 236, 20%);
+  background-color: white;
+}
+
+.required::after {
+  content: "*";
+  color: red;
+}
+// input
+
+ .edit:hover {
+
+  color:#ffc85b;
+}
+
+ .delete:hover {
+  color: red;
+}
+ .edit, .delete{
+
+  display: none;
+}
+
+.section-content:hover .edit,.section-content:hover
+.delete{
+  display: block;
+}
+
+
+// dragabul
+.example-box {
+  cursor: move;
+  transition: box-shadow 200ms cubic-bezier(0, 0, 0.2, 1);
+
+  -webkit-transition: box-shadow 200ms cubic-bezier(0, 0, 0.2, 1);
+  -moz-transition: box-shadow 200ms cubic-bezier(0, 0, 0.2, 1);
+  -ms-transition: box-shadow 200ms cubic-bezier(0, 0, 0.2, 1);
+  -o-transition: box-shadow 200ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.example-box:active {
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+    0 8px 10px 1px rgba(0, 0, 0, 0.14),
+    0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+// dragabul
+
+// item icons
+.iconItem{
+  width: 80px;
+  height: 80px;
+  cursor: pointer;
+}
+// item icons
