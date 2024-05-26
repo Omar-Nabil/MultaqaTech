@@ -23,12 +23,12 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let sub of meetingesCategories;let i = index;">
+        <tr *ngFor="let meet of meetingesCategories;let i = index;">
           <th scope="row">{{i+1}}</th>
-          <td>{{sub.name}}</td>
+          <td>{{meet.name}}</td>
           <td><div class="text-center"><a class="edit" data-bs-toggle="modal"
-          data-bs-target="#updateModal" (click)="getcategory(sub.id!)"><i class="fa-solid fa-pen-to-square"></i></a></div></td>
-          <td><div class="text-center"><a class="x-mark" (click)="deletecategory(sub.id!)"><i class="fa-solid fa-circle-xmark"></i></a></div></td>
+          data-bs-target="#updateModal" (click)="getcategory(meet.id!)"><i class="fa-solid fa-pen-to-square"></i></a></div></td>
+          <td><div class="text-center"><a class="x-mark" (click)="deletecategory(meet.id!)"><i class="fa-solid fa-circle-xmark"></i></a></div></td>
         </tr>
       </tbody>
     </table>

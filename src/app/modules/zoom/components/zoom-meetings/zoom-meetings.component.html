@@ -246,126 +246,33 @@
   <div class="container custom-container">
 
       <div class="row gy-6">
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-duration="1000">
+          <div *ngFor="let meeting of meetings" class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-duration="1000">
               <!-- Zoom Meetings Item Start -->
               <div class="zoom-meetings-item">
                   <div class="zoom-meetings-item__thumbnail">
-                      <a href="zoom-meetings-single.html"><img src="assets/images/zoom-meetings/zoom-meeting-01.jpg" alt="Zoom Meetings" width="370" height="246"></a>
+                      <a ><img [src]="meeting.pictureUrl" [routerLink]="['/zooms', meeting.id]" alt="Zoom Meetings" width="370" height="246"></a>
                   </div>
-                  <div class="zoom-meetings-item__caption">
-                      <h2 class="zoom-meetings-item__title"><a href="zoom-meetings-single.html">Marketing Committee Meeting</a></h2>
+                  <div class="zoom-meetings-item__caption ">
+                      <h2 class="zoom-meetings-item__title"><a [routerLink]="['/zooms', meeting.id]">{{meeting.title}}</a></h2>
+                      <div class="dashboard-header__btn mt-5">
+                        <a class="btn btn-outline-primary" (click)="deleteMeeting(meeting.id!)"
+                         ><i class="fa-solid fa-circle-xmark"></i> <span class="text">     delete </span></a>
+                      </div>
                       <div class="zoom-meetings-item__id">
                           <span class="label">Meeting ID: </span>
-                          <span class="value">95671010984</span>
+                          <span class="value">{{meeting.meetingId}}</span>
                       </div>
                       <div class="zoom-meetings-item__meta">
-                          <p class="zoom-meetings-item__meta-action"><i class="fas fa-calendar"></i> Nov 10, 2020 3:27 PM</p>
-                          <p class="zoom-meetings-item__meta-action"><i class="fas fa-clock"></i> 45m</p>
+                          <p class="zoom-meetings-item__meta-action"><i class="fas fa-calendar"></i> {{meeting.startDate}}</p>
+                          <p class="zoom-meetings-item__meta-action"><i class="fas fa-clock"></i> {{meeting.duration}}</p>
                       </div>
                   </div>
               </div>
               <!-- Zoom Meetings Item Start -->
           </div>
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-duration="1000">
-              <!-- Zoom Meetings Item Start -->
-              <div class="zoom-meetings-item">
-                  <div class="zoom-meetings-item__thumbnail">
-                      <a href="zoom-meetings-single.html"><img src="assets/images/zoom-meetings/zoom-meeting-02.jpg" alt="Zoom Meetings" width="370" height="246"></a>
-                  </div>
-                  <div class="zoom-meetings-item__caption">
-                      <h2 class="zoom-meetings-item__title"><a href="zoom-meetings-single.html">Executive Assistant Meeting</a></h2>
-                      <div class="zoom-meetings-item__id">
-                          <span class="label">Meeting ID: </span>
-                          <span class="value">95242815687</span>
-                      </div>
-                      <div class="zoom-meetings-item__meta">
-                          <p class="zoom-meetings-item__meta-action"><i class="fas fa-calendar"></i> Dec 22, 2020 3:27 PM</p>
-                          <p class="zoom-meetings-item__meta-action"><i class="fas fa-clock"></i> 1h:20m</p>
-                      </div>
-                  </div>
-              </div>
-              <!-- Zoom Meetings Item Start -->
-          </div>
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-duration="1000">
-              <!-- Zoom Meetings Item Start -->
-              <div class="zoom-meetings-item">
-                  <div class="zoom-meetings-item__thumbnail">
-                      <a href="zoom-meetings-single.html"><img src="assets/images/zoom-meetings/zoom-meeting-03.jpg" alt="Zoom Meetings" width="370" height="246"></a>
-                  </div>
-                  <div class="zoom-meetings-item__caption">
-                      <h2 class="zoom-meetings-item__title"><a href="zoom-meetings-single.html">Website Renovation Meeting</a></h2>
-                      <div class="zoom-meetings-item__id">
-                          <span class="label">Meeting ID: </span>
-                          <span class="value">98912356536</span>
-                      </div>
-                      <div class="zoom-meetings-item__meta">
-                          <p class="zoom-meetings-item__meta-action"><i class="fas fa-calendar"></i> Dec 20, 2020 3:27 PM</p>
-                          <p class="zoom-meetings-item__meta-action"><i class="fas fa-clock"></i> 30m</p>
-                      </div>
-                  </div>
-              </div>
-              <!-- Zoom Meetings Item Start -->
-          </div>
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-duration="1000">
-              <!-- Zoom Meetings Item Start -->
-              <div class="zoom-meetings-item">
-                  <div class="zoom-meetings-item__thumbnail">
-                      <a href="zoom-meetings-single.html"><img src="assets/images/zoom-meetings/zoom-meeting-04.jpg" alt="Zoom Meetings" width="370" height="246"></a>
-                  </div>
-                  <div class="zoom-meetings-item__caption">
-                      <h2 class="zoom-meetings-item__title"><a href="zoom-meetings-single.html">Teacher Leader Team Meeting</a></h2>
-                      <div class="zoom-meetings-item__id">
-                          <span class="label">Meeting ID: </span>
-                          <span class="value">93842220661</span>
-                      </div>
-                      <div class="zoom-meetings-item__meta">
-                          <p class="zoom-meetings-item__meta-action"><i class="fas fa-calendar"></i> Dec 30, 2020 3:24 PM</p>
-                          <p class="zoom-meetings-item__meta-action"><i class="fas fa-clock"></i> 1h:15m</p>
-                      </div>
-                  </div>
-              </div>
-              <!-- Zoom Meetings Item Start -->
-          </div>
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-duration="1000">
-              <!-- Zoom Meetings Item Start -->
-              <div class="zoom-meetings-item">
-                  <div class="zoom-meetings-item__thumbnail">
-                      <a href="zoom-meetings-single.html"><img src="assets/images/zoom-meetings/zoom-meeting-05.jpg" alt="Zoom Meetings" width="370" height="246"></a>
-                  </div>
-                  <div class="zoom-meetings-item__caption">
-                      <h2 class="zoom-meetings-item__title"><a href="zoom-meetings-single.html">Team member responsibilities</a></h2>
-                      <div class="zoom-meetings-item__id">
-                          <span class="label">Meeting ID: </span>
-                          <span class="value">91453356292</span>
-                      </div>
-                      <div class="zoom-meetings-item__meta">
-                          <p class="zoom-meetings-item__meta-action"><i class="fas fa-calendar"></i> Nov 10, 2020 3:27 PM</p>
-                          <p class="zoom-meetings-item__meta-action"><i class="fas fa-clock"></i> 1h:30m</p>
-                      </div>
-                  </div>
-              </div>
-              <!-- Zoom Meetings Item Start -->
-          </div>
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-duration="1000">
-              <!-- Zoom Meetings Item Start -->
-              <div class="zoom-meetings-item">
-                  <div class="zoom-meetings-item__thumbnail">
-                      <a href="zoom-meetings-single.html"><img src="assets/images/zoom-meetings/zoom-meeting-06.jpg" alt="Zoom Meetings" width="370" height="246"></a>
-                  </div>
-                  <div class="zoom-meetings-item__caption">
-                      <h2 class="zoom-meetings-item__title"><a href="zoom-meetings-single.html">Strategic Planning Meeting</a></h2>
-                      <div class="zoom-meetings-item__id">
-                          <span class="label">Meeting ID: </span>
-                          <span class="value">99005309720</span>
-                      </div>
-                      <div class="zoom-meetings-item__meta">
-                          <p class="zoom-meetings-item__meta-action"><i class="fas fa-calendar"></i> Nov 10, 2020 3:20 PM</p>
-                          <p class="zoom-meetings-item__meta-action"><i class="fas fa-clock"></i> 40m</p>
-                      </div>
-                  </div>
-              </div>
-              <!-- Zoom Meetings Item Start -->
-          </div>
+
+
+
       </div>
 
   </div>

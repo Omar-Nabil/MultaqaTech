@@ -16,7 +16,7 @@ export class ZoomMeetingsComponent implements OnInit {
   previewUrl: string | ArrayBuffer | null = null;
   selectedFile: File | null = null;
   constructor(private _ZoomsService:ZoomsService){
-
+    this.getMeetings()
   }
 
   ngOnInit(): void {
@@ -39,6 +39,24 @@ export class ZoomMeetingsComponent implements OnInit {
 
 
   }
+  getMeetings() {
+    this._ZoomsService.getMeetings().subscribe({
+     next: (response) => {
+        this.meetings = response.data;
+     }
+   })
+ }
+ deleteMeeting(id: string) {
+  this._ZoomsService.deleteMeeting(id).subscribe({
+    next:(response)=>{console.log(response);
+      this.getMeetings();
+    },
+    error:(err)=>{console.log(err);
+
+    }
+  })
+
+}
   // addMeeting() {
   //   const meetingData = {
   //     Title: this.addMeetingForm.get('title')?.value,

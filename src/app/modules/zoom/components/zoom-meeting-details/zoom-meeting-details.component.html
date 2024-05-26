@@ -238,96 +238,60 @@
       <div class="zoom-meetings-single">
 
           <div class="zoom-meetings-single__categories">
-              <a href="#">Strategies</a>
+              <a >{{details.category}}</a>
           </div>
-          <h2 class="zoom-meetings-single__title">Marketing Committee Meeting</h2>
+          <h2 class="zoom-meetings-single__title">{{details.title}}</h2>
 
           <div class="zoom-meetings-single__thumbnail">
-              <img src="assets/images/zoom-meetings/zoom-meeting-single.jpg" alt="Zoom Meeting" width="1170" height="350">
+              <img [src]="details.pictureUrl" alt="Zoom Meeting" width="1170" height="350">
           </div>
 
           <div class="row gy-8">
-              <div class="col-lg-8">
+              <div class="col-lg-7">
                   <div class="zoom-meetings-single__description">
-                      <h3>I. Marketing Budget</h3>
-                      <ol>
-                          <li>2013 carry over – 12,000$</li>
-                          <li>2014 budget – $16,500</li>
-                      </ol>
-
-                      <h3>II. Marketing Plan</h3>
-
-                      <ol>
-                          <li>Marketing objectives
-                              <ul>
-                                  <li>Business recruitment – Incentives/Available Land/Assistance</li>
-                                  <li>Community name recognition</li>
-                                  <li>Amenities/Family Recruitment</li>
-                              </ul>
-                          </li>
-                          <li>Community support/matching grants
-                              <ol>
-                                  <li>Hillsboro Partners in Marketing (PIM) Grant
-                                      <ul>
-                                          <li>Marketing plan grant $2,500 match for $5,500 total project</li>
-                                          <li>Business recruitment grant $2,300 match for $22,000 total project</li>
-                                      </ul>
-                                  </li>
-                                  <li>May-Port PIM Grant
-                                      <ul>
-                                          <li>Marketing plan grant $2,500 match for $5,500 total project</li>
-                                          <li>Business recruitment grant $2,300 match for $22,000 total project</li>
-                                      </ul>
-                                  </li>
-                                  <li>Other communities?</li>
-                              </ol>
-                          </li>
-                          <li>County-wide marketing
-                              <ul>
-                                  <li>Newman Billboard along I-29 – $19,000 for 1 year contract</li>
-                                  <li>Constructing/Renting/Printing billboard on I-29 for Buxton and Hillsboro commercial property – $15,000 approx.</li>
-                              </ul>
-                          </li>
-                          <li>Organizational marketing
-                              <ul>
-                                  <li>Local advertising describing our organization – $2,500/yr.</li>
-                                  <li>Quarterly newsletter printed and mailed – $500/yr.</li>
-                              </ul>
-                          </li>
-                      </ol>
+                      <h3>MEETING CONTENT:</h3>
+                      <p>{{details.content}}</p>
                   </div>
               </div>
-              <div class="col-lg-4">
+              <div class="col-lg-5">
                   <div class="zoom-meetings-single__sidebar">
                       <h3 class="zoom-meetings-single__sidebar-title">Details</h3>
 
                       <div class="zoom-meetings-single__sidebar-content">
                           <div class="zoom-meetings-single__sidebar-list">
                               <span class="label">Hosted By</span>
-                              <span class="value">Owen Christ</span>
+                              <span class="value">{{details.authorName}}</span>
                           </div>
                           <div class="zoom-meetings-single__sidebar-list">
                               <span class="label">Start</span>
-                              <span class="value">Nov 10, 2020 9:27 PM</span>
+                              <span class="value">{{details.startDate}}</span>
                           </div>
                           <div class="zoom-meetings-single__sidebar-list">
                               <span class="label">Category</span>
-                              <span class="value">Strategies</span>
+                              <span class="value">{{details.category}}</span>
                           </div>
                           <div class="zoom-meetings-single__sidebar-list">
                               <span class="label">Duration</span>
-                              <span class="value">45 minutes</span>
+                              <span class="value">{{details.duration}} mins</span>
                           </div>
                           <div class="zoom-meetings-single__sidebar-list">
                               <span class="label">Timezone</span>
-                              <span class="value">Atlantic/Azores</span>
+                              <span class="value">{{details.timeZone}}</span>
+                          </div>
+                          <div class="zoom-meetings-single__sidebar-list">
+                              <span class="label">Meeting ID:</span>
+                              <span class="value">{{details.meetingId}}</span>
                           </div>
 
-                          <p class="zoom-meetings-single__notice"><strong>Note</strong>: Countdown time is shown based on your local timezone.</p>
+                      </div>
+                      <p>
+                        Meeting link:
+                      </p>
+                      <div class="zoom-meetings-single__sidebar-list">
+                        <div class="zoom-meetings-single__categories">
+                          <a [href]="details.meetingUrl" >{{details.meetingUrl}}</a>
                       </div>
 
-                      <div class="zoom-meetings-single__sidebar-content mt-6">
-                          <p>This meeting is no longer valid and cannot be joined !</p>
                       </div>
                   </div>
               </div>

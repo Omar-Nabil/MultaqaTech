@@ -44,4 +44,10 @@ export class ZoomsService {
   });
   return this._HttpClient.get(environment.baseURL+'/api/ZoomMeeting/'+id, {headers});
  }
+ getMeetings():Observable<any> {
+  const headers = new HttpHeaders({
+    'Authorization': `Bearer ${localStorage.getItem('userToken')}`
+  });
+  return this._HttpClient.get(environment.baseURL+'/api/ZoomMeeting/', {headers});
+ }
 }
