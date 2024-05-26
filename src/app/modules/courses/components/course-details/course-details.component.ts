@@ -35,8 +35,14 @@ export class CourseDetailsComponent implements OnInit {
   ngOnInit(): void {
     start();
      $('body,html').scrollTop(-10);
+     this.route.params.subscribe(params => {
+      // Update courseId with the new parameter value
+      this.courseId = params['id'];
+      // Call loadData with the new courseId
+      this.getCourse();
+    });
      this._CourseService.cartItems.subscribe(newcartItems => {
-      this.CourseAddedSuccessfully = newcartItems.some((course:any) => course?.courseId == this.course?.id);
+      this.CourseAddedSuccessfully = newcartItems?.some((course:any) => course?.courseId == this.course?.id);
      })
   }
   chaeckIfCourseInCart() {
@@ -166,6 +172,7 @@ export class CourseDetailsComponent implements OnInit {
       next:(res) => {
         console.log(res);
         this.CourseAddedSuccessfully = true;
+        this.cartItems = res.basketItems;
         this._CourseService.cartItems.next(res.basketItems);
       },
       error:(err) => console.log(err)

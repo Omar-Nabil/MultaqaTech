@@ -53,6 +53,7 @@ export class CartComponent implements OnInit {
     this._CourseService.ClearShoppingCart().subscribe({
       next:(res) => {
         this.cartItems = res;
+        this._CourseService.cartItems.next(res);
         this.calcTotalPrice();
       },
       error:(err) => console.log(err)

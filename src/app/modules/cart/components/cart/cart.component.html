@@ -78,7 +78,7 @@
             </thead>
             <tbody>
               <tr *ngFor="let item of cartItems">
-                <td class="product">
+                <td class="product"  [routerLink]="['/course', item?.courseId]" style="cursor: pointer;">
                   <div class="cart-product">
                     <div class="cart-product__thumbnail">
                       <img src="assets/images/product/product-2.png" alt="Product" width="70" height="81">

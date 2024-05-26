@@ -19,7 +19,8 @@ export class BlogDetailsComponent implements OnInit {
    commentControl!:FormControl ;
    editComment!:FormControl ;
    isAuther:boolean = false;
-
+  previewUrl: string | ArrayBuffer | null = null;
+  selectedFile: File | null = null;
   categories:any[] = [];
   subjects:any[]=[];
   editBlogForm!: FormGroup;
@@ -57,7 +58,18 @@ export class BlogDetailsComponent implements OnInit {
    toggleDropdown() {
     this.showDropdown = !this.showDropdown;
  }
+onFileChange(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    const file = input.files?.[0];
 
+    if (file) {
+      this.selectedFile = file;
+
+      const reader = new FileReader();
+      reader.onload = () => this.previewUrl = reader.result;
+      reader.readAsDataURL(file);
+    }
+  }
  isSelected(subjectId: number): boolean {
     const selectedSubjectIds = this.editBlogForm.get('subjectId')?.value;
     return selectedSubjectIds.includes(subjectId);
@@ -88,14 +100,25 @@ export class BlogDetailsComponent implements OnInit {
     });
   }
   submitEditYourPost() {
-    const blogData = {
-      title: this.editBlogForm.get('title')?.value,
-      content: this.editBlogForm.get('content')?.value,
-      pictureUrl: this.editBlogForm.get('pictureUrl')?.value,
-      categoryId: this.editBlogForm.get('categoryId')?.value,
-      tags: this.editBlogForm.get('subjectId')?.value
+    const formData = new FormData();
+    formData.append('title', this.editBlogForm.get('title')?.value);
+    formData.append('content', this.editBlogForm.get('content')?.value);
+    formData.append('categoryId', this.editBlogForm.get('categoryId')?.value);
+
+    // Handle subjects
+    const selectedSubjects = this.editBlogForm.get('subjectId')?.value;
+    selectedSubjects.forEach((subjectId: any) => {
+      formData.append('subjectId', subjectId);
+    });
+
+    // Append the file to formData
+    if (this.selectedFile) {
+      formData.append('pictureUrl', this.selectedFile, this.selectedFile.name);
+    } else {
+      // If no new file is selected, use the existing picture URL
+      formData.append('pictureUrl', this.editBlogForm.get('pictureUrl')?.value);
     }
-    this._BlogsService.editBlog(blogData, this.blogDetailes.id).subscribe({
+    this._BlogsService.editBlog(formData, this.blogDetailes.id).subscribe({
       next:(res) => {
         this.blogDetailes = res;
         console.log(res);
