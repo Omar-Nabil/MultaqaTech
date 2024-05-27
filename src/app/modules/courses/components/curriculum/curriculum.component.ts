@@ -3,8 +3,11 @@ import * as main from '../../../../../main';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { CurriculumSectionService } from '../../services/curriculum-section.service';
-import { section_get } from '../../interfaces/curriculum';
-import {moveItemInArray} from '@angular/cdk/drag-drop'
+import { item_get, section_get } from '../../interfaces/curriculum';
+import { moveItemInArray } from '@angular/cdk/drag-drop'
+import { CurriculumLectureService } from '../../services/curriculum-lecture.service';
+import { CurriculumItemService } from '../../services/curriculum-item.service';
+
 @Component({
   selector: 'app-curriculum',
   templateUrl: './curriculum.component.html',
@@ -15,17 +18,26 @@ export class CurriculumComponent implements OnInit{
   addSectionBool: boolean = false;
   updateSectionBool: boolean = false;
   addlectureBool: boolean = false;
+  addQuizBool: boolean = false;
   sectionForm!: FormGroup;
+  lectureForm!: FormGroup;
   sections:section_get[]=[]
   secttionIdForUpdate: any = 0
   sectionReorder: number[] = []
   parentSectionId: number = 0
-  addItemBool:boolean=false
+  addItemBool: boolean = false
+  video!: File
+  allItems: {
+    id: number,
+    items:item_get[]
+  }[]=[]
 
   constructor(private _fb: FormBuilder, private _ActivatedRoute: ActivatedRoute
-    ,private _sectionService:CurriculumSectionService
+    , private _sectionService: CurriculumSectionService, private _lectureService: CurriculumLectureService
+    ,private _itemsService:CurriculumItemService
   ) {
     this.createSectionForm()
+    this.createLectureForm()
 this.getSections()
   }
 
@@ -42,6 +54,18 @@ this.getSections()
       title:['',Validators.required],
       objectives:['']
     })
+  }
+  createLectureForm() {
+    this.lectureForm = this._fb.group({
+      title:['',Validators.required],
+      description: [''],
+      video:['',Validators.required]
+    })
+  }
+
+    onVideoChange(event:any) {
+this.video=event.target.files[0]
+
   }
 
   addSection() {
@@ -64,6 +88,7 @@ this.getSections()
     this._sectionService.getSectionByCourseId(this.courseId).subscribe({
       next: (res) => {
         this.sections = res;
+        this.getItems()
       }
     })
   }
@@ -122,7 +147,44 @@ this.getSections()
     this.parentSectionId = id
     this.addItemBool=true
   }
-  addItem() {
+  addItemlecture() {
+    this.addlectureBool=true
+    this.addItemBool = false
+
+  }
+  addItemQuiz() {
+    this.addQuizBool=true
     this.addItemBool=false
+  }
+
+  addLecture() {
+    const data = new FormData()
+    data.append('Title',this.lectureForm.get('title')?.value)
+    data.append('Description',this.lectureForm.get('description')?.value)
+    data.append('VideoUrl', this.video)
+    data.append('CurriculumSectionId', `${this.parentSectionId}`)
+
+    this._lectureService.addLecture(data).subscribe({
+      next: (res) => {
+        console.log(res);
+        this.addlectureBool = false
+        this.createLectureForm()
+        this.getSections()
+     }
+   })
+
+  }
+
+  getItems() {
+    var items: item_get[];
+    this.allItems=[]
+         this.sections.forEach(element => {
+          this._itemsService.getItemsforSection(element.id).subscribe({
+            next: (res) => {
+              items=res as item_get[];
+              this.allItems.push({ id: element.id, items: items })
+      }
+        });
+    })
   }
 }
