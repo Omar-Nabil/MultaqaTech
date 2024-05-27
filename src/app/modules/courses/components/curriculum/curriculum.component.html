@@ -92,9 +92,12 @@
           <!-- items display -->
           <div *ngFor="let item of allItems">
             <div *ngIf="section.id==item.id">
-              <div *ngFor="let item of item.items" class="section mb-3 d-flex justify-content-between items" style="background-color: white;">
-                <h5 class="w-75">{{item.itemType}} : <span class="fw-medium"><i class="fa-regular fa-file"></i>
+              <div *ngFor="let item of item.items" class="section mb-3 d-flex justify-content-between items align-items-center" style="background-color: white;">
+                <h5 class="w-75">{{item.itemType}} : <span class="fw-medium">
+                  <i *ngIf="item.itemType=='Lecture'" class="fa-regular fa-file"></i>
+                  <i *ngIf="item.itemType=='Quiz'" class="fa-regular fa-circle-question"></i>
                     {{item.title}}</span></h5>
+                    <button *ngIf="item.itemType=='Quiz'"  class="btn btn-outline-primary">new question</button>
                     <span class="fs-6">
                       <a (click)="getLectureForUpdate(item.itemType,item.id,section.id)"><i class="fa-solid fa-pen-to-square edit-item"></i></a>
                       <span class="m-3"></span>
