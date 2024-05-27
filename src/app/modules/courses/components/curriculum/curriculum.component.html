@@ -96,9 +96,9 @@
                 <h5 class="w-75">{{item.itemType}} : <span class="fw-medium"><i class="fa-regular fa-file"></i>
                     {{item.title}}</span></h5>
                     <span class="fs-6">
-                      <a (click)="getLectureForUpdate(item.id,section.id)"><i class="fa-solid fa-pen-to-square edit-item"></i></a>
+                      <a (click)="getLectureForUpdate(item.itemType,item.id,section.id)"><i class="fa-solid fa-pen-to-square edit-item"></i></a>
                       <span class="m-3"></span>
-                      <a (click)="deleteLecture(item.id)"><i class="fa-solid fa-trash delete-item"></i></a>
+                      <a (click)="deleteLecture(item.itemType,item.id)"><i class="fa-solid fa-trash delete-item"></i></a>
                     </span>
               </div>
           </div>
@@ -113,7 +113,10 @@
           <span class="fs-4 fw-normal mt-3">Quiz</span>
           </div>
           </div>
-          <div *ngIf="((addlectureBool && parentSectionId ==section.id)||(updatelectureBool && parentSectionId ==section.id))&& !addItemBool" id="lectureForm" class="section mb-3 px-15 pt-10" style="background-color: white;">
+          <!-- divfor lecture form start -->
+          <div
+            *ngIf="((addlectureBool && parentSectionId ==section.id)||(updatelectureBool && parentSectionId ==section.id))&& !addItemBool"
+            id="lectureForm" class="section mb-3 px-15 pt-10" style="background-color: white;">
             <!-- lecture form -->
             <form [formGroup]="lectureForm">
               <!-- title input  -->
@@ -136,7 +139,7 @@
               <!-- video input  -->
               <div class="w-100 d-flex align-items-center flex-wrap">
                 <label for="video" class="fs-4 fw-semibold  w-25 required">video</label>
-                <input name="video" class="input w-75 p-1" type="file" formControlName="video" (change)="onVideoChange($event)">
+                <input name="video" class="input w-75 p-1" type="file" formControlName="video" (change)="onFileChange($event)">
                 <div class="w-25"></div>
                 <p *ngIf="lectureForm.get('video')?.touched&&lectureForm.get('video')?.getError('required')"
                   class="text-danger mt-2 fs-6 fw-medium">video is required</p>
@@ -144,14 +147,59 @@
               <!-- video input  -->
 
               <!-- btn -->
-              <button *ngIf="addlectureBool" (click)="addLecture()" class="btn btn-outline-primary d-block ms-auto my-4 fw-semibold"
-                [disabled]="lectureForm.invalid">Save</button>
-              <button *ngIf="updatelectureBool" (click)="updateLecture()" class="btn btn-outline-primary d-block ms-auto my-4 fw-semibold"
-                [disabled]="lectureForm.invalid">Save</button>
+              <button *ngIf="addlectureBool" (click)="addLecture()"
+                class="btn btn-outline-primary d-block ms-auto my-4 fw-semibold" [disabled]="lectureForm.invalid">Save</button>
+              <button *ngIf="updatelectureBool" (click)="updateLecture()"
+                class="btn btn-outline-primary d-block ms-auto my-4 fw-semibold" [disabled]="lectureForm.invalid">Save</button>
               <!-- btn -->
             </form>
             <!-- lecture form -->
           </div>
+          <!-- divfor lecture form end -->
+
+          <!-- divfor quiz form start -->
+          <div
+            *ngIf="((addQuizBool && parentSectionId ==section.id)||(updateQuizBool && parentSectionId ==section.id))&& !addItemBool"
+            id="lectureForm" class="section mb-3 px-15 pt-10" style="background-color: white;">
+            <!-- quiz form -->
+            <form [formGroup]="quizForm">
+              <!-- title input  -->
+              <div class="w-100 d-flex align-items-center mb-5 flex-wrap">
+                <label for="title" class="fs-4 fw-semibold  w-25 required">Title</label>
+                <input class="input w-75" type="text" name="title" formControlName="title" />
+                <div class="w-25"></div>
+                <p *ngIf="quizForm.get('title')?.touched&&quizForm.get('title')?.getError('required')"
+                  class="text-danger mt-2 fs-6 fw-medium">title is required</p>
+              </div>
+
+              <!-- title input  -->
+              <!-- description input  -->
+              <div class="w-100 d-flex align-items-center mb-5">
+
+                <label for="description" class="fs-4 fw-semibold  w-25">Description</label>
+                <textarea name="description" class="input w-75" rows="4" formControlName="description"></textarea>
+              </div>
+              <!-- description input  -->
+              <!-- img input  -->
+              <div class="w-100 d-flex align-items-center flex-wrap">
+                <label for="img" class="fs-4 fw-semibold  w-25 required">Picture</label>
+                <input name="img" class="input w-75 p-1" type="file" formControlName="img" (change)="onFileChange($event)">
+                <div class="w-25"></div>
+                <p *ngIf="quizForm.get('img')?.touched&&quizForm.get('img')?.getError('required')"
+                  class="text-danger mt-2 fs-6 fw-medium">Picture is required</p>
+              </div>
+              <!-- img input  -->
+
+              <!-- btn -->
+              <button *ngIf="addQuizBool" (click)="addQuiz()"
+                class="btn btn-outline-primary d-block ms-auto my-4 fw-semibold" [disabled]="quizForm.invalid">Save</button>
+              <button *ngIf="updateQuizBool" (click)="updateQuiz()"
+                class="btn btn-outline-primary d-block ms-auto my-4 fw-semibold" [disabled]="quizForm.invalid">Save</button>
+              <!-- btn -->
+            </form>
+            <!-- quiz form -->
+          </div>
+          <!-- divfor quiz form end -->
           <button (click)="displayItem(section.id)" *ngIf="!((addItemBool || addlectureBool || addQuizBool) && parentSectionId ==section.id)" class="btn btn-outline-primary fs-5 fw-semibold "><i
               class="fa-solid fa-plus"></i> Item</button>
 

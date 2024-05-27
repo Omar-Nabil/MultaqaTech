@@ -7,6 +7,7 @@ import { item_get, section_get } from '../../interfaces/curriculum';
 import { moveItemInArray } from '@angular/cdk/drag-drop'
 import { CurriculumLectureService } from '../../services/curriculum-lecture.service';
 import { CurriculumItemService } from '../../services/curriculum-item.service';
+import { CurriculumQuizService } from '../../services/curriculum-quiz.service';
 
 @Component({
   selector: 'app-curriculum',
@@ -20,15 +21,18 @@ export class CurriculumComponent implements OnInit{
   addlectureBool: boolean = false;
   updatelectureBool: boolean = false;
   addQuizBool: boolean = false;
+  updateQuizBool: boolean = false;
   sectionForm!: FormGroup;
   lectureForm!: FormGroup;
+  quizForm!: FormGroup;
   sections:section_get[]=[]
   secttionIdForUpdate: any = 0
   lectureIdForUpdate: any = 0
+  quizIdForUpdate: any = 0
   sectionReorder: number[] = []
   parentSectionId: number = 0
   addItemBool: boolean = false
-  video!: File
+  file!: File
   allItems: {
     id: number,
     items:item_get[]
@@ -36,10 +40,11 @@ export class CurriculumComponent implements OnInit{
 
   constructor(private _fb: FormBuilder, private _ActivatedRoute: ActivatedRoute
     , private _sectionService: CurriculumSectionService, private _lectureService: CurriculumLectureService
-    ,private _itemsService:CurriculumItemService
+    ,private _itemsService:CurriculumItemService,private _quizService:CurriculumQuizService
   ) {
     this.createSectionForm()
     this.createLectureForm()
+    this.createQuizForm()
 this.getSections()
   }
 
@@ -64,9 +69,16 @@ this.getSections()
       video:['',Validators.required]
     })
   }
+  createQuizForm() {
+    this.quizForm = this._fb.group({
+      title:['',Validators.required],
+      description: [''],
+      img:['',Validators.required]
+    })
+  }
 
-    onVideoChange(event:any) {
-this.video=event.target.files[0]
+    onFileChange(event:any) {
+this.file=event.target.files[0]
 
   }
 
@@ -164,7 +176,7 @@ this.video=event.target.files[0]
     const data = new FormData()
     data.append('Title',this.lectureForm.get('title')?.value)
     data.append('Description',this.lectureForm.get('description')?.value)
-    data.append('VideoUrl', this.video)
+    data.append('VideoUrl', this.file)
     data.append('CurriculumSectionId', `${this.parentSectionId}`)
 
     this._lectureService.addLecture(data).subscribe({
@@ -172,6 +184,23 @@ this.video=event.target.files[0]
         console.log(res);
         this.addlectureBool = false
         this.createLectureForm()
+        this.getSections()
+     }
+   })
+
+  }
+  addQuiz() {
+    const data = new FormData()
+    data.append('Title',this.quizForm.get('title')?.value)
+    data.append('Description',this.quizForm.get('description')?.value)
+    data.append('PictureUrl', this.file)
+    data.append('CurriculumSectionId', `${this.parentSectionId}`)
+
+    this._quizService.addQuiz(data).subscribe({
+      next: (res) => {
+        console.log(res);
+        this.addQuizBool = false
+        this.createQuizForm()
         this.getSections()
      }
    })
@@ -191,8 +220,9 @@ this.video=event.target.files[0]
     })
   }
 
-  getLectureForUpdate(id:any,parentId:any) {
-    this.lectureIdForUpdate = id;
+  getLectureForUpdate(type:any,id:any,parentId:any) {
+    if (type=='Lecture') {
+      this.lectureIdForUpdate = id;
     this.parentSectionId=parentId
     this.updatelectureBool = true;
     this._lectureService.getLecture(id).subscribe({
@@ -205,13 +235,30 @@ this.video=event.target.files[0]
         this.lectureForm.get('description')?.setValue(res.description)
       }
     })
+    }
+    else {
+ this.quizIdForUpdate = id;
+    this.parentSectionId=parentId
+    this.updateQuizBool = true;
+    this._quizService.getQuiz(id).subscribe({
+      next: (res) => {
+        console.log(res);
+
+        $('body,html').scrollTop($('#lectureForm').offset()?.top!)
+
+        this.quizForm.get('title')?.setValue(res.title)
+        this.quizForm.get('description')?.setValue(res.description)
+      }
+    })
+    }
   }
+
 
   updateLecture() {
    const data = new FormData()
     data.append('Title',this.lectureForm.get('title')?.value)
     data.append('Description',this.lectureForm.get('description')?.value)
-    data.append('VideoUrl', this.video)
+    data.append('VideoUrl', this.file)
     data.append('CurriculumSectionId', `${this.parentSectionId}`)
 
     this._lectureService.updateLecture(this.lectureIdForUpdate,data).subscribe({
@@ -223,10 +270,36 @@ this.video=event.target.files[0]
     })
   }
 
-  deleteLecture(id:any) {
-    this._lectureService.deleteLecture(id).subscribe({
+  deleteLecture(type: any, id: any) {
+    if (type == 'Lecture') {
+
+      this._lectureService.deleteLecture(id).subscribe({
+        next: (res) => {
+          this.getSections()
+        }
+      })
+    }
+    else {
+      this._quizService.deleteQuiz(id).subscribe({
+        next: (res) => {
+          this.getSections()
+        }
+      })
+    }
+  }
+
+   updateQuiz() {
+   const data = new FormData()
+    data.append('Title',this.quizForm.get('title')?.value)
+    data.append('Description',this.quizForm.get('description')?.value)
+    data.append('PictureUrl', this.file)
+    data.append('CurriculumSectionId', `${this.parentSectionId}`)
+
+    this._quizService.updateQuiz(this.quizIdForUpdate,data).subscribe({
       next: (res) => {
         this.getSections()
+        this.updateQuizBool = false
+        this.createQuizForm()
       }
     })
   }
