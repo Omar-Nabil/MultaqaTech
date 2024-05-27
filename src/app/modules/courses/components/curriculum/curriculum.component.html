@@ -80,9 +80,9 @@
         <div class="w-100 d-flex justify-content-between mb-5">
           <h4 class="w-75">Section {{i+1}} : <span class="fw-medium"><i class="fa-regular fa-file"></i>
               {{section.title}}</span></h4>
-          <span>
+          <span class="fs-5">
             <a (click)="getSectionForUpdate(section.id)"><i class="fa-solid fa-pen-to-square edit"></i></a>
-            <span class="m-1"></span>
+            <span class="m-3"></span>
             <a (click)="deleteSection(section.id)"><i class="fa-solid fa-trash delete"></i></a>
           </span>
         </div>
@@ -92,15 +92,20 @@
           <!-- items display -->
           <div *ngFor="let item of allItems">
             <div *ngIf="section.id==item.id">
-              <div *ngFor="let item of item.items" class="section mb-3" style="background-color: white;">
+              <div *ngFor="let item of item.items" class="section mb-3 d-flex justify-content-between items" style="background-color: white;">
                 <h5 class="w-75">{{item.itemType}} : <span class="fw-medium"><i class="fa-regular fa-file"></i>
                     {{item.title}}</span></h5>
+                    <span class="fs-6">
+                      <a (click)="getLectureForUpdate(item.id,section.id)"><i class="fa-solid fa-pen-to-square edit-item"></i></a>
+                      <span class="m-3"></span>
+                      <a (click)="deleteLecture(item.id)"><i class="fa-solid fa-trash delete-item"></i></a>
+                    </span>
               </div>
           </div>
           </div>
           <!-- items display -->
 
-          <div *ngIf="addItemBool && parentSectionId ==section.id" class="d-flex justify-content-around">
+          <div *ngIf="addItemBool && parentSectionId ==section.id" class="d-flex justify-content-around mt-7">
           <div class="d-flex flex-column align-items-center"><img  (click)="addItemlecture()" class="iconItem" src="assets/images/lectureIcon.png" alt="">
           <span class="fs-4 fw-normal mt-3">Lecture</span>
           </div>
@@ -108,7 +113,7 @@
           <span class="fs-4 fw-normal mt-3">Quiz</span>
           </div>
           </div>
-          <div *ngIf="addlectureBool && parentSectionId ==section.id" class="section mb-3 px-15 pt-10" style="background-color: white;">
+          <div *ngIf="((addlectureBool && parentSectionId ==section.id)||(updatelectureBool && parentSectionId ==section.id))&& !addItemBool" id="lectureForm" class="section mb-3 px-15 pt-10" style="background-color: white;">
             <!-- lecture form -->
             <form [formGroup]="lectureForm">
               <!-- title input  -->
@@ -139,7 +144,9 @@
               <!-- video input  -->
 
               <!-- btn -->
-              <button (click)="addLecture()" class="btn btn-outline-primary d-block ms-auto my-4 fw-semibold"
+              <button *ngIf="addlectureBool" (click)="addLecture()" class="btn btn-outline-primary d-block ms-auto my-4 fw-semibold"
+                [disabled]="lectureForm.invalid">Save</button>
+              <button *ngIf="updatelectureBool" (click)="updateLecture()" class="btn btn-outline-primary d-block ms-auto my-4 fw-semibold"
                 [disabled]="lectureForm.invalid">Save</button>
               <!-- btn -->
             </form>

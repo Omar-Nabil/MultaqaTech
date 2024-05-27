@@ -80,6 +80,25 @@ textarea.input{
 .delete{
   display: block;
 }
+// item icons
+
+ .edit-item:hover {
+
+  color:#ffc85b;
+}
+
+ .delete-item:hover {
+  color: red;
+}
+ .edit-item, .delete-item{
+
+  display: none;
+}
+
+.items:hover .edit-item,.items:hover
+.delete-item{
+  display: block;
+}
 
 
 // dragabul

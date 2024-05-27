@@ -18,11 +18,13 @@ export class CurriculumComponent implements OnInit{
   addSectionBool: boolean = false;
   updateSectionBool: boolean = false;
   addlectureBool: boolean = false;
+  updatelectureBool: boolean = false;
   addQuizBool: boolean = false;
   sectionForm!: FormGroup;
   lectureForm!: FormGroup;
   sections:section_get[]=[]
   secttionIdForUpdate: any = 0
+  lectureIdForUpdate: any = 0
   sectionReorder: number[] = []
   parentSectionId: number = 0
   addItemBool: boolean = false
@@ -145,7 +147,8 @@ this.video=event.target.files[0]
 
   displayItem(id:any) {
     this.parentSectionId = id
-    this.addItemBool=true
+    this.addItemBool = true
+    this.updatelectureBool=false
   }
   addItemlecture() {
     this.addlectureBool=true
@@ -185,6 +188,46 @@ this.video=event.target.files[0]
               this.allItems.push({ id: element.id, items: items })
       }
         });
+    })
+  }
+
+  getLectureForUpdate(id:any,parentId:any) {
+    this.lectureIdForUpdate = id;
+    this.parentSectionId=parentId
+    this.updatelectureBool = true;
+    this._lectureService.getLecture(id).subscribe({
+      next: (res) => {
+        console.log(res);
+
+        $('body,html').scrollTop($('#lectureForm').offset()?.top!)
+
+        this.lectureForm.get('title')?.setValue(res.title)
+        this.lectureForm.get('description')?.setValue(res.description)
+      }
+    })
+  }
+
+  updateLecture() {
+   const data = new FormData()
+    data.append('Title',this.lectureForm.get('title')?.value)
+    data.append('Description',this.lectureForm.get('description')?.value)
+    data.append('VideoUrl', this.video)
+    data.append('CurriculumSectionId', `${this.parentSectionId}`)
+
+    this._lectureService.updateLecture(this.lectureIdForUpdate,data).subscribe({
+      next: (res) => {
+        this.getSections()
+        this.updatelectureBool = false
+        this.createLectureForm()
+      }
+    })
+  }
+
+  deleteLecture(id:any) {
+    this._lectureService.deleteLecture(id).subscribe({
+      next: (res) => {
+        this.getSections()
+      }
     })
   }
 }

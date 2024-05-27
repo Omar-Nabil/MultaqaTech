@@ -18,19 +18,19 @@ export class CurriculumLectureService {
   }
   getLecture(id: any): Observable<any> {
     const  headers = new HttpHeaders({
-    'Autherization':`Bearer ${localStorage.getItem('userToken')}`
+    'Authorization':`Bearer ${localStorage.getItem('userToken')}`
   })
     return this._HttpClient.get(environment.baseURL+`/api/Lectures/${id}`,{headers})
   }
   updateLecture(id:any,data: any): Observable<any> {
     const  headers = new HttpHeaders({
-    'Autherization':`Bearer ${localStorage.getItem('userToken')}`
+    'Authorization':`Bearer ${localStorage.getItem('userToken')}`
   })
     return this._HttpClient.put(environment.baseURL+`/api/Lectures/${id}`,data,{headers})
   }
   deleteLecture(id: any): Observable<any> {
     const  headers = new HttpHeaders({
-    'Autherization':`Bearer ${localStorage.getItem('userToken')}`
+    'Authorization':`Bearer ${localStorage.getItem('userToken')}`
   })
     return this._HttpClient.delete(environment.baseURL+`/api/Lectures/${id}`,{headers})
   }
