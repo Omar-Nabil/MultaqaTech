@@ -1,0 +1,17 @@
+<div class="translate vh-100" style="background-color: #F3F5F2;">
+  <div class="container py-19">
+    <div class="row row-cols-1 row-cols-md-2">
+      <div class="col">
+        <div class="ar">
+          <textarea   [formControl]="textInArabic" placeholder="Enter Your Text In Arabic" style="height: 250px;direction: ltr;" cols="30" rows="10" class="w-100 form-control"></textarea>
+        </div>
+        <button [disabled]="textInArabic.invalid" type="submit" class="btn btn-primary mt-3" (click)="translate()">translate</button>
+      </div>
+      <div class="col">
+        <div class="en">
+          <p class="w-100 p-3" style="height: 250px;background-color: white;border-radius: 10px;">{{translatedText}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
