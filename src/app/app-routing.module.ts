@@ -12,6 +12,7 @@ import { CourseDetailsComponent } from './modules/courses/components/course-deta
 import { CoursesComponent } from './modules/courses/components/courses/courses.component';
 import { CurriculumComponent } from './modules/courses/components/curriculum/curriculum.component';
 import { HomeComponent } from './modules/courses/components/home/home.component';
+import { ChatbotComponent } from './modules/pages/chatbot/chatbot.component';
 import { TranslationComponent } from './modules/pages/translation/translation.component';
 import { NotFound404Component } from './modules/shared/components/not-found404/not-found404.component';
 import { ZoomMeetingDetailsComponent } from './modules/zoom/components/zoom-meeting-details/zoom-meeting-details.component';
@@ -24,7 +25,8 @@ const routes: Routes = [
     {path:'api/Account/ResetPassword', component:ForgotPasswordComponent},
     {path:'api/Account/ConfirmEmail', component: ConfirmEmailComponent},
     {path:'dashboard', loadChildren:()=>import('../app/modules/dasdboard/dasdboard.module').then((res)=>res.DasdboardModule), canActivate:[authGuard] },
-    {path:'translation', component: TranslationComponent}
+    {path:'translation', component: TranslationComponent},
+    {path:'chatbot', component:ChatbotComponent}
   ]},
   {path:'', component:LayoutwithnavbarComponent, children:[
     {path:'home', component:HomeComponent, canActivate:[authGuard]},
