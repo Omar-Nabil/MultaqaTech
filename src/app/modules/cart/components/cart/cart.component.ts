@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CourseService } from 'src/app/modules/courses/services/course.service';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-cart',
@@ -9,7 +10,7 @@ import { CourseService } from 'src/app/modules/courses/services/course.service';
 export class CartComponent implements OnInit {
   cartItems!:any[];
   TotalPrice:Number = 0;
-  constructor(private _CourseService:CourseService) { }
+  constructor(private _CourseService:CourseService, private cartService:CartService) { }
 
   ngOnInit() {
     this.getCartItems();
@@ -38,6 +39,8 @@ export class CartComponent implements OnInit {
   }
 
   deleteItemFromCart(courseId:Number) {
+    console.log(courseId);
+
     this._CourseService.RemoveItemFromBasket(courseId).subscribe({
       next:(res) => {
         console.log(res);
@@ -55,6 +58,25 @@ export class CartComponent implements OnInit {
         this.cartItems = res;
         this._CourseService.cartItems.next(res);
         this.calcTotalPrice();
+      },
+      error:(err) => console.log(err)
+
+    })
+  }
+
+  Checkout() {
+    console.log(this.cartItems);
+    let order = {
+      basket: {
+        basketItems: this.cartItems,
+        coupon:'ewdd',
+        isCouponApplied:true,
+        paymentType:0
+      }
+    };
+    this.cartService.Checkout(order).subscribe({
+      next:(res) => {
+        console.log(res);
       },
       error:(err) => console.log(err)
 

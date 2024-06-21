@@ -75,18 +75,18 @@ export class CourseService {
     return this._HttpClient.get(environment.baseURL+`/api/Courses/${id}`,{headers})
   }
 
-  AddCourseToCart(course: any): Observable<any>{
+  AddCourseToCart(courseId: any): Observable<any>{
     const headers = new HttpHeaders({
       'Authorization':`Bearer ${localStorage.getItem('userToken')}`
     });
-    return this._HttpClient.post(environment.baseURL+'/api/Baskets/UpdateBasketWithBasketItem',course,{headers});
+    return this._HttpClient.post(environment.baseURL+`/api/Baskets/UpdateBasketWithBasketItem?courseId=${courseId}`,{},{headers});
   }
 
   RemoveItemFromBasket(courseId: Number): Observable<any>{
     const headers = new HttpHeaders({
       'Authorization':`Bearer ${localStorage.getItem('userToken')}`
     });
-    return this._HttpClient.post(environment.baseURL+`/api/Baskets/RemoveItemFromBasket?courseId=${courseId}`, {},{headers});
+    return this._HttpClient.delete(environment.baseURL+`/api/Baskets/RemoveItemFromBasket?courseId=${courseId}`, {headers});
   }
 
   ClearShoppingCart(): Observable<any>{

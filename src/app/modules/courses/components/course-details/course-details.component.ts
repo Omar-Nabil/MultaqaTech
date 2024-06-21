@@ -5,9 +5,9 @@ import { CourseService } from 'src/app/modules/courses/services/course.service';
 import { CurriculumShowService } from 'src/app/modules/courses/services/curriculum-show.service';
 import { start } from 'src/main';
 import { Course_get } from '../../interfaces/course';
+import { item_get, section_get } from '../../interfaces/curriculum';
 import { Reviews_add } from '../../interfaces/reviews';
 import { ReviewsService } from '../../services/reviews.service';
-import { item_get, section_get } from '../../interfaces/curriculum';
 
 
 
@@ -213,15 +213,8 @@ export class CourseDetailsComponent implements OnInit {
   }
 
   AddCourseToCart() {
-    console.log(this.course);
-    var addedcourse = {
-      courseId: this.course?.id,
-      courseTitle: this.course?.title,
-      price: this.course?.price
-    };
-    console.log(addedcourse);
 
-    this._CourseService.AddCourseToCart(addedcourse).subscribe({
+    this._CourseService.AddCourseToCart(this.course?.id).subscribe({
       next:(res) => {
         console.log(res);
         this.CourseAddedSuccessfully = true;

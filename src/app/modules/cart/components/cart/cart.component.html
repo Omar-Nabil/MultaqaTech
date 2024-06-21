@@ -214,7 +214,7 @@
                   </table>
 
                   <div class="cart-collaterals__btn">
-                    <button class="btn btn-primary btn-hover-secondary w-100" [disabled]="TotalPrice == 0">Checkout</button>
+                    <div *ngIf="TotalPrice != 0" class="btn btn-primary btn-hover-secondary w-100"  (click)="Checkout()">Checkout</div>
                   </div>
                 </div>
 
