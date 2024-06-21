@@ -213,116 +213,36 @@
             </div>
 
             <div class="course-curriculum accordion">
+              <!--<button (click)="toggleParagraph(sec)" class="toggle-button">
+                <span *ngIf="!sec.showParagraph" class="icon">+</span>
+                <span *ngIf="sec.showParagraph" class="icon">-</span>
+                Toggle {{ sec.title }}
+              </button>-->
 
-              <div class="accordion-item">
-                <button class="accordion-button" data-bs-toggle="collapse" data-bs-target="#collapseOne"> <i
-                    class="tutor-icon"></i> IT background</button>
-                <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionCourse">
-
-                  <div class="course-curriculum__lessons">
-                    <div class="course-curriculum__lesson">
-                      <span class="course-curriculum__title">
-                        <i class="fas fa-file-alt"></i>
-                        The importance of data nowsaday
-                      </span>
-                      <span class="course-curriculum__icon">
-                        <i class="fas fa-lock-alt"></i>
-                      </span>
-                    </div>
-                    <div class="course-curriculum__lesson">
-                      <span class="course-curriculum__title">
-                        <i class="fas fa-file-alt"></i>
-                        Why my organization should know about data
-                      </span>
-                      <span class="course-curriculum__icon">
-                        <i class="fas fa-lock-alt"></i>
-                      </span>
-                    </div>
-                    <div class="course-curriculum__lesson">
-                      <span class="course-curriculum__title">
-                        <i class="fas fa-file-edit"></i>
-                        Assignments
-                      </span>
-                      <span class="course-curriculum__icon">
-                        <i class="fas fa-lock-alt"></i>
-                      </span>
-                    </div>
-                    <div class="course-curriculum__lesson">
-                      <span class="course-curriculum__title">
-                        <i class="fas fa-question-circle"></i>
-                        First quiz
-                      </span>
-                      <span class="course-curriculum__icon">
-                        <i class="fas fa-lock-alt"></i>
-                      </span>
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-
-              <div class="accordion-item">
-                <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#collapseTwo"> <i
-                    class="tutor-icon"></i> Key concepts</button>
-                <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionCourse">
+              <div *ngFor="let sec of sections" class="accordion-item">
+                <button class="accordion-button" ngClass="{'collapsed':toggler}" (click)="toggleParagraph(sec)" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                  <span *ngIf="!sec.showParagraph" class="icon"><i  class="fa-solid fa-plus"></i>  </span>
+                  <span *ngIf="sec.showParagraph" class="icon"><i  class="fa-solid fa-minus"></i>  </span>
+                  {{sec.title}}</button>
+                <div *ngIf="sec.showParagraph" id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionCourse">
 
                   <div class="course-curriculum__lessons">
-                    <div class="course-curriculum__lesson">
-                      <span class="course-curriculum__title">
-                        <i class="fas fa-file-alt"></i>
-                        Basic understanding of data management concepts
-                      </span>
-                      <span class="course-curriculum__icon">
-                        <i class="fas fa-lock-alt"></i>
-                      </span>
-                    </div>
-                    <div class="course-curriculum__lesson">
-                      <span class="course-curriculum__title">
-                        <i class="fas fa-file-edit"></i>
-                        2nd Assignments
-                      </span>
-                      <span class="course-curriculum__icon">
-                        <i class="fas fa-lock-alt"></i>
-                      </span>
-                    </div>
-                  </div>
+                    <div *ngFor="let item of allItems">
+                      <div *ngIf="sec.id==item.id">
+                        <div *ngFor="let item of item.items" class="course-curriculum__lesson">
+                          <span class="course-curriculum__title">
+                            <i *ngIf="item.itemType=='Lecture'" class="fas fa-file-alt"></i>
+                            <i *ngIf="item.itemType=='Quiz'" class="fas fa-question-circle"></i>
+                            {{item.title}}
+                          </span>
+                          <span class="course-curriculum__icon">
+                            <i class="fas fa-lock-alt"></i>
+                          </span>
+                        </div>
+                      </div>
 
-                </div>
-              </div>
+                    </div>
 
-              <div class="accordion-item">
-                <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#collapseThree"> <i
-                    class="tutor-icon"></i> Apply the principles</button>
-                <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionCourse">
-
-                  <div class="course-curriculum__lessons">
-                    <div class="course-curriculum__lesson">
-                      <span class="course-curriculum__title">
-                        <i class="fas fa-file-alt"></i>
-                        Final Lesson
-                      </span>
-                      <span class="course-curriculum__icon">
-                        <i class="fas fa-lock-alt"></i>
-                      </span>
-                    </div>
-                    <div class="course-curriculum__lesson">
-                      <span class="course-curriculum__title">
-                        <i class="fas fa-file-edit"></i>
-                        Assignments
-                      </span>
-                      <span class="course-curriculum__icon">
-                        <i class="fas fa-lock-alt"></i>
-                      </span>
-                    </div>
-                    <div class="course-curriculum__lesson">
-                      <span class="course-curriculum__title">
-                        <i class="fas fa-question-circle"></i>
-                        First quiz
-                      </span>
-                      <span class="course-curriculum__icon">
-                        <i class="fas fa-lock-alt"></i>
-                      </span>
-                    </div>
                   </div>
 
                 </div>

@@ -3,7 +3,8 @@ export interface section_get {
   objectives: string,
   courseId: number,
   id: number,
-  order: number
+  order: number,
+  showParagraph?: boolean;
 }
 export interface item_get {
   title: string,

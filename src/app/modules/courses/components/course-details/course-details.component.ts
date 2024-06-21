@@ -2,10 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { CourseService } from 'src/app/modules/courses/services/course.service';
+import { CurriculumShowService } from 'src/app/modules/courses/services/curriculum-show.service';
 import { start } from 'src/main';
 import { Course_get } from '../../interfaces/course';
 import { Reviews_add } from '../../interfaces/reviews';
 import { ReviewsService } from '../../services/reviews.service';
+import { item_get, section_get } from '../../interfaces/curriculum';
+
+
 
 @Component({
   selector: 'app-course-details',
@@ -15,22 +19,47 @@ import { ReviewsService } from '../../services/reviews.service';
 
 export class CourseDetailsComponent implements OnInit {
   updatecommentbool: boolean = false
+  toggler: boolean = false
   commentId:number=0
   course: Course_get | undefined=undefined
   levels: string[] = ['All levels', 'Beginner', 'Intermediate', 'Advanced'];
   months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   date = new Date()
   courseId:number=0
+  sections:section_get[]=[]
+  courseItems:any=[];
+  allItems: {
+    id: number,
+    items:item_get[]
+  }[]=[]
   AddcommentForm:FormGroup = new FormGroup({
     rating:new FormControl(0),
     Comment:new FormControl(''),
   })
   CourseAddedSuccessfully:boolean = false;
   cartItems:any;
-  constructor(private route:ActivatedRoute,private _CourseService:CourseService,private reviews:ReviewsService) {
+  constructor(private route:ActivatedRoute,private _CourseService:CourseService,private reviews:ReviewsService , private _CurriculumShowService:CurriculumShowService) {
     this.getCourse();
     this.chaeckIfCourseInCart();
+    let {id} = route.snapshot.params;
+    this.getSections();
 
+  }
+  toggle(){
+    this.toggler = !this.toggler;
+  }
+  toggleParagraph(section: section_get) {
+    section.showParagraph = !section.showParagraph;
+  }
+
+
+  getSectionItems(id:string){
+    this._CurriculumShowService.getItemsforSection(id).subscribe({
+      next: (response) => {
+        this.courseItems = response;
+
+      }
+    })
   }
   ngOnInit(): void {
     start();
@@ -44,6 +73,30 @@ export class CourseDetailsComponent implements OnInit {
      this._CourseService.cartItems.subscribe(newcartItems => {
       this.CourseAddedSuccessfully = newcartItems?.some((course:any) => course?.courseId == this.course?.id);
      })
+  }
+  getSections() {
+    this._CurriculumShowService.getSectionByCourseId(this.courseId).subscribe({
+      /*next: (res) => {
+        this.sections = res;
+        this.getItems()
+      }*/
+      next: (res: section_get[]) => {
+        this.sections = res.map(section => ({ ...section, showParagraph: false }));
+        this.getItems()
+      }
+    })
+  }
+  getItems() {
+    var items: item_get[];
+    this.allItems=[]
+         this.sections.forEach(element => {
+          this._CurriculumShowService.getItemsforSection(element.id).subscribe({
+            next: (res) => {
+              items=res as item_get[];
+              this.allItems.push({ id: element.id, items: items })
+      }
+        });
+    })
   }
   chaeckIfCourseInCart() {
     this._CourseService.getBasketItems().subscribe({
