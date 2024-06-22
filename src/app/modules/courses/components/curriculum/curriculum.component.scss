@@ -138,3 +138,43 @@ textarea.input{
   -o-transform: scale(1.1);
 }
 // item icons
+
+//qusetion form
+.quize label {
+  display: block;
+  margin-top: 20px;
+}
+
+.quize input[type="text"] {
+  width: 90%;
+  padding: 10px;
+  margin-top: 5px;
+  margin-left: 5px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.quize textarea {
+  width: 87%;
+}
+//qusetion form
+
+.levels{
+  left: 100%;
+}
+
+.x-mark {
+  display: inline-block;
+  cursor: pointer;
+  font-size: 15px;
+  left: 100%;
+  transform: translateX(200%);
+  -webkit-transform: translateX(200%);
+  -moz-transform: translateX(200%);
+  -ms-transform: translateX(200%);
+  -o-transform: translateX(200%);
+}
+
+.x-mark:hover {
+  color: red;
+}

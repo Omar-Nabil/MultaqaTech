@@ -8,6 +8,8 @@ import { moveItemInArray } from '@angular/cdk/drag-drop'
 import { CurriculumLectureService } from '../../services/curriculum-lecture.service';
 import { CurriculumItemService } from '../../services/curriculum-item.service';
 import { CurriculumQuizService } from '../../services/curriculum-quiz.service';
+import { QuizQuestion_post } from '../../interfaces/quiz-question';
+import { CurriculumQuizQuestionService } from '../../services/curriculum-quiz-question.service';
 
 @Component({
   selector: 'app-curriculum',
@@ -22,29 +24,40 @@ export class CurriculumComponent implements OnInit{
   updatelectureBool: boolean = false;
   addQuizBool: boolean = false;
   updateQuizBool: boolean = false;
+  addQuestionBool: boolean = false;
+  updateQuestionBool: boolean = false;
   sectionForm!: FormGroup;
   lectureForm!: FormGroup;
+  AddQuestionForm!: FormGroup;
   quizForm!: FormGroup;
-  sections:section_get[]=[]
+  sections: section_get[] = []
   secttionIdForUpdate: any = 0
   lectureIdForUpdate: any = 0
   quizIdForUpdate: any = 0
+  idUpdateQuestion = 0;
   sectionReorder: number[] = []
   parentSectionId: number = 0
+  parentQuizId: number = 0
   addItemBool: boolean = false
   file!: File
   allItems: {
     id: number,
     items:item_get[]
   }[]=[]
+  questions: {
+    id: number,
+    question:QuizQuestion_post[]
+  }[]=[]
 
   constructor(private _fb: FormBuilder, private _ActivatedRoute: ActivatedRoute
     , private _sectionService: CurriculumSectionService, private _lectureService: CurriculumLectureService
-    ,private _itemsService:CurriculumItemService,private _quizService:CurriculumQuizService
+    , private _itemsService: CurriculumItemService, private _quizService: CurriculumQuizService,
+    private _QuestionService:CurriculumQuizQuestionService
   ) {
     this.createSectionForm()
     this.createLectureForm()
     this.createQuizForm()
+    this.createQuestionForm()
 this.getSections()
   }
 
@@ -74,6 +87,20 @@ this.getSections()
       title:['',Validators.required],
       description: [''],
       img:['',Validators.required]
+    })
+  }
+  createQuestionForm() {
+    this.AddQuestionForm = this._fb.group({
+      content: ['',Validators.required],
+      option1: ['',Validators.required],
+      option2: ['',Validators.required],
+      option3: [''],
+      option4: [''],
+      clarification1: [''],
+      clarification2: [''],
+      clarification3: [''],
+      clarification4: [''],
+      correctAnswer:['',Validators.required]
     })
   }
 
@@ -209,15 +236,32 @@ this.file=event.target.files[0]
 
   getItems() {
     var items: item_get[];
-    this.allItems=[]
+    var Questions: [];
+    this.allItems = []
+    this.questions=[]
          this.sections.forEach(element => {
           this._itemsService.getItemsforSection(element.id).subscribe({
             next: (res) => {
               items=res as item_get[];
               this.allItems.push({ id: element.id, items: items })
+
+              items.forEach(item => {
+                if (item.itemType == 'Quiz') {
+
+
+                  this._QuestionService.getQuestionsByQuizId(item.id).subscribe({
+                    next: (res) => {
+                      Questions = res
+                      this.questions.push({ id: item.id, question:Questions })
+                    }
+                  })
+                }
+              });
       }
         });
     })
+    console.log(this.questions);
+
   }
 
   getLectureForUpdate(type:any,id:any,parentId:any) {
@@ -302,5 +346,183 @@ this.file=event.target.files[0]
         this.createQuizForm()
       }
     })
+   }
+
+   AddingQuestion(id:any) {
+    this.addQuestionBool = true;
+    this.parentQuizId=id
+  }
+
+  addQuestion() {
+
+    const question: any = {
+      quizId: this.parentQuizId,
+      content: this.AddQuestionForm.get('content')?.value,
+      quizQuestionChoices: [
+        {
+          content: this.AddQuestionForm.get('option1')?.value,
+          isRight: false,
+          clarification:this.AddQuestionForm.get('clarification1')?.value
+        },
+        {
+          content: this.AddQuestionForm.get('option2')?.value,
+          isRight: false,
+          clarification:this.AddQuestionForm.get('clarification2')?.value
+        }
+      ]
+    }
+
+
+    if ((this.AddQuestionForm.get('option3')?.value)) {
+      question.quizQuestionChoices[2]={
+          content: this.AddQuestionForm.get('option3')?.value,
+          isRight: false,
+          clarification:this.AddQuestionForm.get('clarification3')?.value
+        }
+    }
+    if ((this.AddQuestionForm.get('option4')?.value)) {
+      question.quizQuestionChoices[3]= {
+          content: this.AddQuestionForm.get('option4')?.value,
+          isRight: false,
+          clarification:this.AddQuestionForm.get('clarification4')?.value
+        }
+    }
+
+    if (this.AddQuestionForm.get('correctAnswer')?.value == "option1") {
+      question.quizQuestionChoices[0].isRight = true;
+    } else if (this.AddQuestionForm.get('correctAnswer')?.value == "option2") {
+      question.quizQuestionChoices[1].isRight = true;
+    }
+    else if (this.AddQuestionForm.get('correctAnswer')?.value == "option3") {
+      question.quizQuestionChoices[2].isRight = true;
+    } else {
+      question.quizQuestionChoices[3].isRight = true;
+    }
+
+
+    this._QuestionService.postQuestion(question).subscribe({
+      next: (res) => {
+        console.log(res);
+        this.createQuestionForm();
+        this.addQuestionBool = false;
+        this.getSections()
+
+
+    }
+    })
+  }
+
+  getQuestions(id: any) {
+    this.questions = []
+    this.parentQuizId=id
+    this._QuestionService.getQuestionsByQuizId(id).subscribe({
+      next: (res) => {
+        this.questions=res
+      }
+    })
+  }
+
+  getupdateQuestion(question: any, id: any) {
+    console.log(question);
+    this.updateQuestionBool = true;
+    this.parentQuizId = id;
+    this.idUpdateQuestion = question.id as number;
+    this.AddQuestionForm.get('content')?.setValue(question.content),
+    this.AddQuestionForm.get('option1')?.setValue(question.quizQuestionChoices[0].content),
+    this.AddQuestionForm.get('clarification1')?.setValue(question.quizQuestionChoices[0].clarification??'')
+    this.AddQuestionForm.get('option2')?.setValue(question.quizQuestionChoices[1].content),
+    this.AddQuestionForm.get('clarification2')?.setValue(question.quizQuestionChoices[1].clarification??'')
+    this.AddQuestionForm.get('option3')?.setValue(question.quizQuestionChoices[2]?.content),
+    this.AddQuestionForm.get('clarification3')?.setValue(question.quizQuestionChoices[2]?.clarification??'')
+    this.AddQuestionForm.get('option4')?.setValue(question.quizQuestionChoices[3]?.content),
+    this.AddQuestionForm.get('clarification4')?.setValue(question.quizQuestionChoices[3]?.clarification??'')
+
+
+
+
+
+
+    if (question.quizQuestionChoices[0].isRight == true) {
+      this.AddQuestionForm.get('correctAnswer')?.setValue("option1")
+    } else if (question.quizQuestionChoices[1].isRight == true) {
+      this.AddQuestionForm.get('correctAnswer')?.setValue("option2")
+    }
+    else if (question.quizQuestionChoices[2].isRight == true) {
+      this.AddQuestionForm.get('correctAnswer')?.setValue("option3")
+    } else {
+      this.AddQuestionForm.get('correctAnswer')?.setValue("option4")
+    }
+
+  }
+
+  updateQuestion() {
+      const question: any = {
+      content: this.AddQuestionForm.get('content')?.value,
+      quizQuestionChoices: [
+        {
+          content: this.AddQuestionForm.get('option1')?.value,
+          isRight: false,
+          clarification:this.AddQuestionForm.get('clarification1')?.value
+        },
+        {
+          content: this.AddQuestionForm.get('option2')?.value,
+          isRight: false,
+          clarification:this.AddQuestionForm.get('clarification2')?.value
+        }
+      ]
+    }
+
+
+    if ((this.AddQuestionForm.get('option3')?.value)) {
+      question.quizQuestionChoices[2]={
+          description: this.AddQuestionForm.get('option3')?.value,
+          isRight: false,
+          clarification:this.AddQuestionForm.get('clarification3')?.value
+        }
+    }
+    if ((this.AddQuestionForm.get('option4')?.value)) {
+      question.quizQuestionChoices[3]= {
+          description: this.AddQuestionForm.get('option4')?.value,
+          isRight: false,
+          clarification:this.AddQuestionForm.get('clarification4')?.value
+        }
+    }
+
+    if (this.AddQuestionForm.get('correctAnswer')?.value == "option1") {
+      question.quizQuestionChoices[0].isRight = true;
+    } else if (this.AddQuestionForm.get('correctAnswer')?.value == "option2") {
+      question.quizQuestionChoices[1].isRight = true;
+    }
+    else if (this.AddQuestionForm.get('correctAnswer')?.value == "option3") {
+      question.quizQuestionChoices[2].isRight = true;
+    } else {
+      question.quizQuestionChoices[3].isRight = true;
+    }
+    console.log(question);
+
+    this._QuestionService.updateQuestion(this.idUpdateQuestion, question).subscribe({
+      next: (res) => {
+        this.updateQuestionBool = false
+        this.createQuestionForm()
+        this.getSections()
+      }
+    })
+   }
+
+  deleteQuestion(id: any) {
+
+    this._QuestionService.DeleteQuestion(id).subscribe({
+      next: (res) => {
+        this.getSections()
+  }
+})
+  }
+  deleteAnswer(id: any) {
+
+    this._QuestionService.DeleteAnswer(id).subscribe({
+      next: (res) => {
+        this.getSections()
+  }
+})
   }
 }

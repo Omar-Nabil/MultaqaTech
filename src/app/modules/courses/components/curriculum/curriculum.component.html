@@ -87,22 +87,116 @@
           </span>
         </div>
         <!-- item container start -->
-        <div class="ps-15">
+        <div class="ps-15"  cdkDropList>
 
           <!-- items display -->
-          <div *ngFor="let item of allItems">
+          <div *ngFor="let item of allItems" cdkDrag>
             <div *ngIf="section.id==item.id">
-              <div *ngFor="let item of item.items" class="section mb-3 d-flex justify-content-between items align-items-center" style="background-color: white;">
-                <h5 class="w-75">{{item.itemType}} : <span class="fw-medium">
-                  <i *ngIf="item.itemType=='Lecture'" class="fa-regular fa-file"></i>
-                  <i *ngIf="item.itemType=='Quiz'" class="fa-regular fa-circle-question"></i>
-                    {{item.title}}</span></h5>
-                    <button *ngIf="item.itemType=='Quiz'"  class="btn btn-outline-primary">new question</button>
-                    <span class="fs-6">
-                      <a (click)="getLectureForUpdate(item.itemType,item.id,section.id)"><i class="fa-solid fa-pen-to-square edit-item"></i></a>
-                      <span class="m-3"></span>
-                      <a (click)="deleteLecture(item.itemType,item.id)"><i class="fa-solid fa-trash delete-item"></i></a>
-                    </span>
+              <div *ngFor="let item of item.items" class="section mb-3 " style="background-color: white;">
+                <div class="heading d-flex justify-content-between items align-items-center">
+                  <h5 class="w-75">{{item.itemType}} : <span class="fw-medium">
+                      <i *ngIf="item.itemType=='Lecture'" class="fa-regular fa-file"></i>
+                      <i *ngIf="item.itemType=='Quiz'" class="fa-regular fa-circle-question"></i>
+                      {{item.title}}</span></h5>
+                  <button *ngIf="item.itemType=='Quiz' && !addQuestionBool" (click)="AddingQuestion(item.id)" class="btn btn-outline-primary">new
+                    question</button>
+                    <div *ngFor="let question of questions;let i=index">
+                    <div *ngIf="item.id==question.id">
+                      <button *ngIf="item.itemType=='Quiz' && !addQuestionBool && question.question.length>0"
+                        class="btn btn-outline-primary ms-2" data-bs-toggle="modal" [attr.data-bs-target]="'#QuizModal'+ i">View Quiz</button>
+
+                        <div class="modal fade" id="QuizModal{{i}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Quiz: {{item.title}}</h1>
+
+                              </div>
+                              <div class="modal-body">
+                                <div *ngFor="let question of question.question" class=" my-4 position-relative">
+                                  <div class="position-absolute levels d-flex align-items-center">
+                                    <a (click)="getupdateQuestion(question,question.quizId)" data-bs-dismiss="modal"><i class="fa-solid fa-pen-to-square edit me-2"></i></a>
+                                    <a (click)="deleteQuestion(question.id)" data-bs-dismiss="modal"><i class="fa-solid fa-trash delete"></i></a>
+                                  </div>
+
+                                  <h6 style="
+                                    width: 90%;margin-bottom: 5px;
+                                ">Question :<strong>{{question.content}} ?</strong> </h6>
+                                  <p class="position-relative mb-1" *ngFor="let answer of question.quizQuestionChoices"><span>option:</span> {{answer.content}}
+                                    <span *ngIf="answer.isRight" class="text-success"> correct</span> <span *ngIf="!answer.isRight"
+                                      (click)="deleteAnswer(answer.id)" class="x-mark position-absolute" data-bs-dismiss="modal" aria-label="Close"><i *ngIf="question.quizQuestionChoices.length>2"
+                                        class="fa-solid fa-x"></i></span></p>
+                                </div>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                    </div></div>
+                  <span class="fs-6 d-flex ms-2">
+                    <a (click)="getLectureForUpdate(item.itemType,item.id,section.id)"><i
+                        class="fa-solid fa-pen-to-square edit-item"></i></a>
+                    <span class="m-3"></span>
+                    <a (click)="deleteLecture(item.itemType,item.id)"><i class="fa-solid fa-trash delete-item"></i></a>
+                  </span>
+                </div>
+
+                    <div class="qusetionForm">
+                      <form
+                        *ngIf="(addQuestionBool&&item.id==parentQuizId) || (updateQuestionBool&&item.id==parentQuizId)"
+                        [formGroup]="AddQuestionForm" class=" quize w-75 mx-auto my-4">
+
+                        <label for="questionText">Question:</label>
+                        <input formControlName="content" type="text" id="questionText" name="questionText">
+                        <p class="m-2 text-danger w-100 fs-5"
+                          *ngIf="AddQuestionForm.get('content')?.touched && AddQuestionForm.get('content')?.getError('required')">
+                          **Question content is required</p>
+                        <br><br>
+
+                        <label for="option1">Option 1:</label>
+                        <input formControlName="correctAnswer" type="radio" id="option1" name="correctAnswer" value="option1">
+                        <input formControlName="option1" type="text" id="option1Text" name="option1">
+                        <textarea class="form-control my-2 mx-auto" id="option1Explanation" formControlName="clarification1" rows="2" cols="30"
+                          placeholder="Explanation for Option 1"></textarea>
+                        <p class="m-2 text-danger w-100 fs-5"
+                          *ngIf="AddQuestionForm.get('option1')?.touched && AddQuestionForm.get('option1')?.getError('required')">
+                          **First option is required</p>
+                        <br><br>
+
+                        <label for="option2">Option 2:</label>
+                        <input formControlName="correctAnswer" type="radio" id="option2" name="correctAnswer" value="option2">
+                        <input formControlName="option2" type="text" id="option2Text" name="option2">
+                        <textarea class="form-control my-2 mx-auto" id="option2Explanation" formControlName="clarification2" rows="2" cols="30"
+                          placeholder="Explanation for Option 2"></textarea>
+                        <p class="m-2 text-danger w-100 fs-5"
+                          *ngIf="AddQuestionForm.get('option2')?.touched && AddQuestionForm.get('option2')?.getError('required')">
+                          **Second option is required</p>
+                        <br><br>
+
+                        <label for="option3">Option 3:</label>
+                        <input formControlName="correctAnswer" type="radio" id="option3" name="correctAnswer" value="option3">
+                        <input formControlName="option3" type="text" id="option3Text" name="option3">
+                        <textarea class="form-control my-2 mx-auto" id="option3Explanation" formControlName="clarification3" rows="2" cols="30"
+                          placeholder="Explanation for Option 3"></textarea>
+                        <br><br>
+
+                        <label for="option4">Option 4:</label>
+                        <input formControlName="correctAnswer" type="radio" id="option4" name="correctAnswer" value="option4">
+                        <input formControlName="option4" type="text" id="option4Text" name="option4">
+                        <textarea class="form-control my-2 mx-auto" id="option4Explanation" formControlName="clarification4" rows="2" cols="30"
+                          placeholder="Explanation for Option 4"></textarea>
+                        <br><br>
+
+                        <input type="hidden" id="correctAnswer" name="correctAnswer" value="option1">
+
+                        <button *ngIf="addQuestionBool" (click)="addQuestion()" [disabled]="AddQuestionForm.invalid"
+                          class="btn btn-primary d-block ms-auto">Save</button>
+                        <button *ngIf="updateQuestionBool" (click)="updateQuestion()" [disabled]="AddQuestionForm.invalid"
+                          class="btn btn-primary d-block ms-auto">Save</button>
+                      </form>
+                    </div>
               </div>
           </div>
           </div>
