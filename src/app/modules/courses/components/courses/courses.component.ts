@@ -1,9 +1,9 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
-import * as main from '../../../../../main';
+import { Component, OnInit } from '@angular/core';
 import { CourseService } from 'src/app/modules/courses/services/course.service';
-import { Course_get } from '../../interfaces/course';
 import { Subject } from 'src/app/modules/dasdboard/interfaces/subject';
 import { SubjectService } from 'src/app/modules/dasdboard/services/subject.service';
+import * as main from '../../../../../main';
+import { Course_get } from '../../interfaces/course';
 
 @Component({
   selector: 'app-courses',
@@ -41,6 +41,8 @@ export class CoursesComponent implements OnInit {
   ngOnInit(): void {
     main.start();
     $('body,html').scrollTop(-10)
+    console.log(this.courses);
+
   }
 
   incrementIndex() {

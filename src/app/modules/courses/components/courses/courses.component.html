@@ -664,9 +664,10 @@
                   <div ngClass="course-item" data-aos="fade-up" data-aos-duration="1000">
                     <div class="course-header">
                       <div class="course-header__thumbnail ">
-                        <a routerLink="/course/{{course.id}}"><img src="assets/images/courses/courses-1.jpg"
+                        <a routerLink="/course/{{course.id}}"><img [src]="course.thumbnailUrl"
                             alt="courses" width="330" height="221"></a>
                       </div>
+
                     </div>
                     <div class="course-info">
                       <span class="course-info__badge-text " [ngClass]="{'badge-all':levels[course.level]=='All levels','badge-beginner':levels[course.level]=='Beginner','badge-intermediate':levels[course.level]=='Intermediate','badge-Advanced':levels[course.level]=='Advanced'}">{{levels[course.level]}}</span>
