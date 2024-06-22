@@ -74,6 +74,8 @@ export class CartComponent implements OnInit {
         paymentType:0
       }
     };
+    console.log(order);
+
     this.cartService.Checkout(order).subscribe({
       next:(res) => {
         console.log(res);
