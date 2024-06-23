@@ -81,7 +81,7 @@
                 <td class="product"  [routerLink]="['/course', item?.courseId]" style="cursor: pointer;">
                   <div class="cart-product">
                     <div class="cart-product__thumbnail">
-                      <img src="assets/images/product/product-2.png" alt="Product" width="70" height="81">
+                      <img [src]="item?.courseThumbnailUrl" alt="Product" width="70" height="81">
                     </div>
                     <div class="cart-product__content">
                       <h3 class="cart-product__name">{{item?.courseTitle}}</h3>

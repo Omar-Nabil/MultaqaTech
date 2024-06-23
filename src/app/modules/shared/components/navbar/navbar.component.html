@@ -169,15 +169,8 @@
 
                 </li>
                 <li>
-                  <a ><span>Pages</span></a>
-
+                  <a routerLink="zooms" routerLinkActive="active"><span>Zoom</span></a>
                 </li>
-                <li>
-                  <a ><span>Features</span></a>
-
-                </li>
-
-
               </ul>
             </nav>
           </div>
@@ -199,7 +192,7 @@
                 <li class="header-mini-cart__item" *ngFor="let item of cartItems">
                   <a class="header-mini-cart__close" (click)="deleteItemFromCart(item?.courseId)"></a>
                   <div class="header-mini-cart__thumbnail">
-                    <a ><img src="assets/images/product/product-1.png"
+                    <a ><img [src]="item?.courseThumbnailUrl"
                         alt="Product" width="80" height="93"></a>
                   </div>
                   <div class="header-mini-cart__caption"  [routerLink]="['/course', item?.courseId]" >
