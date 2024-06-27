@@ -1,0 +1,22 @@
+<div class="p-5">
+  <div *ngFor="let note of allNotes; let index=index" class="d-flex justify-content-between align-items-center">
+    <p>{{note.content}}</p>
+    <div class="d-flex">
+      <p class="mx-2" (click)="delteNote(note.id, index)" style="cursor: pointer;"><i class="fa-solid fa-trash  text-danger"></i></p>
+      <p style="cursor: pointer;" (click)="editNote(note.id, index)"><i class="fa-solid fa-pen-to-square text-success"></i></p>
+    </div>
+  </div>
+</div>
+<div>
+  <input type="text" placeholder="Enter your note" [formControl]="noteControl" class="form-control w-50 mx-auto">
+  <div *ngIf="noteControl.touched && noteControl.hasError('required')" class="text-danger">
+    Comment is required.
+  </div>
+  <div *ngIf="noteControl.touched && noteControl.hasError('minlength')" class="text-danger">
+    Comment must be at least 10 characters long.
+  </div>
+  <a *ngIf="!update" class="btn btn-dark" [ngClass]="{'disabled': noteControl.invalid, 'btn-dark': !noteControl.invalid}"
+    (click)="submitNote()">add</a>
+    <a *ngIf="update" class="btn btn-secondary" [ngClass]="{'disabled': noteControl.invalid, 'btn-secondary': !noteControl.invalid}"
+      (click)="updateNote()">update</a>
+</div>

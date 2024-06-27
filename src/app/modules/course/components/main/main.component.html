@@ -1,1 +1,52 @@
-<router-outlet></router-outlet>
+<nav style="height: 40px; background-color: #2D2F31;" class="w-100">
+
+</nav>
+<div>
+  <div class="flex-row">
+    <div class="col-full col-medium-10" style="border-right: 3px #2D2F31 solid;">
+      <div *ngIf="isVideo">
+        <div class="w-100">
+          <video class="w-100 h-100" [src]="videoData?.videoUrl"></video>
+        </div>
+        <div class="text p-3">
+          <h5>{{videoData?.title}}</h5>
+          <p>{{videoData?.description}}</p>
+        </div>
+        <div class="px-12">
+          <ul class="d-flex align-items-center">
+            <li routerLink="notes" routerLinkActive="selected">
+              <h3>Notes</h3>
+            </li>
+            <li routerLink="questions" class="mx-2" routerLinkActive="selected">
+              <h3>Questions</h3>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <router-outlet></router-outlet>
+    </div>
+    <div class="col-medium-2">
+      <div class="elements" >
+        <div class="element p-2" *ngFor="let section of courseSections;let index=index" style="border-bottom: 1px #2D2F31 solid;">
+          <div class="header d-flex justify-content-between align-items-center" (click)="toggleCourseItems(index)" style="font-weight: bold;">
+            <div>
+              <p class="my-0 py-0">{{section.title}}</p>
+              <p class="my-0 py-0">{{section.objectives}}</p>
+            </div>
+            <div>
+              <i class="fa-solid fa-arrow-down arrow"  ></i>
+            </div>
+          </div>
+          <div class="courseitems"  [class.d-block]="isCourseItemVisible[index]">
+            <div class="item" *ngFor="let item of courseSectionsDetails[index]">
+              <p *ngIf="item.itemType=='Quiz'" routerLink="quiz" (click)="displayQuiz(item.id)">{{item.title}}</p>
+              <p *ngIf="item.itemType=='Lecture'" (click)="displayVideo(item.id)">{{item.title}}</p>
+            </div>
+          </div>
+          <!-- <p class="my-0 py-0"><i class="fa-solid fa-video"></i> 13min</p> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

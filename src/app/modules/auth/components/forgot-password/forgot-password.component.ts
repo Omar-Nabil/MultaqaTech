@@ -25,11 +25,11 @@ export class ForgotPasswordComponent {
     console.log(value);
 
     this._AuthService.reserPassword(value).subscribe({
-      next:(res) => {
+      next:(res:any) => {
         console.log(res);
         this._Router.navigate(['/home']);
         localStorage.setItem('userToken', res.token);
-        this._AuthService.saveUser();
+        this._AuthService.saveUser(res);
       },
       error : (err) => console.log(err)
     })

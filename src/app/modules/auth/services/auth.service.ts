@@ -39,10 +39,12 @@ export class AuthService {
     return this._HttpClient.post(environment.baseURL+'/api/Account/BecomeInstructor',value, {headers});
   }
 
-  saveUser():void {
+  saveUser(dataofuser:any):void {
     let token = JSON.stringify(localStorage.getItem('userToken'));
     let decode:any = jwtDecode(token);
     this.userData.next(decode);
+    this.currentUser.next(dataofuser);
+
   }
 
   Facebook(value:any):Observable<any> {

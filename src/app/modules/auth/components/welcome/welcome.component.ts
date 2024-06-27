@@ -57,10 +57,10 @@ export class WelcomeComponent implements OnInit {
     };
 
     this._AuthService.Google(value).subscribe({
-      next:(res) => {
+      next:(res:any) => {
         this._Router.navigate(['/home']);
         localStorage.setItem('userToken', res.token);
-        this._AuthService.saveUser();
+        this._AuthService.saveUser(res);
 
         const modalBackdrops = document.querySelectorAll('.modal-backdrop') as NodeListOf<HTMLElement>;
           modalBackdrops.forEach(backdrop => {
@@ -99,10 +99,11 @@ export class WelcomeComponent implements OnInit {
     };
 
     this._AuthService.Google(value).subscribe({
-      next:(res) => {
+      next:(res:any) => {
         this._Router.navigate(['/home']);
         localStorage.setItem('userToken', res.token);
-        this._AuthService.saveUser();
+        this._AuthService.saveUser(res);
+        console.log(res);
 
         const modalBackdrops = document.querySelectorAll('.modal-backdrop') as NodeListOf<HTMLElement>;
           modalBackdrops.forEach(backdrop => {
@@ -131,7 +132,7 @@ export class WelcomeComponent implements OnInit {
               this._Router.navigate(['/home']);
             });
             localStorage.setItem('userToken', x.token);
-            this._AuthService.saveUser();
+            this._AuthService.saveUser(x);
             const modalBackdrops = document.querySelectorAll('.modal-backdrop') as NodeListOf<HTMLElement>;
             modalBackdrops.forEach(backdrop => {
               backdrop.classList.add('d-none');
@@ -207,7 +208,7 @@ export class WelcomeComponent implements OnInit {
       password:  logIn.get('password')?.value
     };
     this._AuthService.logIn(value).subscribe({
-      next:(res) => {
+      next:(res:any) => {
         console.log(res);
 
         const modalBackdrops = document.querySelectorAll('.modal-backdrop') as NodeListOf<HTMLElement>;
@@ -218,7 +219,7 @@ export class WelcomeComponent implements OnInit {
 
         this._Router.navigate(['/home']);
         localStorage.setItem('userToken', res.token);
-        this._AuthService.saveUser();
+        this._AuthService.saveUser(res);
       },
       error:(err) => {
         this.logInError = true;

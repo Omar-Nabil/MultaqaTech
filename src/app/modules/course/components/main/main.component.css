@@ -1,0 +1,70 @@
+ .flex-row {
+   display: flex;
+   flex-wrap: wrap;
+ }
+
+ .col-full {
+   width: 100%;
+ }
+
+ .col-medium-10 {
+   width: 100%;
+   /* Default to full width on small screens */
+ }
+
+ .col-medium-2 {
+   width: 100%;
+   /* Adjusted to ensure it takes full width */
+   display: none;
+   overflow-y: auto;
+   /* Enable vertical scrolling */
+   max-height: calc(100vh - 40px);
+   /* Adjust based on the fixed header height */
+   position: sticky;
+   /* Keep it at the bottom of the viewport */
+   top: 40px;
+   /* Offset for the fixed header height */
+   z-index: 10;
+ }
+
+ /* Media Query for Medium Screens and Up */
+ @media (min-width: 768px) {
+   .col-medium-10 {
+     width: 83.3333%;
+     /* 10/12 columns */
+   }
+
+   .col-medium-2 {
+     width: 16.6667%;
+     /* 2/12 columns */
+     display: block;
+     /* Show on medium screens and up */
+   }
+ }
+
+
+.header:hover {
+   cursor: pointer;
+ }
+
+ ul,
+ li {
+   list-style-type: none;
+   /* Removes bullet points */
+   margin: 0;
+   /* Resets the margin */
+   padding: 0;
+   /* Resets the padding */
+ }
+
+ ul,
+ li {
+   list-style-type: none !important;
+   cursor: pointer;
+ }
+.courseitems {
+  display: none;
+}
+.selected {
+  border-bottom: 2px solid black;
+}

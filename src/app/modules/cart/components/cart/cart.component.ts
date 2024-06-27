@@ -68,7 +68,6 @@ export class CartComponent implements OnInit {
     console.log(this.cartItems);
     let order = {
       basket: {
-        basketItems: this.cartItems,
         coupon:'ewdd',
         isCouponApplied:true,
         paymentType:0
@@ -79,6 +78,9 @@ export class CartComponent implements OnInit {
     this.cartService.Checkout(order).subscribe({
       next:(res) => {
         console.log(res);
+        this.TotalPrice = 0;
+        this.cartItems = [];
+        this._CourseService.cartItems.next([]);
       },
       error:(err) => console.log(err)
 

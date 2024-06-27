@@ -27,7 +27,7 @@ const routes: Routes = [
     {path:'dashboard', loadChildren:()=>import('../app/modules/dasdboard/dasdboard.module').then((res)=>res.DasdboardModule), canActivate:[authGuard] },
     {path:'translation', component: TranslationComponent},
     {path:'chatbot', component:ChatbotComponent},
-    {path:'course', loadChildren:()=>import('../app/modules/course/course.module').then((res) => res.CourseModule), canActivate:[authGuard] }
+    {path:'wcourse/:id', loadChildren:()=>import('../app/modules/course/course.module').then((res) => res.CourseModule)}
   ]},
   {path:'', component:LayoutwithnavbarComponent, children:[
     {path:'home', component:HomeComponent, canActivate:[authGuard]},
