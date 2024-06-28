@@ -6,7 +6,7 @@
     <div class="col-full col-medium-10" style="border-right: 3px #2D2F31 solid;">
       <div *ngIf="isVideo">
         <div class="w-100">
-          <video class="w-100 h-100" [src]="videoData?.videoUrl"></video>
+          <video class="w-100 h-100" [src]="videoData.videoUrl" controls></video>
         </div>
         <div class="text p-3">
           <h5>{{videoData?.title}}</h5>
