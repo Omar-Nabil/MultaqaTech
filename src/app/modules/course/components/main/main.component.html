@@ -1,4 +1,4 @@
-<nav style="height: 40px; background-color: #2D2F31;" class="w-100">
+<nav style="height: 40px; background-color: #2D2F31;" class="w-100 fixed-top">
 
 </nav>
 <div>
@@ -40,7 +40,7 @@
           <div class="courseitems"  [class.d-block]="isCourseItemVisible[index]">
             <div class="item" *ngFor="let item of courseSectionsDetails[index]">
               <p *ngIf="item.itemType=='Quiz'" routerLink="quiz" (click)="displayQuiz(item.id)">{{item.title}}</p>
-              <p *ngIf="item.itemType=='Lecture'" (click)="displayVideo(item.id)">{{item.title}}</p>
+              <p *ngIf="item.itemType=='Lecture'"  (click)="displayVideo(item.id)">{{item.title}}</p>
             </div>
           </div>
           <!-- <p class="my-0 py-0"><i class="fa-solid fa-video"></i> 13min</p> -->

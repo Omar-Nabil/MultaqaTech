@@ -91,7 +91,7 @@ export class NotesComponent implements OnInit {
     this.noteControl.setValue(this.allNotes[index].content);
     this.update = true;
     this.idToEdit = id;
-    this.indexToEdit = index
+    this.indexToEdit = index;
   }
 
 }

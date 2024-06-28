@@ -60,5 +60,33 @@ export class WcourseService {
     return this.httpClient.put(environment.baseURL+`/api/Notes/${id}`, data , {headers});
   }
 
+  getAllQuestions(id:number):Observable<any>  {
+    const headers = new HttpHeaders({
+      'Authorization':`Bearer ${localStorage.getItem('userToken')}`
+    });
+    return this.httpClient.get(environment.baseURL+`/api/Questions/${id}/questions`, {headers});
+  }
+
+  addQuestion(data:any):Observable<any>  {
+    const headers = new HttpHeaders({
+      'Authorization':`Bearer ${localStorage.getItem('userToken')}`
+    });
+    return this.httpClient.post(environment.baseURL+`/api/Questions`, data,{headers});
+  }
+
+  deleteQuestion(id:number):Observable<any>  {
+    const headers = new HttpHeaders({
+      'Authorization':`Bearer ${localStorage.getItem('userToken')}`
+    });
+    return this.httpClient.delete(environment.baseURL+`/api/Questions/${id}`, {headers});
+  }
+
+  updateQuestion(id:number, data:any):Observable<any>  {
+    const headers = new HttpHeaders({
+      'Authorization':`Bearer ${localStorage.getItem('userToken')}`
+    });
+    return this.httpClient.put(environment.baseURL+`/api/Questions/${id}`, data , {headers});
+  }
+
 
 }
