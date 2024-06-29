@@ -67,11 +67,9 @@ export class CartComponent implements OnInit {
   Checkout() {
     console.log(this.cartItems);
     let order = {
-      basket: {
         coupon:'ewdd',
         isCouponApplied:true,
         paymentType:0
-      }
     };
     console.log(order);
 

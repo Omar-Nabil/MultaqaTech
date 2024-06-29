@@ -14,6 +14,7 @@ export class MainComponent implements OnInit, AfterViewInit {
   isCourseItemVisible: boolean[] = [];
   videoData:any;
   isVideo:boolean = false;
+  videoId:number = 0;
 
   constructor(private wcourseService:WcourseService, private route: ActivatedRoute, private el: ElementRef, private renderer: Renderer2) { }
 
@@ -50,6 +51,8 @@ export class MainComponent implements OnInit, AfterViewInit {
       next:(res) => {
         this.courseSections = res;
         this.getcourseSectionsDetails();
+        console.log(res);
+
       },
       error:(err) => console.log(err)
 
@@ -77,6 +80,7 @@ export class MainComponent implements OnInit, AfterViewInit {
         this.videoData = res;
         this.wcourseService.lectureOrQuizId.next(res.id);
         this.isVideo = true;
+        this.videoId = this.wcourseService.lectureOrQuizId.value;
       },
       error:(err) => console.log(err)
 
@@ -85,6 +89,7 @@ export class MainComponent implements OnInit, AfterViewInit {
 
   displayQuiz(quizId:number) {
     this.isVideo = false;
+    this.videoId = this.wcourseService.lectureOrQuizId.value;
   }
 
 
