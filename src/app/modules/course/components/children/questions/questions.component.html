@@ -1,3 +1,40 @@
-<p>
-  questions works!
-</p>
+<div class="px-10 w-75 mx-auto">
+  <div class="p-5">
+    <div class="d-flex justify-content-between  my-2" style="border: 1px solid black;border-radius: 10px;"
+      *ngFor="let question of allQuestions">
+      <div class="p-3">
+        <h4 class="card-title">{{question.title}}</h4>
+        <p class="card-text">{{question.details}}</p>
+      </div>
+      <div>
+        <img class="w-100 p-3" [src]="question.questionPictureUrl" alt="Title" />
+      </div>
+    </div>
+  </div>
+
+  <div class="p-5">
+    <form [formGroup]="questionForm" (ngSubmit)="AddQestion()">
+      <div>
+        <input type="text" formControlName="Title" placeholder="Enter Title" class="form-control">
+        <p *ngIf="questionForm.get('Title')?.touched && questionForm.get('Title')?.getError('required')"
+          class="text-danger">Title is required</p>
+      </div>
+      <div class="my-2">
+        <textarea type="text" formControlName="Details" placeholder="Enter Details" class="form-control"></textarea>
+        <p *ngIf="questionForm.get('Details')?.touched && questionForm.get('Details')?.getError('required')"
+          class="text-danger">Details is required</p>
+      </div>
+      <div>
+        <input type="file" (change)="getImg($event)" formControlName="QuestionPicture" placeholder="Enter QuestionPicture"
+          class="form-control">
+        <p *ngIf="questionForm.get('QuestionPicture')?.touched && questionForm.get('QuestionPicture')?.getError('required')"
+          class="text-danger">QuestionPicture is required</p>
+      </div>
+      <div class="modal-footer my-2">
+        <button type="submit" [disabled]="questionForm.invalid"
+          class="btn btn-primary rounded-5 fw-semibold fs-5">Add</button>
+      </div>
+    </form>
+  </div>
+
+</div>
