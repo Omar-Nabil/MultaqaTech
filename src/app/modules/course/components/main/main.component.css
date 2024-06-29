@@ -14,16 +14,10 @@
 
  .col-medium-2 {
    width: 100%;
-   /* Adjusted to ensure it takes full width */
    display: none;
    overflow-y: auto;
-   /* Enable vertical scrolling */
    max-height: calc(100vh - 40px);
-   /* Adjust based on the fixed header height */
-   position: sticky;
-   /* Keep it at the bottom of the viewport */
    top: 40px;
-   /* Offset for the fixed header height */
    z-index: 10;
  }
 
@@ -67,5 +61,12 @@
 }
 .selected {
   border-bottom: 2px solid black;
+  font-weight: bold;
 }
-
+.activeItem {
+  background-color: #D1D7DC;
+}
+.addhover:hover {
+  cursor: pointer;
+  background-color: #D1D7DC;
+}
