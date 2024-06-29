@@ -9,6 +9,11 @@ export interface Course_add {
   prerequisitesIds: number[],
   learningObjectives: string[]
 }
+export interface instructor {
+  instructorId: number,
+  instructorName: string,
+
+}
 export interface review
   {
       id: number,
