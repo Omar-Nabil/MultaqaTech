@@ -797,8 +797,8 @@
                     <li *ngFor="let instructor of instructors;let i =index">
                       <!-- Widget Filter Item Start -->
                       <div class="widget-filter__item">
-                        <input (click)="getbyinstructor(instructor.instructorId!)" type="radio" id="subject{{i}}" name="sort-by">
-                        <label for="subject{{i}}">{{instructor.instructorName[0].toUpperCase()}}{{instructor.instructorName.slice(1)}}</label>
+                        <input (click)="getbyinstructor(instructor.instructorId!)" type="radio" id="instructor{{i}}" name="sort-by">
+                        <label for="instructor{{i}}"><span>{{i+1}} - </span>{{instructor.instructorName[0].toUpperCase()}}{{instructor.instructorName.slice(1)}}</label>
                       </div>
                       <!-- Widget Filter Item End -->
                     </li>

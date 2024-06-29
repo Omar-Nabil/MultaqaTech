@@ -42,7 +42,7 @@ export class CoursesComponent implements OnInit {
     _CourseService.getInstructors().subscribe((res) => {
       this.instructors = res
       console.log(res);
-      console.log(this.subjects);
+      console.log(this.instructors);
 
     })
   }
@@ -62,7 +62,7 @@ export class CoursesComponent implements OnInit {
         this.instructorNames = [...new Set(this.allCourses.map(course => course.instructor))];
       }
     })
-
+    console.log(this.instructors)
 
 
   }

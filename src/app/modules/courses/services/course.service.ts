@@ -48,7 +48,7 @@ export class CourseService {
     const headers = new HttpHeaders({
       'Authorization':`Bearer ${localStorage.getItem('userToken')}`
     })
-    return this._HttpClient.get(environment.baseURL+`api/Courses/GetInstructors`,{headers})
+    return this._HttpClient.get(environment.baseURL+`/api/Courses/GetInstructors`,{headers})
   }
   getcoursesbysize(size:number): Observable<any>{
     const headers = new HttpHeaders({
