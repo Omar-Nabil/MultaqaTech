@@ -785,6 +785,31 @@
               <!-- Widget Filter End -->
 
             </div>
+            <div class="sidebar-widget-wrap bg-color-10">
+              <h4 class="sidebar-widget-wrap__title">Filter by Instructor</h4>
+
+              <!-- Widget Filter Start -->
+              <div class="widget-filter">
+
+                <!-- Widget Filter Wrapper Start -->
+                <div class="widget-filter__wrapper">
+                  <ul class="widget-filter__list">
+                    <li *ngFor="let instructor of instructors;let i =index">
+                      <!-- Widget Filter Item Start -->
+                      <div class="widget-filter__item">
+                        <input (click)="getbyinstructor(instructor.instructorId!)" type="radio" id="subject{{i}}" name="sort-by">
+                        <label for="subject{{i}}">{{instructor.instructorName[0].toUpperCase()}}{{instructor.instructorName.slice(1)}}</label>
+                      </div>
+                      <!-- Widget Filter Item End -->
+                    </li>
+
+                  </ul>
+                </div>
+                <!-- Widget Filter Wrapper End -->
+              </div>
+              <!-- Widget Filter End -->
+
+            </div>
             <!-- Sidebar Widget Wrapper End -->
 
             <!-- Sidebar Widget Wrapper Start -->
@@ -792,40 +817,7 @@
               <h4 class="sidebar-widget-wrap__title">Filter by</h4>
 
               <!-- Widget Filter Start -->
-              <div class="widget-filter">
-                <h4 class="widget-filter__title-02">Instructor</h4>
 
-                <!-- Widget Filter Wrapper Start -->
-                <div class="widget-filter__wrapper">
-                  <ul class="widget-filter__list">
-                    <li>
-                      <!-- Widget Filter Item Start -->
-                      <div class="widget-filter__item">
-                        <input type="checkbox" id="instructor9" name="sort-by">
-                        <label for="instructor9">Donald Logan <span>(11)</span></label>
-                      </div>
-                      <!-- Widget Filter Item End -->
-                    </li>
-                    <li>
-                      <!-- Widget Filter Item Start -->
-                      <div class="widget-filter__item">
-                        <input type="checkbox" id="instructor10" name="sort-by">
-                        <label for="instructor10">Emilee Logan <span>(12)</span></label>
-                      </div>
-                      <!-- Widget Filter Item End -->
-                    </li>
-                    <li>
-                      <!-- Widget Filter Item Start -->
-                      <div class="widget-filter__item">
-                        <input type="checkbox" id="instructor11" name="sort-by">
-                        <label for="instructor11">Nahla Jones <span>(9)</span></label>
-                      </div>
-                      <!-- Widget Filter Item End -->
-                    </li>
-                  </ul>
-                </div>
-                <!-- Widget Filter Wrapper End -->
-              </div>
               <!-- Widget Filter End -->
 
               <!-- Widget Filter Start -->

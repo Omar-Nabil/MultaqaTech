@@ -38,6 +38,18 @@ export class CourseService {
     return this._HttpClient.delete(environment.baseURL+`/api/Courses/${id}`,{headers})
   }
 
+  getcourses(): Observable<any>{
+    const headers = new HttpHeaders({
+      'Authorization':`Bearer ${localStorage.getItem('userToken')}`
+    })
+    return this._HttpClient.get(environment.baseURL+`/api/Courses`,{headers})
+  }
+  getInstructors(): Observable<any>{
+    const headers = new HttpHeaders({
+      'Authorization':`Bearer ${localStorage.getItem('userToken')}`
+    })
+    return this._HttpClient.get(environment.baseURL+`api/Courses/GetInstructors`,{headers})
+  }
   getcoursesbysize(size:number): Observable<any>{
     const headers = new HttpHeaders({
       'Authorization':`Bearer ${localStorage.getItem('userToken')}`
@@ -109,6 +121,8 @@ export class CourseService {
     });
     return this._HttpClient.get(environment.baseURL+`/api/Courses/GetCoursesForStudentByStudentId/${studentId}`,{headers});
   }
+
+
 
 
 }
