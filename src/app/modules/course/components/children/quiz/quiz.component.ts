@@ -28,7 +28,14 @@ export class QuizComponent implements OnInit {
 
     this.course.quizDetails.subscribe(() => {
       this.getQuizDetails()
-    this.getQuizQuestions()
+      this.getQuizQuestions()
+      this.startQuizBool = false;
+  this.questionIndex = 0
+  this.isSubmit = false;
+  this.chooseAnswerBool = false;
+  this.score = 0
+  this.showScoreBool = false
+  this.passed=false
     })
   }
 
