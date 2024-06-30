@@ -79,7 +79,13 @@ export class QuizComponent implements OnInit {
     this.showScoreBool = true;
     this.questionIndex++;
     if (this.score >= ((this.questions.length) / 2)) {
-      this.passed=true
+      this.passed = true
+      this.quiz.Quizcomplete(this.course.lectureOrQuizId.value).subscribe({
+        next: (res) => {
+          console.log(res);
+
+        }
+      })
     }
   }
 }
