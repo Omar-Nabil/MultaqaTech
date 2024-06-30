@@ -27,6 +27,9 @@ export class QuizComponent implements OnInit {
   ngOnInit() {
 
     this.course.quizDetails.subscribe(() => {
+      if (this.course.lectureOrQuizId.value!=null) {
+        localStorage.setItem('quizId',`${this.course.lectureOrQuizId.value}`)
+      }
       this.getQuizDetails()
       this.getQuizQuestions()
       this.startQuizBool = false;
@@ -35,8 +38,31 @@ export class QuizComponent implements OnInit {
   this.chooseAnswerBool = false;
   this.score = 0
   this.showScoreBool = false
-  this.passed=false
+      this.passed = false
+
+      if (this.quizDetails == null) {
+
+
+       this.quiz.getQuiz(+(localStorage.getItem('quizId')??0)).subscribe({
+      next: (res) => {
+        this.quizDetails = res
+        this.course.quizDetails.next(res)
+
+      }
     })
+
+    this._questions.getQuestionsByQuizId(+(localStorage.getItem('quizId')??0)).subscribe({
+      next: (res) => {
+        this.course.Questions.next(res)
+        this.questions=res
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    })
+    }
+    })
+
   }
 
   getQuizDetails() {
