@@ -1,13 +1,43 @@
 <section class="vh-100">
 <div class="ms-20">
   <div class="m-20">
-    <div>
-      <h2 class="display-4 fw-medium ">Quiz</h2>
+    <div *ngIf="!startQuizBool">
+      <div>
+        <h2 class="display-4 fw-medium ">Quiz</h2>
+      </div>
+      <a class="navbar-brand fs-5 fw-medium p-1 mt-7"><span
+          style="border-right: 2px solid ; padding-right: 16px;">{{quizDetails.title}}</span><span
+          style=" padding-left: 16px;">{{questions.length}} questions</span></a>
+      <button (click)="startQuiz()" class="btn btn-dark d-block mt-7">Start Quiz</button>
     </div>
-    <a class="navbar-brand fs-5 fw-medium p-1 mt-7"><span
-        style="border-right: 2px solid ; padding-right: 16px;">{{quizDetails.title}}</span><span
-        style=" padding-left: 16px;">12 questions</span></a>
-        <button class="btn btn-dark d-block mt-7">Start Quiz</button>
+
+        <div *ngIf="startQuizBool">
+          <div *ngFor="let question of questions;let i = index" class="">
+           <div *ngIf="i==questionIndex">
+            <h4>Question {{i+1}} :</h4>
+            <p class="mt-5 fw-medium fs-4">{{question.content}}</p>
+            <div *ngFor="let option of question.quizQuestionChoices; let j = index" class="d-flex align-items-center">
+              <input type="radio" id="{{option.id}}" [value]="option.isRight" (change)="onAnswerChange(i,j)" name="{{question.id}}"
+                [disabled]="isSubmit">
+              <label class="ms-2 fs-5" for="{{option.id}}">{{ option.content}}</label>
+            </div>
+            <div *ngIf="isSubmit" class="alert" [ngClass]="selectedAnswers?'alert-success':'alert-danger'">
+              <span *ngIf="selectedAnswers">Correct</span>
+              <span *ngIf="!selectedAnswers">Not correct</span>
+              <br>
+              <span>{{explaination??''}}</span>
+            </div>
+           </div>
+          </div>
+          <div  *ngIf="showScoreBool">
+            <h1 *ngIf="passed" class="text-success">Passed</h1>
+            <h1 *ngIf="!passed" class="text-danger">Failed</h1>
+            <p class="mt-4 fw-normal fs-3">You got {{score}} Out of {{questions.length}} in this quiz</p>
+          </div>
+          <button class="btn btn-dark ms-auto d-block" [disabled]="!chooseAnswerBool" *ngIf="!isSubmit" (click)="submitAnswer()">Submit</button>
+          <button class="btn btn-dark ms-auto d-block" *ngIf="(questionIndex<questions.length-1)&&isSubmit" (click)="getNextQuestion()" >Next</button>
+          <button class="btn btn-dark ms-auto d-block" *ngIf="(questionIndex==questions.length-1)&&isSubmit" (click)="showScore()" >Show Score</button>
+        </div>
   </div>
 </div>
 </section>

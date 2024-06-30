@@ -11,7 +11,16 @@ import { QuizQuestion_get, QuizQuestion_post } from 'src/app/modules/courses/int
 })
 export class QuizComponent implements OnInit {
   quizDetails: any;
-  questions:QuizQuestion_get[]=[]
+  questions: QuizQuestion_get[] = [];
+  startQuizBool: boolean = false;
+  questionIndex: number = 0
+  selectedAnswers: boolean=false;
+  isSubmit: boolean = false;
+  explaination: any;
+  chooseAnswerBool: boolean = false;
+  score: number = 0
+  showScoreBool: boolean = false
+  passed:boolean=false
 
   constructor(private course:WcourseService ,private quiz :CurriculumQuizService,private _questions:CurriculumQuizQuestionService) { }
 
@@ -33,4 +42,37 @@ export class QuizComponent implements OnInit {
 
   }
 
+  startQuiz() {
+    this.startQuizBool=true
+  }
+
+  onAnswerChange(i: any,j:any) {
+    this.selectedAnswers = this.questions[i].quizQuestionChoices[j].isRight
+    this.explaination = this.questions[i].quizQuestionChoices[j].clarification
+    this.chooseAnswerBool = true
+    console.log(this.selectedAnswers);
+    console.log(this.explaination);
+
+  }
+  getNextQuestion() {
+    this.questionIndex++;
+    this.isSubmit = false;
+    this.selectedAnswers = false
+    this.explaination = ''
+    this.chooseAnswerBool=false
+  }
+  submitAnswer() {
+    this.isSubmit = true
+    if (this.selectedAnswers == true) {
+      this.score++
+    }
+
+  }
+  showScore() {
+    this.showScoreBool = true;
+    this.questionIndex++;
+    if (this.score >= ((this.questions.length) / 2)) {
+      this.passed=true
+    }
+  }
 }
