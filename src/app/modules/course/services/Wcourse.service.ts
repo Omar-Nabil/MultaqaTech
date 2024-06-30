@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
+import { QuizQuestion_get } from '../../courses/interfaces/quiz-question';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,8 @@ export class WcourseService {
   constructor(private httpClient:HttpClient) { }
 
   lectureOrQuizId : BehaviorSubject<any> = new BehaviorSubject<any>(null);
+  quizDetails : BehaviorSubject<any> = new BehaviorSubject<any>(null);
+  Questions : BehaviorSubject<QuizQuestion_get[]> = new BehaviorSubject<any>(null);
 
   getCourseDetails(courseId:string):Observable<any> {
     const headers = new HttpHeaders({

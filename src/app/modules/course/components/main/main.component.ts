@@ -1,6 +1,9 @@
 import { AfterViewInit, Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { WcourseService } from '../../services/Wcourse.service';
+import { CurriculumQuizService } from 'src/app/modules/courses/services/curriculum-quiz.service';
+import { QuizQuestion_get } from 'src/app/modules/courses/interfaces/quiz-question';
+import { CurriculumQuizQuestionService } from 'src/app/modules/courses/services/curriculum-quiz-question.service';
 
 @Component({
   selector: 'app-main',
@@ -13,10 +16,13 @@ export class MainComponent implements OnInit, AfterViewInit {
   courseSectionsDetails:any[] = [];
   isCourseItemVisible: boolean[] = [];
   videoData:any;
+  quizDetails: any;
+  questions: QuizQuestion_get[] = [];
   isVideo:boolean = false;
   videoId:number = 0;
 
-  constructor(private wcourseService:WcourseService, private route: ActivatedRoute, private el: ElementRef, private renderer: Renderer2) { }
+  constructor(private wcourseService: WcourseService, private route: ActivatedRoute,private el: ElementRef,
+    private renderer: Renderer2, private quiz: CurriculumQuizService ,private _questions:CurriculumQuizQuestionService) { }
 
   ngOnInit() {
     this.getCourseDetails();
@@ -90,6 +96,23 @@ export class MainComponent implements OnInit, AfterViewInit {
   displayQuiz(quizId:number) {
     this.isVideo = false;
     this.videoId = this.wcourseService.lectureOrQuizId.value;
+    this.wcourseService.lectureOrQuizId.next(quizId)
+    this.quiz.getQuiz(quizId).subscribe({
+      next: (res) => {
+        this.quizDetails = res
+        this.wcourseService.quizDetails.next(res)
+
+      }
+    })
+
+    this._questions.getQuestionsByQuizId(this.wcourseService.lectureOrQuizId.value).subscribe({
+      next: (res) => {
+        this.wcourseService.Questions.next(res)
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    })
   }
 
 
