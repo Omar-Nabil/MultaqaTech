@@ -34,7 +34,7 @@
             class="fa-solid fa-pen-to-square text-success"></i></p>
       </div>
     </div>
-    <p class="ps-3">{{QuestionDetails?.askerName}}</p>
+    <p class="ps-3">{{QuestionDetails?.askerName}}   {{formatDate(QuestionDetails?.publishingDate)}}</p>
     <div class="d-flex justify-content-between pt-2">
       <p class="p-2">{{QuestionDetails?.details}}</p>
       <div style="min-width: 400px;width: 400px;">
@@ -55,6 +55,7 @@
         </div>
       </div>
       <p class="p-4">{{answer?.content}}</p>
+      <p>{{formatDate(answer?.publishingDate)}}</p>
     </div>
   </div>
   <div>

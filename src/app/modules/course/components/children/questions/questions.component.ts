@@ -67,6 +67,9 @@ export class QuestionsComponent implements OnInit {
   }
 
 
-
+  formatDate(dateString:string):string {
+    let publishingDate = new Date(dateString);
+    return `${publishingDate.getFullYear()}-${String(publishingDate.getMonth() + 1).padStart(2, '0')}-${String(publishingDate.getDate()).padStart(2, '0')} ${publishingDate.getHours()}:${publishingDate.getMinutes().toString().padStart(2, '0')}`;
+  }
 
 }
