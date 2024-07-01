@@ -19,6 +19,7 @@
    max-height: calc(100vh - 40px);
    top: 40px;
    z-index: 10;
+    scrollbar-width: none;
  }
 
  /* Media Query for Medium Screens and Up */
