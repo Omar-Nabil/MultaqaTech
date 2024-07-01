@@ -1,0 +1,93 @@
+.page-banner {
+  background: url(../../../../../../../assets/images/images.jpg) center no-repeat;
+    background-size: cover;
+}
+/* Basic styling */
+#multiSelect {
+  width: 200px;
+  padding: 5px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+}
+
+/* Styling when dropdown is open */
+#multiSelect:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Styling for options */
+#multiSelect option {
+  padding: 5px;
+}
+
+/* Styling for selected options */
+#multiSelect option:checked {
+  background-color: #007bff;
+  color: #fff;
+}
+.modal-body form {
+  display: flex;
+  flex-direction: column;
+
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.modal-body label {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.modal-body input,
+.modal-body textarea,
+.modal-body select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+  margin-top: 5px;
+}
+
+#addEvent button {
+  padding: 10px 20px;
+  margin-top: 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#addEvent button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+.modal-body .input-container {
+  position: relative;
+  display: inline-block;
+}
+
+.modal-body .input-container input {
+  padding-right: 30px;
+  /* Adjust based on the size of the icon */
+}
+
+.modal-body .input-container .fa-chevron-down {
+  position: absolute;
+  right: 10px;
+  /* Adjust as needed */
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.fixed-size-image {
+  width: 200px; /* Fixed width */
+  height: 200px; /* Fixed height */
+  object-fit: fill; /* Ensures the image covers the area, maintaining aspect ratio */
+}
