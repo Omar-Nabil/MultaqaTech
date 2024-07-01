@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { WcourseService } from '../../../services/Wcourse.service';
 
 @Component({
@@ -9,11 +9,6 @@ import { WcourseService } from '../../../services/Wcourse.service';
 })
 export class QuestionsComponent implements OnInit {
   allQuestions:any[] = [];
-  questionTitleControl!:FormControl ;
-  questionDetailsControl!:FormControl ;
-  update:boolean = false;
-  idToEdit:number = 0;
-  indexToEdit:number = 0;
   questionForm! : FormGroup;
   image!:File;
 
@@ -70,6 +65,8 @@ export class QuestionsComponent implements OnInit {
       error:(err) => console.log(err)
     })
   }
+
+
 
 
 }

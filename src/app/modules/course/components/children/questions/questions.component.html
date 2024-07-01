@@ -2,10 +2,10 @@
   <h3 class="px-5 py-2 mb-1 mt-1">All questions in this lecture</h3>
   <div class="px-5 py-1 mt-1 row row-cols-1 row-cols-lg-2 row-cols-md-1">
 
-    <div class="card col" *ngFor="let question of allQuestions">
+    <div class="card col" *ngFor="let question of allQuestions" style="cursor: pointer;">
       <div [routerLink]="question.id">
         <div>
-          <p class="card-title">User Name</p>
+          <p class="card-title">{{question.askerName}}</p>
           <p class="card-title">{{question.title}}</p>
           <p class="small-desc">
             {{question.details}}
