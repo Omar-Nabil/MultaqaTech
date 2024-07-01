@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { WcourseService } from '../../../services/Wcourse.service';
 
 @Component({
@@ -9,11 +9,6 @@ import { WcourseService } from '../../../services/Wcourse.service';
 })
 export class QuestionsComponent implements OnInit {
   allQuestions:any[] = [];
-  questionTitleControl!:FormControl ;
-  questionDetailsControl!:FormControl ;
-  update:boolean = false;
-  idToEdit:number = 0;
-  indexToEdit:number = 0;
   questionForm! : FormGroup;
   image!:File;
 
@@ -69,6 +64,12 @@ export class QuestionsComponent implements OnInit {
       },
       error:(err) => console.log(err)
     })
+  }
+
+
+  formatDate(dateString:string):string {
+    let publishingDate = new Date(dateString);
+    return `${publishingDate.getFullYear()}-${String(publishingDate.getMonth() + 1).padStart(2, '0')}-${String(publishingDate.getDate()).padStart(2, '0')} ${publishingDate.getHours()}:${publishingDate.getMinutes().toString().padStart(2, '0')}`;
   }
 
 }

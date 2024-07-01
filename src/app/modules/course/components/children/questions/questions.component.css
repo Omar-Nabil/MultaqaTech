@@ -41,7 +41,7 @@
 .card {
   display: block;
   position: relative;
-  max-width: 300px;
+  max-width: 500px;
   max-height: 320px;
   background-color: #F1F1F3;
   border-radius: 10px;
@@ -61,9 +61,9 @@
   top: -16px;
   right: -16px;
   background: linear-gradient(135deg, #364a60, #384c6c);
-  height: 32px;
-  width: 32px;
-  border-radius: 32px;
+  height: 60px;
+  width: 60px;
+  border-radius: 60px;
   transform: scale(1);
   transform-origin: 50% 50%;
   transition: transform 0.35s ease-out;

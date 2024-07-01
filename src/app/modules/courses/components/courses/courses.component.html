@@ -798,7 +798,7 @@
                       <!-- Widget Filter Item Start -->
                       <div class="widget-filter__item">
                         <input (click)="getbyinstructor(instructor.instructorId!)" type="radio" id="instructor{{i}}" name="sort-by">
-                        <label for="instructor{{i}}"><span>{{i+1}} - </span>{{instructor.instructorName[0].toUpperCase()}}{{instructor.instructorName.slice(1)}}</label>
+                        <label for="instructor{{i}}">{{instructor.instructorName[0].toUpperCase()}}{{instructor.instructorName.slice(1)}}</label>
                       </div>
                       <!-- Widget Filter Item End -->
                     </li>

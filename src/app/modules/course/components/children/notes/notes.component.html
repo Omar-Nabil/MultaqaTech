@@ -1,6 +1,9 @@
 <div class="p-5 px-11">
   <div *ngFor="let note of allNotes; let index=index" class="d-flex justify-content-between align-items-center p-3 mb-2" style="background-color: #F7F9FA;">
-    <p>{{note.content}}</p>
+    <div>
+      <p style="display: block;">{{note.content}}</p>
+      <p>{{formatDate(note.publishingDate)}}</p>
+    </div>
     <div class="d-flex">
       <p class="mx-4" (click)="delteNote(note.id, index)" style="cursor: pointer;font-size: 22px;"><i class="fa-solid fa-trash  text-danger"></i></p>
       <p style="cursor: pointer;font-size: 22px;" (click)="editNote(note.id, index)"><i class="fa-solid fa-pen-to-square text-success"></i></p>

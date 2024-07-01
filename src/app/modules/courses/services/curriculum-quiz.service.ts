@@ -29,11 +29,11 @@ export class CurriculumQuizService {
   })
     return this._HttpClient.put(environment.baseURL+`/api/Quizes/${id}`,data,{headers})
   }
-  Quizcomplete(id:any,data: any): Observable<any> {
+  Quizcomplete(id:any): Observable<any> {
     const  headers = new HttpHeaders({
     'Authorization':`Bearer ${localStorage.getItem('userToken')}`
   })
-    return this._HttpClient.put(environment.baseURL+`/api/Quizes/${id}`,data,{headers})
+    return this._HttpClient.put(environment.baseURL+`/api/Quizes/CompleteQuiz/${id}`,{headers})
   }
   deleteQuiz(id: any): Observable<any> {
     const  headers = new HttpHeaders({

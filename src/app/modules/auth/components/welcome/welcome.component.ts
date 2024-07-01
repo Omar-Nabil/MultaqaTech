@@ -49,8 +49,6 @@ export class WelcomeComponent implements OnInit {
   }
 
    handleGoogleLogIn(resp:any) {
-    console.log(resp);
-
     const value = {
       idToken:resp.credential,
       clientId:resp.clientId

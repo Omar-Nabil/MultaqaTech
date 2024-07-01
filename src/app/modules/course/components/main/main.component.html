@@ -7,12 +7,20 @@
 
     </div>
   </nav>
+  <nav class="navbar navbar-expand-lg" style="background-color: #2D2F31;" *ngIf="!isVideo">
+    <div class="container-fluid">
+      <a class="navbar-brand text-white"><span
+          style="border-right: 2px solid white; padding-right: 12px;font-weight: bold;">MultaqaTech</span><span
+          style=" padding-left: 12px;">{{quizDetails?.title}}</span> : {{quizDetails?.description}}</a>
+
+    </div>
+  </nav>
   <div>
     <div class="flex-row">
       <div class="col-full col-medium-10" style="border-right: 3px #D1D7DC solid;">
         <div *ngIf="isVideo">
           <div class="w-100">
-            <video class="w-100 h-100" [src]="videoData.videoUrl" controls></video>
+            <video class="w-100 h-100" [src]="videoData?.videoUrl" controls></video>
           </div>
           <div class="px-7">
             <div style="border-bottom: 2px solid #DCE1E5 ;font-size: 16px;" class="px-10">
@@ -36,20 +44,20 @@
             <div class="header d-flex justify-content-between align-items-center" (click)="toggleCourseItems(index)"
               style="font-weight: bold;">
               <div class="py-2">
-                <p class="my-0 py-0"><span class="p-3">{{section.title}}</span></p>
-                <p class="my-0 py-0"><span class="p-3">{{section.objectives}}</span></p>
+                <p class="my-0 py-0"><span class="p-3">{{section?.title}}</span></p>
+                <p class="my-0 py-0"><span class="p-3">{{section?.objectives?.substring(0, 16)}}</span></p>
               </div>
-              <div>
+              <div class="me-10">
                 <i class="fa-solid fa-arrow-down arrow"></i>
               </div>
             </div>
             <div class="courseitems" [class.d-block]="isCourseItemVisible[index]">
               <div class="item" *ngFor="let item of courseSectionsDetails[index]">
                 <p class="addhover" *ngIf="item.itemType=='Quiz'" routerLink="quiz" (click)="displayQuiz(item.id)"><span
-                    class="p-3">{{item.title}}</span></p>
+                    class="p-3">{{item?.title}}</span></p>
                 <p class="addhover" *ngIf="item.itemType=='Lecture'" routerLink="notes"
                   [ngClass]="{'activeItem': item.id == videoId}" (click)="displayVideo(item.id)"><span class="p-3"><span
-                      class="me-3"><i class="fa-solid fa-video"></i></span>{{item.title}}</span></p>
+                      class="me-3"><i class="fa-solid fa-video"></i></span>{{item?.title}}</span></p>
               </div>
             </div>
           </div>

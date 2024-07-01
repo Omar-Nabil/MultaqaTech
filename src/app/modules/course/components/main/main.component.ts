@@ -1,5 +1,8 @@
 import { AfterViewInit, Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { QuizQuestion_get } from 'src/app/modules/courses/interfaces/quiz-question';
+import { CurriculumQuizQuestionService } from 'src/app/modules/courses/services/curriculum-quiz-question.service';
+import { CurriculumQuizService } from 'src/app/modules/courses/services/curriculum-quiz.service';
 import { WcourseService } from '../../services/Wcourse.service';
 
 @Component({
@@ -13,19 +16,27 @@ export class MainComponent implements OnInit, AfterViewInit {
   courseSectionsDetails:any[] = [];
   isCourseItemVisible: boolean[] = [];
   videoData:any;
+  quizDetails: any;
+  questions: QuizQuestion_get[] = [];
   isVideo:boolean = false;
   videoId:number = 0;
 
-  constructor(private wcourseService:WcourseService, private route: ActivatedRoute, private el: ElementRef, private renderer: Renderer2) { }
+  constructor(private wcourseService: WcourseService, private route: ActivatedRoute,private el: ElementRef,
+    private renderer: Renderer2, private quiz: CurriculumQuizService ,private _questions:CurriculumQuizQuestionService) { }
 
   ngOnInit() {
     this.getCourseDetails();
-    this.displayVideo(1);
+    const segments = this.route.snapshot.children[0].routeConfig?.path;
+    if(segments != 'quiz') {
+      this.displayVideo(1);
+    }
+
   }
 
   ngAfterViewInit() {
-     this.isCourseItemVisible = Array(this.courseSections.length).fill(false);
+     this.isCourseItemVisible = Array(this.courseSections?.length).fill(false);
   }
+
 
   toggleCourseItems(index: number) {
     // Toggle visibility of the course items for the clicked section
@@ -60,7 +71,7 @@ export class MainComponent implements OnInit, AfterViewInit {
   }
 
   getcourseSectionsDetails() {
-    for (let index = 0; index < this.courseSections.length; index++) {
+    for (let index = 0; index < this.courseSections?.length; index++) {
       this.wcourseService.getcourseSectionsDetails(`${this.courseSections[index].id}`).subscribe({
         next:(res) => {
           this.courseSectionsDetails[index] = res;
@@ -90,6 +101,23 @@ export class MainComponent implements OnInit, AfterViewInit {
   displayQuiz(quizId:number) {
     this.isVideo = false;
     this.videoId = this.wcourseService.lectureOrQuizId.value;
+    this.wcourseService.lectureOrQuizId.next(quizId)
+    this.quiz.getQuiz(quizId).subscribe({
+      next: (res) => {
+        this.quizDetails = res
+        this.wcourseService.quizDetails.next(res)
+
+      }
+    })
+
+    this._questions.getQuestionsByQuizId(this.wcourseService.lectureOrQuizId.value).subscribe({
+      next: (res) => {
+        this.wcourseService.Questions.next(res)
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    })
   }
 
 
