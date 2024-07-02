@@ -8,7 +8,7 @@
               <ul class="breadcrumb">
                   <li class="breadcrumb-item"><a a routerLink="/home" routerLinkActive="active">Home</a></li>
                   <li class="breadcrumb-item"><a a routerLink="/events" routerLinkActive="active">Events</a></li>
-                  <li class="breadcrumb-item active">{{eventDetailes.title}}</li>
+                  <li class="breadcrumb-item active">{{eventDetailes?.title}}</li>
               </ul>
           </div>
           <!-- Page Breadcrumb End -->
@@ -239,18 +239,18 @@
 
           <!-- event Dtails Header Start -->
           <div class="event-details__header">
-              <h3 class="event-details__title">{{eventDetailes.title}}</h3>
+              <h3 class="event-details__title">{{eventDetailes?.title}}</h3>
               <div class="event-details__meta">
-                  <span class="meta-action"><i class="fas fa-map-marker-alt"></i> <span class="meta-action__value">  {{eventDetailes.country}}</span></span>
-                  <span class="meta-action"><i class="fas fa-calendar"></i> <span class="meta-action__value">  {{eventDetailes.dateFrom}} - {{eventDetailes.dateTo}}</span></span>
-                  <span class="meta-action"><i class="fas  fa-clock"></i> <span class="meta-action__value">  {{eventDetailes.timeFrom}} - {{eventDetailes.timeTo}}</span></span>
+                  <span class="meta-action"><i class="fas fa-map-marker-alt"></i> <span class="meta-action__value">  {{eventDetailes?.country}}</span></span>
+                  <span class="meta-action"><i class="fas fa-calendar"></i> <span class="meta-action__value">  {{eventDetailes?.dateFrom}} - {{eventDetailes?.dateTo}}</span></span>
+                  <span class="meta-action"><i class="fas  fa-clock"></i> <span class="meta-action__value">  {{eventDetailes?.timeFrom}} - {{eventDetailes?.timeTo}}</span></span>
               </div>
           </div>
           <!-- event Dtails Header End -->
 
           <!-- event Dtails Thumbnail Start -->
           <div class="event-details__thumbnail">
-              <img [src]="eventDetailes.pictureUrl" alt="Event" width="1170" height="350">
+              <img [src]="eventDetailes?.pictureUrl" alt="Event" width="1170" height="350">
           </div>
           <!-- event Dtails Thumbnail End -->
 
@@ -263,7 +263,7 @@
                       <div class="col-lg-8">
                           <h3 class="event-details__heading mb-3">About The Event</h3>
 
-                          <p>{{eventDetailes.aboutTheEvent}}</p>
+                          <p>{{eventDetailes?.aboutTheEvent}}</p>
                       </div>
                       <div class="col-lg-4">
 
@@ -275,7 +275,7 @@
                                       <i class="fas fa-money-bill-wave"></i>
                                       Cost:
                                   </span>
-                                      <span class="meta-value">{{eventDetailes.price}}</span><span>$</span>
+                                      <span class="meta-value">{{eventDetailes?.price}}</span><span>$</span>
                                   </li>
 
                               </ul>
@@ -318,174 +318,131 @@
                       <div class="col-lg-4">
 
                           <div class="event-details__location-info">
-                              <p class="location-info-heading">{{eventDetailes.country}}</p>
+                              <p class="location-info-heading">{{eventDetailes?.country}}</p>
                               <div class="location-info-address">
-                                  <p>{{eventDetailes.address}}</p>
+                                  <p>{{eventDetailes?.address}}</p>
                                   <a class="location-info-link" href="https://www.google.com/maps/search/?api=1&query=3601%20Lyon%20St%20San%20Francisco,%20CA%2094123%20United%20States">+ Google Map</a>
                               </div>
 
                               <div class="location-info">
                                   <span class="meta-label">Phone Number</span>
-                                  <span class="meta-value">{{eventDetailes.phoneNumber}}</span>
+                                  <span class="meta-value">{{eventDetailes?.phoneNumber}}</span>
                               </div>
                               <div class="location-info">
                                   <span class="meta-label">Website</span>
-                                  <span class="meta-value">{{eventDetailes.website}}</span>
+                                  <span class="meta-value">{{eventDetailes?.website}}</span>
                               </div>
                           </div>
 
                       </div>
                   </div>
               </div>
-              <!-- event Dtails Location End --><!--*ngIf="isAuther"-->
-              <div  class="d-flex justify-content-between">
+              <!-- event Dtails Location End --><!---->
+              <div *ngIf="isAuther" class="d-flex justify-content-between">
                 <h5 class="btn btn-danger mt-3"  (click)="deleteYourEvent()">Delete your event</h5>
                 <h5 class="btn btn-warning mt-3"  data-bs-toggle="modal" data-bs-target="#editEvent" (click)="EditYourEvent()">Edit your event</h5>
               </div>
 
               <!-- event Dtails Speakers Start -->
               <div class="event-details__speakers">
-                  <h3 class="event-details__heading">Our Speakers</h3>
 
-                  <div class="speaker-active">
-                      <div class="swiper">
-                          <div class="swiper-wrapper">
-                              <div class="swiper-slide">
-                                  <!-- Speakers Item Start -->
-                                  <div class="speaker-item text-center">
-                                      <div class="speaker-item__thumbnail">
-                                          <img src="assets/images/speaker/speaker-01.jpg" alt="Speaker" width="170" height="170">
-                                      </div>
-                                      <div class="speaker-item__content">
-                                          <h6 class="speaker-item__name">Emerson</h6>
-                                          <p class="speaker-item__designation">/ Developer</p>
-                                      </div>
-                                  </div>
-                                  <!-- Speakers Item End -->
-                              </div>
-                              <div class="swiper-slide">
-                                  <!-- Speakers Item Start -->
-                                  <div class="speaker-item text-center">
-                                      <div class="speaker-item__thumbnail">
-                                          <img src="assets/images/speaker/speaker-02.jpg" alt="Speaker" width="170" height="170">
-                                      </div>
-                                      <div class="speaker-item__content">
-                                          <h6 class="speaker-item__name">Lilybelle</h6>
-                                          <p class="speaker-item__designation">/ Office Manager</p>
-                                      </div>
-                                  </div>
-                                  <!-- Speakers Item End -->
-                              </div>
-                              <div class="swiper-slide">
-                                  <!-- Speakers Item Start -->
-                                  <div class="speaker-item text-center">
-                                      <div class="speaker-item__thumbnail">
-                                          <img src="assets/images/speaker/speaker-03.jpg" alt="Speaker" width="170" height="170">
-                                      </div>
-                                      <div class="speaker-item__content">
-                                          <h6 class="speaker-item__name">Lucinda</h6>
-                                          <p class="speaker-item__designation">/ Manager</p>
-                                      </div>
-                                  </div>
-                                  <!-- Speakers Item End -->
-                              </div>
-                              <div class="swiper-slide">
-                                  <!-- Speakers Item Start -->
-                                  <div class="speaker-item text-center">
-                                      <div class="speaker-item__thumbnail">
-                                          <img src="assets/images/speaker/speaker-04.jpg" alt="Speaker" width="170" height="170">
-                                      </div>
-                                      <div class="speaker-item__content">
-                                          <h6 class="speaker-item__name">Marabel</h6>
-                                          <p class="speaker-item__designation">/ Founder & CEO</p>
-                                      </div>
-                                  </div>
-                                  <!-- Speakers Item End -->
-                              </div>
-                              <div class="swiper-slide">
-                                  <!-- Speakers Item Start -->
-                                  <div class="speaker-item text-center">
-                                      <div class="speaker-item__thumbnail">
-                                          <img src="assets/images/speaker/speaker-05.jpg" alt="Speaker" width="170" height="170">
-                                      </div>
-                                      <div class="speaker-item__content">
-                                          <h6 class="speaker-item__name">Orabelle</h6>
-                                          <p class="speaker-item__designation">/ Art Director</p>
-                                      </div>
-                                  </div>
-                                  <!-- Speakers Item End -->
-                              </div>
-                              <div class="swiper-slide">
-                                  <!-- Speakers Item Start -->
-                                  <div class="speaker-item text-center">
-                                      <div class="speaker-item__thumbnail">
-                                          <img src="assets/images/speaker/speaker-06.jpg" alt="Speaker" width="170" height="170">
-                                      </div>
-                                      <div class="speaker-item__content">
-                                          <h6 class="speaker-item__name">Solomon</h6>
-                                          <p class="speaker-item__designation">/ Designer</p>
-                                      </div>
-                                  </div>
-                                  <!-- Speakers Item End -->
-                              </div>
-                          </div>
-                      </div>
+                  <div  class="d-flex justify-content-between">
+                    <h3 class="event-details__heading">Our Speakers</h3>
+                    <h5 *ngIf="isAuther" class="btn btn-warning mt-3"  data-bs-toggle="modal" data-bs-target="#addSpeaker" (click)="addEventSpeaker()">Add Speaker</h5>
                   </div>
+                  <!-- Speakers Item Start -->
+
               </div>
+
+              <div class="speaker-active">
+                <div class="">
+                    <div class="swiper-wrapper" *ngFor="let speaker of speakers">
+                        <div *ngIf="speaker.eventId == eventId" class="swiper-slide">
+
+                            <div class="speaker-item text-center">
+                                <div class="speaker-item__thumbnail">
+                                    <img [src]="speaker?.pictureUrl" alt="Speaker" width="170" height="170">
+                                </div>
+                                <div class="speaker-item__content">
+                                    <h6 class="speaker-item__name">{{speaker?.name}}</h6>
+                                    <p class="speaker-item__designation">{{speaker?.jobTitle}}</p>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+              </div>
+
+
               <!-- event Dtails Speakers End -->
 
               <!-- event Dtails Comment Start -->
-              <div class="event-details__comment">
-                  <h3 class="event-details__heading">Leave your thought here</h3>
+               <!-- display Comment Start -->
+        <div class="comments-container my-10">
+          <h2>Comments</h2>
+          <div class="comment" *ngFor="let comment of eventDetailes?.comments; let index=index">
+            <div class="comment-header">
+              <span class="comment-user">{{ comment.authorName }}</span>
+              <span class="comment-date">{{ comment.datePosted }}</span>
+            </div>
+            <p class="comment-text">{{ comment?.commentContent }}</p>
+            <input type="text"  class="form-control py-1" *ngIf="isEditing[index]" [formControl]="editComment">
+            <!-- Validation Messages -->
+            <div *ngIf="editComment.touched && editComment.hasError('required') && isEditing[index]" class="text-danger">
+              Comment is required.
+            </div>
+            <div *ngIf="editComment.touched && editComment.hasError('minlength') && isEditing[index]" class="text-danger">
+              Comment must be at least 20 characters long.
+            </div>
+            <div class="comment-actions">
+              <span (click)="applyEdit(index)"><i class="fas fa-edit"></i></span>
+              <span (click)="deleteComment(comment?.id, index)"><i class="fas fa-trash  text-danger"></i></span>
+            </div>
+            <button class="btn btn-dark py-0 px-1" *ngIf="isEditing[index]"  [disabled]="editComment.invalid" (click)="saveChanges(comment?.id, index)">Save Changes</button>
+          </div>
+        </div>
+        <!-- display Comment End -->
+        <!-- Add Comment Start -->
+        <div class="comments-area">
 
-                  <div class="row gy-6">
-                      <div class="col-lg-8">
-                          <!-- Comment Form Start -->
-                          <div class="comment-form">
-                              <form action="#">
-                                  <div class="row gy-4">
-                                      <div class="col-md-6">
-                                          <div class="comment-form__input">
-                                              <input type="text" class="form-control" placeholder="Your Name *">
-                                          </div>
-                                      </div>
-                                      <div class="col-md-6">
-                                          <div class="comment-form__input">
-                                              <input type="email" class="form-control" placeholder="Your Email *">
-                                          </div>
-                                      </div>
-                                      <div class="col-md-12">
-                                          <div class="comment-form__input">
-                                              <textarea class="form-control" placeholder="Your Comment"></textarea>
-                                          </div>
-                                      </div>
-                                      <div class="col-md-12">
-                                          <div class="comment-form__input form-check">
-                                              <input type="checkbox" id="save">
-                                              <label for="save">Save my name, email, and website in this browser for the next time I comment.</label>
-                                          </div>
-                                      </div>
-                                      <div class="col-md-12">
-                                          <div class="comment-form__input">
-                                              <button class="btn btn-primary btn-hover-secondary">Submit</button>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </form>
-                          </div>
-                          <!-- Comment Form End -->
-                      </div>
-                      <div class="col-lg-4">
-                          <!-- Comment Help Start -->
-                          <div class="comment-help">
-                              <p class="comment-help__title">We're always eager to hear from you.</p>
-                              <p class="comment-help__description">If you’d like to learn more about us or have a general comments and suggestions about the site, email us at</p>
-                              <p class="comment-help__link"><a href="mailto://contact@edumall.com">contact@edumall.com</a></p>
-                          </div>
-                          <!-- Comment Help End -->
-                      </div>
+          <!-- Comment Wrapper Start -->
+          <div class="comment-wrap mt-8">
+            <h3 class="comment-title">Leave your thought here</h3>
+            <p>Your email address will not be published. Required fields are marked *</p>
+
+            <!-- Comment Form Start -->
+          <div class="comment-form">
+            <form>
+              <div class="row gy-4">
+                <div class="col-md-12">
+                  <div class="comment-form__input">
+                    <textarea class="form-control p-3" placeholder="Your Comment" [formControl]="commentControl"></textarea>
+                    <!-- Validation Messages -->
+                    <div *ngIf="commentControl.touched && commentControl.hasError('required')" class="text-danger">
+                      Comment is required.
+                    </div>
+                    <div *ngIf="commentControl.touched && commentControl.hasError('minlength')" class="text-danger">
+                      Comment must be at least 20 characters long.
+                    </div>
                   </div>
+                </div>
+                <div class="col-md-12">
+                  <a class="btn btn-dark"  [ngClass]="{'disabled': commentControl.invalid, 'btn-dark': !commentControl.invalid}" (click)="submitComment()">add</a>
+                </div>
               </div>
+            </form>
+          </div>
+
+            <!-- Comment Form End -->
+
+          </div>
+          <!-- Comment Wrapper End -->
+
+        </div>
+        <!--Add Comment End -->
+
               <!-- event Dtails Comment End -->
 
           </div>
@@ -676,7 +633,7 @@
       </div>
       <div class="modal-body">
 
-        <form [formGroup]="editEventForm" (submit)="EditYourEvent()">
+        <form [formGroup]="editEventForm" (submit)="submitEditYourEvent()">
           <div>
             <label for="title">Title:</label>
             <input id="title" type="text" formControlName="title">
@@ -750,3 +707,47 @@
     </div>
   </div>
 </div>
+ <!--add speaker-->
+ <div class="modal fade" id="addSpeaker" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content w-100">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Add Speaker</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <form [formGroup]="addEventSpeakerForm" (submit)="addEventSpeaker()">
+          <div>
+            <label for="name">Name:</label>
+            <input id="name" type="text" formControlName="name">
+          </div>
+          <div>
+            <label for="jobTitle">Job Title:</label>
+            <textarea id="jobTitle" style="height: 300px;" formControlName="jobTitle"></textarea>
+          </div>
+
+          <div>
+            <div>
+              <img id="previewImage" *ngIf="previewUrl" [src]="previewUrl" alt="Selected Image" width="200px" height="200px">
+            </div>
+            <label for="pictureUrl">Image:</label>
+            <input  id="pictureUrl" type="file" formControlName="pictureUrl"  (change)="onFileChange($event)">
+          </div>
+
+
+
+
+
+          <button type="submit" data-bs-dismiss="modal" >Submit</button>
+        </form>
+
+
+      </div>
+<!--[disabled]="!addEventForm.valid"-->
+    </div>
+  </div>
+</div>
+
+
+

@@ -88,3 +88,213 @@
   height: 200px; /* Fixed height */
   object-fit: fill; /* Ensures the image covers the area, maintaining aspect ratio */
 }
+
+.comments-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.comments-container h2 {
+  margin-bottom: 20px;
+}
+
+.comment {
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.comment-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+
+    align-items: center;
+
+}
+
+.comment-author {
+  font-weight: bold;
+}
+
+.comment-date {
+  font-size: 0.8em;
+  color: #777;
+}
+
+.comment-text {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+    word-wrap: break-word;
+    margin-top: 10px;
+      /* Add some space above the comment text */
+      line-height: 1.4;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+input,
+textarea,
+select {
+  padding: 5px;
+  font-size: 16px;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+
+.comment-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+
+
+    align-items: center;
+
+}
+.comment-actions span {
+  cursor: pointer;
+}
+.comment-actions i {
+  cursor: pointer;
+  font-size: 1.2em;
+  color: #777;
+}
+
+.comment-actions i:hover {
+  color: #333;
+}
+.comment-actions span {
+  margin-right: 10px;
+  color: #777;
+  cursor: pointer;
+}
+.comment-actions span:hover {
+  color: #333;
+  /* Darken on hover */
+}
+
+.comment-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.comment-user {
+
+  font-weight: bold;
+    color: #333;
+}
+
+.comment-date {
+  font-size: 0.9em;
+    /* Increase font size slightly */
+    color: #777;
+}
+
+
+
+
+#multiSelect {
+  width: 200px;
+  padding: 5px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+}
+
+/* Styling when dropdown is open */
+#multiSelect:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Styling for options */
+#multiSelect option {
+  padding: 5px;
+}
+
+/* Styling for selected options */
+#multiSelect option:checked {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.modal-body form {
+  display: flex;
+  flex-direction: column;
+
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.modal-body label {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.modal-body input,
+.modal-body textarea,
+.modal-body select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+  margin-top: 5px;
+}
+
+#editBlog button {
+  padding: 10px 20px;
+  margin-top: 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#editBlog button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.modal-body .input-container {
+  position: relative;
+  display: inline-block;
+}
+
+.modal-body .input-container input {
+  padding-right: 30px;
+  /* Adjust based on the size of the icon */
+}
+
+.modal-body .input-container .fa-chevron-down {
+  position: absolute;
+  right: 10px;
+  /* Adjust as needed */
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+
+
+
+

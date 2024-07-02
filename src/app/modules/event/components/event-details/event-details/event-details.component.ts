@@ -11,7 +11,7 @@ import { AuthService } from 'src/app/modules/auth/services/auth.service';
   templateUrl: './event-details.component.html',
   styleUrls: ['./event-details.component.scss']
 })
-export class EventDetailsComponent  {
+export class EventDetailsComponent implements OnInit {
   eventDetailes:any;
   eventSpeakerDetailes:any;
   speakers:any[] = [];
@@ -35,13 +35,16 @@ export class EventDetailsComponent  {
   constructor(private _EventserviceService:EventserviceService,private route: ActivatedRoute,private router:Router) {
     this.commentControl = new FormControl('', [Validators.required,Validators.minLength(20)]);
     this.editComment = new FormControl('', [Validators.required,Validators.minLength(20)]);
-    this.getEventDetailes();
+
   }
   ngOnInit(): void {
     main.start();
     this.getEventDetailes();
     this.getCategories();
     this.getCountries();
+    this.getSpeakers();
+
+
 
     this.editEventForm =  new FormGroup({
       'title': new FormControl(null, Validators.required),
@@ -147,7 +150,7 @@ export class EventDetailsComponent  {
   getCountries() {
     this._EventserviceService.getCountries().subscribe({
       next:(res) => {
-        this.categories = res;
+        this.countries = res;
         console.log(this.categories);
 
       },
@@ -183,9 +186,9 @@ export class EventDetailsComponent  {
 
     let userName = userData['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname'];
     console.log(userName);
-    console.log(this.eventDetailes.authorName);
+    console.log(this.eventDetailes.eventBy);
 
-    if(userName == this.eventDetailes?.authorName){
+    if(userName == this.eventDetailes?.eventBy){
       this.isAuther = true;
     }
     console.log(this.isAuther);
@@ -281,6 +284,7 @@ export class EventDetailsComponent  {
     const formData = new FormData();
     formData.append('named', this.addEventSpeakerForm.get('named')?.value);
     formData.append('jobTitle', this.addEventSpeakerForm.get('jobTitle')?.value);
+    formData.append('EventId', this.addEventSpeakerForm.get('EventId')?.value);
 
 
     // Append the file to formData
@@ -289,10 +293,11 @@ export class EventDetailsComponent  {
     }
     console.log(formData);
 
-    this._EventserviceService.addEvent(formData).subscribe({
+    this._EventserviceService.addEventSpeaker(formData).subscribe({
       next:(res) => {
         console.log(res);
         this.speakers.unshift(res);
+        console.log(this.speakers)
       },
       error:(err) => console.log(err)
 
@@ -325,6 +330,17 @@ export class EventDetailsComponent  {
       error:(err) => console.log(err)
     })
   }
+  getSpeakers() {
+    this._EventserviceService.getSpeakers().subscribe({
+      next:(res) => {
+        this.speakers = res;
+        console.log(this.speakers);
+
+      },
+      error:(err) => console.log(err)
+    })
+  }
+
   deleteEventSpeaker(id: string) {
   this._EventserviceService.deleteEventSpeaker(id).subscribe({
     next:(response)=>{console.log(response);
@@ -333,6 +349,5 @@ export class EventDetailsComponent  {
 
     }
   })
-
 }
 }
