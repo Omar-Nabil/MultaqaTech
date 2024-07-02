@@ -348,16 +348,16 @@
 
                   <div  class="d-flex justify-content-between">
                     <h3 class="event-details__heading">Our Speakers</h3>
-                    <h5 *ngIf="isAuther" class="btn btn-warning mt-3"  data-bs-toggle="modal" data-bs-target="#addSpeaker" (click)="addEventSpeaker()">Add Speaker</h5>
+                    <h5 *ngIf="isAuther" class="btn btn-warning mt-3"  data-bs-toggle="modal" data-bs-target="#addSpeaker" >Add Speaker</h5>
                   </div>
                   <!-- Speakers Item Start -->
 
               </div>
 
               <div class="speaker-active">
-                <div class="">
+                <div class="d-flex justify-content-between">
                     <div class="swiper-wrapper" *ngFor="let speaker of speakers">
-                        <div *ngIf="speaker.eventId == num" class="swiper-slide">
+                        <div *ngIf="speaker.eventId == (+eventId)" class="swiper-slide">
 
                             <div class="speaker-item text-center">
                                 <div class="speaker-item__thumbnail">
@@ -367,6 +367,10 @@
                                     <h6 class="speaker-item__name">{{speaker?.name}}</h6>
                                     <p class="speaker-item__designation">{{speaker?.jobTitle}}</p>
                                 </div>
+                            </div>
+                            <div *ngIf="isAuther" class="d-flex justify-content-center">
+                              <h5 class="btn btn-danger mt-3"  (click)="deleteEventSpeaker(speaker?.id)">delete</h5>
+                              <!--<h5 class="btn btn-warning mt-3"  data-bs-toggle="modal" data-bs-target="#editSpeaker" (click)="editEventSpeaker(speaker?.id)">Edit your event</h5>-->
                             </div>
 
                         </div>
@@ -748,6 +752,47 @@
     </div>
   </div>
 </div>
+<!--edit speaker
+ <div class="modal fade" id="editSpeaker" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content w-100">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Add Speaker</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
 
+        <form [formGroup]="addEventSpeakerForm" (submit)="submitEditEventSpeaker()">
+          <div>
+            <label for="name">Name:</label>
+            <input id="name" type="text" formControlName="name">
+          </div>
+          <div>
+            <label for="jobTitle">Job Title:</label>
+            <textarea id="jobTitle" style="height: 300px;" formControlName="jobTitle"></textarea>
+          </div>
+
+          <div>
+            <div>
+              <img id="previewImage" *ngIf="previewUrl" [src]="previewUrl" alt="Selected Image" width="200px" height="200px">
+            </div>
+            <label for="pictureUrl">Image:</label>
+            <input  id="pictureUrl" type="file" formControlName="pictureUrl"  (change)="onFileChange($event)">
+          </div>
+
+
+
+
+
+          <button type="submit" data-bs-dismiss="modal" >Submit</button>
+        </form>
+
+
+      </div>-->
+<!--[disabled]="!addEventForm.valid"
+    </div>
+  </div>
+</div>
+-->
 
 
