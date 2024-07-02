@@ -16,6 +16,7 @@ export class EventDetailsComponent implements OnInit {
   eventSpeakerDetailes:any;
   speakers:any[] = [];
   eventId:string = '';
+  num: number = parseInt(this.eventId);
   isEditing:boolean[] = [];
   eventsByCategory:any[]=[];
   commentControl!:FormControl ;
