@@ -283,14 +283,14 @@ export class EventDetailsComponent implements OnInit {
   }
   addEventSpeaker() {
     const formData = new FormData();
-    formData.append('named', this.addEventSpeakerForm.get('named')?.value);
-    formData.append('jobTitle', this.addEventSpeakerForm.get('jobTitle')?.value);
+    formData.append('Name', this.addEventSpeakerForm.get('named')?.value);
+    formData.append('JobTitle', this.addEventSpeakerForm.get('jobTitle')?.value);
     formData.append('EventId', this.addEventSpeakerForm.get('EventId')?.value);
 
 
     // Append the file to formData
     if (this.selectedFile) {
-      formData.append('pictureUrl', this.selectedFile, this.selectedFile.name);
+      formData.append('PictureUrl', this.selectedFile, this.selectedFile.name);
     }
     console.log(formData);
 
