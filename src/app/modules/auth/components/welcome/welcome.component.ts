@@ -54,6 +54,9 @@ export class WelcomeComponent implements OnInit {
       clientId:resp.clientId
     };
 
+    console.log(value);
+
+
     this._AuthService.Google(value).subscribe({
       next:(res:any) => {
         this._Router.navigate(['/home']);
@@ -122,7 +125,7 @@ export class WelcomeComponent implements OnInit {
       const value = {
         accessToken : result.authResponse.accessToken
       };
-      console.log(result);
+      console.log(value);
 
       await this._AuthService.Facebook(value).subscribe(
           (x:any) => {

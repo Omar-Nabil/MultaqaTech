@@ -13,10 +13,10 @@
 <div class="p-5 px-11">
   <input type="text" placeholder="Enter your note" [formControl]="noteControl" class="form-control w-50">
   <div *ngIf="noteControl.touched && noteControl.hasError('required')" class="text-danger">
-    Comment is required.
+    Note is required.
   </div>
   <div *ngIf="noteControl.touched && noteControl.hasError('minlength')" class="text-danger">
-    Comment must be at least 10 characters long.
+    Note must be at least 10 characters long.
   </div>
   <div class="mt-3">
     <a *ngIf="!update" class="btn btn-dark" [ngClass]="{'disabled': noteControl.invalid, 'btn-dark': !noteControl.invalid}"
