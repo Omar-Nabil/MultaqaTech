@@ -25,6 +25,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SubjectsComponent } from './components/children/admin/subjects/subjects.component';
 import { CategoriesComponent } from './components/children/admin/categories/categories.component';
 import { MeetingscategoriesComponent } from './components/children/admin/meetingscategories/meetingscategories.component';
+import { EventscategoriesComponent } from './components/children/admin/eventscategories/eventscategories/eventscategories.component';
+import { EventscountriesComponent } from './components/children/admin/eventscountries/eventscountries/eventscountries.component';
 
 
 
@@ -51,6 +53,8 @@ import { MeetingscategoriesComponent } from './components/children/admin/meeting
     SubjectsComponent,
     CategoriesComponent,
     MeetingscategoriesComponent,
+    EventscategoriesComponent,
+    EventscountriesComponent,
 
   ],
   imports: [

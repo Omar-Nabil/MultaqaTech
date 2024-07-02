@@ -1,0 +1,119 @@
+<!-- Dashboard Content Start -->
+<div class="dashboard-content position-relative">
+
+  <div class="container">
+    <h4 class="dashboard-title">categories</h4>
+
+    <div class="category-input">
+      <div class="d-flex align-items-center ms-auto"><span class="text">Add category</span><a data-bs-toggle="modal"
+          data-bs-target="#AddModal"><i class="fa-solid fa-circle-plus ms-3 fs-1"></i></a></div>
+    </div>
+
+
+    <!-- content -->
+
+
+    <table class="table mt-15">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">categories</th>
+          <th class="text-center" scope="col">Edit</th>
+          <th class="text-center" scope="col">Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let sub of categories;let i = index;">
+          <th scope="row">{{i+1}}</th>
+          <td>{{sub.name}}</td>
+          <td><div class="text-center"><a class="edit" data-bs-toggle="modal"
+          data-bs-target="#updateModal" (click)="getcategory(sub.id!)"><i class="fa-solid fa-pen-to-square"></i></a></div></td>
+          <td><div class="text-center"><a class="x-mark" (click)="deletecategory(sub.id!)"><i class="fa-solid fa-circle-xmark"></i></a></div></td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- content -->
+
+    <!-- popup Add category -->
+
+    <div class="modal fade" id="AddModal" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Add category</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="d-flex align-items-center">
+              <div class="input categoryinput">
+                <input [ngClass]="{'is-valid':categorysucess,'is-invalid':categoryfail}" class="form-control" type="text"
+                  required="" autocomplete="off" [formControl]="categoryInput">
+                <label for="name">category</label>
+              </div>
+
+            </div>
+            <p class="mt-1 mb-2 ms-6" [ngClass]="{'text-success':categorysucess,'text-danger':categoryfail}">
+              {{categorymsg}}
+            </p>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary rounded-5" (click)="add()">Add</button>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- popup Add category -->
+
+    <!-- pop up update categorys -->
+        <div class="modal fade" id="updateModal" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalToggleLabel">update category</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <div class="d-flex align-items-center">
+                  <div class="input categoryinput">
+                    <input [ngClass]="{'is-valid':categorysucess,'is-invalid':categoryfail}" class="form-control" type="text"
+                      required="" autocomplete="off" [formControl]="categoryupdate">
+                    <label for="name">category</label>
+                  </div>
+
+                </div>
+                <p class="mt-1 mb-2 ms-6" [ngClass]="{'text-success':categorysucess,'text-danger':categoryfail}">
+                  {{categorymsg}}
+                </p>
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary rounded-5" (click)="updatecategory()">update</button>
+
+              </div>
+            </div>
+          </div>
+        </div>
+    <!-- pop up update categorys -->
+
+
+
+
+
+
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+</div>
+<!-- Dashboard Content End -->

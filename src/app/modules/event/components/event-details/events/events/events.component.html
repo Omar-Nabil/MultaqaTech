@@ -1,0 +1,393 @@
+<main class="main-wrapper">
+  <!-- Page Banner Section Start -->
+  <div class="page-banner bg-color-05">
+    <div class="page-banner__wrapper">
+      <div class="container">
+
+        <!-- Page Breadcrumb Start -->
+        <div class="page-breadcrumb">
+          <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a routerLink="/home" routerLinkActive="active">Home</a></li>
+            <li class="breadcrumb-item active">Events</li>
+          </ul>
+        </div>
+        <!-- Page Breadcrumb End -->
+
+        <!-- Page Banner Caption Start -->
+        <div class="page-banner__caption text-center">
+          <h2 class="page-banner__main-title">Events</h2>
+        </div>
+        <!-- Page Banner Caption End -->
+
+      </div>
+    </div>
+  </div>
+  <!-- Page Banner Section End -->
+
+  <!-- Offcanvas Start -->
+  <div class="offcanvas offcanvas-end offcanvas-mobile" id="offcanvasMobileMenu"
+    style="background-image: url(assets/images/mobile-bg.jpg);">
+    <div class="offcanvas-header bg-white">
+      <div class="offcanvas-logo">
+        <a class="offcanvas-logo__logo"><img src="assets/images/dark-logo.png" alt="Logo"></a>
+      </div>
+      <button type="button" class="offcanvas-close" data-bs-dismiss="offcanvas"><i class="fas fa-times"></i></button>
+    </div>
+
+    <div class="offcanvas-body">
+      <nav class="canvas-menu">
+        <ul class="offcanvas-menu">
+          <li><a class="active" routerLink="/home"><span>Home</span></a>
+
+          </li>
+          <li>
+            <a class="active" routerLink="/courses"><span>Courses</span></a>
+
+          </li>
+          <li>
+            <a class="active" routerLink="/blogs" data-bs-dismiss="offcanvas"><span>Blog</span></a>
+
+          </li>
+          <li>
+            <a><span>Features</span></a>
+
+          </li>
+
+
+        </ul>
+      </nav>
+    </div>
+
+  </div>
+  <!-- Offcanvas End -->
+
+  <!-- Event Start -->
+
+  <div class="blog-section section-padding-01">
+    <div class="container custom-container">
+      <div class="row gy-10 flex-row-reverse">
+        <div class="col-lg-8">
+
+          <div class="row gy-6 grid">
+            <div class="col-md-6 grid-item"  *ngFor="let event of events">
+
+
+              <!-- Event Item Start -->
+
+
+              <!-- Event Item Start -->
+              <div class="event-item" data-aos="fade-up" data-aos-duration="1000">
+                <div class="event-item__image">
+                    <a [routerLink]="['/events', event.id]"><img [src]="event.pictureUrl" class="fixed-size-image" alt="Event" width="330" height="186"></a>
+                </div>
+                <div class="event-item__content text-center">
+                    <div class="event-item__date">{{event.dateFrom }}</div>
+                    <h3 class="event-item__title"><a >{{event.title}}</a></h3>
+                    <p class="event-item__location"><i class="fas fa-map-marker-alt"></i> {{event.country}}</p>
+                </div>
+            </div>
+            <!-- Event Item End -->
+
+
+
+            </div>
+          </div>
+
+
+          <!-- Page Pagination Start -->
+
+          <div class="page-pagination">
+            <ul class="pagination justify-content-center">
+              <li *ngFor="let page of pages" (click)="setCurrentPage(page)">
+                <a  [class.active]="currentPage === page">{{page}}</a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Page Pagination End -->
+
+
+        </div>
+
+
+        <div class="col-lg-4">
+
+          <!-- Sidebar Widget Start -->
+
+          <div class="sidebar-widget-weap-02 pe-xl-6">
+
+
+            <!-- Sidebar Widget Start -->
+
+            <div class="sidebar-widget-02">
+              <h4 class="sidebar-widget-02__title">Search</h4>
+
+
+              <!-- Sidebar Widget Search Start -->
+
+              <div class="sidebar-widget-02-search">
+
+                  <input type="search" class="sidebar-widget-02-search__field" placeholder="Search…" (input)="inputSearchChange($event)"  (keydown.enter)="eventsSearch()">
+                  <button type="submit" class="sidebar-widget-02-search__submit" (click)="eventsSearch()">
+                    <span class="search-btn-icon fas fa-search"></span>
+                  </button>
+
+              </div>
+
+              <!-- Sidebar Widget Search End -->
+
+            </div>
+
+            <!-- Sidebar Widget End -->
+
+            <!-- Sidebar Widget Start -->
+
+            <div class="sidebar-widget-02">
+              <h4 class="sidebar-widget-02__title">Categories</h4>
+
+
+              <!-- Sidebar Widget Search Start -->
+
+              <ul class="sidebar-widget-02__tags">
+                <li *ngFor="let cat of categories;let index=index"><a (click)="filterByCategory(cat.id)">{{cat.name}}</a></li>
+              </ul>
+
+              <!-- Sidebar Widget Search End -->
+
+            </div>
+            <div class="sidebar-widget-02">
+              <h4 class="sidebar-widget-02__title">Countriess</h4>
+
+
+              <!-- Sidebar Widget Search Start -->
+
+              <ul class="sidebar-widget-02__tags">
+                <li *ngFor="let country of countries;let index=index"><a (click)="filterByCountry(country.id)">{{country.name}}</a></li>
+              </ul>
+
+              <!-- Sidebar Widget Search End -->
+
+            </div>
+
+            <!-- Sidebar Widget End -->
+
+
+            <div class="dashboard-header__btn mt-5">
+              <a class="btn btn-outline-primary"  data-bs-toggle="modal" data-bs-target="#addEvent"
+               ><i class="edumi edumi-content-writing"></i> <span class="text">Create New event </span></a>
+            </div>
+
+          </div>
+
+          <!-- Sidebar Widget End -->
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Event End -->
+
+  <!-- Footer Start -->
+  <div class="footer-section bg-color-10">
+
+    <!-- Footer Widget Area Start -->
+    <div class="footer-widget-area section-padding-01">
+      <div class="container">
+        <div class="row gy-6">
+
+          <div class="col-md-4">
+            <!-- Footer Widget Start -->
+            <div class="footer-widget">
+              <a  class="footer-widget__logo"><img src="assets/images/dark-logo.png" alt="Logo" width="150"
+                  height="32"></a>
+
+              <div class="footer-widget__info">
+                <span class="title">Call us</span>
+                <span class="number">800 388 80 90</span>
+              </div>
+              <div class="footer-widget__info">
+                <p>58 Howard Street #2 San Francisco</p>
+                <p>contact@edumall.com</p>
+              </div>
+
+              <div class="footer-widget__social-02">
+                <a class="twitter"  target="_blank"><i class="fab fa-twitter"></i></a>
+                <a class="facebook"  target="_blank"><i
+                    class="fab fa-facebook-f"></i></a>
+                <a class="skype"  target="_blank"><i class="fab fa-skype"></i></a>
+                <a class="youtube"  target="_blank"><i class="fab fa-youtube"></i></a>
+                <a class="linkedin"  target="_blank"><i
+                    class="fab fa-linkedin-in"></i></a>
+              </div>
+            </div>
+            <!-- Footer Widget End -->
+          </div>
+
+          <div class="col-md-8">
+            <div class="row gy-6">
+
+              <div class="col-sm-4">
+                <!-- Footer Widget Start -->
+                <div class="footer-widget">
+                  <h4 class="footer-widget__title">About</h4>
+
+                  <ul class="footer-widget__link">
+                    <li><a >About Us</a></li>
+                    <li><a>Courses</a></li>
+                    <li><a>Instructor</a></li>
+                    <li><a>Events</a></li>
+                    <li><a>Become A Teacher</a></li>
+                  </ul>
+                </div>
+                <!-- Footer Widget End -->
+              </div>
+              <div class="col-sm-4">
+                <!-- Footer Widget Start -->
+                <div class="footer-widget">
+                  <h4 class="footer-widget__title">Links</h4>
+
+                  <ul class="footer-widget__link">
+                    <li><a>News & Blogs</a></li>
+                    <li><a>Library</a></li>
+                    <li><a>Gallery</a></li>
+                    <li><a>Partners</a></li>
+                    <li><a>Career</a></li>
+                  </ul>
+                </div>
+                <!-- Footer Widget End -->
+              </div>
+              <div class="col-sm-4">
+                <!-- Footer Widget Start -->
+                <div class="footer-widget">
+                  <h4 class="footer-widget__title">Support</h4>
+
+                  <ul class="footer-widget__link">
+                    <li><a >Documentation</a></li>
+                    <li><a href="faqs.html">FAQs</a></li>
+                    <li><a >Forum</a></li>
+                    <li><a >Sitemap</a></li>
+                  </ul>
+                </div>
+                <!-- Footer Widget End -->
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <!-- Footer Widget Area End -->
+
+    <!-- Footer Copyright Area End -->
+    <div class="footer-copyright">
+      <div class="container">
+        <div class="copyright-wrapper text-center">
+          <ul class="footer-widget__link flex-row gap-8 justify-content-center">
+            <li><a>Terms of Use</a></li>
+            <li><a>Privacy Policy</a></li>
+          </ul>
+          <p class="footer-widget__copyright mt-0">&copy; 2023 <span> EduMall </span> Made with <i
+              class="fa fa-heart"></i> by <a
+              href="https://1.envato.market/c/417168/275988/4415?subId1=hastheme&subId2=demo&subId3=https%3A%2F%2Fthemeforest.net%2Fuser%2Fbootxperts%2Fportfolio&u=https%3A%2F%2Fthemeforest.net%2Fuser%2Fbootxperts%2Fportfolio">BootXperts</a>
+          </p>
+        </div>
+      </div>
+    </div>
+    <!-- Footer Copyright Area End -->
+
+  </div>
+  <!-- Footer End -->
+
+  <!--Back To Start-->
+  <button id="backBtn" class="back-to-top backBtn">
+    <i class="arrow-top fas fa-arrow-up"></i>
+    <i class="arrow-bottom fas fa-arrow-up"></i>
+  </button>
+  <!--Back To End-->
+
+
+<div class="modal fade" id="addEvent" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content w-100">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Add Event</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <form [formGroup]="addEventForm" (submit)="addEvent()">
+          <div>
+            <label for="title">Title:</label>
+            <input id="title" type="text" formControlName="title">
+          </div>
+          <div>
+            <label for="content">Content:</label>
+            <textarea id="content" style="height: 300px;" formControlName="aboutTheEvent"></textarea>
+          </div>
+
+          <div>
+            <div>
+              <img id="previewImage" *ngIf="previewUrl" [src]="previewUrl" alt="Selected Image" width="200px" height="200px">
+            </div>
+            <label for="pictureUrl">Image:</label>
+            <input  id="pictureUrl" type="file" formControlName="pictureUrl"  (change)="onFileChange($event)">
+          </div>
+          <div>
+            <label for="categoryId">Category:</label>
+            <select id="categoryId" formControlName="categoryId">
+              <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+            </select>
+          </div>
+          <div>
+            <label for="countryId">country:</label>
+            <select id="countryId" formControlName="countryId">
+              <option *ngFor="let country of countries" [value]="country.id">{{country.name}}</option>
+            </select>
+          </div>
+          <div>
+            <label for="address">address:</label>
+            <input id="address" type="text" formControlName="address">
+          </div>
+          <div>
+            <label for="dateFrom">Start Date:</label>
+            <input type="datetime-local" id="dateFrom"  formControlName="dateFrom">
+          </div>
+          <div>
+            <label for="dateTo">End Date:</label>
+            <input type="datetime-local" id="dateTo"  formControlName="dateTo">
+          </div>
+          <div>
+            <label for="timeFrom">Time From:</label>
+            <input id="timeFrom" type="time" formControlName="timeFrom">
+          </div>
+          <div>
+            <label for="timeTo">Time To:</label>
+            <input id="timeTo" type="time" formControlName="timeTo">
+          </div>
+          <div>
+            <label for="price">Price(in $):</label>
+            <input type="number" min="0" step="1" id="price"  formControlName="price">
+          </div>
+          <div>
+            <label for="phoneNumber">phoneNumber :</label>
+            <input type="tel" placeholder="123-456-7890" id="phoneNumber"  formControlName="phoneNumber">
+          </div>
+          <div>
+            <label for="website">website:</label>
+            <input type="email" placeholder="example@example.com" id="website" type="text" formControlName="website">
+          </div>
+
+
+
+
+          <button type="submit" data-bs-dismiss="modal" >Submit</button>
+        </form>
+
+
+      </div>
+<!--[disabled]="!addEventForm.valid"-->
+    </div>
+  </div>
+</div>

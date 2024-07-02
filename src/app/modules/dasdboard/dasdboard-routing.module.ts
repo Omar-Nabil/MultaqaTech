@@ -22,6 +22,8 @@ import { MainComponent } from './components/main/main.component';
 import { SubjectsComponent } from './components/children/admin/subjects/subjects.component';
 import { CategoriesComponent } from './components/children/admin/categories/categories.component';
 import { MeetingscategoriesComponent } from './components/children/admin/meetingscategories/meetingscategories.component';
+import { EventscategoriesComponent } from './components/children/admin/eventscategories/eventscategories/eventscategories.component';
+import { EventscountriesComponent } from './components/children/admin/eventscountries/eventscountries/eventscountries.component';
 
 const routes: Routes = [
   {
@@ -43,6 +45,8 @@ const routes: Routes = [
     {path:'mystudents',component:IMystudentsComponent},
     {path:'subjects',component:SubjectsComponent},
     {path:'Meetingscategories',component:MeetingscategoriesComponent},
+    {path:'Eventscategories',component:EventscategoriesComponent},
+    {path:'Eventscountries',component:EventscountriesComponent},
     {path:'categories',component:CategoriesComponent},
       {
         path: 'settings', component: SettingsComponent, children: [
