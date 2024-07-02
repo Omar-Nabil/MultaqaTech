@@ -36,6 +36,7 @@ export class CurriculumComponent implements OnInit{
   quizIdForUpdate: any = 0
   idUpdateQuestion = 0;
   sectionReorder: number[] = []
+  itemReorder: number[] = []
   parentSectionId: number = 0
   parentQuizId: number = 0
   addItemBool: boolean = false
@@ -180,6 +181,27 @@ this.file=event.target.files[0]
       next: (res) => {
         console.log(this.sectionReorder);
         this.sectionReorder = []
+  }
+})
+  }
+  dropItem(event: any, index: number, sectionId: number) {
+    this.allItems[index].items.forEach(item => {
+      this.itemReorder.push(item.order)
+    });
+    console.log(this.itemReorder);
+    this.itemReorder = []
+    moveItemInArray(this.allItems[index].items, event.previousIndex, event.currentIndex);
+    this.allItems[index].items.forEach(item => {
+      this.itemReorder.push(item.order)
+    });
+
+
+    this._itemsService.updateOrderForItems(sectionId,this.itemReorder).subscribe({
+      next: (res) => {
+        console.log(this.itemReorder);
+        this.itemReorder = []
+        console.log(res);
+
   }
 })
   }
