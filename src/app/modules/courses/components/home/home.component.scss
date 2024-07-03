@@ -1,0 +1,75 @@
+.tooltip-container {
+  --background-light: #0071DC;
+  --background-dark: #000000;
+  --text-color-light: #ffffff;
+  --text-color-dark: #ffffff;
+  --bubble-size: 12px;
+  --glow-color: rgba(255, 255, 255, 0.5);
+
+  position: fixed;
+  /* Changed to fixed for demonstration */
+  bottom: 40px;
+  right: 30px;
+  z-index: 1000;
+
+  /* Make the container a circle */
+  width: 60px;
+  /* Example width */
+  height: 60px;
+  /* Must match the width for a perfect circle */
+  border-radius: 50%;
+  /* Optional: Not needed for a perfect circle but keeps the style consistent */
+
+  display: flex;
+  /* Use flexbox for easier alignment */
+  align-items: center;
+  /* Center items vertically */
+  justify-content: center;
+  /* Center items horizontally */
+
+  background: var(--background-light);
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 17px;
+  color: var(--text-color-light);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.tooltip {
+  position: absolute;
+  top: -100%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.6em 1em;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: all 0.3s;
+  border-radius: var(--bubble-size);
+  background: var(--background-light);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.tooltip::before {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%);
+  border-style: solid;
+  border-width: 8px 8px 0;
+  border-color: var(--background-light) transparent transparent;
+}
+
+.tooltip-container:hover {
+  background: var(--background-dark);
+  color: var(--text-color-dark);
+  box-shadow: 0 0 20px var(--glow-color);
+}
+
+.tooltip-container:hover .tooltip {
+  top: -90%;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
