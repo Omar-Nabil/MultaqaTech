@@ -10,11 +10,11 @@ export class CartService {
 
   constructor(private _HttpClient: HttpClient) { }
 
-  Checkout(order:any):Observable<any> {
+  Checkout():Observable<any> {
     const headers = new HttpHeaders({
       'Authorization':`Bearer ${localStorage.getItem('userToken')}`
     });
-    return this._HttpClient.post(environment.baseURL+'/api/Orders',order,{headers});
+    return this._HttpClient.post(environment.baseURL+'/api/Checkout',{},{headers});
   }
 
 }

@@ -16,6 +16,8 @@ export class EventDetailsComponent implements OnInit {
   eventSpeakerDetailes:any;
   speakers:any[] = [];
   eventId:string = '';
+  speakerId:any;
+  num: number = parseInt(this.eventId);
   isEditing:boolean[] = [];
   eventsByCategory:any[]=[];
   commentControl!:FormControl ;
@@ -38,6 +40,8 @@ export class EventDetailsComponent implements OnInit {
 
   }
   ngOnInit(): void {
+    this.eventId = this.route.snapshot.paramMap.get('id')as string;
+    console.log(this.eventId);
     main.start();
     this.getEventDetailes();
     this.getCategories();
@@ -282,16 +286,19 @@ export class EventDetailsComponent implements OnInit {
   }
   addEventSpeaker() {
     const formData = new FormData();
-    formData.append('Name', this.addEventSpeakerForm.get('named')?.value);
+    formData.append('Name', this.addEventSpeakerForm.get('name')?.value);
     formData.append('JobTitle', this.addEventSpeakerForm.get('jobTitle')?.value);
-    formData.append('EventId', this.addEventSpeakerForm.get('EventId')?.value);
+    formData.append('EventId', this.eventId);
 
 
     // Append the file to formData
     if (this.selectedFile) {
       formData.append('PictureUrl', this.selectedFile, this.selectedFile.name);
     }
-    console.log(formData);
+    console.log(formData.get("PictureUrl"));
+    console.log(formData.get("JobTitle"));
+    console.log(formData.get("EventId"));
+    console.log(formData.get("Name"));
 
     this._EventserviceService.addEventSpeaker(formData).subscribe({
       next:(res) => {
@@ -304,25 +311,32 @@ export class EventDetailsComponent implements OnInit {
     })
   }
 
-  editEventSpeaker() {
+  editEventSpeaker(id: string) {
     this.editEventForm.setValue({
       name: this.eventSpeakerDetailes.name,
       jobTitle: this.eventSpeakerDetailes.jobTitle,
       pictureUrl: this.eventSpeakerDetailes.pictureUrl,
+
     });
+    this.speakerId = id;
+    console.log(this.speakerId)
+
   }
   submitEditEventSpeaker() {
     const formData = new FormData();
     formData.append('name', this.editEventSpeakerForm.get('name')?.value);
     formData.append('jobTitle', this.editEventSpeakerForm.get('jobTitle')?.value);
+    formData.append('EventId', this.eventId);
+    formData.append('eventSpeakerId', this.speakerId);
     if (this.selectedFile) {
       formData.append('pictureUrl', this.selectedFile, this.selectedFile.name);
     }else {
       formData.append('pictureUrl', this.editEventSpeakerForm.get('pictureUrl')?.value);
     }
     console.log(formData);
+    console.log(this.speakerId)
 
-    this._EventserviceService.editEvent(formData, this.eventSpeakerDetailes.id).subscribe({
+    this._EventserviceService.editEventSpeaker(formData, this.speakerId).subscribe({
       next:(res) => {
         this.eventSpeakerDetailes = res;
         console.log(res);
@@ -344,6 +358,7 @@ export class EventDetailsComponent implements OnInit {
   deleteEventSpeaker(id: string) {
   this._EventserviceService.deleteEventSpeaker(id).subscribe({
     next:(response)=>{console.log(response);
+      this.getSpeakers();
     },
     error:(err)=>{console.log(err);
 

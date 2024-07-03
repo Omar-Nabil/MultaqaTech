@@ -8,17 +8,18 @@ import { WelcomeComponent } from './modules/auth/components/welcome/welcome.comp
 import { authGuard } from './modules/auth/guards/auth.guard';
 import { BlogDetailsComponent } from './modules/blogs/components/blog-details/blog-details.component';
 import { BlogsComponent } from './modules/blogs/components/blogs/blogs.component';
+import { FailedComponent } from './modules/cart/components/failed/failed.component';
 import { CourseDetailsComponent } from './modules/courses/components/course-details/course-details.component';
 import { CoursesComponent } from './modules/courses/components/courses/courses.component';
 import { CurriculumComponent } from './modules/courses/components/curriculum/curriculum.component';
 import { HomeComponent } from './modules/courses/components/home/home.component';
+import { EventDetailsComponent } from './modules/event/components/event-details/event-details/event-details.component';
+import { EventsComponent } from './modules/event/components/event-details/events/events/events.component';
 import { ChatbotComponent } from './modules/pages/chatbot/chatbot.component';
 import { TranslationComponent } from './modules/pages/translation/translation.component';
 import { NotFound404Component } from './modules/shared/components/not-found404/not-found404.component';
 import { ZoomMeetingDetailsComponent } from './modules/zoom/components/zoom-meeting-details/zoom-meeting-details.component';
 import { ZoomMeetingsComponent } from './modules/zoom/components/zoom-meetings/zoom-meetings.component';
-import { EventDetailsComponent } from './modules/event/components/event-details/event-details/event-details.component';
-import { EventsComponent } from './modules/event/components/event-details/events/events/events.component';
 const routes: Routes = [
   {path:'', component:LayoutComponent, children:[
     {path:'', redirectTo:'welcome', pathMatch:'full'},
@@ -29,7 +30,8 @@ const routes: Routes = [
     {path:'dashboard', loadChildren:()=>import('../app/modules/dasdboard/dasdboard.module').then((res)=>res.DasdboardModule), canActivate:[authGuard] },
     {path:'translation', component: TranslationComponent},
     {path:'chatbot', component:ChatbotComponent},
-    {path:'wcourse/:id', loadChildren:()=>import('../app/modules/course/course.module').then((res) => res.CourseModule)}
+    {path:'wcourse/:id', loadChildren:()=>import('../app/modules/course/course.module').then((res) => res.CourseModule)},
+    {path:'failed', component:FailedComponent}
   ]},
   {path:'', component:LayoutwithnavbarComponent, children:[
     {path:'home', component:HomeComponent, canActivate:[authGuard]},
