@@ -199,6 +199,8 @@ this.file=event.target.files[0]
     this._itemsService.updateOrderForItems(sectionId,this.itemReorder).subscribe({
       next: (res) => {
         console.log(this.itemReorder);
+        console.log(sectionId);
+
         this.itemReorder = []
         console.log(res);
 
