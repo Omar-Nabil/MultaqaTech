@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CourseService } from 'src/app/modules/courses/services/course.service';
 import { CartService } from '../../services/cart.service';
-
+declare var Stripe: any;
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -65,24 +65,22 @@ export class CartComponent implements OnInit {
   }
 
   Checkout() {
-    console.log(this.cartItems);
-    let order = {
-        coupon:'ewdd',
-        isCouponApplied:true,
-        paymentType:0
-    };
-    console.log(order);
-
-    this.cartService.Checkout(order).subscribe({
+    this.cartService.Checkout().subscribe({
       next:(res) => {
         console.log(res);
-        this.TotalPrice = 0;
-        this.cartItems = [];
-        this._CourseService.cartItems.next([]);
+        // this.TotalPrice = 0;
+        // this.cartItems = [];
+        // this._CourseService.cartItems.next([]);
+        this.stripecheckout(res.publishableKey, res.sessionId);
       },
       error:(err) => console.log(err)
 
     })
+  }
+
+  stripecheckout(pubKey:any, sessionId:any) {
+    const stripe = Stripe(pubKey);
+    stripe.redirectToCheckout({ sessionId });
   }
 
 }
