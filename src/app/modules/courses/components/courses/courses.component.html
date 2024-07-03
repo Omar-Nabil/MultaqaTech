@@ -668,7 +668,7 @@
                     <div class="course-info">
                       <span class="course-info__badge-text " [ngClass]="{'badge-all':levels[course.level]=='All levels','badge-beginner':levels[course.level]=='Beginner','badge-intermediate':levels[course.level]=='Intermediate','badge-Advanced':levels[course.level]=='Advanced'}">{{levels[course.level]}}</span>
                       <h3 class="course-info__title"><a routerLink="/course/{{course.id}}">{{course.title}}</a></h3>
-                      <a  class="course-info__instructor">{{course.instructor}}</a>
+                      <a  class="course-info__instructor">{{course.instructorName}}</a>
                       <div class="course-info__price">
                         <span class="sale-price">${{course.price}}.<small class="separator">00</small></span>
                       </div>

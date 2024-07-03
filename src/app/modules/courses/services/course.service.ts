@@ -122,7 +122,9 @@ export class CourseService {
     return this._HttpClient.get(environment.baseURL+`/api/Courses/GetCoursesForStudentByStudentId/${studentId}`,{headers});
   }
 
-
+  getRecommendedCoursesId(data: any): Observable<any>  {
+  return this._HttpClient.post("https://anwar101-recommendation.hf.space/recommendations",data)
+}
 
 
 }

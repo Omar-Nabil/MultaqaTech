@@ -26,10 +26,12 @@ export interface review
 
 export interface Course_get {
   id: number,
+  language:string
   title: string,
   subject: string,
   thumbnailUrl: string,
-  instructor: "string",
+  instructorName: string,
+  instructorPicture: string,
   rating: number,
   duration: number,
   price: number,

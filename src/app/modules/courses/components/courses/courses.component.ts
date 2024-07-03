@@ -59,7 +59,7 @@ export class CoursesComponent implements OnInit {
       this.allCourses = res.data
       console.log(this.allCourses);
       if (this.allCourses) {
-        this.instructorNames = [...new Set(this.allCourses.map(course => course.instructor))];
+        this.instructorNames = [...new Set(this.allCourses.map(course => course.instructorName))];
       }
     })
     console.log(this.instructors)

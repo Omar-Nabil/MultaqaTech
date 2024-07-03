@@ -39,9 +39,9 @@
           <div class="tutor-course-top-info__meta">
             <div class="tutor-course-top-info__meta-instructor">
               <div class="instructor-avatar">
-                <img src="assets/images/instructor/instructor-01.jpg" alt="Instructor" width="36" height="36">
+                <img src="https://localhost:7264/{{course?.instructorPicture}}" alt="Instructor" width="36" height="36">
               </div>
-              <div class="instructor-name text-white">Owen Christ</div>
+              <div class="instructor-name text-white">{{course?.instructorName}}</div>
             </div>
             <div class="tutor-course-top-info__meta-update text-white">Last Update {{months[date.getMonth()]}} {{date.getDate()}}, {{date.getFullYear()}}</div>
           </div>
@@ -260,10 +260,10 @@
             <div class="tutor-course-segment__instructor">
               <div class="tutor-instructor">
                 <div class="tutor-instructor__avatar">
-                  <img src="assets/images/team/team-member-07.jpg" alt="instructor" width="200" height="246">
+                  <img src="https://localhost:7264/{{course?.instructorPicture}}" alt="instructor" width="200" height="246">
                 </div>
                 <div class="tutor-instructor__instructor-info">
-                  <h4 class="tutor-instructor__name">Owen Christ</h4>
+                  <h4 class="tutor-instructor__name">{{course?.instructorName}}</h4>
                   <div class="tutor-instructor__ratings">
                     <div class="rating-star">
                       <div class="rating-label" style="width: 90%;"></div>
@@ -543,7 +543,7 @@
                   </li>
                   <li>
                     <div class="label"><i class="fas fa-play-circle"></i> Lectures </div>
-                    <div class="value">4 lectures</div>
+                    <div class="value">{{course?.numberOfLectures}} lectures</div>
                   </li>
                   <li>
                     <div class="label"><i class="fas fa-tag"></i> Subject </div>
@@ -551,7 +551,7 @@
                   </li>
                   <li>
                     <div class="label"><i class="fas fa-globe"></i> Language </div>
-                    <div class="value">Russian</div>
+                    <div class="value">{{course?.language}}</div>
                   </li>
                 </ul>
               </div>
@@ -604,52 +604,25 @@
 
               <div class="sidebar-widget__course">
 
-                <div class="sidebar-widget__course-item">
-                  <div class="sidebar-widget__course-thumbnail">
-                    <a href="course-single-layout-01.html"><img src="assets/images/courses/courses-21.jpg" alt="Courses"
-                        width="120" height="72"></a>
-                  </div>
-                  <div class="sidebar-widget__course-content">
-                    <h4 class="sidebar-widget__course-title"><a href="course-single-layout-01.html">Artificial
-                        Intelligence: Reinforcement Learning in Python</a></h4>
-                    <div class="sidebar-widget__course-price">
-                      <span class="sale-price">$46<span class="separator">.00</span></span>
-                      <span class="regular-price">$76<span class="separator">.00</span></span>
+
+
+                <div *ngFor="let course of RecommendedCourses">
+                  <div class="sidebar-widget__course-item mb-3">
+                    <div class="sidebar-widget__course-thumbnail">
+                      <a routerLink="/course/{{course.id}}"><img src="../../../../../assets/images/courses/courses-1.jpg" alt="Courses" width="120"
+                          height="72"></a>
+                    </div>
+                    <div class="sidebar-widget__course-content">
+                      <h4 class="sidebar-widget__course-title"><a routerLink="/course/{{course.id}}"> {{course.title}}</a></h4>
+                      <p class="lead  mb-1" style="font-size: 13px;">{{course.instructorName}}</p>
+                      <div class="sidebar-widget__course-price">
+                        <span class="sale-price">${{course.price}}<span class="separator">.00</span></span>
+                      </div>
                     </div>
                   </div>
                 </div>
 
-                <div class="sidebar-widget__course-item">
-                  <div class="sidebar-widget__course-thumbnail">
-                    <a href="course-single-layout-01.html"><img src="assets/images/courses/courses-15.jpg" alt="Courses"
-                        width="120" height="72"></a>
-                  </div>
-                  <div class="sidebar-widget__course-content">
-                    <h4 class="sidebar-widget__course-title"><a href="course-single-layout-01.html">Statistics for Data
-                        Science and Business Analysis</a></h4>
-                    <div class="sidebar-widget__course-price">
-                      <span class="sale-price">$25<span class="separator">.00</span></span>
-                    </div>
-                  </div>
-                </div>
 
-                <div class="sidebar-widget__course-item">
-                  <div class="sidebar-widget__course-thumbnail">
-                    <a href="course-single-layout-01.html"><img src="assets/images/courses/courses-33.jpg" alt="Courses"
-                        width="120" height="72"></a>
-                    <div class="sidebar-widget__course-badge">
-                      <span class="onsale">-38%</span>
-                    </div>
-                  </div>
-                  <div class="sidebar-widget__course-content">
-                    <h4 class="sidebar-widget__course-title"><a href="course-single-layout-01.html">Artificial
-                        Intelligence: Reinforcement Learning in Python</a></h4>
-                    <div class="sidebar-widget__course-price">
-                      <span class="sale-price">$28<span class="separator">.00</span></span>
-                      <span class="regular-price">$45<span class="separator">.00</span></span>
-                    </div>
-                  </div>
-                </div>
 
               </div>
             </div>

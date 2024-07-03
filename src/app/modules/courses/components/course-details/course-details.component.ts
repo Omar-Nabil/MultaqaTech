@@ -37,7 +37,9 @@ export class CourseDetailsComponent implements OnInit {
     Comment:new FormControl(''),
   })
   CourseAddedSuccessfully:boolean = false;
-  cartItems:any;
+  cartItems: any;
+  RecommendedCourses:Course_get[]=[]
+
   constructor(private route:ActivatedRoute,private _CourseService:CourseService,private reviews:ReviewsService , private _CurriculumShowService:CurriculumShowService) {
     this.getCourse();
     this.chaeckIfCourseInCart();
@@ -122,7 +124,8 @@ export class CourseDetailsComponent implements OnInit {
 
           this.course = res
           this.date =new Date(this.course?.lastUpdatedDate!)
-
+          this.getRecommendedCourses()
+          console.log(res);
 
         },
         error: (err) => {
@@ -225,4 +228,23 @@ export class CourseDetailsComponent implements OnInit {
     })
   }
 
+  getRecommendedCourses() {
+    this._CourseService.getRecommendedCoursesId({ title: this.course?.title }).subscribe({
+      next: (res) => {
+        let coursesIds = res.slice(0, 5);
+        console.log(coursesIds);
+        let courses:Course_get[]=[]
+        coursesIds.forEach((id:any) => {
+          this._CourseService.getCourseById(id.Id).subscribe({
+            next: (res) => {
+              courses.push(res)
+            }
+          })
+        });
+        this.RecommendedCourses=courses
+        console.log(this.RecommendedCourses);
+
+      }
+    })
+  }
 }
