@@ -609,7 +609,7 @@
                 <div *ngFor="let course of RecommendedCourses">
                   <div class="sidebar-widget__course-item mb-3">
                     <div class="sidebar-widget__course-thumbnail">
-                      <a routerLink="/course/{{course.id}}"><img src="../../../../../assets/images/courses/courses-1.jpg" alt="Courses" width="120"
+                      <a routerLink="/course/{{course.id}}"><img src="{{course.thumbnailUrl}}" alt="Courses" width="120"
                           height="72"></a>
                     </div>
                     <div class="sidebar-widget__course-content">
