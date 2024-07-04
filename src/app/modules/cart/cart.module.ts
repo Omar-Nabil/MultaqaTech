@@ -5,10 +5,11 @@ import { SharedModule } from '../shared/shared.module';
 import { CartRoutingModule } from './cart-routing.module';
 import { CartComponent } from './components/cart/cart.component';
 import { FailedComponent } from './components/failed/failed.component';
+import { SuccessComponent } from './components/success/success.component';
 
 
 @NgModule({
-  declarations: [CartComponent, FailedComponent],
+  declarations: [CartComponent, FailedComponent, SuccessComponent],
   imports: [
     CommonModule,
     CartRoutingModule,
