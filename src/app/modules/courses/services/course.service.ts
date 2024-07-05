@@ -13,7 +13,7 @@ export class CourseService {
 
   cartItems: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 
-  addcourse(course: Course_add): Observable<any>{
+  addcourse(course: any): Observable<any>{
     const headers = new HttpHeaders({
       'Authorization':`Bearer ${localStorage.getItem('userToken')}`
     })

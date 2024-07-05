@@ -28,7 +28,7 @@ export class MainComponent {
     subjectId: 0,
     title: 'string',
     language: 'string',
-    thumbnailUrl: 'string',
+    thumbnail: 'string',
     price: 0,
     level: 0,
     tagsIds: [],
@@ -62,7 +62,7 @@ export class MainComponent {
      this.addCourseForm = new FormGroup({
     title: new FormControl('',[Validators.required,Validators.minLength(3),Validators.maxLength(100)]),
     language: new FormControl('',[Validators.minLength(3),Validators.maxLength(50)]),
-    img: new FormControl('',),
+    img: new FormControl('',[Validators.required]),
     price: new FormControl('',[Validators.required,Validators.max(2147483647),Validators.min(0)]),
     learningobjectives: new FormControl(''),
     subject: new FormControl(0,[Validators.required]),
@@ -83,19 +83,20 @@ export class MainComponent {
 
   Addcourse() {
     if (!this.addCourseForm.get('title')?.errors && !this.addCourseForm.get('language')?.errors && !this.addCourseForm.get('price')?.errors && this.addCourseForm.get('subject')?.value != '0') {
-      this.course.subjectId = parseInt(this.addCourseForm.get('subject')?.value)
-      this.course.title = this.addCourseForm.get('title')?.value
-      this.course.language = this.addCourseForm.get('language')?.value
-      this.course.thumbnailUrl = this.addCourseForm.get('img')?.value
-      this.course.price = this.addCourseForm.get('price')?.value
-      this.course.level = parseInt(this.addCourseForm.get('courselevel')?.value)
-      this.course.tagsIds = this.tags
-      this.course.prerequisitesIds = this.prerequisites
-      this.course.learningObjectives = this.l_0bjects
-      console.log(this.course);
+      let data = new FormData();
+
+data.append('title',this.addCourseForm.get('title')?.value)
+data.append('language',this.addCourseForm.get('language')?.value)
+data.append('thumbnail',this.img)
+data.append('price',this.addCourseForm.get('price')?.value)
+data.append('subjectId',this.addCourseForm.get('subject')?.value)
+data.append('level',this.addCourseForm.get('courselevel')?.value)
+data.append('tagsIds',`${this.tags}`)
+data.append('prerequisitesIds',`${this.prerequisites}`)
+data.append('learningObjectives',`${this.l_0bjects}`)
 
 
-      this._CourseService.addcourse(this.course).subscribe({
+      this._CourseService.addcourse(data).subscribe({
         next: (res) => {
           console.log(res);
           this.reset()

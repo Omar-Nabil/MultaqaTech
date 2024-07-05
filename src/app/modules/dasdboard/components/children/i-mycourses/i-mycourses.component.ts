@@ -29,7 +29,7 @@ export class IMycoursesComponent {
     subjectId: 0,
     title: 'string',
     language: 'string',
-    thumbnailUrl: 'string',
+    thumbnail: 'string',
     price: 0,
     level: 0,
     tagsIds: [],
@@ -87,7 +87,7 @@ export class IMycoursesComponent {
       this.course.subjectId = parseInt(this.addCourseForm.get('subject')?.value)
       this.course.title = this.addCourseForm.get('title')?.value
       this.course.language = this.addCourseForm.get('language')?.value
-      this.course.thumbnailUrl = this.addCourseForm.get('img')?.value
+      this.course.thumbnail = this.addCourseForm.get('img')?.value
       this.course.price = this.addCourseForm.get('price')?.value
       this.course.level = parseInt(this.addCourseForm.get('courselevel')?.value)
       this.course.tagsIds = this.tags

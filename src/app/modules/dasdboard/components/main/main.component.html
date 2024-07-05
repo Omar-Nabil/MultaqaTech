@@ -319,10 +319,14 @@
               </div>
             </div>
           </div>
-          <div class="input mb-5">
-            <input id="img" formControlName="img" class="form-control" type="text" required="" autocomplete="off">
-            <label for="img">Image Url</label>
-          </div>
+        <div class="input">
+          <input id="img" formControlName="img" class="form-control" type="file" required="" (change)="onImgChange($event)">
+          <label class="pictureUrl" for="pic">Upload Picture</label>
+          <span *ngIf="addCourseForm.get('img')?.touched">
+            <p *ngIf="addCourseForm.get('img')?.getError('required')" class="text-danger ms-2 mb-0">required</p>
+
+          </span>
+        </div>
 
           <div class="input mb-5">
            <div class=" position-relative mb-2">

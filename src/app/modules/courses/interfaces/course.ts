@@ -2,7 +2,7 @@ export interface Course_add {
   subjectId: number,
   title: string,
   language: string,
-  thumbnailUrl: string,
+  thumbnail: string,
   price: number,
   level: number,
   tagsIds: number[],
