@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { IllustrationComponent } from './components/children/Illustration/Illustration.component';
 import { NotesComponent } from './components/children/notes/notes.component';
 import { QuestionDetailsComponent } from './components/children/question-details/question-details.component';
 import { QuestionsComponent } from './components/children/questions/questions.component';
@@ -11,7 +12,8 @@ const routes: Routes = [
     {path:'notes', component:NotesComponent},
     {path:'questions', component:QuestionsComponent},
     {path:'quiz', component:QuizComponent},
-    {path:'questions/:id', component:QuestionDetailsComponent}
+    {path:'questions/:id', component:QuestionDetailsComponent},
+    {path:'Illustration', component:IllustrationComponent}
   ]}
 ];
 
