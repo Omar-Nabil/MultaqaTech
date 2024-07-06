@@ -9,6 +9,7 @@ import { authGuard } from './modules/auth/guards/auth.guard';
 import { BlogDetailsComponent } from './modules/blogs/components/blog-details/blog-details.component';
 import { BlogsComponent } from './modules/blogs/components/blogs/blogs.component';
 import { FailedComponent } from './modules/cart/components/failed/failed.component';
+import { SuccessComponent } from './modules/cart/components/success/success.component';
 import { CourseDetailsComponent } from './modules/courses/components/course-details/course-details.component';
 import { CoursesComponent } from './modules/courses/components/courses/courses.component';
 import { CurriculumComponent } from './modules/courses/components/curriculum/curriculum.component';
@@ -31,7 +32,8 @@ const routes: Routes = [
     {path:'translation', component: TranslationComponent},
     {path:'chatbot', component:ChatbotComponent},
     {path:'wcourse/:id', loadChildren:()=>import('../app/modules/course/course.module').then((res) => res.CourseModule)},
-    {path:'failed', component:FailedComponent}
+    {path:'failed', component:FailedComponent},
+    {path:'success' , component:SuccessComponent}
   ]},
   {path:'', component:LayoutwithnavbarComponent, children:[
     {path:'home', component:HomeComponent, canActivate:[authGuard]},
