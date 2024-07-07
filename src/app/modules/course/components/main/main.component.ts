@@ -4,6 +4,8 @@ import { QuizQuestion_get } from 'src/app/modules/courses/interfaces/quiz-questi
 import { CurriculumQuizQuestionService } from 'src/app/modules/courses/services/curriculum-quiz-question.service';
 import { CurriculumQuizService } from 'src/app/modules/courses/services/curriculum-quiz.service';
 import { WcourseService } from '../../services/Wcourse.service';
+import { error } from 'console';
+import { from } from 'rxjs';
 
 @Component({
   selector: 'app-main',
@@ -20,7 +22,7 @@ export class MainComponent implements OnInit, AfterViewInit {
   questions: QuizQuestion_get[] = [];
   isVideo:boolean = false;
   videoId:number = 0;
-
+  videoFile!: File ;
   constructor(private wcourseService: WcourseService, private route: ActivatedRoute,private el: ElementRef,
     private renderer: Renderer2, private quiz: CurriculumQuizService ,private _questions:CurriculumQuizQuestionService) { }
 
@@ -92,6 +94,24 @@ export class MainComponent implements OnInit, AfterViewInit {
         this.wcourseService.lectureOrQuizId.next(res.id);
         this.isVideo = true;
         this.videoId = this.wcourseService.lectureOrQuizId.value;
+        console.log('get file is done');
+        this.videoFile = this.videoData.videoUrl
+        console.log(this.videoFile);
+        this.wcourseService.fetchFile(this.videoData.videoUrl).subscribe({
+          next: (res) => {
+            console.log('get file is done 2');
+            console.log(res);
+             this.videoFile = new File([res], 'filename.ext', { type: res.type });
+      console.log(this.videoFile);
+
+          },
+          error:(err) => {
+            console.log('from error');
+            console.log(err);
+
+          }
+        })
+
       },
       error:(err) => console.log(err)
 
