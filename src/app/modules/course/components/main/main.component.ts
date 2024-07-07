@@ -24,7 +24,8 @@ export class MainComponent implements OnInit, AfterViewInit {
   isVideo:boolean = false;
   videoId:number = 0;
   videoFile!: File ;
-  extractedText: string='';
+  extractedText: string = '';
+  transcriptionLoadingBool: boolean = true;
   constructor(private wcourseService: WcourseService, private route: ActivatedRoute,private el: ElementRef,
     private renderer: Renderer2, private quiz: CurriculumQuizService,
     private _questions: CurriculumQuizQuestionService,private _TranscriptionService:TranscriptionService) { }
@@ -90,9 +91,10 @@ export class MainComponent implements OnInit, AfterViewInit {
 
   }
 
-  displayVideo(lectureId:number) {
+  displayVideo(lectureId: number) {
     this.wcourseService.getcourseLectureDetails(lectureId).subscribe({
       next:(res) => {
+        this.transcriptionLoadingBool=true
         this.videoData = res;
         this.wcourseService.lectureOrQuizId.next(res.id);
         this.isVideo = true;
@@ -123,6 +125,7 @@ export class MainComponent implements OnInit, AfterViewInit {
     }
         console.log(this.extractedText);
         this._TranscriptionService.transcriptionTxt.next(this.extractedText) ;
+        this.transcriptionLoadingBool = false;
 
       }
 

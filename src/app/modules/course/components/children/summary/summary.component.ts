@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./summary.component.scss']
 })
 export class SummaryComponent {
-
+  constructor() { }
+  isloadingBool: boolean = true;
 }

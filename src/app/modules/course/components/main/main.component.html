@@ -22,6 +22,13 @@
           <div class="w-100">
             <video class="w-100 h-100" [src]="videoData?.videoUrl" controls></video>
           </div>
+          <div class="p-7">
+            <div class="d-flex mb-2">
+              <h3 class="me-4">Transcription :</h3>
+              <div *ngIf="transcriptionLoadingBool" class="loader"></div>
+            </div>
+            <p *ngIf="!transcriptionLoadingBool" class="lead p-3">{{extractedText}}</p>
+          </div>
           <div class="px-7">
             <div style="border-bottom: 2px solid #DCE1E5 ;font-size: 16px;" class="px-10">
               <ul class="d-flex align-items-center">
