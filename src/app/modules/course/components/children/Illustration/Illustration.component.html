@@ -1,9 +1,26 @@
-<pre class="mermaid">
-    sequenceDiagram
-    participant Client as "Client"
-    participant Server as "Server"
-    Client->>Server: Request
-    Server->>Server: Process request
-    Server->>Client: Response
-    Client->>Client: Process response
-</pre>
+
+<div class="input-container">
+  <input
+    type="text"
+    [(ngModel)]="inputValue"
+    placeholder="Enter Value"
+    (keyup.enter)="onSubmit()"
+    class="input-bar"
+  />
+  <button class="submit-button" (click)="onSubmit()">Submit</button>
+</div>
+
+<div >
+  <div class="d-flex justify-content-center align-items-center vh-100 bg-light" *ngIf="spinner">
+    <div class="spinner-grow text-primary" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+
+
+
+  <div  *ngIf="responseBool && !spinner" id="mermaid">
+    {{ chartDefinition }}
+  </div>
+
+</div>

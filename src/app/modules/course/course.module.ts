@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IllustrationComponent } from './components/children/Illustration/Illustration.component';
 import { NotesComponent } from './components/children/notes/notes.component';
 import { QuestionDetailsComponent } from './components/children/question-details/question-details.component';
@@ -25,7 +25,8 @@ import { SummaryComponent } from './components/children/summary/summary.componen
   imports: [
     CommonModule,
     CourseRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class CourseModule { }
