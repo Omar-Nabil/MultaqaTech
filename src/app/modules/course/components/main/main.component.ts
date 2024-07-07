@@ -94,7 +94,8 @@ export class MainComponent implements OnInit, AfterViewInit {
   displayVideo(lectureId: number) {
     this.wcourseService.getcourseLectureDetails(lectureId).subscribe({
       next:(res) => {
-        this.transcriptionLoadingBool=true
+        this.transcriptionLoadingBool = true
+        this._TranscriptionService.summaryBool.next(false)
         this.videoData = res;
         this.wcourseService.lectureOrQuizId.next(res.id);
         this.isVideo = true;
@@ -106,7 +107,7 @@ export class MainComponent implements OnInit, AfterViewInit {
             this.videoFile = new File([res], 'filename.ext', { type: res.type });
             console.log(this.videoFile);
             const formData = new FormData();
-    formData.append('video', this.videoFile);
+            formData.append('video', this.videoFile);
 
     this._TranscriptionService.getTransacreption(formData).subscribe({
       next:(res) => {
@@ -120,11 +121,25 @@ export class MainComponent implements OnInit, AfterViewInit {
 
     if (paragraphs.length > 0) {
       this.extractedText = paragraphs[0].textContent || '';
+      this._TranscriptionService.transcriptionTxt.next(this.extractedText);
+      this._TranscriptionService.getsummary({ text: this.extractedText }).subscribe({
+        next: (res) => {
+          this._TranscriptionService.summaryTxt.next(res.summary)
+          this._TranscriptionService.summaryBool.next(true)
+
+          console.log(res);
+
+        }
+      })
     } else {
       this.extractedText = 'No paragraph found.';
+      this._TranscriptionService.summaryTxt.next('There is no summary')
+      this._TranscriptionService.summaryBool.next(true)
+
+
     }
         console.log(this.extractedText);
-        this._TranscriptionService.transcriptionTxt.next(this.extractedText) ;
+
         this.transcriptionLoadingBool = false;
 
       }
