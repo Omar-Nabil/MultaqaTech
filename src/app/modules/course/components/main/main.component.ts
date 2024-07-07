@@ -6,6 +6,7 @@ import { CurriculumQuizService } from 'src/app/modules/courses/services/curricul
 import { WcourseService } from '../../services/Wcourse.service';
 import { error } from 'console';
 import { from } from 'rxjs';
+import { TranscriptionService } from '../../services/transcription.service';
 
 @Component({
   selector: 'app-main',
@@ -23,8 +24,10 @@ export class MainComponent implements OnInit, AfterViewInit {
   isVideo:boolean = false;
   videoId:number = 0;
   videoFile!: File ;
+  extractedText: string='';
   constructor(private wcourseService: WcourseService, private route: ActivatedRoute,private el: ElementRef,
-    private renderer: Renderer2, private quiz: CurriculumQuizService ,private _questions:CurriculumQuizQuestionService) { }
+    private renderer: Renderer2, private quiz: CurriculumQuizService,
+    private _questions: CurriculumQuizQuestionService,private _TranscriptionService:TranscriptionService) { }
 
   ngOnInit() {
     this.getCourseDetails();
@@ -94,15 +97,35 @@ export class MainComponent implements OnInit, AfterViewInit {
         this.wcourseService.lectureOrQuizId.next(res.id);
         this.isVideo = true;
         this.videoId = this.wcourseService.lectureOrQuizId.value;
-        console.log('get file is done');
         this.videoFile = this.videoData.videoUrl
         console.log(this.videoFile);
-        this.wcourseService.fetchFile(this.videoData.videoUrl).subscribe({
+        this._TranscriptionService.fetchFile(this.videoData.videoUrl).subscribe({
           next: (res) => {
-            console.log('get file is done 2');
-            console.log(res);
-             this.videoFile = new File([res], 'filename.ext', { type: res.type });
-      console.log(this.videoFile);
+            this.videoFile = new File([res], 'filename.ext', { type: res.type });
+            console.log(this.videoFile);
+            const formData = new FormData();
+    formData.append('video', this.videoFile);
+
+    this._TranscriptionService.getTransacreption(formData).subscribe({
+      next:(res) => {
+        console.log(res.error.text);
+
+      },
+      error:(err) => { console.log(err.error.text);
+        const parser = new DOMParser();
+    const doc = parser.parseFromString(err.error.text, 'text/html');
+    const paragraphs = doc.getElementsByTagName('p');
+
+    if (paragraphs.length > 0) {
+      this.extractedText = paragraphs[0].textContent || '';
+    } else {
+      this.extractedText = 'No paragraph found.';
+    }
+    console.log(this.extractedText);
+
+      }
+
+    })
 
           },
           error:(err) => {

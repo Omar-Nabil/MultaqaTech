@@ -9,6 +9,7 @@ import { QuestionsComponent } from './components/children/questions/questions.co
 import { QuizComponent } from './components/children/quiz/quiz.component';
 import { MainComponent } from './components/main/main.component';
 import { CourseRoutingModule } from './course-routing.module';
+import { SummaryComponent } from './components/children/summary/summary.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { CourseRoutingModule } from './course-routing.module';
     QuizComponent,
     QuestionsComponent,
     QuestionDetailsComponent,
-    IllustrationComponent
+    IllustrationComponent,
+    SummaryComponent
   ],
   imports: [
     CommonModule,

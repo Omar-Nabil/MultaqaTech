@@ -126,7 +126,5 @@ export class WcourseService {
     return this.httpClient.delete(environment.baseURL+`/api/Answers/${id}`,{headers});
   }
 
-   fetchFile(url: string): Observable<Blob> {
-    return this.httpClient.get(url, { responseType: 'blob' });
-  }
+
 }
