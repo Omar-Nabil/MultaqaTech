@@ -121,7 +121,8 @@ export class MainComponent implements OnInit, AfterViewInit {
     } else {
       this.extractedText = 'No paragraph found.';
     }
-    console.log(this.extractedText);
+        console.log(this.extractedText);
+        this._TranscriptionService.transcriptionTxt.next(this.extractedText) ;
 
       }
 

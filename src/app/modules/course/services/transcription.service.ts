@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,6 +8,8 @@ import { Observable } from 'rxjs';
 export class TranscriptionService {
 
   constructor(private http:HttpClient) { }
+
+  transcriptionTxt : BehaviorSubject<any> = new BehaviorSubject<any>(null);
 
     fetchFile(url: string): Observable<Blob> {
     return this.http.get(url, { responseType: 'blob' });
