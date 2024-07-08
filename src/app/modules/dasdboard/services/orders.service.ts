@@ -14,6 +14,8 @@ export class OrdersService {
     const headers = new HttpHeaders({
       'Authorization':`Bearer ${localStorage.getItem('userToken')}`
     })
+    console.log(`/api/Orders?DateFrom=${DateFrom}&DateTo=${DateTo}&MinPrice=${MinPrice}&MaxPrice=${MaxPrice}`);
+
     return this.httpClient.get(environment.baseURL+`/api/Orders?DateFrom=${DateFrom}&DateTo=${DateTo}&MinPrice=${MinPrice}&MaxPrice=${MaxPrice}`,{headers})
   }
 }

@@ -38,7 +38,7 @@ export class PurchaseHistoryComponent {
     formData.append('DateTo', this.filterForm.get('DateTo')?.value);
     console.log(formData);
 
-    this.ordersService.getOrders(this.filterForm.get('DateFrom')?.value ? this.filterForm.get('DateFrom')?.value : '', this.filterForm.get('DateTo')?.value? this.filterForm.get('DateTo')?.value : '', this.filterForm.get('MinPrice')?.value? this.filterForm.get('MinPrice')?.value : 0, this.filterForm.get('MaxPrice')?.value? this.filterForm.get('DateFrom')?.value : 999999).subscribe({
+    this.ordersService.getOrders(this.filterForm.get('DateFrom')?.value ? this.filterForm.get('DateFrom')?.value : '', this.filterForm.get('DateTo')?.value? this.filterForm.get('DateTo')?.value : '', this.filterForm.get('MinPrice')?.value? this.filterForm.get('MinPrice')?.value : 0, this.filterForm.get('MaxPrice')?.value? this.filterForm.get('MaxPrice')?.value : 999999).subscribe({
       next:(res) => {
         console.log(res);
         this.orders = res;
