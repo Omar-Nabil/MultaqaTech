@@ -13,10 +13,14 @@ declare const mermaid: any;
 export class IllustrationComponent {
   response: any;
 
+
   responseBool:boolean =false;
   spinner:boolean =false;
   chartDefinition:any;
   inputValue: string = '';
+  firstPart: string = '';
+  code: string = '';
+  explenation: string = '';
   mermaidChart = `
     graph TD;
       A-->B;
@@ -48,7 +52,7 @@ export class IllustrationComponent {
         this.chartDefinition= mermaidCode;
         console.log(mermaidCode);
         console.log(this.chartDefinition);
-
+        this.processParagraph(response.response)
         this.responseBool=true;
         console.log(document.getElementById("mermaid"));
         console.log(document.getElementById("mermaid2"));
@@ -59,6 +63,7 @@ export class IllustrationComponent {
         document.getElementById("mermaid")?.classList.add("mermaid")
         this.run();
         this.spinner=false;
+
 
 
       }, error => {
@@ -73,5 +78,19 @@ export class IllustrationComponent {
   run(){
     mermaid.run();
   }
+  processParagraph(paragraph: string){
+    // Split the paragraph by ```
+    const parts = paragraph.split('```');
+
+    // Ensure we have exactly 3 parts
+
+    // Replace \n with <br> in each part
+    this.firstPart = parts[0].replace(/\n/g, '<br>');
+    this.code = parts[1];
+    this.explenation = parts[2].replace(/\n/g, '<br>');
+
+  }
+
+
 
 }

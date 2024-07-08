@@ -17,10 +17,20 @@
     </div>
   </div>
 
+  <h3 [innerHTML]="firstPart" style="white-space: pre-wrap;"></h3>
+  <br>
+  <!--
+  <h2 [innerHTML]="code" style="white-space: pre-wrap;"></h2>
+  -->
+  <h3 [innerHTML]="explenation" style="white-space: pre-wrap;"></h3>
 
 
   <div  *ngIf="responseBool && !spinner" id="mermaid">
     {{ chartDefinition }}
   </div>
-
+  <br>
+  <h2  *ngIf="responseBool && !spinner">Here is the code of the paragraph:</h2>
+  <pre *ngIf="responseBool && !spinner" style="background-color: #0c0c0c; color: #ffffff; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
+    {{ code }}
+  </pre>
 </div>
