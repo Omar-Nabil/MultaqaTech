@@ -7,6 +7,7 @@ import { WcourseService } from '../../services/Wcourse.service';
 import { error } from 'console';
 import { from } from 'rxjs';
 import { TranscriptionService } from '../../services/transcription.service';
+import { TranslateService } from 'src/app/modules/pages/services/translate.service';
 
 @Component({
   selector: 'app-main',
@@ -27,7 +28,7 @@ export class MainComponent implements OnInit, AfterViewInit {
   extractedText: string = '';
   transcriptionLoadingBool: boolean = true;
   constructor(private wcourseService: WcourseService, private route: ActivatedRoute,private el: ElementRef,
-    private renderer: Renderer2, private quiz: CurriculumQuizService,
+    private renderer: Renderer2, private quiz: CurriculumQuizService,private _TranslateService:TranslateService,
     private _questions: CurriculumQuizQuestionService,private _TranscriptionService:TranscriptionService) { }
 
   ngOnInit() {
@@ -126,7 +127,14 @@ export class MainComponent implements OnInit, AfterViewInit {
         next: (res) => {
           this._TranscriptionService.summaryTxt.next(res.summary)
           this._TranscriptionService.summaryBool.next(true)
+          this._TranslateService.getArabicTrans({text:res.summary}).subscribe({
+            next: (res) => {
+              this._TranscriptionService.translationTxt.next(res.summary)
+          this._TranscriptionService.translationBool.next(true)
+              console.log(res);
 
+            }
+          })
           console.log(res);
 
         }

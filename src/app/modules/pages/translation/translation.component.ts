@@ -21,7 +21,7 @@ export class TranslationComponent {
     const text = {
       text:this.textInArabic.value
     };
-    this.translateService.gettrans(text).subscribe({
+    this.translateService.getEnglishTrans(text).subscribe({
       next:(res) => {
         this.translatedText = res.translated_text;
       },

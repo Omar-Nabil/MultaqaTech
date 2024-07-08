@@ -9,8 +9,11 @@ export class TranslateService {
 
   constructor(private http: HttpClient) { }
 
-  gettrans(text:any):Observable<any> {
+  getEnglishTrans(text:any):Observable<any> {
     return this.http.post('https://elalimy-test.hf.space/translate', text);
+  }
+  getArabicTrans(text:any):Observable<any> {
+    return this.http.post('https://elalimy-english2arabic.hf.space/translate', text);
   }
 
 }

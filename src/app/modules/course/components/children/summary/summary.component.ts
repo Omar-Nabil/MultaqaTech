@@ -21,11 +21,25 @@ export class SummaryComponent implements OnInit {
         }
       }
     })
+    this._TranscriptionService.translationBool.subscribe({
+      next: () => {
+        let bool: boolean = this._TranscriptionService.translationBool.getValue()
+        if (bool) {
+          this.translateLoadingBool = false;
+          this.translationTxt=this._TranscriptionService.translationTxt.getValue()
+        }
+        else {
+          this.translateLoadingBool = true;
+        }
+      }
+    })
 
   }
 
   isloadingBool: boolean = true;
   summaryTxt: string = ''
+  translateLoadingBool: boolean = true;
+  translationTxt: string = ''
 
 
 
