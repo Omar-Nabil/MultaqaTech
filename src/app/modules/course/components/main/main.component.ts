@@ -129,7 +129,7 @@ export class MainComponent implements OnInit, AfterViewInit {
           this._TranscriptionService.summaryBool.next(true)
           this._TranslateService.getArabicTrans({text:res.summary}).subscribe({
             next: (res) => {
-              this._TranscriptionService.translationTxt.next(res.summary)
+              this._TranscriptionService.translationTxt.next(res.translated_text)
           this._TranscriptionService.translationBool.next(true)
               console.log(res);
 
@@ -143,6 +143,7 @@ export class MainComponent implements OnInit, AfterViewInit {
       this.extractedText = 'No paragraph found.';
       this._TranscriptionService.summaryTxt.next('There is no summary')
       this._TranscriptionService.summaryBool.next(true)
+      this._TranscriptionService.translationBool.next(true)
 
 
     }

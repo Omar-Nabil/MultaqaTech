@@ -4,7 +4,8 @@
       <div class="d-flex mb-2 ">
         <h5 class="me-4">Summary for the lecture :</h5>
         <div *ngIf="isloadingBool" class="loader"></div>
-        <div class="position-absolute " style="width: 40px;height: 40px;left: 90%;top: 90%;cursor: pointer;">
+        <div *ngIf="translateLoadingBool&&clickedBool" class="loader2 position-absolute" style="left: 90%;top: 90%;"></div>
+        <div *ngIf="!clickedBool" (click)="clicked()" class="position-absolute mb-10" style="width: 40px;height: 40px;left: 90%;top: 90%;cursor: pointer;">
           <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
             xmlns:xodm="http://www.corel.com/coreldraw/odm/2003" xml:space="preserve" version="1.1"
             style="shape-rendering:geometricPrecision;text-rendering:geometricPrecision;image-rendering:optimizeQuality;"
@@ -28,6 +29,6 @@
         </div>
       </div>
       <p *ngIf="!isloadingBool" class="lead p-3">{{summaryTxt}}</p>
-      <p *ngIf="!isloadingBool" class="lead p-3">{{translationTxt}}</p>
+      <p dir="rtl" *ngIf="!translateLoadingBool&&clickedBool" class="lead p-3">{{translationTxt}}</p>
     </div>
 </section>

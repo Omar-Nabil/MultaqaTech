@@ -40,7 +40,10 @@ export class SummaryComponent implements OnInit {
   summaryTxt: string = ''
   translateLoadingBool: boolean = true;
   translationTxt: string = ''
+  clickedBool: boolean = false;
 
-
+  clicked() {
+  this.clickedBool=true
+}
 
 }
