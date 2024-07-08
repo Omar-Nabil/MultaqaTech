@@ -3,7 +3,25 @@
 
   <div class="container">
     <h4 class="dashboard-title">Purchase History</h4>
-
+    <form [formGroup]="filterForm"  (submit)="applyFilter()">
+      <div class="row row-cols-lg-2 row-cols-md-1">
+        <div class="mt-md-2">
+          <input type="number" class="form-control" placeholder="MinPrice" formControlName="MinPrice">
+        </div>
+        <div class="mt-md-2">
+          <input type="number" class="form-control" placeholder="MaxPrice" formControlName="MaxPrice">
+        </div>
+        <div class="mt-2">
+          <label class="ps-1">From Date</label>
+          <input type="datetime-local" class="form-control" placeholder="DateFrom" formControlName="DateFrom">
+        </div>
+        <div class="mt-2">
+          <label class="ps-1">To Date</label>
+          <input type="datetime-local" class="form-control" placeholder="DateTo" formControlName="DateTo">
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary rounded-5 fw-semibold fs-5 ms-auto d-block my-1">Apply Filter</button>
+    </form>
     <!-- Dashboard Purchase History Start -->
     <div class="dashboard-purchase-history">
       <div class="dashboard-table table-responsive">
@@ -13,310 +31,30 @@
               <th class="id">ID</th>
               <th class="courses">Courses</th>
               <th class="amount">Amount</th>
-              <th class="status">Status</th>
               <th class="date">Date</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
+            <tr *ngFor="let order of orders; let index = index">
               <td>
                 <div class="dashboard-table__mobile-heading">ID</div>
                 <div class="dashboard-table__text">#10887</div>
               </td>
               <td class="course-info">
                 <div class="dashboard-table__mobile-heading">Courses</div>
-                <div class="dashboard-table__text">
-                  <p>Learn Algebra The Easy Way!</p>
+                <div class="dashboard-table__text" *ngFor="let item of order.basket.basketItems">
+                  <p>{{item.courseTitle}}</p>
                 </div>
               </td>
               <td class="correct">
                 <div class="dashboard-table__mobile-heading">Amount</div>
                 <div class="dashboard-table__text">
-                  <span class="sale-price">$45.<small class="separator">00</small></span>
+                  <span class="sale-price">${{order.totalPriceBeforeDiscount}}.<small class="separator">00</small></span>
                 </div>
-              </td>
-              <td class="incorrect">
-                <div class="dashboard-table__mobile-heading">Status</div>
-                <div class="dashboard-table__text">Processing</div>
               </td>
               <td class="earned">
                 <div class="dashboard-table__mobile-heading">Date</div>
-                <div class="dashboard-table__text">February 1, 2022</div>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="dashboard-table__mobile-heading">ID</div>
-                <div class="dashboard-table__text">#10852</div>
-              </td>
-              <td class="course-info">
-                <div class="dashboard-table__mobile-heading">Courses</div>
-                <div class="dashboard-table__text">
-                  <p>Internationally Accredited Diploma in Weight Loss</p>
-                  <p>Investment Management Specialization</p>
-                </div>
-              </td>
-              <td class="correct">
-                <div class="dashboard-table__mobile-heading">Amount</div>
-                <div class="dashboard-table__text">
-                  <span class="sale-price">$43.<small class="separator">99</small></span>
-                </div>
-              </td>
-              <td class="incorrect">
-                <div class="dashboard-table__mobile-heading">Status</div>
-                <div class="dashboard-table__text hold">On Hold</div>
-              </td>
-              <td class="earned">
-                <div class="dashboard-table__mobile-heading">Date</div>
-                <div class="dashboard-table__text">January 31, 2022</div>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="dashboard-table__mobile-heading">ID</div>
-                <div class="dashboard-table__text">#10839</div>
-              </td>
-              <td class="course-info">
-                <div class="dashboard-table__mobile-heading">Courses</div>
-                <div class="dashboard-table__text">
-                  <p>Photography Masterclass: A Complete Guide to Photography</p>
-                </div>
-              </td>
-              <td class="correct">
-                <div class="dashboard-table__mobile-heading">Amount</div>
-                <div class="dashboard-table__text">
-                  <span class="sale-price">$49.<small class="separator">00</small></span>
-                </div>
-              </td>
-              <td class="incorrect">
-                <div class="dashboard-table__mobile-heading">Status</div>
-                <div class="dashboard-table__text">Processing</div>
-              </td>
-              <td class="earned">
-                <div class="dashboard-table__mobile-heading">Date</div>
-                <div class="dashboard-table__text">January 30, 2022</div>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="dashboard-table__mobile-heading">ID</div>
-                <div class="dashboard-table__text">#10833</div>
-              </td>
-              <td class="course-info">
-                <div class="dashboard-table__mobile-heading">Courses</div>
-                <div class="dashboard-table__text">
-                  <p>Mastering Data Modeling Fundamentals</p>
-                  <p>Investment Management Specialization</p>
-                  <p>Illustrator 2020 MasterClass</p>
-                  <p>Photography Masterclass: A Complete Guide to Photography</p>
-                  <p>Mechanical Engineering and Electrical Engineering Explained</p>
-                </div>
-              </td>
-              <td class="correct">
-                <div class="dashboard-table__mobile-heading">Amount</div>
-                <div class="dashboard-table__text">
-                  <span class="sale-price">$235.<small class="separator">00</small></span>
-                </div>
-              </td>
-              <td class="incorrect">
-                <div class="dashboard-table__mobile-heading">Status</div>
-                <div class="dashboard-table__text">Processing</div>
-              </td>
-              <td class="earned">
-                <div class="dashboard-table__mobile-heading">Date</div>
-                <div class="dashboard-table__text">January 29, 2022</div>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="dashboard-table__mobile-heading">ID</div>
-                <div class="dashboard-table__text">#10764</div>
-              </td>
-              <td class="course-info">
-                <div class="dashboard-table__mobile-heading">Courses</div>
-                <div class="dashboard-table__text">
-                  <p>Mechanical Engineering and Electrical Engineering Explained</p>
-                  <p>Learn Algebra The Easy Way!</p>
-                  <p>The Ultimate Photography Course – Beginner to Advanced</p>
-                  <p>Illustrator 2020 MasterClass</p>
-                </div>
-              </td>
-              <td class="correct">
-                <div class="dashboard-table__mobile-heading">Amount</div>
-                <div class="dashboard-table__text">
-                  <span class="sale-price">$373.<small class="separator">00</small></span>
-                </div>
-              </td>
-              <td class="incorrect">
-                <div class="dashboard-table__mobile-heading">Status</div>
-                <div class="dashboard-table__text">Processing</div>
-              </td>
-              <td class="earned">
-                <div class="dashboard-table__mobile-heading">Date</div>
-                <div class="dashboard-table__text">January 23, 2022</div>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="dashboard-table__mobile-heading">ID</div>
-                <div class="dashboard-table__text">#10676</div>
-              </td>
-              <td class="course-info">
-                <div class="dashboard-table__mobile-heading">Courses</div>
-                <div class="dashboard-table__text">
-                  <p>Investment Management Specialization</p>
-                </div>
-              </td>
-              <td class="correct">
-                <div class="dashboard-table__mobile-heading">Amount</div>
-                <div class="dashboard-table__text">
-                  <span class="sale-price">$34.<small class="separator">00</small></span>
-                </div>
-              </td>
-              <td class="incorrect">
-                <div class="dashboard-table__mobile-heading">Status</div>
-                <div class="dashboard-table__text">Processing</div>
-              </td>
-              <td class="earned">
-                <div class="dashboard-table__mobile-heading">Date</div>
-                <div class="dashboard-table__text">January 12, 2022</div>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="dashboard-table__mobile-heading">ID</div>
-                <div class="dashboard-table__text">#10568</div>
-              </td>
-              <td class="course-info">
-                <div class="dashboard-table__mobile-heading">Courses</div>
-                <div class="dashboard-table__text">
-                  <p>Investment Management Specialization</p>
-                </div>
-              </td>
-              <td class="correct">
-                <div class="dashboard-table__mobile-heading">Amount</div>
-                <div class="dashboard-table__text">
-                  <span class="sale-price">$34.<small class="separator">00</small></span>
-                </div>
-              </td>
-              <td class="incorrect">
-                <div class="dashboard-table__mobile-heading">Status</div>
-                <div class="dashboard-table__text">Processing</div>
-              </td>
-              <td class="earned">
-                <div class="dashboard-table__mobile-heading">Date</div>
-                <div class="dashboard-table__text">January 2, 2022</div>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="dashboard-table__mobile-heading">ID</div>
-                <div class="dashboard-table__text">#9503</div>
-              </td>
-              <td class="course-info">
-                <div class="dashboard-table__mobile-heading">Courses</div>
-                <div class="dashboard-table__text">
-                  <p>Internationally Accredited Diploma in Weight Loss</p>
-                  <p>Artificial Intelligence & Machine Learning</p>
-                  <p>Excel Crash Course: Master Excel for Financial Analysis</p>
-                  <p>Beginning Project Management: Project Management Level One</p>
-                  <p>Investment Management Specialization</p>
-                </div>
-              </td>
-              <td class="correct">
-                <div class="dashboard-table__mobile-heading">Amount</div>
-                <div class="dashboard-table__text">
-                  <span class="sale-price">$128.<small class="separator">97</small></span>
-                </div>
-              </td>
-              <td class="incorrect">
-                <div class="dashboard-table__mobile-heading">Status</div>
-                <div class="dashboard-table__text cancelled">Cancelled</div>
-              </td>
-              <td class="earned">
-                <div class="dashboard-table__mobile-heading">Date</div>
-                <div class="dashboard-table__text">November 2, 2021</div>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="dashboard-table__mobile-heading">ID</div>
-                <div class="dashboard-table__text">#9461</div>
-              </td>
-              <td class="course-info">
-                <div class="dashboard-table__mobile-heading">Courses</div>
-                <div class="dashboard-table__text">
-                  <p>Investment Management Specialization</p>
-                  <p>Photography Masterclass: A Complete Guide to Photography</p>
-                </div>
-              </td>
-              <td class="correct">
-                <div class="dashboard-table__mobile-heading">Amount</div>
-                <div class="dashboard-table__text">
-                  <span class="sale-price">$83.<small class="separator">00</small></span>
-                </div>
-              </td>
-              <td class="incorrect">
-                <div class="dashboard-table__mobile-heading">Status</div>
-                <div class="dashboard-table__text hold">On Hold</div>
-              </td>
-              <td class="earned">
-                <div class="dashboard-table__mobile-heading">Date</div>
-                <div class="dashboard-table__text">October 31, 2021</div>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="dashboard-table__mobile-heading">ID</div>
-                <div class="dashboard-table__text">#3564</div>
-              </td>
-              <td class="course-info">
-                <div class="dashboard-table__mobile-heading">Courses</div>
-                <div class="dashboard-table__text">
-                  <p>Illustrator 2020 MasterClass</p>
-                </div>
-              </td>
-              <td class="correct">
-                <div class="dashboard-table__mobile-heading">Amount</div>
-                <div class="dashboard-table__text">
-                  <span class="sale-price">$22.<small class="separator">00</small></span>
-                </div>
-              </td>
-              <td class="incorrect">
-                <div class="dashboard-table__mobile-heading">Status</div>
-                <div class="dashboard-table__text cancelled">Cancelled</div>
-              </td>
-              <td class="earned">
-                <div class="dashboard-table__mobile-heading">Date</div>
-                <div class="dashboard-table__text">December 15, 2020</div>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="dashboard-table__mobile-heading">ID</div>
-                <div class="dashboard-table__text">#3374</div>
-              </td>
-              <td class="course-info">
-                <div class="dashboard-table__mobile-heading">Courses</div>
-                <div class="dashboard-table__text">
-                  <p>Mechanical Engineering and Electrical Engineering Explained</p>
-                  <p>Start Trading Stocks Using Technical Analysis!</p>
-                  <p>Successful Negotiation: Master Your Negotiating Skills</p>
-                </div>
-              </td>
-              <td class="correct">
-                <div class="dashboard-table__mobile-heading">Amount</div>
-                <div class="dashboard-table__text">
-                  <span class="sale-price">$133.<small class="separator">00</small></span>
-                </div>
-              </td>
-              <td class="incorrect">
-                <div class="dashboard-table__mobile-heading">Status</div>
-                <div class="dashboard-table__text completed">Completed</div>
-              </td>
-              <td class="earned">
-                <div class="dashboard-table__mobile-heading">Date</div>
-                <div class="dashboard-table__text">December 14, 2020</div>
+                <div class="dashboard-table__text">{{formatDate(order.creationDate)}}</div>
               </td>
             </tr>
           </tbody>

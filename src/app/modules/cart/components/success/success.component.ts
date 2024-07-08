@@ -8,6 +8,7 @@ import { CartService } from '../../services/cart.service';
   styleUrls: ['./success.component.css']
 })
 export class SuccessComponent implements OnInit {
+  PaymentSuccess:boolean = false;
 
   constructor(private cartService:CartService, private router:Router) { }
 
@@ -15,17 +16,8 @@ export class SuccessComponent implements OnInit {
     this.showModal();
     this.cartService.successCheckout().subscribe({
       next:(res) => {
-        this.router.navigate(['/dashboard/enrolledcourses']);
-        const modalBackdrops = document.querySelectorAll('.modal-backdrop') as NodeListOf<HTMLElement>;
-          modalBackdrops.forEach(backdrop => {
-            backdrop.classList.add('d-none');
-          });
-        const modalBackdropss = document.querySelectorAll('.modal') as NodeListOf<HTMLElement>;
-          modalBackdropss.forEach(backdrop => {
-            backdrop.classList.add('d-none');
-          });
+        this.PaymentSuccess = true;
 
-          $('body').css({'overflow':'auto'});
       },
       error:(err) => console.log(err)
 
@@ -41,5 +33,20 @@ export class SuccessComponent implements OnInit {
       console.error('Button not found');
     }
   }
+
+  goBackToOrders() {
+    const modalBackdrops = document.querySelectorAll('.modal-backdrop') as NodeListOf<HTMLElement>;
+          modalBackdrops.forEach(backdrop => {
+            backdrop.classList.add('d-none');
+          });
+        const modalBackdropss = document.querySelectorAll('.modal') as NodeListOf<HTMLElement>;
+          modalBackdropss.forEach(backdrop => {
+            backdrop.classList.add('d-none');
+          });
+
+          $('body').css({'overflow':'auto'});
+  }
+
+
 
 }

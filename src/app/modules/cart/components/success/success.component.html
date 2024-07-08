@@ -13,15 +13,15 @@
 
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body ">
+      <div class="modal-body " *ngIf="PaymentSuccess">
         <div class="alert alert-success p-3">
           Payment Success
         </div>
       </div>
 
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" routerLink="/cart" data-bs-dismiss="modal">Go Back to Your
-          Cart</button>
+        <button (click)="goBackToOrders()" type="button" class="btn btn-secondary" routerLink="/dashboard/purchasehistory" data-bs-dismiss="modal">Go Back to Purchase History
+</button>
       </div>
     </div>
   </div>
