@@ -17,13 +17,12 @@
     </div>
   </div>
 
-  <h3 [innerHTML]="firstPart" style="white-space: pre-wrap;"></h3>
+  <h3 *ngIf="responseBool && !spinner" [innerHTML]="firstPart" style="white-space: pre-wrap;"></h3>
   <br>
   <!--
   <h2 [innerHTML]="code" style="white-space: pre-wrap;"></h2>
   -->
-  <h3 [innerHTML]="explenation" style="white-space: pre-wrap;"></h3>
-
+  <h3 *ngIf="responseBool && !spinner" [innerHTML]="explenation" style="white-space: pre-wrap;"></h3>
 
   <div  *ngIf="responseBool && !spinner" id="mermaid">
     {{ chartDefinition }}
