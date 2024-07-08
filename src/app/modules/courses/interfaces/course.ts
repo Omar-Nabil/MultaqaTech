@@ -10,7 +10,7 @@ export interface Course_add {
   learningObjectives: string[]
 }
 export interface instructor {
-  instructorId: number,
+  id: number,
   instructorName: string,
 
 }

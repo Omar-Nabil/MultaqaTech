@@ -74,6 +74,30 @@ export class CourseService {
     })
     return this._HttpClient.get(environment.baseURL+`/api/Courses?PageSize=12&CourseLevel=${CourseLevel}`,{headers})
   }
+  getcoursesbyRating(MinRating:number,MaxRating:number): Observable<any>{
+    const headers = new HttpHeaders({
+      'Authorization':`Bearer ${localStorage.getItem('userToken')}`
+    })
+    return this._HttpClient.get(environment.baseURL+`/api/Courses?PageSize=12&MinRating=${MinRating}&MaxRating=${MaxRating}`,{headers})
+  }
+  getcoursesbylanguage(language:string): Observable<any>{
+    const headers = new HttpHeaders({
+      'Authorization':`Bearer ${localStorage.getItem('userToken')}`
+    })
+    return this._HttpClient.get(environment.baseURL+`/api/Courses?PageSize=12&Language=${language}`,{headers})
+  }
+  getcoursesFree(maxPrice:number): Observable<any>{
+    const headers = new HttpHeaders({
+      'Authorization':`Bearer ${localStorage.getItem('userToken')}`
+    })
+    return this._HttpClient.get(environment.baseURL+`/api/Courses?PageSize=12&MaxPrice=${maxPrice}`,{headers})
+  }
+  getcoursesPAID(MinPrice:number): Observable<any>{
+    const headers = new HttpHeaders({
+      'Authorization':`Bearer ${localStorage.getItem('userToken')}`
+    })
+    return this._HttpClient.get(environment.baseURL+`/api/Courses?PageSize=12&MinPrice=${MinPrice}`,{headers})
+  }
   getCoursesbyInstructorId(id:number): Observable<any>{
     const headers = new HttpHeaders({
       'Authorization':`Bearer ${localStorage.getItem('userToken')}`

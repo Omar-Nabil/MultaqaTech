@@ -785,31 +785,7 @@
               <!-- Widget Filter End -->
 
             </div>
-            <div class="sidebar-widget-wrap bg-color-10">
-              <h4 class="sidebar-widget-wrap__title">Filter by Instructor</h4>
 
-              <!-- Widget Filter Start -->
-              <div class="widget-filter">
-
-                <!-- Widget Filter Wrapper Start -->
-                <div class="widget-filter__wrapper">
-                  <ul class="widget-filter__list">
-                    <li *ngFor="let instructor of instructors;let i =index">
-                      <!-- Widget Filter Item Start -->
-                      <div class="widget-filter__item">
-                        <input (click)="getbyinstructor(instructor.instructorId!)" type="radio" id="instructor{{i}}" name="sort-by">
-                        <label for="instructor{{i}}">{{instructor.instructorName[0].toUpperCase()}}{{instructor.instructorName.slice(1)}}</label>
-                      </div>
-                      <!-- Widget Filter Item End -->
-                    </li>
-
-                  </ul>
-                </div>
-                <!-- Widget Filter Wrapper End -->
-              </div>
-              <!-- Widget Filter End -->
-
-            </div>
             <!-- Sidebar Widget Wrapper End -->
 
             <!-- Sidebar Widget Wrapper Start -->
@@ -817,46 +793,14 @@
               <h4 class="sidebar-widget-wrap__title">Filter by</h4>
 
               <!-- Widget Filter Start -->
+               <!-- Widget Filter Start -->
+
 
               <!-- Widget Filter End -->
 
-              <!-- Widget Filter Start -->
-              <div class="widget-filter">
-                <h4 class="widget-filter__title-02">Price</h4>
-
-                <!-- Widget Filter Wrapper Start -->
-                <div class="widget-filter__wrapper">
-                  <ul class="widget-filter__list">
-                    <li>
-                      <!-- Widget Filter Item Start -->
-                      <div class="widget-filter__item">
-                        <input type="radio" id="radi4" checked name="sort-by">
-                        <label for="radi4">All <span>(101)</span></label>
-                      </div>
-                      <!-- Widget Filter Item End -->
-                    </li>
-
-                    <li>
-                      <!-- Widget Filter Item Start -->
-                      <div class="widget-filter__item">
-                        <input type="radio" id="radio5" name="sort-by">
-                        <label for="radio5">Free <span>(6)</span></label>
-                      </div>
-                      <!-- Widget Filter Item End -->
-                    </li>
-                    <li>
-                      <!-- Widget Filter Item Start -->
-                      <div class="widget-filter__item">
-                        <input type="radio" id="radio7" name="sort-by">
-                        <label for="radio7">Paid <span>(95)</span></label>
-                      </div>
-                      <!-- Widget Filter Item End -->
-                    </li>
-                  </ul>
-                </div>
-                <!-- Widget Filter Wrapper End -->
-              </div>
               <!-- Widget Filter End -->
+
+
 
               <!-- Widget Filter Start -->
               <div class="widget-filter">
@@ -878,19 +822,39 @@
                 <!-- Widget Filter Wrapper End -->
               </div>
               <!-- Widget Filter End -->
-
               <!-- Widget Filter Start -->
               <div class="widget-filter">
-                <h4 class="widget-filter__title">Language</h4>
+                <h4 class="widget-filter__title-02">Language</h4>
 
                 <!-- Widget Filter Wrapper Start -->
                 <div class="widget-filter__wrapper">
                   <ul class="widget-filter__list">
-                    <li>
+                    <li *ngFor="let language of languages;let i = index">
                       <!-- Widget Filter Item Start -->
                       <div class="widget-filter__item">
-                        <input type="checkbox" id="language10" name="sort-by">
-                        <label for="language10">English <span>(21)</span></label>
+                        <input (click)="getbylangauge(language)" type="radio" id="languages{{i}}" name="sort-by">
+                        <label for="languages{{i}}">{{language}}</label>
+                      </div>
+                      <!-- Widget Filter Item End -->
+                    </li>
+
+                  </ul>
+                </div>
+                <!-- Widget Filter Wrapper End -->
+              </div>
+              <!-- Widget Filter End -->
+              <!-- Widget Filter Start -->
+              <div class="widget-filter">
+                <h4 class="widget-filter__title-02">Price</h4>
+
+                <!-- Widget Filter Wrapper Start -->
+                <div class="widget-filter__wrapper">
+                  <ul class="widget-filter__list">
+                    <li *ngFor="let price of prices;let i = index">
+                      <!-- Widget Filter Item Start -->
+                      <div class="widget-filter__item">
+                        <input (click)="getbyPrice(i)" type="radio" id="prices{{i}}" name="sort-by">
+                        <label for="prices{{i}}">{{price}}</label>
                       </div>
                       <!-- Widget Filter Item End -->
                     </li>
@@ -899,80 +863,42 @@
                 <!-- Widget Filter Wrapper End -->
               </div>
               <!-- Widget Filter End -->
-
               <!-- Widget Filter Start -->
               <div class="widget-filter">
-                <h4 class="widget-filter__title-02">Rating</h4>
+                <h4 class="widget-filter__title-02">instructor</h4>
 
                 <!-- Widget Filter Wrapper Start -->
                 <div class="widget-filter__wrapper">
                   <ul class="widget-filter__list">
-                    <li>
+                    <li *ngFor="let instructor of instructors;let i = index">
                       <!-- Widget Filter Item Start -->
                       <div class="widget-filter__item">
-                        <input type="checkbox" id="rating6" name="sort-by">
-                        <label for="rating6">
-                          <span class="star-line">
-                            <span class="star" style="width: 100%;"></span>
-                          </span>
-
-                          <span>(07)</span>
-                        </label>
+                        <input (click)="getbyinstructor(instructor.id)" type="radio" id="instruct{{i}}" name="sort-by">
+                        <label for="instruct{{i}}">{{instructor.instructorName}}</label>
                       </div>
                       <!-- Widget Filter Item End -->
                     </li>
-                    <li>
+                  </ul>
+                </div>
+                <!-- Widget Filter Wrapper End -->
+              </div>
+              <!-- Widget Filter End -->
+              <div class="widget-filter">
+                <h4 class="widget-filter__title-02">Ratings</h4>
+
+                <!-- Widget Filter Wrapper Start -->
+                <div class="widget-filter__wrapper">
+                  <ul class="widget-filter__list">
+                    <li *ngFor="let rate of ratings;let i = index">
                       <!-- Widget Filter Item Start -->
                       <div class="widget-filter__item">
-                        <input type="checkbox" id="rating7" name="sort-by">
-                        <label for="rating7">
+                        <input (click)="getbyRating(5.1-i-1,5-i)" type="radio" id="rate{{i}}" name="sort-by">
+                        <label for="rate{{i}}">
                           <span class="star-line">
-                            <span class="star" style="width: 80%;"></span>
+                            <span class="star" [style.width.%]="ratings[i]"></span>
                           </span>
 
-                          <span>(0)</span>
-                        </label>
-                      </div>
-                      <!-- Widget Filter Item End -->
-                    </li>
-                    <li>
-                      <!-- Widget Filter Item Start -->
-                      <div class="widget-filter__item">
-                        <input type="checkbox" id="rating8" name="sort-by">
-                        <label for="rating8">
-                          <span class="star-line">
-                            <span class="star" style="width: 60%;"></span>
-                          </span>
 
-                          <span>(0)</span>
-                        </label>
-                      </div>
-                      <!-- Widget Filter Item End -->
-                    </li>
-                    <li>
-                      <!-- Widget Filter Item Start -->
-                      <div class="widget-filter__item">
-                        <input type="checkbox" id="rating9" name="sort-by">
-                        <label for="rating9">
-                          <span class="star-line">
-                            <span class="star" style="width: 40%;"></span>
-                          </span>
-
-                          <span>(0)</span>
-                        </label>
-                      </div>
-                      <!-- Widget Filter Item End -->
-                    </li>
-                    <li>
-                      <!-- Widget Filter Item Start -->
-                      <div class="widget-filter__item">
-                        <input type="checkbox" id="rating10" name="sort-by">
-                        <label for="rating10">
-                          <span class="star-line">
-                            <span class="star" style="width: 20%;"></span>
-                          </span>
-
-                          <span>(0)</span>
                         </label>
                       </div>
                       <!-- Widget Filter Item End -->
@@ -983,50 +909,11 @@
               </div>
               <!-- Widget Filter End -->
 
-              <!-- Widget Filter Start -->
-              <div class="widget-filter">
-                <h4 class="widget-filter__title-02">Duration</h4>
 
-                <!-- Widget Filter Wrapper Start -->
-                <div class="widget-filter__wrapper">
-                  <ul class="widget-filter__list">
-                    <li>
-                      <!-- Widget Filter Item Start -->
-                      <div class="widget-filter__item">
-                        <input type="checkbox" id="duration5" name="sort-by">
-                        <label for="duration5">Less than 2 hours <span>(57)</span></label>
-                      </div>
-                      <!-- Widget Filter Item End -->
-                    </li>
-                    <li>
-                      <!-- Widget Filter Item Start -->
-                      <div class="widget-filter__item">
-                        <input type="checkbox" id="duration6" name="sort-by">
-                        <label for="duration6">3 - 6 hours <span>(7)</span></label>
-                      </div>
-                      <!-- Widget Filter Item End -->
-                    </li>
-                    <li>
-                      <!-- Widget Filter Item Start -->
-                      <div class="widget-filter__item">
-                        <input type="checkbox" id="duration7" name="sort-by">
-                        <label for="duration7">7 - 16 hours <span>(10)</span></label>
-                      </div>
-                      <!-- Widget Filter Item End -->
-                    </li>
-                    <li>
-                      <!-- Widget Filter Item Start -->
-                      <div class="widget-filter__item">
-                        <input type="checkbox" id="duration8" name="sort-by">
-                        <label for="duration8">17+ Hours <span>(27)</span></label>
-                      </div>
-                      <!-- Widget Filter Item End -->
-                    </li>
-                  </ul>
-                </div>
-                <!-- Widget Filter Wrapper End -->
-              </div>
-              <!-- Widget Filter End -->
+
+
+
+
 
             </div>
             <!-- Sidebar Widget Wrapper End -->

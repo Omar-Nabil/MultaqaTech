@@ -16,9 +16,11 @@ export class CoursesComponent implements OnInit {
   allCourses: Course_get[] | undefined
   length: number = 0;
   levels: string[] = ['All levels', 'Beginner', 'Intermediate', 'Advanced'];
+  prices: string[] = ['Free', 'Paid'];
   subjects:Subject[]=[]
   instructors:instructor[]=[]
-  instructorNames: string[] = [];
+  languages: string[] = [];
+  ratings: number[] = [100, 80, 60, 40, 20];
 
   constructor(private _CourseService: CourseService , private _SubjectService:SubjectService) {
      _CourseService.getcoursesbysize(99999999).subscribe((res) => {
@@ -59,10 +61,10 @@ export class CoursesComponent implements OnInit {
       this.allCourses = res.data
       console.log(this.allCourses);
       if (this.allCourses) {
-        this.instructorNames = [...new Set(this.allCourses.map(course => course.instructorName))];
+        this.languages = [...new Set(this.allCourses.map(course => course.language))];
       }
     })
-    console.log(this.instructors)
+    console.log(this.languages)
 
 
   }
@@ -97,6 +99,7 @@ export class CoursesComponent implements OnInit {
     this._CourseService.getCoursesbyInstructorId(instructorId).subscribe((res) => {
       this.courses = res.data
       this.length=this.courses?.length!
+      $('body,html').scrollTop(250)
     })
 
   }
@@ -111,6 +114,52 @@ export class CoursesComponent implements OnInit {
       $('body,html').scrollTop(250)
 
     })
+
+  }
+  getbyRating(MinRating: number,MaxRating:number) {
+
+
+    this._CourseService.getcoursesbyRating(MinRating,MaxRating).subscribe((res) => {
+      this.courses = res.data
+      console.log(this.courses);
+      this.length = this.courses?.length!
+      $('body,html').scrollTop(250)
+
+    })
+
+  }
+  getbylangauge(language: string) {
+
+
+
+    this._CourseService.getcoursesbylanguage(language).subscribe((res) => {
+      this.courses = res.data
+      console.log(this.courses);
+      this.length = this.courses?.length!
+      $('body,html').scrollTop(250)
+
+    })
+
+  }
+  getbyPrice(refrence: number) {
+    if (refrence==0){
+      this._CourseService.getcoursesFree(0).subscribe((res) => {
+        this.courses = res.data
+        console.log(this.courses);
+        this.length = this.courses?.length!
+        $('body,html').scrollTop(250)
+
+      })
+    }else{
+      this._CourseService.getcoursesPAID(1).subscribe((res) => {
+        this.courses = res.data
+        console.log(this.courses);
+        this.length = this.courses?.length!
+        $('body,html').scrollTop(250)
+
+      })
+    }
+
 
   }
 
