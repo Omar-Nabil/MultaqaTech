@@ -3,11 +3,9 @@ import { ActivatedRoute } from '@angular/router';
 import { QuizQuestion_get } from 'src/app/modules/courses/interfaces/quiz-question';
 import { CurriculumQuizQuestionService } from 'src/app/modules/courses/services/curriculum-quiz-question.service';
 import { CurriculumQuizService } from 'src/app/modules/courses/services/curriculum-quiz.service';
-import { WcourseService } from '../../services/Wcourse.service';
-import { error } from 'console';
-import { from } from 'rxjs';
-import { TranscriptionService } from '../../services/transcription.service';
 import { TranslateService } from 'src/app/modules/pages/services/translate.service';
+import { TranscriptionService } from '../../services/transcription.service';
+import { WcourseService } from '../../services/Wcourse.service';
 
 @Component({
   selector: 'app-main',
@@ -82,6 +80,7 @@ export class MainComponent implements OnInit, AfterViewInit {
       this.wcourseService.getcourseSectionsDetails(`${this.courseSections[index].id}`).subscribe({
         next:(res) => {
           this.courseSectionsDetails[index] = res;
+          console.log(res);
 
         },
         error:(err) => console.log(err)

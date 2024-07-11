@@ -66,11 +66,12 @@
             </div>
             <div class="courseitems" [class.d-block]="isCourseItemVisible[index]">
               <div class="item" *ngFor="let item of courseSectionsDetails[index]">
-                <p class="addhover" *ngIf="item.itemType=='Quiz'" routerLink="quiz" (click)="displayQuiz(item.id)"><span
-                    class="p-3">{{item?.title}}</span></p>
+                <p class="addhover" *ngIf="item.itemType=='Quiz'" routerLink="quiz" (click)="displayQuiz(item.id)"> <span
+                    class="p-3"><input type="checkbox" [checked]="true" disabled> {{item?.title}}</span></p>
                 <p class="addhover" *ngIf="item.itemType=='Lecture'" routerLink="notes"
                   [ngClass]="{'activeItem': item.id == videoId}" (click)="displayVideo(item.id)"><span class="p-3"><span
-                      class="me-3"><i class="fa-solid fa-video"></i></span>{{item?.title}}</span></p>
+                      class="me-3"><i class="fa-solid fa-video"></i></span><input type="checkbox" [checked]="item.isCompleted" disabled> {{item?.title}}</span></p>
+
               </div>
             </div>
           </div>
