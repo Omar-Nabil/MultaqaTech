@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { jwtDecode } from 'jwt-decode';
+import { AuthService } from 'src/app/modules/auth/services/auth.service';
 import { CourseService } from 'src/app/modules/courses/services/course.service';
 import { CurriculumShowService } from 'src/app/modules/courses/services/curriculum-show.service';
 import { start } from 'src/main';
@@ -18,6 +20,7 @@ import { ReviewsService } from '../../services/reviews.service';
 })
 
 export class CourseDetailsComponent implements OnInit {
+  isEnrolled:boolean = false;
   updatecommentbool: boolean = false
   toggler: boolean = false
   commentId:number=0
@@ -40,7 +43,7 @@ export class CourseDetailsComponent implements OnInit {
   cartItems: any;
   RecommendedCourses:Course_get[]=[]
 
-  constructor(private route:ActivatedRoute,private _CourseService:CourseService,private reviews:ReviewsService , private _CurriculumShowService:CurriculumShowService) {
+  constructor(private route:ActivatedRoute,private _CourseService:CourseService,private reviews:ReviewsService , private _CurriculumShowService:CurriculumShowService, private authService:AuthService) {
     this.getCourse();
     this.chaeckIfCourseInCart();
     let {id} = route.snapshot.params;
@@ -126,6 +129,10 @@ export class CourseDetailsComponent implements OnInit {
           this.date =new Date(this.course?.lastUpdatedDate!)
           this.getRecommendedCourses()
           console.log(res);
+          this.isEnrolled = res.wasBoughtBySignedInUser;
+          let token = JSON.stringify(localStorage.getItem('userToken'));
+          let decode:any = jwtDecode(token);
+          console.log(decode);
 
         },
         error: (err) => {
