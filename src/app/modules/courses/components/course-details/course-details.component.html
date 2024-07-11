@@ -567,7 +567,8 @@
                 <button (click)="AddCourseToCart()" *ngIf="!CourseAddedSuccessfully && !isEnrolled && userCourseUserName != instructorCourseUserName" class="btn btn-primary btn-hover-secondary w-100"> <i class="fas fa-shopping-basket"></i> Add to
                   cart </button>
                 <button class="btn btn-primary btn-hover-secondary w-100" *ngIf="CourseAddedSuccessfully&& !isEnrolled && userCourseUserName != instructorCourseUserName">Course Added Successfully</button>
-                <button class="btn btn-primary btn-hover-secondary w-100" routerLink="/wcourse/{{courseId}}/notes" *ngIf="isEnrolled || userCourseUserName == instructorCourseUserName">Go to Course</button>
+                <button class="btn btn-primary btn-hover-secondary w-100" routerLink="/wcourse/{{courseId}}/notes" *ngIf="isEnrolled && userCourseUserName != instructorCourseUserName">Go to Course</button>
+                <button class="btn btn-primary btn-hover-secondary w-100" routerLink="/curriculum/{{courseId}}" *ngIf=" userCourseUserName == instructorCourseUserName">Go to curriculum</button>
               </div>
               <div class="tutor-course-price-preview__social">
                 <a href="#"><i class="fab fa-facebook-f"></i></a>
