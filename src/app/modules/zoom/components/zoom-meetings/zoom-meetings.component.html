@@ -254,10 +254,7 @@
                   </div>
                   <div class="zoom-meetings-item__caption ">
                       <h2 class="zoom-meetings-item__title"><a [routerLink]="['/zooms', meeting.id]">{{meeting.title}}</a></h2>
-                      <div class="dashboard-header__btn mt-5">
-                        <a class="btn btn-outline-primary" (click)="deleteMeeting(meeting.id!)"
-                         ><i class="fa-solid fa-circle-xmark"></i> <span class="text">     delete </span></a>
-                      </div>
+
                       <div class="zoom-meetings-item__id">
                           <span class="label">Meeting ID: </span>
                           <span class="value">{{meeting.meetingId}}</span>
@@ -402,31 +399,31 @@
 
         <form [formGroup]="addMeetingForm" (submit)="addMeeting()">
           <div>
-            <label for="title">Title:</label>
+            <label for="title">Title:    <i class="fa-solid fa-asterisk" style="color: #f10909;"></i></label>
             <input id="title" type="text" formControlName="title">
           </div>
           <div>
-            <label for="content">Content:</label>
+            <label for="content">Content:    <i class="fa-solid fa-asterisk" style="color: #f10909;"></i></label>
             <textarea id="content" style="height: 300px;" formControlName="content"></textarea>
           </div>
           <div>
-            <label for="startDate">Start Date:</label>
+            <label for="startDate">Start Date:    <i class="fa-solid fa-asterisk" style="color: #f10909;"></i></label>
             <input type="datetime-local" id="startDate"  formControlName="startDate">
           </div>
           <div>
-            <label for="duration">Duration:</label>
+            <label for="duration">Duration:    <i class="fa-solid fa-asterisk" style="color: #f10909;"></i></label>
             <input type="number" min="0" step="1" id="duration"  formControlName="duration">
           </div>
           <div>
-            <label for="timeZone">Time Zone:</label>
+            <label for="timeZone">Time Zone:    <i class="fa-solid fa-asterisk" style="color: #f10909;"></i></label>
             <input id="timeZone" type="text" formControlName="timeZone">
           </div>
           <div>
-            <label for="pictureUrl">Picture URL:</label>
+            <label for="pictureUrl">Picture URL:    <i class="fa-solid fa-asterisk" style="color: #f10909;"></i></label>
             <input id="pictureUrl" type="file" accept="image/*" (change)="onFileChange($event)" formControlName="pictureUrl">
           </div>
           <div>
-            <label for="categoryId">Category:</label>
+            <label for="categoryId">Category:    <i class="fa-solid fa-asterisk" style="color: #f10909;"></i></label>
             <select id="categoryId" formControlName="categoryId">
               <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
             </select>

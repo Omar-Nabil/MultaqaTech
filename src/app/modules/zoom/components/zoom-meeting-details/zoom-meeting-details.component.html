@@ -282,6 +282,10 @@
                               <span class="label">Meeting ID:</span>
                               <span class="value">{{details.meetingId}}</span>
                           </div>
+                          <div *ngIf="isAuther" class="zoom-meetings-single__sidebar-list">
+                            <a class="btn btn-outline-primary" (click)="deleteMeeting()"
+                            ><i class="fa-solid fa-circle-xmark"></i> <span class="text">     delete </span></a>
+                          </div>
 
                       </div>
                       <p>

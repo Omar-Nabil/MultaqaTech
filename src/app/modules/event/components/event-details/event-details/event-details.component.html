@@ -639,11 +639,11 @@
 
         <form [formGroup]="editEventForm" (submit)="submitEditYourEvent()">
           <div>
-            <label for="title">Title:</label>
+            <label for="title">Title:    <i class="fa-solid fa-asterisk" style="color: #f10909;"></i></label>
             <input id="title" type="text" formControlName="title">
           </div>
           <div>
-            <label for="content">Content:</label>
+            <label for="content">Content:    <i class="fa-solid fa-asterisk" style="color: #f10909;"></i></label>
             <textarea id="content" style="height: 300px;" formControlName="aboutTheEvent"></textarea>
           </div>
 
@@ -651,63 +651,63 @@
             <div>
               <img id="previewImage" *ngIf="previewUrl" [src]="previewUrl" alt="Selected Image" width="200px" height="200px">
             </div>
-            <label for="pictureUrl">Image:</label>
+            <label for="pictureUrl">Image:    <i class="fa-solid fa-asterisk" style="color: #f10909;"></i></label>
             <input  id="pictureUrl" type="file" formControlName="pictureUrl"  (change)="onFileChange($event)">
           </div>
           <div>
-            <label for="categoryId">Category:</label>
+            <label for="categoryId">Category:    <i class="fa-solid fa-asterisk" style="color: #f10909;"></i></label>
             <select id="categoryId" formControlName="categoryId">
               <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
             </select>
           </div>
           <div>
-            <label for="countryId">country:</label>
+            <label for="countryId">country:    <i class="fa-solid fa-asterisk" style="color: #f10909;"></i></label>
             <select id="countryId" formControlName="countryId">
               <option *ngFor="let country of countries" [value]="country.id">{{country.name}}</option>
             </select>
           </div>
           <div>
-            <label for="address">address:</label>
+            <label for="address">address:    <i class="fa-solid fa-asterisk" style="color: #f10909;"></i></label>
             <input id="address" type="text" formControlName="address">
           </div>
           <div>
-            <label for="dateFrom">Start Date:</label>
+            <label for="dateFrom">Start Date:    <i class="fa-solid fa-asterisk" style="color: #f10909;"></i></label>
             <input type="datetime-local" id="dateFrom"  formControlName="dateFrom">
           </div>
           <div>
-            <label for="dateTo">End Date:</label>
+            <label for="dateTo">End Date:    <i class="fa-solid fa-asterisk" style="color: #f10909;"></i></label>
             <input type="datetime-local" id="dateTo"  formControlName="dateTo">
           </div>
           <div>
-            <label for="timeFrom">Time From:</label>
+            <label for="timeFrom">Time From:    <i class="fa-solid fa-asterisk" style="color: #f10909;"></i></label>
             <input id="timeFrom" type="time" formControlName="timeFrom">
           </div>
           <div>
-            <label for="timeTo">Time To:</label>
+            <label for="timeTo">Time To:    <i class="fa-solid fa-asterisk" style="color: #f10909;"></i></label>
             <input id="timeTo" type="time" formControlName="timeTo">
           </div>
           <div>
-            <label for="price">Price(in $):</label>
+            <label for="price">Price(in $):    <i class="fa-solid fa-asterisk" style="color: #f10909;"></i></label>
             <input type="number" min="0" step="1" id="price"  formControlName="price">
           </div>
           <div>
-            <label for="phoneNumber">phoneNumber :</label>
+            <label for="phoneNumber">phoneNumber :    <i class="fa-solid fa-asterisk" style="color: #f10909;"></i></label>
             <input type="tel" placeholder="123-456-7890" id="phoneNumber"  formControlName="phoneNumber">
           </div>
           <div>
-            <label for="website">website:</label>
+            <label for="website">website:    <i class="fa-solid fa-asterisk" style="color: #f10909;"></i></label>
             <input type="email" placeholder="example@example.com" id="website" type="text" formControlName="website">
           </div>
 
 
 
 
-          <button type="submit" data-bs-dismiss="modal" >Submit</button>
+          <button type="submit" [disabled]="!editEventForm.valid" data-bs-dismiss="modal" >Submit</button>
         </form>
 
 
       </div>
-<!--[disabled]="!addEventForm.valid"-->
+<!---->
     </div>
   </div>
 </div>
@@ -723,11 +723,11 @@
 
         <form [formGroup]="addEventSpeakerForm" (submit)="addEventSpeaker()">
           <div>
-            <label for="name">Name:</label>
+            <label for="name">Name:    <i class="fa-solid fa-asterisk" style="color: #f10909;"></i></label>
             <input id="name" type="text" formControlName="name">
           </div>
           <div>
-            <label for="jobTitle">Job Title:</label>
+            <label for="jobTitle">Job Title:    <i class="fa-solid fa-asterisk" style="color: #f10909;"></i></label>
             <textarea id="jobTitle" style="height: 300px;" formControlName="jobTitle"></textarea>
           </div>
 
@@ -735,7 +735,7 @@
             <div>
               <img id="previewImage" *ngIf="previewUrl" [src]="previewUrl" alt="Selected Image" width="200px" height="200px">
             </div>
-            <label for="pictureUrl">Image:</label>
+            <label for="pictureUrl">Image:    <i class="fa-solid fa-asterisk" style="color: #f10909;"></i></label>
             <input  id="pictureUrl" type="file" formControlName="pictureUrl"  (change)="onFileChange($event)">
           </div>
 
@@ -743,12 +743,12 @@
 
 
 
-          <button type="submit" data-bs-dismiss="modal" >Submit</button>
+          <button type="submit" [disabled]="!addEventSpeakerForm.valid" data-bs-dismiss="modal" >Submit</button>
         </form>
 
 
       </div>
-<!--[disabled]="!addEventForm.valid"-->
+<!---->
     </div>
   </div>
 </div>

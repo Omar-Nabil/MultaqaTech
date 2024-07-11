@@ -1,4 +1,4 @@
-
+<!--
 <div class="input-container">
   <input
     type="text"
@@ -19,17 +19,128 @@
 
   <h3 *ngIf="responseBool && !spinner" [innerHTML]="firstPart" style="white-space: pre-wrap;"></h3>
   <br>
-  <!--
-  <h2 [innerHTML]="code" style="white-space: pre-wrap;"></h2>
-  -->
+
   <h3 *ngIf="responseBool && !spinner" [innerHTML]="explenation" style="white-space: pre-wrap;"></h3>
 
   <div  *ngIf="responseBool && !spinner" id="mermaid">
     {{ chartDefinition }}
   </div>
   <br>
-  <h2  *ngIf="responseBool && !spinner">Here is the code of the paragraph:</h2>
+  <h2  *ngIf="responseBool && !spinner">Here is the code of the Graph:</h2>
   <pre *ngIf="responseBool && !spinner" style="background-color: #0c0c0c; color: #ffffff; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
     {{ code }}
   </pre>
 </div>
+-->
+<!--
+  <h2 [innerHTML]="code" style="white-space: pre-wrap;"></h2>
+  -->
+
+<div class="blog-section section-padding-01">
+  <div class="container custom-container">
+    <div class="row gy-10">
+      <div class="col-lg-11">
+        <div class="blog-details">
+          <div class="blog-details__content">
+            <div class="input-container w-75">
+              <input
+                type="text"
+                [(ngModel)]="inputValue"
+                placeholder="Enter Value"
+                (keyup.enter)="onSubmit()"
+                class="input-bar w-75"
+              />
+              <button class="submit-button" (click)="onSubmit()">Generate</button>
+            </div>
+
+            <div class="d-flex justify-content-center align-items-center vh-100 bg-light" *ngIf="spinner">
+              <div class="spinner-grow text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+            </div>
+
+
+
+            <h3 class="blog-details__title" *ngIf="responseBool && !spinner" [innerHTML]="firstPart" style="white-space: pre-wrap;"></h3>
+            <p *ngIf="responseBool && !spinner" [innerHTML]="explenation" style="white-space: pre-wrap;"></p>
+            <br>
+            <br>
+            <div  *ngIf="responseBool && !spinner" id="mermaid">
+              {{ chartDefinition }}
+            </div>
+            <br>
+            <h3  *ngIf="responseBool && !spinner">Here is the code of the Graph:</h3>
+
+            <blockquote class="blockquote">
+              <pre *ngIf="responseBool && !spinner" style=" color: #0b0b0b; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
+                {{ code }}
+              </pre>
+            </blockquote>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      <!--
+      <p>So, how can we support them to support our children’s learning? As parents and school administrators, we can relax about the ‘learning’ and trust it will come. Schools are going to need to change the focus right now to concentrating on the emotional basics before academic basics. Teachers teach people, not subjects. And when they can focus on supporting well-being first, the learning may then have an opportunity to land. </p>
+      <p><strong>Let’s take a closer look at the 3 R’s of emotional basics:</strong></p>
+      <p><strong>Relationship</strong></p>
+      <p>What our students need from us is..us. They need to know we are there for them, and that they matter. It’s not so much about what we say—it’s about how we make them feel in our presence: invited, accepted, and seen. </p>
+      <p>During this emotionally turbulent time, we will need to make conscious invitations into relationship so that our students can feel connected to us. This might mean special greeting rituals at the beginning of each day and more playful activities in which we join in. These attachment practices can help our students to feel connected to us, which may also lower their anxiety. </p>
+      <p><strong>Rhythm</strong></p>
+      <p>Children crave rhythm.</p>
+      <p>Consistent routines, rituals, and structures help children feel safe. They can lean on these and rely on them. Yet most children are experiencing the exact opposite right now. And as they look to returning to school, they may have little to no sense of what the ‘new normal’ will be. We can create a sense of safety by quickly establishing new routines that our students can count on and orient around. This will help to produce a rhythm to their days and can offer a sense of predictability in these unpredictable times.</p>
+      <p><strong>Release</strong></p>
+      <p>Our students’ emotions will be stirred up. And we know that when emotions get stirred up, they need somewhere to go. Finding healthy ways to pre-emptively channel this emotional energy for our students can help to alleviate dangerous or disruptive eruptions. Integrating daily outlets for release can be especially helpful for supporting students to get out frustration before it leads to outbursts of aggression.</p>
+      <p>These outlets can also help students to reflect on and express their feelings in ways that don’t make them feel self-conscious. The beauty of this practice is that we don’t even have to know what is specifically going on for a child. We are simply facilitating a way for the emotion to be expressed and released indirectly in a natural way—whether through music, physical movement, stories or storytelling, writing, poetry, drama, art, or even simply being outdoors. All of these outlets are powerful because they help us come closer to our feelings and to experiencing a sense of release and emotional rest.</p>
+      <p>Going back to school during this time will not be easy. We will need to be creative and think outside the box. We may need to stretch muscles we never knew we had. But it may be helpful to remember that this is not a time to focus on outcome and performance, or getting ahead or even catching up. Shifting our attention to matters of the heart will help our students feel safe. This is what will set the stage for learning to happen – when children are ready.</p>
+      <p>In the meantime, let’s be patient with our students and ourselves. We are all in this together.</p>
+  </div>
+
+  <div class="blog-details__footer">
+
+      <div class="blog-details__tags">
+          <span class="blog-details__tags-label"><i class="fas fa-tags"></i></span>
+          <div class="blog-details__tags-list">
+              <a href="#"> deep learning,</a>
+              <a href="#"> language</a>
+          </div>
+      </div>
+
+      <div class="blog-details__share">
+          <span class="blog-details__share-label">Share this post</span>
+
+          <div class="blog-details__share-media">
+              <div class="blog-details__share-icon">
+                  <i class="fas fa-share-alt"></i>
+              </div>
+              <ul class="blog-details__share-social">
+                  <li><a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" title="Twitter"><i class="fab fa-twitter"></i></a></li>
+                  <li><a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                  <li><a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" title="Linkedin"><i class="fab fa-linkedin"></i></a></li>
+                  <li><a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" title="Tumblr"><i class="fab fa-tumblr-square"></i></a></li>
+                  <li><a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" title="Email"><i class="fas fa-envelope"></i></a></li>
+              </ul>
+          </div>
+      </div>
+
+  </div>
+
+  <div class="blog-details__nav">
+      <div class="blog-details__nav-item prev">
+          <a class="blog-details__nav-link" href="#">
+              <div class="blog-details__hover-bg" style="background-image: url(assets/images/blog/blog-11.jpg);"></div>
+              <span class="text">The Challenge Of Global Learning In Public Education</span>
+          </a>
+      </div>
+      <div class="blog-details__nav-item next">
+          <a class="blog-details__nav-link" href="#">
+              <div class="blog-details__hover-bg" style="background-image: url(assets/images/blog/blog-13.jpg);"></div>
+              <span class="text">It’s Time To Think Differently About Writing In The Classroom</span>
+          </a>
+      </div>
+  </div>-->
+
+</div>
+<!-- Blog Dtails End -->
