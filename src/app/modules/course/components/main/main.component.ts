@@ -97,6 +97,7 @@ export class MainComponent implements OnInit, AfterViewInit {
       next:(res) => {
         this.transcriptionLoadingBool = true
         this._TranscriptionService.summaryBool.next(false)
+        this._TranscriptionService.translationBool.next(false)
         this.videoData = res;
         this.wcourseService.lectureOrQuizId.next(res.id);
         this.isVideo = true;
