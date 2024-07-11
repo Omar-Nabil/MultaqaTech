@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { jwtDecode } from 'jwt-decode';
 import { AuthService } from 'src/app/modules/auth/services/auth.service';
 import { CourseService } from 'src/app/modules/courses/services/course.service';
 import { CurriculumShowService } from 'src/app/modules/courses/services/curriculum-show.service';
@@ -19,6 +20,8 @@ import { ReviewsService } from '../../services/reviews.service';
 })
 
 export class CourseDetailsComponent implements OnInit {
+  userCourseUserName:string = '';
+  instructorCourseUserName:string = '';
 
   isEnrolled:boolean = false;
   updatecommentbool: boolean = false
@@ -48,7 +51,10 @@ export class CourseDetailsComponent implements OnInit {
     this.chaeckIfCourseInCart();
     let {id} = route.snapshot.params;
     this.getSections();
-
+    let token = JSON.stringify(localStorage.getItem('userToken'));
+    let decode:any = jwtDecode(token);
+    console.log(decode['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname']);
+    this.userCourseUserName = decode['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname'];
   }
   toggle(){
     this.toggler = !this.toggler;
@@ -130,6 +136,7 @@ export class CourseDetailsComponent implements OnInit {
           this.getRecommendedCourses()
           console.log(res);
           this.isEnrolled = res.wasBoughtBySignedInUser;
+          this.instructorCourseUserName = res.instructorName;
         },
         error: (err) => {
           console.log(err);
