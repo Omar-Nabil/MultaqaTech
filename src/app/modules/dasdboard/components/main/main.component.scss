@@ -283,3 +283,8 @@ a:hover .icons{
 #adder:hover{
 background-color: #bcd6ed;
 }
+
+.required::after {
+  content: "*";
+  color: red;
+}

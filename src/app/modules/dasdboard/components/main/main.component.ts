@@ -35,6 +35,9 @@ export class MainComponent {
     prerequisitesIds: [],
     learningObjectives: []
   }
+  successCourseBool:boolean=false
+  failCourseBool:boolean=false
+  SubjectFailCourseBool:boolean=false
 
   constructor(private _SubjectService: SubjectService, private _CourseService: CourseService,
     private router: Router,private _AuthService:AuthService,private _fb:FormBuilder
@@ -61,13 +64,13 @@ export class MainComponent {
   createCourseForm() {
      this.addCourseForm = new FormGroup({
     title: new FormControl('',[Validators.required,Validators.minLength(3),Validators.maxLength(100)]),
-    language: new FormControl('',[Validators.minLength(3),Validators.maxLength(50)]),
+    language: new FormControl('',[Validators.required,Validators.minLength(3),Validators.maxLength(50)]),
     img: new FormControl('',[Validators.required]),
     price: new FormControl('',[Validators.required,Validators.max(2147483647),Validators.min(0)]),
     learningobjectives: new FormControl(''),
     subject: new FormControl(0,[Validators.required]),
-    tags: new FormControl(0),
-    prerequisites: new FormControl(0),
+    tags: new FormControl(0,[Validators.required]),
+    prerequisites: new FormControl(0,[Validators.required]),
     courselevel: new FormControl('0',[Validators.required]),
   })
   }
@@ -82,6 +85,9 @@ export class MainComponent {
 
 
   Addcourse() {
+    this.successCourseBool = false
+    this.failCourseBool = false
+    this.SubjectFailCourseBool=false
     if (!this.addCourseForm.get('title')?.errors && !this.addCourseForm.get('language')?.errors && !this.addCourseForm.get('price')?.errors && this.addCourseForm.get('subject')?.value != '0') {
       let data = new FormData();
 
@@ -95,16 +101,22 @@ data.append('tagsIds',`${this.tags}`)
 data.append('prerequisitesIds',`${this.prerequisites}`)
 data.append('learningObjectives',`${this.l_0bjects}`)
 
+console.log(this.addCourseForm.valid);
 
       this._CourseService.addcourse(data).subscribe({
         next: (res) => {
           console.log(res);
           this.reset()
+          this.successCourseBool=true
         },
         error: (err) => {
           console.log(err);
+          this.failCourseBool=true
         }
       })
+    }
+    else {
+this.SubjectFailCourseBool=true
     }
 
   }
