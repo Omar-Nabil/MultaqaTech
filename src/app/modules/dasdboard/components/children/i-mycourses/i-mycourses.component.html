@@ -9,7 +9,7 @@
     <!-- Dashboard My Courses Start -->
     <div class="dashboard-courses">
       <!-- Dashboard Course Item Start -->
-      <div *ngFor="let course of instructorCourses" class="dashboard-courses__item" routerLink="/wcourse/{{course.id}}/notes">
+      <div *ngFor="let course of instructorCourses" class="dashboard-courses__item">
         <div class="dashboard-courses__thumbnail">
           <a ><img src="{{course.thumbnailUrl}}" alt="Courses"
               width="260" height="174"></a>
