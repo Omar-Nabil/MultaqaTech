@@ -10,7 +10,7 @@
       <div *ngIf='currentUser.registrationDate != ""' class="dashboard-profile__item">
         <div class="dashboard-profile__heading">Registration Date</div>
         <div class="dashboard-profile__content">
-          <p>{{currentUser?.registrationDate}}</p>
+          <p>{{formattedRegistrationDate}}</p>
         </div>
       </div>
       <div *ngIf='currentUser.firstName != ""' class="dashboard-profile__item">

@@ -24,7 +24,6 @@ import { CategoriesComponent } from './components/children/admin/categories/cate
 import { MeetingscategoriesComponent } from './components/children/admin/meetingscategories/meetingscategories.component';
 import { EventscategoriesComponent } from './components/children/admin/eventscategories/eventscategories/eventscategories.component';
 import { EventscountriesComponent } from './components/children/admin/eventscountries/eventscountries/eventscountries.component';
-import { path } from 'd3';
 import { AllCourcesComponent } from './components/children/enrolled-courses/enrolled-children/all-cources/all-cources.component';
 import { ActiveCourcesComponent } from './components/children/enrolled-courses/enrolled-children/active-cources/active-cources.component';
 import { CompletedCourcesComponent } from './components/children/enrolled-courses/enrolled-children/completed-cources/completed-cources.component';

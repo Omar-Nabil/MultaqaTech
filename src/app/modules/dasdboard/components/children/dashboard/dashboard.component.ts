@@ -18,6 +18,9 @@ export class DashboardComponent  {
   }
   ngOnInit(): void {
     this.getAllEnrolledCourses();
+    this.getACtiveCourses();
+
+    this.getCompletedCourses();
   }
   getAllEnrolledCourses() {
     let studentId = `${this.authService.currentUser.value.studentId}`;
@@ -38,7 +41,7 @@ export class DashboardComponent  {
       next:(res) => {
         console.log(res);
         this.activeCourses = res.data;
-        this.activeCoursesNo =this.activeCourses.length
+        this.activeCoursesNo =this.activeCourses.length;
       },
       error:(err) => this.activeCoursesNo = 0
 
