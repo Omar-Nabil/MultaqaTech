@@ -104,3 +104,22 @@
     background-position: 0% 50%, 50% 50%, 100% 100%
   }
 }
+.fa-arrow-right {
+  background: var(--secondary-color);
+  padding: 4px;
+  border-radius: 100%;
+  font-size: 1.5rem;
+  color: var(--main-color);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
+  animation: moveLeft 0.2s forwards;
+}
+
+@keyframes moveLeft {
+  from {
+    transform: translate(10px);
+  }
+
+  to {
+    transform: translate(0);
+  }
+}
