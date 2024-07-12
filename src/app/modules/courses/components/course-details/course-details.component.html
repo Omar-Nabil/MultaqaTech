@@ -49,8 +49,47 @@
             <div class="tutor-course-top-info__meta-rating">
 
               <div class="rating-average text-white"><strong>{{course?.rating}}</strong> /5</div>
-              <div class="rating-star">
-                <div class="rating-label" style="width: 90%;"></div>
+              <div *ngIf="course?.rating??0 < 1">
+                <i class="fa-regular fa-star" style="color: #fb0;"></i>
+                <i class="fa-regular fa-star" style="color: #fb0;"></i>
+                <i class="fa-regular fa-star" style="color: #fb0;"></i>
+                <i class="fa-regular fa-star" style="color: #fb0;"></i>
+                <i class="fa-regular fa-star" style="color: #fb0;"></i>
+              </div>
+              <div *ngIf="course?.rating??0 < 2&&1<= (course?.rating??5) ">
+                <i class="fa-solid fa-star" style="color: #fb0;"></i>
+                <i class="fa-regular fa-star" style="color: #fb0;"></i>
+                <i class="fa-regular fa-star" style="color: #fb0;"></i>
+                <i class="fa-regular fa-star" style="color: #fb0;"></i>
+                <i class="fa-regular fa-star" style="color: #fb0;"></i>
+              </div>
+              <div *ngIf="course?.rating??0 < 3&&2<= (course?.rating??5) ">
+                <i class="fa-solid fa-star" style="color: #fb0;"></i>
+                <i class="fa-solid fa-star" style="color: #fb0;"></i>
+                <i class="fa-regular fa-star" style="color: #fb0;"></i>
+                <i class="fa-regular fa-star" style="color: #fb0;"></i>
+                <i class="fa-regular fa-star" style="color: #fb0;"></i>
+              </div>
+              <div *ngIf="course?.rating??0 < 4&&3<= (course?.rating??5) ">
+                <i class="fa-solid fa-star" style="color: #fb0;"></i>
+                <i class="fa-solid fa-star" style="color: #fb0;"></i>
+                <i class="fa-solid fa-star" style="color: #fb0;"></i>
+                <i class="fa-regular fa-star" style="color: #fb0;"></i>
+                <i class="fa-regular fa-star" style="color: #fb0;"></i>
+              </div>
+              <div *ngIf="course?.rating??0 < 5&&4<= (course?.rating??5) ">
+                <i class="fa-solid fa-star" style="color: #fb0;"></i>
+                <i class="fa-solid fa-star" style="color: #fb0;"></i>
+                <i class="fa-solid fa-star" style="color: #fb0;"></i>
+                <i class="fa-solid fa-star" style="color: #fb0;"></i>
+                <i class="fa-regular fa-star" style="color: #fb0;"></i>
+              </div>
+              <div *ngIf="course?.rating??5 ==5">
+                <i class="fa-solid fa-star" style="color: #fb0;"></i>
+                <i class="fa-solid fa-star" style="color: #fb0;"></i>
+                <i class="fa-solid fa-star" style="color: #fb0;"></i>
+                <i class="fa-solid fa-star" style="color: #fb0;"></i>
+                <i class="fa-solid fa-star" style="color: #fb0;"></i>
               </div>
               <div class="rating-count text-white-50">({{course?.reviews?.length}})</div>
 
