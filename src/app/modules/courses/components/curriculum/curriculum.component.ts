@@ -1,15 +1,15 @@
+import { moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
-import * as main from '../../../../../main';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { CurriculumSectionService } from '../../services/curriculum-section.service';
+import * as main from '../../../../../main';
 import { item_get, section_get } from '../../interfaces/curriculum';
-import { moveItemInArray } from '@angular/cdk/drag-drop'
-import { CurriculumLectureService } from '../../services/curriculum-lecture.service';
-import { CurriculumItemService } from '../../services/curriculum-item.service';
-import { CurriculumQuizService } from '../../services/curriculum-quiz.service';
 import { QuizQuestion_post } from '../../interfaces/quiz-question';
+import { CurriculumItemService } from '../../services/curriculum-item.service';
+import { CurriculumLectureService } from '../../services/curriculum-lecture.service';
 import { CurriculumQuizQuestionService } from '../../services/curriculum-quiz-question.service';
+import { CurriculumQuizService } from '../../services/curriculum-quiz.service';
+import { CurriculumSectionService } from '../../services/curriculum-section.service';
 
 @Component({
   selector: 'app-curriculum',
@@ -236,7 +236,9 @@ this.file=event.target.files[0]
         this.addlectureBool = false
         this.createLectureForm()
         this.getSections()
-     }
+     },
+     error:(err) => console.log(err)
+
    })
 
   }
