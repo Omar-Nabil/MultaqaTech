@@ -7,53 +7,53 @@
     <!-- Dashboard Profile Start -->
     <div class="dashboard-profile">
 
-      <div class="dashboard-profile__item">
+      <div *ngIf='currentUser.registrationDate != ""' class="dashboard-profile__item">
         <div class="dashboard-profile__heading">Registration Date</div>
         <div class="dashboard-profile__content">
-          <p>Thu 26 Nov 2020, 04:15:28 am</p>
+          <p>{{currentUser?.registrationDate}}</p>
         </div>
       </div>
-      <div class="dashboard-profile__item">
+      <div *ngIf='currentUser.firstName != ""' class="dashboard-profile__item">
         <div class="dashboard-profile__heading">First Name</div>
         <div class="dashboard-profile__content">
-          <p>Adeniyi</p>
+          <p>{{currentUser?.firstName}}</p>
         </div>
       </div>
-      <div class="dashboard-profile__item">
+      <div *ngIf='currentUser.lastName != ""' class="dashboard-profile__item">
         <div class="dashboard-profile__heading">Last Name</div>
         <div class="dashboard-profile__content">
-          <p>David</p>
+          <p>{{currentUser?.lastName}}</p>
         </div>
       </div>
-      <div class="dashboard-profile__item">
+      <div *ngIf='currentUser.userName != ""' class="dashboard-profile__item">
         <div class="dashboard-profile__heading">Username</div>
         <div class="dashboard-profile__content">
-          <p>student</p>
+          <p>{{currentUser?.userName}}</p>
         </div>
       </div>
-      <div class="dashboard-profile__item">
+      <div *ngIf='currentUser.email != ""' class="dashboard-profile__item">
         <div class="dashboard-profile__heading">Email</div>
         <div class="dashboard-profile__content">
-          <p>student@edumall.com</p>
+          <p>{{currentUser?.email}}</p>
         </div>
       </div>
-      <div class="dashboard-profile__item">
+
+      <div *ngIf='currentUser.phoneNumber != ""' class="dashboard-profile__item">
         <div class="dashboard-profile__heading">Phone Number</div>
         <div class="dashboard-profile__content">
-          <p>09038332315</p>
+          <p>{{currentUser?.phoneNumber}}</p>
         </div>
       </div>
-      <div class="dashboard-profile__item">
+      <div *ngIf='currentUser.jobTitle != ""' class="dashboard-profile__item">
         <div class="dashboard-profile__heading">Job Title</div>
         <div class="dashboard-profile__content">
-          <p>________</p>
+          <p>{{currentUser?.jobTitle}}</p>
         </div>
       </div>
-      <div class="dashboard-profile__item">
+      <div *ngIf='currentUser.bio != ""' class="dashboard-profile__item">
         <div class="dashboard-profile__heading">Bio</div>
         <div class="dashboard-profile__content">
-          <p>𝗗𝗲𝗮𝗿 𝗘𝗻𝘁𝗿𝗲𝗽𝗿𝗲𝗻𝗲𝘂𝗿𝘀, 𝗶𝗳 𝘆𝗼𝘂 𝗸𝗻𝗼𝘄 𝘄𝗵𝗮𝘁 𝗶𝘀 𝗴𝗼𝗼𝗱 𝗳𝗼𝗿 𝘆𝗼𝘂, 𝗺𝗶𝗻𝗱
-            𝘁𝗵𝗲 𝗯𝘂𝘀𝗶𝗻𝗲𝘀𝘀 𝘁𝗵𝗮𝘁 𝗽𝗮𝘆𝘀 𝘆𝗼𝘂.</p>
+          <p>{{currentUser?.bio}}</p>
         </div>
       </div>
 
