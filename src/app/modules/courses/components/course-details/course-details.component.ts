@@ -44,7 +44,9 @@ export class CourseDetailsComponent implements OnInit {
   })
   CourseAddedSuccessfully:boolean = false;
   cartItems: any;
-  RecommendedCourses:Course_get[]=[]
+  RecommendedCourses: Course_get[] = []
+  LearningObjective = this.course?.learningObjectives[0].split(',');
+  courseraiting=0
 
   constructor(private route:ActivatedRoute,private _CourseService:CourseService,private reviews:ReviewsService , private _CurriculumShowService:CurriculumShowService, private authService:AuthService) {
     this.getCourse();
@@ -55,6 +57,8 @@ export class CourseDetailsComponent implements OnInit {
     let decode:any = jwtDecode(token);
     console.log(decode['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname']);
     this.userCourseUserName = decode['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname'];
+    console.log(this.LearningObjective);
+
   }
   toggle(){
     this.toggler = !this.toggler;
@@ -137,6 +141,8 @@ export class CourseDetailsComponent implements OnInit {
           console.log(res);
           this.isEnrolled = res.wasBoughtBySignedInUser;
           this.instructorCourseUserName = res.instructorName;
+          this.LearningObjective = this.course?.learningObjectives[0].split(',')
+          this.courseraiting=Math.round(this.course?.rating as number)
         },
         error: (err) => {
           console.log(err);

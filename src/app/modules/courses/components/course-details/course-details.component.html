@@ -49,42 +49,42 @@
             <div class="tutor-course-top-info__meta-rating">
 
               <div class="rating-average text-white"><strong>{{course?.rating}}</strong> /5</div>
-              <div *ngIf="course?.rating??0 < 1">
+              <div *ngIf="courseraiting==0">
                 <i class="fa-regular fa-star" style="color: #fb0;"></i>
                 <i class="fa-regular fa-star" style="color: #fb0;"></i>
                 <i class="fa-regular fa-star" style="color: #fb0;"></i>
                 <i class="fa-regular fa-star" style="color: #fb0;"></i>
                 <i class="fa-regular fa-star" style="color: #fb0;"></i>
               </div>
-              <div *ngIf="course?.rating??0 < 2&&1<= (course?.rating??5) ">
+              <div *ngIf="courseraiting==1 ">
                 <i class="fa-solid fa-star" style="color: #fb0;"></i>
                 <i class="fa-regular fa-star" style="color: #fb0;"></i>
                 <i class="fa-regular fa-star" style="color: #fb0;"></i>
                 <i class="fa-regular fa-star" style="color: #fb0;"></i>
                 <i class="fa-regular fa-star" style="color: #fb0;"></i>
               </div>
-              <div *ngIf="course?.rating??0 < 3&&2<= (course?.rating??5) ">
+              <div *ngIf="courseraiting==2 ">
                 <i class="fa-solid fa-star" style="color: #fb0;"></i>
                 <i class="fa-solid fa-star" style="color: #fb0;"></i>
                 <i class="fa-regular fa-star" style="color: #fb0;"></i>
                 <i class="fa-regular fa-star" style="color: #fb0;"></i>
                 <i class="fa-regular fa-star" style="color: #fb0;"></i>
               </div>
-              <div *ngIf="course?.rating??0 < 4&&3<= (course?.rating??5) ">
+              <div *ngIf="courseraiting==3 ">
                 <i class="fa-solid fa-star" style="color: #fb0;"></i>
                 <i class="fa-solid fa-star" style="color: #fb0;"></i>
                 <i class="fa-solid fa-star" style="color: #fb0;"></i>
                 <i class="fa-regular fa-star" style="color: #fb0;"></i>
                 <i class="fa-regular fa-star" style="color: #fb0;"></i>
               </div>
-              <div *ngIf="course?.rating??0 < 5&&4<= (course?.rating??5) ">
+              <div *ngIf="courseraiting==4 ">
                 <i class="fa-solid fa-star" style="color: #fb0;"></i>
                 <i class="fa-solid fa-star" style="color: #fb0;"></i>
                 <i class="fa-solid fa-star" style="color: #fb0;"></i>
                 <i class="fa-solid fa-star" style="color: #fb0;"></i>
                 <i class="fa-regular fa-star" style="color: #fb0;"></i>
               </div>
-              <div *ngIf="course?.rating??5 ==5">
+              <div *ngIf="courseraiting==5">
                 <i class="fa-solid fa-star" style="color: #fb0;"></i>
                 <i class="fa-solid fa-star" style="color: #fb0;"></i>
                 <i class="fa-solid fa-star" style="color: #fb0;"></i>
@@ -188,14 +188,9 @@
 
             <!-- Tutor Course Segment Benefits Items Start -->
             <div class="tutor-course-segment__benefits-items">
-              <div class="tutor-course-segment__benefit-item">
-                <div class="tutor-course-segment__benefit-content">
-                  <i class="fas fa-check"></i>
-                  <span class="benefit-text">Ready to begin working on real-world data modeling projects,</span>
-                </div>
-              </div>
-              <div *ngFor="let objective of course?.learningObjectives" class="tutor-course-segment__benefit-item">
-                <div class="tutor-course-segment__benefit-content">
+
+              <div *ngFor="let objective of LearningObjective"  class="tutor-course-segment__benefit-item">
+                <div  class="tutor-course-segment__benefit-content">
                   <i class="fas fa-check"></i>
                   <span class="benefit-text">{{objective}}</span>
                 </div>
