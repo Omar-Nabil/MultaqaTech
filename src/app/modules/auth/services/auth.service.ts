@@ -44,6 +44,8 @@ export class AuthService {
     let decode:any = jwtDecode(token);
     this.userData.next(decode);
     this.currentUser.next(dataofuser);
+    console.log(dataofuser);
+    console.log(this.currentUser.value);
   }
 
   Facebook(value:any):Observable<any> {

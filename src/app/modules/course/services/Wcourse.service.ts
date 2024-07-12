@@ -32,7 +32,7 @@ export class WcourseService {
     const headers = new HttpHeaders({
       'Authorization':`Bearer ${localStorage.getItem('userToken')}`
     });
-    return this.httpClient.get(environment.baseURL+`/api/Lectures/${id}`, {headers});
+    return this.httpClient.get(environment.baseURL+`/api/Lectures/${id}/ForStudent`, {headers});
   }
 
   getAllNotes(id:number):Observable<any>  {

@@ -1,8 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { WcourseService } from '../../../services/Wcourse.service';
-import { CurriculumQuizService } from 'src/app/modules/courses/services/curriculum-quiz.service';
+import { Component, OnInit } from '@angular/core';
+import { QuizQuestion_get } from 'src/app/modules/courses/interfaces/quiz-question';
 import { CurriculumQuizQuestionService } from 'src/app/modules/courses/services/curriculum-quiz-question.service';
-import { QuizQuestion_get, QuizQuestion_post } from 'src/app/modules/courses/interfaces/quiz-question';
+import { CurriculumQuizService } from 'src/app/modules/courses/services/curriculum-quiz.service';
+import { WcourseService } from '../../../services/Wcourse.service';
 
 @Component({
   selector: 'app-quiz',
@@ -106,8 +106,14 @@ export class QuizComponent implements OnInit {
     this.questionIndex++;
     if (this.score >= ((this.questions.length) / 2)) {
       this.passed = true
-      this.quiz.Quizcomplete(this.course.lectureOrQuizId.value).subscribe({
+      console.log(+this.course.lectureOrQuizId.value);
+
+      this.quiz.Quizcomplete(+this.course.lectureOrQuizId.value).subscribe({
         next: (res) => {
+          console.log(res);
+
+        },
+        error:(res) => {
           console.log(res);
 
         }

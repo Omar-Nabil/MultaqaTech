@@ -3,11 +3,9 @@ import { ActivatedRoute } from '@angular/router';
 import { QuizQuestion_get } from 'src/app/modules/courses/interfaces/quiz-question';
 import { CurriculumQuizQuestionService } from 'src/app/modules/courses/services/curriculum-quiz-question.service';
 import { CurriculumQuizService } from 'src/app/modules/courses/services/curriculum-quiz.service';
-import { WcourseService } from '../../services/Wcourse.service';
-import { error } from 'console';
-import { from } from 'rxjs';
-import { TranscriptionService } from '../../services/transcription.service';
 import { TranslateService } from 'src/app/modules/pages/services/translate.service';
+import { TranscriptionService } from '../../services/transcription.service';
+import { WcourseService } from '../../services/Wcourse.service';
 
 @Component({
   selector: 'app-main',
@@ -33,10 +31,7 @@ export class MainComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.getCourseDetails();
-    const segments = this.route.snapshot.children[0].routeConfig?.path;
-    if(segments != 'quiz') {
-      this.displayVideo(1);
-    }
+
 
   }
 
@@ -82,7 +77,13 @@ export class MainComponent implements OnInit, AfterViewInit {
       this.wcourseService.getcourseSectionsDetails(`${this.courseSections[index].id}`).subscribe({
         next:(res) => {
           this.courseSectionsDetails[index] = res;
-
+          console.log(res);
+          const segments = this.route.snapshot.children[0].routeConfig?.path;
+          if(segments != 'quiz') {
+            this.displayVideo(1);
+          } else {
+            this.displayQuiz(1);
+          }
         },
         error:(err) => console.log(err)
 
@@ -95,6 +96,16 @@ export class MainComponent implements OnInit, AfterViewInit {
   displayVideo(lectureId: number) {
     this.wcourseService.getcourseLectureDetails(lectureId).subscribe({
       next:(res) => {
+        console.log(this.courseSectionsDetails);
+        for (let index = 0; index < this.courseSectionsDetails?.length; index++) {
+          for (let i = 0; i < this.courseSectionsDetails[index]?.length; i++) {
+          if(this.courseSectionsDetails[index][i].id == lectureId &&  this.courseSectionsDetails[index][i].itemType == 'Lecture') {
+            this.courseSectionsDetails[index][i].isCompleted = true
+
+          }
+        }
+        }
+
         this.transcriptionLoadingBool = true
         this._TranscriptionService.summaryBool.next(false)
         this._TranscriptionService.translationBool.next(false)
@@ -172,6 +183,8 @@ export class MainComponent implements OnInit, AfterViewInit {
 
   displayQuiz(quizId:number) {
     this.isVideo = false;
+    console.log('displayQuiz');
+
     this.videoId = this.wcourseService.lectureOrQuizId.value;
     this.wcourseService.lectureOrQuizId.next(quizId)
     this.quiz.getQuiz(quizId).subscribe({

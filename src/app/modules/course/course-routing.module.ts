@@ -5,8 +5,9 @@ import { NotesComponent } from './components/children/notes/notes.component';
 import { QuestionDetailsComponent } from './components/children/question-details/question-details.component';
 import { QuestionsComponent } from './components/children/questions/questions.component';
 import { QuizComponent } from './components/children/quiz/quiz.component';
-import { MainComponent } from './components/main/main.component';
+import { QuizgeneratorComponent } from './components/children/quizgenerator/quizgenerator.component';
 import { SummaryComponent } from './components/children/summary/summary.component';
+import { MainComponent } from './components/main/main.component';
 
 const routes: Routes = [
   {path:'', component:MainComponent, children:[
@@ -15,7 +16,8 @@ const routes: Routes = [
     {path:'quiz', component:QuizComponent},
     {path:'questions/:id', component:QuestionDetailsComponent},
     {path:'Illustration', component:IllustrationComponent},
-    {path:'summary', component:SummaryComponent}
+    {path:'summary', component:SummaryComponent},
+    {path:'quizgenerator', component:QuizgeneratorComponent},
   ]}
 ];
 
