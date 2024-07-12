@@ -8,6 +8,11 @@ import { CourseService } from 'src/app/modules/courses/services/course.service';
 })
 export class DashboardComponent  {
   studentEnrolledCourses:any[] = [];
+  studentEnrolledCoursesNo:number=0;
+  activeCoursesNo:number=0;
+  completedCoursesNo:number=0;
+  activeCourses:any[] = [];
+  completedCourses:any[] = [];
   constructor(private courseService:CourseService, private authService:AuthService) {
 
   }
@@ -20,8 +25,35 @@ export class DashboardComponent  {
       next:(res) => {
         console.log(res);
         this.studentEnrolledCourses = res.data;
+        this.studentEnrolledCoursesNo =this.studentEnrolledCourses.length
       },
-      error:(err) => console.log(err)
+      error:(err) => this.studentEnrolledCoursesNo = 0
+
+    })
+
+  }
+  getACtiveCourses() {
+    let studentId = `${this.authService.currentUser.value.studentId}`;
+    this.courseService.getActiveCourses(studentId).subscribe({
+      next:(res) => {
+        console.log(res);
+        this.activeCourses = res.data;
+        this.activeCoursesNo =this.activeCourses.length
+      },
+      error:(err) => this.activeCoursesNo = 0
+
+    })
+
+  }
+  getCompletedCourses() {
+    let studentId = `${this.authService.currentUser.value.studentId}`;
+    this.courseService.getCompletedCourses(studentId).subscribe({
+      next:(res) => {
+        console.log(res);
+        this.completedCourses = res.data;
+        this.completedCoursesNo=this.completedCourses.length
+      },
+      error:(err) => this.completedCoursesNo = 0
 
     })
 

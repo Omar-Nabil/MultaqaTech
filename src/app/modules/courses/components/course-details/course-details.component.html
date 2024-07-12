@@ -49,8 +49,10 @@
             <div class="tutor-course-top-info__meta-rating">
 
               <div class="rating-average text-white"><strong>{{course?.rating}}</strong> /5</div>
-              <div class="rating-star">
-                <div class="rating-label" style="width: 90%;"></div>
+              <div class="rating">
+                <ng-container *ngFor="let star of getStarsArray(rate); let i = index">
+                  <i *ngIf="star!=0" class="fa-solid fa-star" [ngClass]="{'fa-star-half-stroke': star === 0.5}" style="color: #FFD43B;"></i>
+                </ng-container>
               </div>
               <div class="rating-count text-white-50">({{course?.reviews?.length}})</div>
 
@@ -265,21 +267,15 @@
                 <div class="tutor-instructor__instructor-info">
                   <h4 class="tutor-instructor__name">{{course?.instructorName}}</h4>
                   <div class="tutor-instructor__ratings">
-                    <div class="rating-star">
-                      <div class="rating-label" style="width: 90%;"></div>
+                    <div class="rating">
+                      <ng-container *ngFor="let star of getStarsArray(rate); let i = index">
+                        <i *ngIf="star!=0" class="fa-solid fa-star" [ngClass]="{'fa-star-half-stroke': star === 0.5}" style="color: #FFD43B;"></i>
+                      </ng-container>
                     </div>
 
-                    <div class="rating-average">
-                      <span class="rating-average__average">4.75</span>
-                      <span class="rating-average__total">/5</span>
-                    </div>
+
                   </div>
-                  <div class="tutor-instructor__meta">
-                    <span><i class="fas fa-play-circle"></i> 42 Courses</span>
-                    <span><i class="fas fa-comment-alt"></i> 4 Reviews</span>
-                    <span><i class="fas fa-user"></i> 73 Students</span>
-                  </div>
-                  <a class="tutor-instructor__link" href="#"><i class="fas fa-plus"></i> See more</a>
+
                 </div>
               </div>
             </div>
@@ -292,87 +288,15 @@
 
             <div class="tutor-course-segment__feedback">
               <div class="tutor-course-segment__reviews-average">
-                <div class="count">4.4</div>
-                <div class="reviews-rating-star">
-                  <div class="rating-star">
-                    <div class="rating-label" style="width: 90%;"></div>
-                  </div>
+                <div class="count">{{course?.rating}}</div>
+                <div class="rating">
+                  <ng-container *ngFor="let star of getStarsArray(rate); let i = index">
+                    <i *ngIf="star!=0" class="fa-solid fa-star" [ngClass]="{'fa-star-half-stroke': star === 0.5}" style="color: #FFD43B;"></i>
+                  </ng-container>
                 </div>
-                <div class="rating-total">8 Ratings</div>
+                <div class="rating-total">{{course?.reviews?.length}} Ratings</div>
               </div>
-              <div class="tutor-course-segment__reviews-metar">
 
-                <div class="course-rating-metar">
-                  <div class="rating-metar-star">
-                    <div class="rating-star">
-                      <div class="rating-label" style="width: 100%;"></div>
-                    </div>
-                  </div>
-                  <div class="rating-metar-col">
-                    <div class="rating-metar-bar">
-                      <div class="rating-metar-line" style="width: 75%;"></div>
-                    </div>
-                  </div>
-                  <div class="rating-metar-text">75%</div>
-                </div>
-
-                <div class="course-rating-metar">
-                  <div class="rating-metar-star">
-                    <div class="rating-star">
-                      <div class="rating-label" style="width: 80%;"></div>
-                    </div>
-                  </div>
-                  <div class="rating-metar-col">
-                    <div class="rating-metar-bar">
-                      <div class="rating-metar-line" style="width: 13%;"></div>
-                    </div>
-                  </div>
-                  <div class="rating-metar-text">13%</div>
-                </div>
-
-                <div class="course-rating-metar">
-                  <div class="rating-metar-star">
-                    <div class="rating-star">
-                      <div class="rating-label" style="width: 60%;"></div>
-                    </div>
-                  </div>
-                  <div class="rating-metar-col">
-                    <div class="rating-metar-bar">
-                      <div class="rating-metar-line" style="width: 0%;"></div>
-                    </div>
-                  </div>
-                  <div class="rating-metar-text">0%</div>
-                </div>
-
-                <div class="course-rating-metar">
-                  <div class="rating-metar-star">
-                    <div class="rating-star">
-                      <div class="rating-label" style="width: 40%;"></div>
-                    </div>
-                  </div>
-                  <div class="rating-metar-col">
-                    <div class="rating-metar-bar">
-                      <div class="rating-metar-line" style="width: 0%;"></div>
-                    </div>
-                  </div>
-                  <div class="rating-metar-text">0%</div>
-                </div>
-
-                <div class="course-rating-metar">
-                  <div class="rating-metar-star">
-                    <div class="rating-star">
-                      <div class="rating-label" style="width: 20%;"></div>
-                    </div>
-                  </div>
-                  <div class="rating-metar-col">
-                    <div class="rating-metar-bar">
-                      <div class="rating-metar-line" style="width: 13%;"></div>
-                    </div>
-                  </div>
-                  <div class="rating-metar-text">13%</div>
-                </div>
-
-              </div>
             </div>
           </div>
           <!-- Tutor Course Segment End -->

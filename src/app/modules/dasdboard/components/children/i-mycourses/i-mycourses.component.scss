@@ -222,3 +222,7 @@
   background-color: #f7c04d;
   border-color: #f7c04d;
 }
+/* rating.component.css */
+.half-star {
+  transform: scaleX(0.5); /* Adjusts the width of the half star */
+}

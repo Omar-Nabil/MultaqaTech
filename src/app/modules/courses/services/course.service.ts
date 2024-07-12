@@ -145,6 +145,18 @@ export class CourseService {
     });
     return this._HttpClient.get(environment.baseURL+`/api/Courses/GetCoursesForStudentByStudentId/${studentId}`,{headers});
   }
+  getActiveCourses(studentId:string): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization':`Bearer ${localStorage.getItem('userToken')}`
+    });
+    return this._HttpClient.get(environment.baseURL+`/api/Courses/GetActiveCoursesForStudentByStudentId/${studentId}`,{headers});
+  }
+  getCompletedCourses(studentId:string): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization':`Bearer ${localStorage.getItem('userToken')}`
+    });
+    return this._HttpClient.get(environment.baseURL+`/api/Courses/GetCompleteCoursesForStudentByStudentId/${studentId}`,{headers});
+  }
 
   getRecommendedCoursesId(data: any): Observable<any>  {
   return this._HttpClient.post("https://anwar101-recommendation.hf.space/recommendations",data)

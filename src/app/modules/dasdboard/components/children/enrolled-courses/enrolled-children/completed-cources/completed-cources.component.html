@@ -1,0 +1,29 @@
+<h3 *ngIf="!userCompletedAnyCourse">{{massage}}</h3>
+<div *ngIf="userCompletedAnyCourse">
+  <div  class="dashboard-course-item" *ngFor="let course of completedCourses">
+    <a class="dashboard-course-item__link" routerLink="/wcourse/{{course.id}}/notes">
+      <div class="dashboard-course-item__thumbnail">
+        <img [src]="course.thumbnailUrl" alt="Courses" width="260" height="160">
+      </div>
+      <div class="dashboard-course-item__content">
+        <h3 class="dashboard-course-item__title">{{course.title}}</h3>
+        <div class="dashboard-course-item__meta">
+          <ul class="dashboard-course-item__meta-list">
+            <li>
+              <span class="meta-label">Total Lessons:</span>
+              <span class="meta-value">{{course.numberOfLectures}}</span>
+            </li>
+
+          </ul>
+        </div>
+        <div class="dashboard-course-item__progress-bar-wrap">
+          <div class="dashboard-course-item__progress-bar">
+            <div class="dashboard-course-item__progress-bar-line" [style.width.%]=" course.completionPercentage"></div>
+          </div>
+          <div class="dashboard-course-item__progress-bar-text">{{course.completionPercentage}}% Complete</div>
+        </div>
+        <div class="mt-2">Language :- {{course.language}}</div>
+      </div>
+    </a>
+  </div>
+</div>

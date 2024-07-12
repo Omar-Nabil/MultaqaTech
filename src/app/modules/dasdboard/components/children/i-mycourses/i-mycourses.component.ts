@@ -16,6 +16,7 @@ import { SubjectService } from '../../../services/subject.service';
 export class IMycoursesComponent {
   updateCourseId:number=0
   currentUser!: User;
+  num:number=2.5;
   instructorCourses: Course_get[] = [];
   length: number = 0;
    subjects: Subject[] = []
@@ -219,4 +220,28 @@ console.log(this.l_0bjects);
       }
     })
   }
+  getRepeatArray(count: number): number[] {
+    return Array(count).fill(0).map((x, i) => i);
+  }
+  getStarsArray(rate:number): number[] {
+    const fullStars = Math.floor(rate); // Number of full stars
+    const hasHalfStar = rate - fullStars >= 0.5; // Check if there's a half star
+
+    let starsArray = [];
+    for (let i = 0; i < fullStars; i++) {
+      starsArray.push(1); // Full star
+    }
+
+    if (hasHalfStar) {
+      starsArray.push(0.5); // Half star
+    }
+
+    // Adjust to total of 5 stars
+    while (starsArray.length < 5) {
+      starsArray.push(0); // Empty star
+    }
+
+    return starsArray;
+  }
+
 }

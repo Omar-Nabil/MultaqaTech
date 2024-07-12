@@ -22,11 +22,11 @@ import { ReviewsService } from '../../services/reviews.service';
 export class CourseDetailsComponent implements OnInit {
   userCourseUserName:string = '';
   instructorCourseUserName:string = '';
-
   isEnrolled:boolean = false;
   updatecommentbool: boolean = false
   toggler: boolean = false
   commentId:number=0
+  rate:number=0
   course: Course_get | undefined=undefined
   levels: string[] = ['All levels', 'Beginner', 'Intermediate', 'Advanced'];
   months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -131,10 +131,12 @@ export class CourseDetailsComponent implements OnInit {
       this._CourseService.getcourse(this.courseId).subscribe({
         next: (res) => {
 
-          this.course = res
+          this.course = res;
+          this.rate=res.rating;
           this.date =new Date(this.course?.lastUpdatedDate!)
           this.getRecommendedCourses()
           console.log(res);
+          console.log(this.rate);
           this.isEnrolled = res.wasBoughtBySignedInUser;
           this.instructorCourseUserName = res.instructorName;
         },
@@ -256,5 +258,25 @@ export class CourseDetailsComponent implements OnInit {
 
       }
     })
+  }
+  getStarsArray(rate:number): number[] {
+    const fullStars = Math.floor(rate); // Number of full stars
+    const hasHalfStar = rate - fullStars >= 0.5; // Check if there's a half star
+
+    let starsArray = [];
+    for (let i = 0; i < fullStars; i++) {
+      starsArray.push(1); // Full star
+    }
+
+    if (hasHalfStar) {
+      starsArray.push(0.5); // Half star
+    }
+
+    // Adjust to total of 5 stars
+    while (starsArray.length < 5) {
+      starsArray.push(0); // Empty star
+    }
+
+    return starsArray;
   }
 }

@@ -10,46 +10,19 @@
       <!-- Dashboard Tabs Start -->
       <div class="dashboard-tabs-menu">
         <ul>
-          <li><a class="active" href="#">All Courses</a></li>
-          <li><a href="#">Active Courses</a></li>
-          <li><a href="#">Completed Courses</a></li>
+          <li><a routerLinkActive="active" routerLink="allcources">All Courses</a></li>
+          <li><a routerLinkActive="active" routerLink="activecources">Active Courses</a></li>
+          <li><a routerLinkActive="active" routerLink="completedcources">Completed Courses</a></li>
         </ul>
       </div>
       <!-- Dashboard Tabs End -->
 
       <!-- Dashboard Course List Start -->
       <div class="dashboard-course-list">
+        <router-outlet></router-outlet>
 
         <!-- Dashboard Course Item Start -->
-        <div class="dashboard-course-item" *ngFor="let course of studentEnrolledCourses">
-          <a class="dashboard-course-item__link" routerLink="/wcourse/{{course.id}}/notes">
-            <div class="dashboard-course-item__thumbnail">
-              <img [src]="course.thumbnailUrl" alt="Courses" width="260" height="160">
-            </div>
-            <div class="dashboard-course-item__content">
-              <h3 class="dashboard-course-item__title">{{course.title}}</h3>
-              <div class="dashboard-course-item__meta">
-                <ul class="dashboard-course-item__meta-list">
-                  <li>
-                    <span class="meta-label">Total Lessons:</span>
-                    <span class="meta-value">6</span>
-                  </li>
-                  <li>
-                    <span class="meta-label">Completed Lessons:</span>
-                    <span class="meta-value">0/6</span>
-                  </li>
-                </ul>
-              </div>
-              <div class="dashboard-course-item__progress-bar-wrap">
-                <div class="dashboard-course-item__progress-bar">
-                  <div class="dashboard-course-item__progress-bar-line" style="width: 22%;"></div>
-                </div>
-                <div class="dashboard-course-item__progress-bar-text">22% Complete</div>
-              </div>
-              <div class="mt-2">Language :- {{course.language}}</div>
-            </div>
-          </a>
-        </div>
+
         <!-- Dashboard Course Item End -->
 
       </div>

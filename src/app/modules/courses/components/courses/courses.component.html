@@ -674,8 +674,10 @@
                       </div>
                       <div class="course-info__rating">
 
-                        <div class="rating-star">
-                          <div class="rating-label" style="width: 80%;"></div>
+                        <div class="rating">
+                          <ng-container *ngFor="let star of getStarsArray(course.rating); let i = index">
+                            <i *ngIf="star!=0" class="fa-solid fa-star" [ngClass]="{'fa-star-half-stroke': star === 0.5}" style="color: #FFD43B;"></i>
+                          </ng-container>
                         </div>
 
                         <span>({{course.reviews.length}})</span>
