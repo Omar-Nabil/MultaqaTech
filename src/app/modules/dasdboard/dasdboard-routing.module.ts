@@ -1,7 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NotFound404Component } from '../shared/components/not-found404/not-found404.component';
+import { CategoriesComponent } from './components/children/admin/categories/categories.component';
+import { EventscategoriesComponent } from './components/children/admin/eventscategories/eventscategories/eventscategories.component';
+import { EventscountriesComponent } from './components/children/admin/eventscountries/eventscountries/eventscountries.component';
+import { MeetingscategoriesComponent } from './components/children/admin/meetingscategories/meetingscategories.component';
+import { SubjectsComponent } from './components/children/admin/subjects/subjects.component';
 import { DashboardComponent } from './components/children/dashboard/dashboard.component';
+import { ActiveCourcesComponent } from './components/children/enrolled-courses/enrolled-children/active-cources/active-cources.component';
+import { AllCourcesComponent } from './components/children/enrolled-courses/enrolled-children/all-cources/all-cources.component';
+import { CompletedCourcesComponent } from './components/children/enrolled-courses/enrolled-children/completed-cources/completed-cources.component';
 import { EnrolledCoursesComponent } from './components/children/enrolled-courses/enrolled-courses.component';
 import { IAnnouncementsComponent } from './components/children/i-announcements/i-announcements.component';
 import { IAssignmentsComponent } from './components/children/i-assignments/i-assignments.component';
@@ -19,15 +27,6 @@ import { SettingsResetpasswordComponent } from './components/children/settings-r
 import { SettingsComponent } from './components/children/settings/settings.component';
 import { WishListComponent } from './components/children/wish-list/wish-list.component';
 import { MainComponent } from './components/main/main.component';
-import { SubjectsComponent } from './components/children/admin/subjects/subjects.component';
-import { CategoriesComponent } from './components/children/admin/categories/categories.component';
-import { MeetingscategoriesComponent } from './components/children/admin/meetingscategories/meetingscategories.component';
-import { EventscategoriesComponent } from './components/children/admin/eventscategories/eventscategories/eventscategories.component';
-import { EventscountriesComponent } from './components/children/admin/eventscountries/eventscountries/eventscountries.component';
-import { path } from 'd3';
-import { AllCourcesComponent } from './components/children/enrolled-courses/enrolled-children/all-cources/all-cources.component';
-import { ActiveCourcesComponent } from './components/children/enrolled-courses/enrolled-children/active-cources/active-cources.component';
-import { CompletedCourcesComponent } from './components/children/enrolled-courses/enrolled-children/completed-cources/completed-cources.component';
 
 const routes: Routes = [
   {
