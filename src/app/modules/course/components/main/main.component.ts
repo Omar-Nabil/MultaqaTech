@@ -171,6 +171,8 @@ export class MainComponent implements OnInit, AfterViewInit {
 
   displayQuiz(quizId:number) {
     this.isVideo = false;
+    console.log('displayQuiz');
+
     this.videoId = this.wcourseService.lectureOrQuizId.value;
     this.wcourseService.lectureOrQuizId.next(quizId)
     this.quiz.getQuiz(quizId).subscribe({
