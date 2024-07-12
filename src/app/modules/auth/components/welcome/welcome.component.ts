@@ -7,6 +7,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import * as main from 'src/main';
 import { AuthService } from '../../services/auth.service';
+import { SubjectService } from 'src/app/modules/dasdboard/services/subject.service';
+import { Subject } from 'src/app/modules/dasdboard/interfaces/subject';
+import { Course_get } from 'src/app/modules/courses/interfaces/course';
+import { CourseService } from 'src/app/modules/courses/services/course.service';
 @Component({
   selector: 'app-welcome',
   templateUrl: './welcome.component.html',
@@ -19,10 +23,15 @@ export class WelcomeComponent implements OnInit {
   registerError:string = '';
   emailNotExists:boolean = false;
   register:boolean = false;
-  fogotPasswordEmail:boolean = false;
+  fogotPasswordEmail: boolean = false;
+  subjects: Subject[] = []
+  courses: Course_get[] | undefined
+  levels: string[] = ['All levels', 'Beginner', 'Intermediate', 'Advanced'];
 
 
-  constructor(private _fb:FormBuilder, private _AuthService:AuthService, private _Router:Router,private ngZone: NgZone) {
+
+  constructor(private _fb: FormBuilder, private _AuthService: AuthService, private _Router: Router,
+    private ngZone: NgZone,private _SubjectService:SubjectService,private _CourseService:CourseService) {
 
   }
   ngOnInit(): void {
@@ -31,6 +40,8 @@ export class WelcomeComponent implements OnInit {
     this.createSignUpForm();
     this.createLogInWithGoogle();
     this.createSignUpWithGoogle();
+    this.getSubjects()
+    this.getbyRating(4,5)
   }
 
   // @ts-ignore
@@ -247,6 +258,24 @@ export class WelcomeComponent implements OnInit {
         console.log(err);
 
       }
+    })
+  }
+
+   getSubjects() {
+     this._SubjectService.getsubjects().subscribe({
+      next: (response) => {
+         this.subjects = response;
+      }
+    })
+  }
+
+  getbyRating(MinRating: number, MaxRating: number) {
+
+
+    this._CourseService.getcoursesbyRating(MinRating, MaxRating).subscribe((res) => {
+      this.courses = res.data.slice(0,9)
+      console.log(this.courses);
+
     })
   }
 }

@@ -151,14 +151,9 @@
 
             <!-- Tutor Course Segment Benefits Items Start -->
             <div class="tutor-course-segment__benefits-items">
-              <div class="tutor-course-segment__benefit-item">
-                <div class="tutor-course-segment__benefit-content">
-                  <i class="fas fa-check"></i>
-                  <span class="benefit-text">Ready to begin working on real-world data modeling projects,</span>
-                </div>
-              </div>
-              <div *ngFor="let objective of course?.learningObjectives" class="tutor-course-segment__benefit-item">
-                <div class="tutor-course-segment__benefit-content">
+
+              <div *ngFor="let objective of LearningObjective"  class="tutor-course-segment__benefit-item">
+                <div  class="tutor-course-segment__benefit-content">
                   <i class="fas fa-check"></i>
                   <span class="benefit-text">{{objective}}</span>
                 </div>
@@ -267,10 +262,8 @@
                 <div class="tutor-instructor__instructor-info">
                   <h4 class="tutor-instructor__name">{{course?.instructorName}}</h4>
                   <div class="tutor-instructor__ratings">
-                    <div class="rating">
-                      <ng-container *ngFor="let star of getStarsArray(rate); let i = index">
-                        <i *ngIf="star!=0" class="fa-solid fa-star" [ngClass]="{'fa-star-half-stroke': star === 0.5}" style="color: #FFD43B;"></i>
-                      </ng-container>
+                    <div class="rating-star">
+                      <div class="rating-label" style="width: 90%;"></div>
                     </div>
 
 
