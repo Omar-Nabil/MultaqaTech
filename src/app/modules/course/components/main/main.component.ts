@@ -34,6 +34,8 @@ export class MainComponent implements OnInit, AfterViewInit {
     const segments = this.route.snapshot.children[0].routeConfig?.path;
     if(segments != 'quiz') {
       this.displayVideo(1);
+    } else {
+      this.displayQuiz(1);
     }
 
   }
