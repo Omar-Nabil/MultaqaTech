@@ -42,24 +42,7 @@
                   <span class="text">Enrolled Courses</span>
                 </a>
               </li>
-              <li>
-                <a routerLinkActive="activelink" routerLink="wishlist">
-                  <i class="edumi edumi-heart"></i>
-                  <span class="text">Wishlist</span>
-                </a>
-              </li>
-              <li>
-                <a routerLinkActive="activelink" routerLink="reviews">
-                  <i class="edumi edumi-star"></i>
-                  <span class="text">Reviews</span>
-                </a>
-              </li>
-              <li>
-                <a routerLinkActive="activelink" routerLink="myquizattmp">
-                  <i class="edumi edumi-help"></i>
-                  <span class="text">My Quiz Attempts</span>
-                </a>
-              </li>
+
               <li>
                 <a routerLinkActive="activelink" routerLink="purchasehistory">
                   <i class="edumi edumi-shopping-cart"></i>
@@ -77,42 +60,7 @@
                   <span class="text">My Courses</span>
                 </a>
               </li>
-              <li>
-                <a routerLinkActive="activelink" routerLink="announcements">
-                  <i class="edumi edumi-announcement"></i>
-                  <span class="text">Announcements</span>
-                </a>
-              </li>
-              <li>
-                <a routerLinkActive="activelink" routerLink="withdrawals">
-                  <i class="edumi edumi-wallet"></i>
-                  <span class="text">Withdrawals</span>
-                </a>
-              </li>
-              <li>
-                <a routerLinkActive="activelink" routerLink="quizattmpts">
-                  <i class="edumi edumi-support"></i>
-                  <span class="text">Quiz Attempts</span>
-                </a>
-              </li>
-              <li>
-                <a routerLinkActive="activelink" routerLink="q&a">
-                  <i class="edumi edumi-question"></i>
-                  <span class="text">Question & Answer</span>
-                </a>
-              </li>
-              <li>
-                <a routerLinkActive="activelink" routerLink="assignments">
-                  <i class="edumi edumi-checklist"></i>
-                  <span class="text">Assignments</span>
-                </a>
-              </li>
-              <li>
-                <a routerLinkActive="activelink" routerLink="mystudents">
-                  <i class="edumi edumi-users"></i>
-                  <span class="text">My Students</span>
-                </a>
-              </li>
+
             </ul>
             <ul class="dashboard-nav__menu-list">
               <li>
@@ -127,7 +75,7 @@
               <li>
                 <a routerLinkActive="activelink" routerLink="categories">
                   <i class="fa-solid fa-microchip icons"></i>
-                  <span class="text">Categories</span>
+                  <span class="text">Courses Categories</span>
                 </a>
               </li>
               <li>
@@ -250,13 +198,7 @@
                 </div>
                 <div class="dashboard-header__user-info">
                   <h4 class="dashboard-header__user-name" *ngIf="currentUser"><span class="welcome-text">Howdy,</span> {{currentUser.userName}}</h4>
-                  <div class="dashboard-header__user-rating">
-                    <div class="rating-star">
-                      <div class="rating-label" style="width: 100%;"></div>
-                    </div>
 
-                    <p>4.50 <span>(12 ratings)</span></p>
-                  </div>
                 </div>
               </div>
 
