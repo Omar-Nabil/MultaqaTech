@@ -1,26 +1,37 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../../services/api.service';
+import { TranscriptionService } from '../../../services/transcription.service';
 
 @Component({
   selector: 'app-quizgenerator',
   templateUrl: './quizgenerator.component.html',
-  styleUrls: ['./quizgenerator.component.css']
+  styleUrls: ['./quizgenerator.component.scss']
 })
 export class QuizgeneratorComponent implements OnInit {
   temp: any[] = [];
-  constructor(private apiService:ApiService) { }
+  cannotload:boolean = false;
+  constructor(private apiService:ApiService, private transcriptionService:TranscriptionService) { }
 
   ngOnInit() {
-    let data = {
-      context: " Wep Development"
-    };
-    this.apiService.generateQuiz(data).subscribe({
-      next:(res) => {
-        console.log(res);
-        this.parseResponse(res);
+    this.transcriptionService.translationBool.subscribe((res) => {
+      if(res == true) {
+        let data = {
+          context: this.transcriptionService.transcriptionTxt.getValue()
+        };
+        this.apiService.generateQuiz(data).subscribe({
+          next:(res) => {
+            console.log(res);
+            this.parseResponse(res);
 
-      },
-      error:(err) => console.log(err)
+          },
+          error:(err) => {
+            console.log(err);
+            this.cannotload = true;
+          }
+
+        })
+      }
+      console.log(res);
 
     })
   }
