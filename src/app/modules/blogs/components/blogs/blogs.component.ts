@@ -70,6 +70,8 @@ export class BlogsComponent implements OnInit {
       next:(res) => {
         console.log(res);
         this.blogs.unshift(res);
+        this.addBlogForm.get('title')?.setValue('');
+        this.addBlogForm.get('content')?.setValue('');
       },
       error:(err) => console.log(err)
 
@@ -159,5 +161,7 @@ export class BlogsComponent implements OnInit {
       error:(err) => console.log(err)
     })
   }
+
+
 
 }
