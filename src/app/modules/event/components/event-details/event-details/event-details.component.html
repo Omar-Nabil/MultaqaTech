@@ -344,41 +344,41 @@
               </div>
 
               <!-- event Dtails Speakers Start -->
-              <div class="event-details__speakers">
+              <section id="team">
+                <div class="container">
 
-                  <div  class="d-flex justify-content-between">
-                    <h3 class="event-details__heading">Our Speakers</h3>
-                    <h5 *ngIf="isAuther" class="btn btn-warning mt-3"  data-bs-toggle="modal" data-bs-target="#addSpeaker" >Add Speaker</h5>
-                  </div>
-                  <!-- Speakers Item Start -->
-
-              </div>
-
-              <div class="speaker-active">
-                <div class="d-flex justify-content-between">
-                    <div class="swiper-wrapper" *ngFor="let speaker of speakers">
-                        <div *ngIf="speaker.eventId == (+eventId)" class="swiper-slide">
-
-                            <div class="speaker-item text-center">
-                                <div class="speaker-item__thumbnail">
-                                    <img [src]="speaker?.pictureUrl" alt="Speaker" width="170" height="170">
-                                </div>
-                                <div class="speaker-item__content">
-                                    <h6 class="speaker-item__name">{{speaker?.name}}</h6>
-                                    <p class="speaker-item__designation">{{speaker?.jobTitle}}</p>
-                                </div>
-                            </div>
-                            <div *ngIf="isAuther" class="d-flex justify-content-center">
-                              <h5 class="btn btn-danger mt-3"  (click)="deleteEventSpeaker(speaker?.id)">delete</h5>
-                              <!--<h5 class="btn btn-warning mt-3"  data-bs-toggle="modal" data-bs-target="#editSpeaker" (click)="editEventSpeaker(speaker?.id)">Edit your event</h5>-->
-                            </div>
-
-                        </div>
+                    <div class="title text-center container mb-4">
+                        <h2>O</h2>
+                        <h3>Our Speaker</h3>
+                        <p>
+                          These speakers are real individuals known for their significant contributions to their respective fields.
+                        </p>
 
                     </div>
-                </div>
-              </div>
+                    <div class=""><h5 *ngIf="isAuther" class="btn btn-warning mt-3"  data-bs-toggle="modal" data-bs-target="#addSpeaker" >Add Speaker</h5></div>
 
+                    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-3 area">
+                        <div *ngFor="let speaker of speakers" class="col">
+                           <div  *ngIf="speaker.eventId == (+eventId)" class="card">
+                              <div class="image image-container overflow-hidden"><img class="card-img-top" [src]="speaker?.pictureUrl" alt="" /></div>
+                              <div class="card-body hstack justify-content-between">
+                                 <div>
+                                    <h4 class="text-center">{{speaker?.name}}</h4>
+                                    <p class="text-center">{{speaker?.jobTitle}}</p>
+                                    <div *ngIf="isAuther" class="d-flex justify-content-center">
+                                      <h5 class="btn btn-danger mt-3"  (click)="deleteEventSpeaker(speaker?.id)">delete</h5>
+                                      <!--<h5 class="btn btn-warning mt-3"  data-bs-toggle="modal" data-bs-target="#editSpeaker" (click)="editEventSpeaker(speaker?.id)">Edit your event</h5>-->
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+
+
+                      </div>
+
+                   </div>
+              </section>
 
               <!-- event Dtails Speakers End -->
 

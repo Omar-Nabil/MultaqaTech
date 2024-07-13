@@ -294,6 +294,78 @@ button {
   transform: translateY(-50%);
 }
 
+/*speakers*/
+
+
+.card img {
+  filter: grayscale(0%);
+
+
+  transition: all 0.5s;
+}
+.image-container{
+  height: 290px;
+  overflow: hidden;
+}
+.card:hover img {
+
+ transform: scale(1.2);
+}
+
+.title {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin: 50px 0;
+  padding: calc(5*16px);
+}
+.title h3{
+  font-weight: 700;
+  font-size: 38px;
+  z-index: 2;
+  position: absolute;
+  bottom: 0px;
+  line-height: 38px;
+
+}
+
+.title h2{
+  position: absolute;
+  font-weight: 700;
+  font-size: 2em;
+  bottom: -10px;
+  font-size: 70px;
+  opacity: 0.06;
+
+}
+.title p {
+  position: absolute;
+  text-align: center;
+  top: 120%;
+  font-size: 18px;
+  width: 60%;
+  color: #999;
+}
+.title h3:after {
+ content: "";
+ position: absolute;
+ top: calc(100% + 5px);
+ left: 50%;
+ transform: translateX(-50%);
+ width: 30px;
+ height: 1px;
+ background-color: black;
+ transition: width 0.5s;
+}
+
+.title:hover h3::after {
+ width: 60px;
+}
+.area{
+  padding-top: 10rem ;
+}
 
 
 
