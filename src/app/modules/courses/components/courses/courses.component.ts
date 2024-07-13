@@ -74,7 +74,7 @@ export class CoursesComponent implements OnInit {
     $('#circle1').html(`${this.pageIndex}`)
     $('#circle2').html(`${this.pageIndex + 1}`)
     this._CourseService.getcoursesbyIndex(9,this.pageIndex).subscribe((res) => {
-      this.courses = res
+      this.courses = res.data
       $('body,html').scrollTop(50)
     })
   }
@@ -83,7 +83,7 @@ export class CoursesComponent implements OnInit {
     $('#circle1').html(`${this.pageIndex}`)
     $('#circle2').html(`${this.pageIndex + 1}`)
     this._CourseService.getcoursesbyIndex(9,this.pageIndex).subscribe((res) => {
-      this.courses = res
+      this.courses = res.data
       $('body,html').scrollTop(50)
     })
   }
