@@ -4,7 +4,7 @@ import { CurriculumQuizQuestionService } from 'src/app/modules/courses/services/
 import { CurriculumQuizService } from 'src/app/modules/courses/services/curriculum-quiz.service';
 import { WcourseService } from '../../../services/Wcourse.service';
 import { ActivatedRoute, Router } from '@angular/router';
-
+import {} from 'src/app/modules/course/components/main/main.component'
 @Component({
   selector: 'app-quiz',
   templateUrl: './quiz.component.html',
@@ -133,5 +133,12 @@ export class QuizComponent implements OnInit {
     setTimeout(() => {
       this._Router.navigate([`/wcourse/${this.courseId}/quiz`])
     },5)
+  }
+
+  nextItem() {
+    this.course.lectureOrQuizId.next(1)
+    this.course.nextitemBool.next(true)
+    this._Router.navigate([`/wcourse/${this.courseId}/notes`])
+
   }
 }

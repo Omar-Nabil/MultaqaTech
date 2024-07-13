@@ -73,8 +73,8 @@
               </div>
             </div>
             <div class="courseitems" [class.d-block]="isCourseItemVisible[index]">
-              <div class="item" *ngFor="let item of courseSectionsDetails[index]">
-                <p class="addhover" *ngIf="item.itemType=='Quiz'" routerLink="quiz" (click)="displayQuiz(item.id)"> <span
+              <div class="item" *ngFor="let item of courseSectionsDetails[index];let i = index">
+                <p class="addhover" *ngIf="item.itemType=='Quiz'" routerLink="quiz" (click)="displayQuiz(item.id,index,i)"> <span
                     class="p-3"><input type="checkbox" [checked]="item.isCompleted" disabled> {{item?.title}}</span></p>
                 <p class="addhover" *ngIf="item.itemType=='Lecture'" routerLink="notes"
                   [ngClass]="{'activeItem': item.id == videoId}" (click)="displayVideo(item.id)"><span class="p-3"><span

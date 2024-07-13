@@ -38,6 +38,7 @@
           <button class="btn btn-dark ms-auto d-block" *ngIf="(questionIndex<questions.length-1)&&isSubmit" (click)="getNextQuestion()" >Next</button>
           <button class="btn btn-dark ms-auto d-block" *ngIf="(questionIndex==questions.length-1)&&isSubmit" (click)="showScore()" >Show Score</button>
           <button class="btn btn-dark ms-auto d-block" *ngIf="failed" (click)="retryQuiz()" >Retry Quiz</button>
+          <button class="btn btn-dark ms-auto d-block" *ngIf="passed" (click)="nextItem()" >Next</button>
         </div>
   </div>
 </div>

@@ -15,6 +15,8 @@ export class WcourseService {
   lectureOrQuizId : BehaviorSubject<any> = new BehaviorSubject<any>(null);
   quizDetails : BehaviorSubject<any> = new BehaviorSubject<any>(null);
   Questions : BehaviorSubject<QuizQuestion_get[]> = new BehaviorSubject<any>(null);
+  nextitem : BehaviorSubject<any> = new BehaviorSubject<any>(null);
+  nextitemBool : BehaviorSubject<any> = new BehaviorSubject<any>(null);
 
   getCourseDetails(courseId:string):Observable<any> {
     const headers = new HttpHeaders({

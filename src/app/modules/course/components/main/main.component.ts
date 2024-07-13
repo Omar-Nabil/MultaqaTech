@@ -32,6 +32,16 @@ export class MainComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.getCourseDetails();
 
+    this.wcourseService.nextitemBool.subscribe({
+      next:()=> {
+        if (this.wcourseService.nextitemBool.getValue()) {
+      if (this.wcourseService.nextitem.getValue().itemType == "Lecture") {
+        this.displayVideo(this.wcourseService.nextitem.getValue().id)
+
+      }
+    }
+      },
+    })
 
   }
 
@@ -82,7 +92,7 @@ export class MainComponent implements OnInit, AfterViewInit {
           if(segments != 'quiz') {
             this.displayVideo(1);
           } else {
-            this.displayQuiz(1);
+            this.displayQuiz(1,0,0);
           }
         },
         error:(err) => console.log(err)
@@ -181,9 +191,8 @@ export class MainComponent implements OnInit, AfterViewInit {
     })
   }
 
-  displayQuiz(quizId:number) {
+  displayQuiz(quizId:number,sectionI:number,itemI:number) {
     this.isVideo = false;
-    console.log('displayQuiz');
 
     this.videoId = this.wcourseService.lectureOrQuizId.value;
     this.wcourseService.lectureOrQuizId.next(quizId)
@@ -203,6 +212,14 @@ export class MainComponent implements OnInit, AfterViewInit {
         console.log(err);
       }
     })
+
+    if (this.courseSectionsDetails[sectionI][itemI + 1]) {
+      this.wcourseService.nextitem.next(this.courseSectionsDetails[sectionI][itemI + 1])
+    } else if(this.courseSectionsDetails[sectionI+1][0]){
+       this.wcourseService.nextitem.next(this.courseSectionsDetails[sectionI+1][0])
+    }
+    console.log('next item is  ',this.wcourseService.nextitem.getValue());
+
   }
 
 
