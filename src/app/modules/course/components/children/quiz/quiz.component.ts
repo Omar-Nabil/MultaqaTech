@@ -3,6 +3,7 @@ import { QuizQuestion_get } from 'src/app/modules/courses/interfaces/quiz-questi
 import { CurriculumQuizQuestionService } from 'src/app/modules/courses/services/curriculum-quiz-question.service';
 import { CurriculumQuizService } from 'src/app/modules/courses/services/curriculum-quiz.service';
 import { WcourseService } from '../../../services/Wcourse.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-quiz',
@@ -21,10 +22,14 @@ export class QuizComponent implements OnInit {
   score: number = 0
   showScoreBool: boolean = false
   passed:boolean=false
-
-  constructor(private course:WcourseService ,private quiz :CurriculumQuizService,private _questions:CurriculumQuizQuestionService) { }
+  failed:boolean=false
+  courseId = 0
+  constructor(private course: WcourseService, private quiz: CurriculumQuizService, private _questions: CurriculumQuizQuestionService,
+    private _Router:Router,private route: ActivatedRoute
+  ) { }
 
   ngOnInit() {
+  this.courseId=this.course.courseId.getValue()
 
     this.course.quizDetails.subscribe(() => {
       if (this.course.lectureOrQuizId.value!=null) {
@@ -118,6 +123,15 @@ export class QuizComponent implements OnInit {
 
         }
       })
+    } else {
+      this.failed = true;
     }
+  }
+
+  retryQuiz() {
+    this._Router.navigate([`/wcourse/${this.courseId}/notes`])
+    setTimeout(() => {
+      this._Router.navigate([`/wcourse/${this.courseId}/quiz`])
+    },5)
   }
 }

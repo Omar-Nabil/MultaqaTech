@@ -11,6 +11,7 @@ export class WcourseService {
 
   constructor(private httpClient:HttpClient) { }
 
+  courseId : BehaviorSubject<any> = new BehaviorSubject<any>(null);
   lectureOrQuizId : BehaviorSubject<any> = new BehaviorSubject<any>(null);
   quizDetails : BehaviorSubject<any> = new BehaviorSubject<any>(null);
   Questions : BehaviorSubject<QuizQuestion_get[]> = new BehaviorSubject<any>(null);

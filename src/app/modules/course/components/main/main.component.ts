@@ -59,7 +59,7 @@ export class MainComponent implements OnInit, AfterViewInit {
 
   getCourseDetails() {
     this.id = this.route.snapshot.paramMap.get('id')!;
-
+    this.wcourseService.courseId.next(this.id)
     this.wcourseService.getCourseDetails(`${this.id}`).subscribe({
       next:(res) => {
         this.courseSections = res;
