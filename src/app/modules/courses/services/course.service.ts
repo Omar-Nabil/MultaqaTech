@@ -78,7 +78,7 @@ export class CourseService {
     const headers = new HttpHeaders({
       'Authorization':`Bearer ${localStorage.getItem('userToken')}`
     })
-    return this._HttpClient.get(environment.baseURL+`/api/Courses?PageSize=12&MinRating=${MinRating}&MaxRating=${MaxRating}`,{headers})
+    return this._HttpClient.get(environment.baseURL+`/api/Courses?PageSize=12&MinRating=${MinRating}&MaxRating=${MaxRating}`)
   }
   getcoursesbylanguage(language:string): Observable<any>{
     const headers = new HttpHeaders({
