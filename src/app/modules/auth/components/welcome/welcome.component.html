@@ -479,7 +479,7 @@
                     </div>
                   </div>
                   <div class="course-info">
-                    <span class="course-info__badge-text badge-all">{{levels[course.level]}}</span>
+                    <span class="course-info__badge-text "[ngClass]="{'badge-all':levels[course.level]=='All levels','badge-beginner':levels[course.level]=='Beginner','badge-intermediate':levels[course.level]=='Intermediate','badge-Advanced':levels[course.level]=='Advanced'}">{{levels[course.level]}}</span>
                     <h3 class="course-info__title"><a data-bs-toggle="modal" data-bs-target="#registerModal">{{course.title}}</a></h3>
                     <a  class="course-info__instructor">{{course.instructorName}}</a>
                     <div class="course-info__price">
@@ -487,8 +487,11 @@
                     </div>
                     <div class="course-info__rating">
 
-                      <div class="rating-star">
-                        <div class="rating-label" style="width: 80%;"></div>
+                      <div class="rating">
+                        <ng-container *ngFor="let star of getStarsArray(course.rating); let i = index">
+                          <i *ngIf="star!=0" class="fa-solid fa-star" [ngClass]="{'fa-star-half-stroke': star === 0.5}"
+                            style="color: #FFD43B;"></i>
+                        </ng-container>
                       </div>
 
                       <span>({{course.reviews.length}})</span>

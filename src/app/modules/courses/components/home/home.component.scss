@@ -73,3 +73,8 @@
   visibility: visible;
   pointer-events: auto;
 }
+
+.half-star {
+  transform: scaleX(0.5);
+  /* Adjusts the width of the half star */
+}
