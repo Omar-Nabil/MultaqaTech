@@ -73,91 +73,157 @@ export class CoursesComponent implements OnInit {
     this.pageIndex += 1
     $('#circle1').html(`${this.pageIndex}`)
     $('#circle2').html(`${this.pageIndex + 1}`)
-    this._CourseService.getcoursesbyIndex(9,this.pageIndex).subscribe((res) => {
+    this._CourseService.getcoursesbyIndex(9,this.pageIndex).subscribe({
+      next: (res) => {
       this.courses = res.data
       $('body,html').scrollTop(50)
+    },error:(err) =>{
+        this.courses=[];
+        this.length=0;
+        $('body,html').scrollTop(50)
+      },
     })
   }
   decrementIndex() {
     this.pageIndex -= 1
     $('#circle1').html(`${this.pageIndex}`)
     $('#circle2').html(`${this.pageIndex + 1}`)
-    this._CourseService.getcoursesbyIndex(9,this.pageIndex).subscribe((res) => {
+    this._CourseService.getcoursesbyIndex(9, this.pageIndex).subscribe(
+    {
+      next: (res) => {
       this.courses = res.data
       $('body,html').scrollTop(50)
-    })
+    },error:(err) =>{
+        this.courses=[];
+        this.length=0;
+        $('body,html').scrollTop(50)
+      },
+    }
+      )
   }
 
   getbysubject(subject: number) {
-    this._CourseService.getcoursesbysubject(subject).subscribe((res) => {
-      this.courses = res.data
-      this.length=this.courses?.length!
-    })
+    this._CourseService.getcoursesbysubject(subject).subscribe({
+      next: (res) => {
+        this.courses = res.data
+        this.length = this.courses?.length!
+      },error:(err) =>{
+        this.courses=[]
+ ;
+this.length=0;
+$('body,html').scrollTop(50)     },
+    }
+    )
 
   }
   getbyinstructor(instructorId: number) {
-    this._CourseService.getCoursesbyInstructorId(instructorId).subscribe((res) => {
+    this._CourseService.getCoursesbyInstructorId(instructorId).subscribe(
+      {
+      next: (res) => {
       this.courses = res.data
       this.length=this.courses?.length!
       $('body,html').scrollTop(250)
-    })
+    },error:(err) =>{
+        this.courses=[];
+        this.length=0;
+        $('body,html').scrollTop(50)
+      },
+    }
+      )
 
   }
   getbylevel(level: number) {
 
     console.log('clicked '+ level);
 
-    this._CourseService.getcoursesbylevel(level).subscribe((res) => {
+    this._CourseService.getcoursesbylevel(level).subscribe(
+
+          {
+      next: (res) => {
       this.courses = res.data
       console.log(this.courses);
       this.length = this.courses?.length!
       $('body,html').scrollTop(250)
 
-    })
+    },error:(err) =>{
+        this.courses=[];
+        this.length=0;
+        $('body,html').scrollTop(50)
+      },
+    }
+      )
 
   }
   getbyRating(MinRating: number,MaxRating:number) {
 
 
-    this._CourseService.getcoursesbyRating(MinRating,MaxRating).subscribe((res) => {
+    this._CourseService.getcoursesbyRating(MinRating, MaxRating).subscribe(
+      {
+      next: (res) => {
       this.courses = res.data
       console.log(this.courses);
       this.length = this.courses?.length!
       $('body,html').scrollTop(250)
 
-    })
+    },error:(err) =>{
+        this.courses=[];
+        this.length=0;
+        $('body,html').scrollTop(50)
+      },
+    }
+      )
 
   }
   getbylangauge(language: string) {
 
 
 
-    this._CourseService.getcoursesbylanguage(language).subscribe((res) => {
+    this._CourseService.getcoursesbylanguage(language).subscribe(
+
+      {
+      next: (res) => {
       this.courses = res.data
       console.log(this.courses);
       this.length = this.courses?.length!
       $('body,html').scrollTop(250)
 
+    },error:(err) =>{
+        this.courses=[];
+        this.length=0;
+        $('body,html').scrollTop(50)
+      },
     })
 
   }
   getbyPrice(refrence: number) {
     if (refrence==0){
-      this._CourseService.getcoursesFree(0).subscribe((res) => {
-        this.courses = res.data
-        console.log(this.courses);
-        this.length = this.courses?.length!
-        $('body,html').scrollTop(250)
+      this._CourseService.getcoursesFree(0).subscribe({
+      next: (res) => {
+      this.courses = res.data
+      console.log(this.courses);
+      this.length = this.courses?.length!
+      $('body,html').scrollTop(250)
 
-      })
+    },error:(err) =>{
+        this.courses=[];
+        this.length=0;
+        $('body,html').scrollTop(50)
+      },
+    })
     }else{
-      this._CourseService.getcoursesPAID(1).subscribe((res) => {
-        this.courses = res.data
-        console.log(this.courses);
-        this.length = this.courses?.length!
-        $('body,html').scrollTop(250)
+      this._CourseService.getcoursesPAID(1).subscribe({
+      next: (res) => {
+      this.courses = res.data
+      console.log(this.courses);
+      this.length = this.courses?.length!
+      $('body,html').scrollTop(250)
 
-      })
+    },error:(err) =>{
+        this.courses=[];
+        this.length=0;
+        $('body,html').scrollTop(50)
+      },
+    })
     }
 
 
