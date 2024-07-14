@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class ApiService {
 
-  private url = 'https://anwar101-text2diagram.hf.space/generate-response/';
+  private url = 'https://anwar101-text2diagramv2.hf.space/generate-response/';
 
   constructor(private httpClient: HttpClient) { }
 
