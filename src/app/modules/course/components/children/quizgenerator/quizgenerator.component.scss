@@ -53,3 +53,61 @@
     transform: rotate(1turn)
   }
 }
+#app {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+textarea {
+  width: 100%;
+  height: 200px;
+  margin-bottom: 10px;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+.quiz-section {
+  margin-top: 20px;
+}
+
+.quiz-question {
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  padding: 15px;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+}
+
+.quiz-question strong {
+  font-weight: bold;
+}
+
+.quiz-answer {
+  margin-top: 10px;
+  font-style: italic;
+  display: none;
+}
+
+#submitQuiz {
+  display: none;
+  margin-top: 20px;
+  text-align: center;
+}

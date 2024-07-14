@@ -1,19 +1,24 @@
-<section class="p-3" style="min-height: 250px;">
-
-  <div class="p-7 position-relative">
-    <div class="d-flex mb-2 ">
-      <h5 class="me-4" *ngIf="temp.length == 0" >Quiz :</h5>
-      <h5 *ngIf="cannotload">Can't load Quiz</h5>
-      <div>
-        <div *ngIf="temp.length == 0 && !cannotload" class="loader"></div>
-      </div>
-        <div *ngIf="temp.length != 0 && !cannotload" >
-
-          <div  *ngFor="let item of temp">
-            <p class="p-2">{{item}}</p>
-          </div>
-        </div>
-      </div>
+<div class="p-7">
+  <div class="d-flex align-items-center mb-5">
+    <h1>Quiz Generator :- </h1>
+    <div *ngIf="loading" class="ms-2">
+      <div class="loader"></div>
+    </div>
   </div>
-</section>
+  <div id="app">
+    <div id="inputSection" style="display: block;">
+      <textarea id="quizText" placeholder="Paste or type your quiz text here..."></textarea>
+      <button (click)="generateQuiz()">Generate Quiz</button>
+    </div>
 
+    <div>
+      <div id="quizSection" class="quiz-section">
+      </div>
+
+      <div id="submitQuiz">
+        <button (click)="submitQuiz()">Submit Quiz</button>
+      </div>
+    </div>
+  </div>
+
+</div>
